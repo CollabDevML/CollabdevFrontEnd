@@ -1,0 +1,79 @@
+#main{
+    display: flex;
+    flex-direction: row;
+}
+#lateral-nav{
+    width: 25%;
+    border: 1px solid black;
+    margin-right: 2.5%;
+}
+.sous-titre{
+    color:#334DAA;
+}
+#dashboard{
+    display: flexbox;
+    flex-direction: column;
+    border: 1px solid black;
+    margin-right: 2.5%;
+    width: 70%;
+}
+#en-tete{
+    background-color: #334DAA;
+    border-radius: 17px;
+    width: 94%;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 1em;
+    
+    padding-left: 56.475px;
+    padding-right: 109.062;
+    align-items: center;
+    border: 0.1px solid rgb(214, 209, 209);
+}
+#en-tete h3{
+    margin-right: 116.914px;
+}
+#en-tete img{
+    width: 205.72px;
+    height: 137.15px;
+}
+#contributions{
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+    margin-top: 5%;
+}
+#contributions div{
+    background-color: white;
+    border: 0.1 solid rgb(214, 209, 209);
+    border-radius: 5px;
+}
+#contributions div:first-child{
+    width: 70%;
+    margin-right: 5%;
+}
+#statistiques{
+    width: 25%;
+}
+#contributions div:nth-last-child(){
+    width: 25%;
+}
+#projet-recent{
+    margin-top: 5%;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ border-top: 1px solid #E9E0E0;
+ border-bottom: 1px solid #E9E0E0;
+}
+.tous-voir{
+    width: 9em;
+    height: 1.5em;
+    color: white;
+    border-radius: 2em;
+    background-color: #334DAA;
+    border: 1px solid rgb(49, 47, 47);
+}
