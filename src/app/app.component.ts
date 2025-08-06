@@ -4,9 +4,11 @@ import { HeaderpageVisiteurComponent } from './components/headerpage-visiteur/he
 import { Router,Event,NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/UI/footer/footer.component";
+import { TaskFormComponent } from './components/task-form/task-form.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent],
+  standalone: true,
+  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent, TaskFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

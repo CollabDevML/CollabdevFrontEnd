@@ -1,0 +1,57 @@
+<app-header></app-header>
+<app-side-bar></app-side-bar>
+<app-footer></app-footer>
+<div class="main-content">
+  <div class="team-header">
+  <div class="team-header__text">
+    <h2>Gérez vos tâches en <span class="blue">équipe</span></h2>
+    <p>Attribuez des tâches, suivez les progrès et récompensez les efforts avec notre système de pièces.</p>
+    <div class="team-header__links">
+      <a href="#"><span class="icon">☆</span> Système de récompenses</a>
+      <span class="separator">~</span>
+      <a href="#">Suivi en temps réel</a>
+    </div>
+  </div>
+  <div class="team-header__image">
+    <img src="imgLog1.png" alt="Illustration équipe">
+  </div>
+</div>
+<div class="task-form-container">
+  <h2>➕ Ajouter une nouvelle Tache</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <label for="title">Titre de la tâche</label>
+    <input id="title" formControlName="title" placeholder="Ex: Développement du module d'authentification" />
+
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" placeholder="Décrivez les détails de la tâche..."></textarea>
+
+    <label for="assignee">Assigner à</label>
+    <select id="assignee" formControlName="assignee">
+      <option value="">-- Sélectionner --</option>
+      <option value="abdoul">Abdoul Ibrahima Samaké</option>
+    </select>
+
+    <div class="dates">
+      <div>
+        <label for="startDate">Date début</label>
+        <input id="startDate" type="date" formControlName="startDate" />
+      </div>
+
+      <div>
+        <label for="endDate">Date fin</label>
+        <input id="endDate" type="date" formControlName="endDate" />
+      </div>
+    </div>
+
+    <label for="reward">Pièce à gagner</label>
+    <input id="reward" type="number" formControlName="reward" />
+
+    <button type="submit">Attribuer la tâche</button>
+    <button type="button" class="btn-taches" (click)="voirToutesTaches()">
+      <img src="assets/list-icon.svg" alt="Liste" style="height: 1.2rem; margin-right: 0.5rem;" />
+      Voir toutes mes tâches
+    </button>
+  </form>
+</div>
+</div>

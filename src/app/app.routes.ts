@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/UI/header/header.component';
 import { Component } from '@angular/core';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 export const routes: Routes = [
 
   {
@@ -29,6 +30,6 @@ export const routes: Routes = [
     {path: 'header', component:HeaderComponent},
     {path: 'sidebar', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
-
+    {path: 'task-form', component: TaskFormComponent},
 
 ];
