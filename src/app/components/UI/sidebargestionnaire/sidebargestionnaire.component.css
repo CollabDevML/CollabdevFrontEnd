@@ -1,0 +1,15 @@
+#lateral-nav{
+    width: 25%;
+    border: 1px solid black;
+    margin-right: 2.5%;
+    background-color: white;
+    height: 100vh;
+}
+#logo{
+    width: clamp(100px, 25vw, 120px);;
+}
+.logo-image {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}

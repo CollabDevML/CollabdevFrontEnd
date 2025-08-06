@@ -9,6 +9,7 @@ import { InscriptionIndexComponent } from './components/inscription/inscription-
 import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.component';
 import { HeaderComponent } from './components/UI/header/header.component';
 import { DashboardGestionnaireComponent } from './components/dashboard-gestionnaire/dashboard-gestionnaire.component';
+import { SidebargestionnaireComponent } from './components/UI/sidebargestionnaire/sidebargestionnaire.component';
 export const routes: Routes = [
 
   {
@@ -25,6 +26,8 @@ export const routes: Routes = [
   ]},
     {path:'page-visiteur',component:PageVisiteurComponent},
     {path: 'header', component:HeaderComponent},
-    {path:'dashboard', component:DashboardGestionnaireComponent}
+    {path:'dashboard', component:DashboardGestionnaireComponent},
+    {path:'sidebar', component: SidebargestionnaireComponent},
+    
 
 ];
