@@ -1,6 +1,7 @@
 #main{
     display: flex;
     flex-direction: row;
+    font-family: Inter;
 }
 #lateral-nav{
     width: 25%;
@@ -11,7 +12,7 @@
     color:#334DAA;
 }
 #dashboard{
-    display: flexbox;
+    display: flex;
     flex-direction: column;
     border: 1px solid black;
     margin-right: 2.5%;
@@ -20,26 +21,31 @@
 #en-tete{
     background-color: #334DAA;
     border-radius: 17px;
-    width: 94%;
+    width: 100%;
     height: 100px;
     color: white;
     display: flex;
     flex-direction: row;
     font-weight: bold;
     font-size: 1em;
-    
-    padding-left: 56.475px;
-    padding-right: 109.062;
     align-items: center;
-    border: 0.1px solid rgb(214, 209, 209);
+    box-sizing: border-box;
+    border: 0.1px solid white;
+    justify-content: space-between;
+    padding: 0 5rem;
 }
 #en-tete h3{
     margin-right: 116.914px;
 }
-#en-tete img{
-    width: 205.72px;
-    height: 137.15px;
+
+#en-tete img 
+{
+    width: clamp(100px, 25vw, 120px);
+    height: auto;
+    box-shadow: 0px 0px 59px 49px rgba(255, 255, 255, 0.15);
 }
+    
+
 #contributions{
     display: flex;
     flex-direction: row;
@@ -50,16 +56,25 @@
     background-color: white;
     border: 0.1 solid rgb(214, 209, 209);
     border-radius: 5px;
+    box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.2);
+    
 }
 #contributions div:first-child{
     width: 70%;
     margin-right: 5%;
+    padding: 0 1.5rem;
 }
 #statistiques{
     width: 25%;
 }
-#contributions div:nth-last-child(){
+#contributions div:nth-last-child{
     width: 25%;
+}
+.titre{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 }
 #projet-recent{
     margin-top: 5%;
@@ -68,12 +83,18 @@
  flex-direction: column;
  border-top: 1px solid #E9E0E0;
  border-bottom: 1px solid #E9E0E0;
+ padding: 0 1.5rem;
+ box-sizing: border-box;
 }
 .tous-voir{
     width: 9em;
     height: 1.5em;
     color: white;
     border-radius: 2em;
-    background-color: #334DAA;
+    background-color: rgba(51, 77, 170, 0.72);
     border: 1px solid rgb(49, 47, 47);
+}
+#demande-contribution{
+    display: flex;
+    justify-content: center;
 }
