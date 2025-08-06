@@ -29,7 +29,7 @@ export const routes: Routes = [
   ]},
     {path:'page-visiteur',component:PageVisiteurComponent},
     {path: 'header', component:HeaderComponent},
-    {path: 'sidebar', component:SideBarComponent},
+    {path: 'sidebargestionnaire', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
 
     {path:'dashboard', component:DashboardGestionnaireComponent},
