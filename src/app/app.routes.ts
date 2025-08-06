@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
 import { DashboardGestionnaireComponent } from './components/dashboard-gestionnaire/dashboard-gestionnaire.component';
-import { SidebargestionnaireComponent } from './components/UI/sidebargestionnaire/sidebargestionnaire.component';
+import { CardcontributionComponent } from './components/UI/cardcontribution/cardcontribution.component';
 export const routes: Routes = [
 
   {
@@ -29,11 +29,13 @@ export const routes: Routes = [
   ]},
     {path:'page-visiteur',component:PageVisiteurComponent},
     {path: 'header', component:HeaderComponent},
-    {path: 'sidebargestionnaire', component:SideBarComponent},
+    {path: 'sidebar', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
 
     {path:'dashboard', component:DashboardGestionnaireComponent},
-    {path:'sidebar', component: SidebargestionnaireComponent},
+    {
+      path:'card-contribution', component: CardcontributionComponent
+    },
     
 
 ];

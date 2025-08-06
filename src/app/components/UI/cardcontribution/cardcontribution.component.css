@@ -1,0 +1,30 @@
+.card{
+    color: white;
+    background-color: rgba(51, 77, 170, 0.72);
+    display: flex;
+    font-size: 0.7em;
+    width: 45%;
+    border-radius: 9px;
+    margin-left: 10px;
+    margin-top: 10px;
+     justify-content: center;
+    align-items: center;
+    height: 15vh;
+}
+.card div{
+    width: 45%;
+}
+#right{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#right button{
+    width: 30%;
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+}

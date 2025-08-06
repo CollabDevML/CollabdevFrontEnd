@@ -1,18 +1,28 @@
 #main{
     display: flex;
     flex-direction: row;
-    font-family: Inter;
-}
-
+    border: 1px solid black;
+} 
 .sous-titre{
     color:#334DAA;
 }
-#dashboard{
-    display: flex;
-    flex-direction: column;
+.lateral-nav{
+    width: 10%;
     border: 1px solid black;
     margin-right: 2.5%;
-    width: 70%;
+}
+.lateral-nav.lateral-close{
+    width: 4.5%;
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    width: 87.5%;
+    margin-right: 0%;
+    border: 1px solid black;
+}
+.dashboard.long-dashboard{
+    width: 93%;
 }
 #en-tete{
     background-color: #334DAA;
@@ -113,4 +123,25 @@
     justify-content: center;
     background-color: white;
    margin-top: 5%;
+}
+.side-bar-open{
+    display: flex;
+    flex-direction: column;
+}
+.side-bar-open.side-bar-close {
+    display: grid;
+    grid-template-columns: 75% 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.side-bar-open.side-bar-close #contribution{
+    grid-column: 1;
+  grid-row: 1;
+}
+.side-bar-open.side-bar-close #projet-récents{
+    grid-column: 1;
+  grid-row: 2;
+}
+.side-bar-open.side-bar-close #calendrier{
+  grid-column: 2;
+  grid-row: 1 / span 2;  /* S'étend sur les deux lignes */
 }

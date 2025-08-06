@@ -4,9 +4,15 @@ import { HeaderpageVisiteurComponent } from './components/headerpage-visiteur/he
 import { Router,Event,NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/UI/footer/footer.component";
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent],
+  imports: [
+    RouterOutlet, 
+    HeaderpageVisiteurComponent, 
+    CommonModule, 
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,6 +27,6 @@ export class AppComponent {
       console.log(this.ispagevisiteur);
     }
    })
-
 }
+  
 }

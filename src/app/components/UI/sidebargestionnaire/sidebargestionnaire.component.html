@@ -1,27 +1,48 @@
-<div id="lateral-nav">
-   <div class="logo">
-                <img src="image 40.png" alt="logo collabdev" class="logo-image">
-                
+
+<aside class="sidebar" [class.replié]="!afficherDetailsSidebar">
+    <img *ngIf="afficherDetailsSidebar" src="/image 40.png" alt="logo" class="logo-image">
+    <!-- Section haute de la sidebar -->
+    <div class="haut">
+        <!-- Navigation Accueil -->
+        <div class="nav1">
+            <i class="ri-home-4-fill" style="color: #334DAA; font-size: 25px;"></i>
+            <p *ngIf="afficherDetailsSidebar">Accueil</p>
+        </div>
+        <!-- Navigation Les idées de projets -->
+        <div class="nav2">
+            <i class="ri-lightbulb-flash-line" style="color: #334DAA; font-size: 25px;"></i>
+            <p *ngIf="afficherDetailsSidebar">Mes idées de projets</p>
+        </div>
+        <!-- Navigation Mes projets -->
+        <div class="nav3">
+            <i class="ri-layout-masonry-line" style="color: #334DAA; font-size: 25px;"></i>
+            <p *ngIf="afficherDetailsSidebar">Mon espace</p>
+        </div>
+        <!-- Navigation Mes contributions -->
+        <div class="nav4">
+            <i class="ri-folder-add-line" style="color: #334DAA; font-size: 25px;"></i>
+            <p *ngIf="afficherDetailsSidebar">Créer</p>
+        </div>
     </div>
-   <nav>
-        <ul>
-            <li>
-                <img src="" alt="" class="sidebar-icone">
-                <a routerLink='' routerLinkActive="router-link-active"></a>
-            </li>
-            <li>
-                <img src="" alt="" class="sidebar-icone">
-                 <a routerLink='' routerLinkActive="router-link-active"></a>
-            </li>
-            <li>
-                
-                <img src="" alt="" class="sidebar-icone">
-                 <a routerLink='' routerLinkActive="router-link-active"></a>
-            </li>
-            <li>
-                <img src="" alt="" class="sidebar-icone">
-                 <a routerLink='' routerLinkActive="router-link-active"></a>
-            </li>
-        </ul>
-   </nav> 
+    
+    <!-- Section basse de la sidebar -->
+    <aside class="enbas">
+        <!-- Navigation Profil -->
+        <div class="nav5">
+            <i class="ri-account-circle-line" style="color: #334DAA; font-size: 25px;"></i>
+            <p *ngIf="afficherDetailsSidebar">Profil</p>
+        </div>
+        <!-- Navigation Déconnexion -->
+        <div class="nav6">
+            <i class="ri-login-box-line" style="color: #334DAA; font-size: 25px;"></i>
+            <p *ngIf="afficherDetailsSidebar">Deconnexion</p>
+        </div>
+    </aside>
+</aside>
+
+<!-- Bouton flèche -->
+<div class="btn" (click)="changerEtatSidebar()">
+    <i class="ri-arrow-left-s-line" style="color: #334DAA; font-size: 25px;"></i>
 </div>
+
+ 

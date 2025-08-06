@@ -1,53 +1,56 @@
 <div id="main">
-  <div id="lateral-nav">
-    nav-lateral component
+  <div class="lateral-nav" [ngStyle]="{ 'background-color': 'yellow' }" [class.lateral-close]="!sidebarOpen">
+    <app-sidebargestionnaire
+      (AfficherSideBar)="changerEtatSidebar($event)"
+    ></app-sidebargestionnaire>
   </div>
-  <div id="dashboard">
+  <div class="dashboard" [class.long-dashboard]=!sidebarOpen>
     <div id="en-tete">
       <h3>
         Heureux de vous revoir
         <span [ngStyle]="{ color: '#F6C434' }">Kadiatou Tall</span><br />
         Gerer vos projets en toute simplicité
       </h3>
-     <img src="/gestionnnairedashboard.png" alt="image">
+      <img src="/gestionnnairedashboard.png" alt="image" />
     </div>
-    <div id="contributions">
-      <div>
-        <span class="titre">
-          <h4 class="sous-titre">Contributions à valider</h4>
-        <button class="tous-voir">Tous voir</button>
-        </span>
-        
-      </div>
-      <div id="statistiques">
-        <h5>Projets</h5>
-          <p [ngStyle]="{'display':'flex', 'flex-direction':'column'}">
-           <span id="en-cours"> 5</span><br>
+    <div  class='side-bar-open' [class.side-bar-close]="!sidebarOpen">
+      <div id="contributions">
+        <div>
+          <span class="titre">
+            <h4 class="sous-titre">Contributions à valider</h4>
+            <button class="tous-voir">Tous voir</button>
+          </span>
+        </div>
+        <div id="statistiques">
+          <h5>Projets</h5>
+          <p [ngStyle]="{ display: 'flex', 'flex-direction': 'column' }">
+            <span id="en-cours"> 5</span><br />
             En cours
           </p>
           <p>
-            <span [ngStyle]="{'margin-top':'2px'}">
-                  10  
-             <hr id="realise">
-            Réalisés
+            <span [ngStyle]="{ 'margin-top': '2px' }">
+              10
+              <hr id="realise" />
+              Réalisés
             </span>
           </p>
-            
-          
-          
-           
-          
+        </div>
       </div>
+      <div id="projet-recent">
+        <span class="titre">
+          <h4 class="sous-titre">Projets récents</h4>
+          <button class="tous-voir">Tous voir</button>
+        </span>
+      </div>
+      @if (sidebarOpen === false) {
+        <div id="calendrier">
+        app-
+      </div>
+      }
     </div>
-    <div id="projet-recent">
-      <span class="titre">
-        <h4 class="sous-titre">Projets récents</h4>
-        <button class="tous-voir">Tous voir</button>
-      </span>
-        
-    </div>
+
     <div id="demande-contribution">
-        <h4 class="sous-titre">Démandes de contribution</h4>
+      <h4 class="sous-titre">Démandes de contribution</h4>
     </div>
   </div>
 </div>
