@@ -1,0 +1,148 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-frame {
+  position: relative; /* pour positionner le bouton à l’intérieur */
+  display: flex;
+  background-color: #334DAA;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(51, 77, 170, 0.5);
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+}
+
+.retour {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 10;
+}
+
+
+.illustration {
+  flex: 1;
+  background-color: #334DAA;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement */
+  align-items: center; /* Centre horizontalement */
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.illustration img {
+   width: 262px;
+  height: 262px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+img{
+  border-radius: 10px;
+  box-shadow: #feffff;
+}
+
+.illustration p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-frame {
+  flex: 1;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  min-width: 300px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #334DAA;
+  font-size: 2rem;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #334DAA;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+.file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 2px dashed #334DAA;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: center;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.file-label i {
+  margin-right: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button {
+  background-color: #334DAA;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #283b82;
+}
+
+@media (max-width: 768px) {
+  .main-frame {
+    flex-direction: column;
+  }
+
+  .illustration,
+  .form-frame {
+    padding: 20px;
+  }
+
+  .form-frame {
+    border-radius: 0 0 20px 20px;
+  }
+}

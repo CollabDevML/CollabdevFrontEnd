@@ -8,6 +8,7 @@ import { PorteurProjetComponent } from './components/inscription/porteur-projet/
 import { InscriptionIndexComponent } from './components/inscription/inscription-index/inscription-index.component';
 import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.component';
 import { HeaderComponent } from './components/UI/header/header.component';
+import { PropositionIdeeProjetComponent } from './components/porteurProjet/proposition-idee-projet/proposition-idee-projet.component';
 export const routes: Routes = [
 
   {
@@ -24,6 +25,6 @@ export const routes: Routes = [
   ]},
     {path:'page-visiteur',component:PageVisiteurComponent},
     {path: 'header', component:HeaderComponent},
-
+    {path: 'porteurProjet', component:PropositionIdeeProjetComponent},
 
 ];
