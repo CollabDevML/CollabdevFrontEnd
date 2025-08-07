@@ -1,15 +1,27 @@
+<app-header></app-header>
 
 <div class="main-frame">
-    <a href="#" class="retour"><i class="ri-arrow-left-s-line"></i> Retour</a>
+  <a href="#" class="retour"><i class="ri-arrow-left-s-line"></i> Retour</a>
+
   <div class="illustration">
     <img src="proposerIdee.png" alt="Illustration de brainstorming" />
-        <p style="text-align: center;">Donnez vie à vos idées, Reinventez la Collaboration</p>
+    <p style="text-align: center;">Donnez vie à vos idées, Réinventez la Collaboration</p>
   </div>
+
   <div class="form-frame">
     <h2>Proposer votre idée</h2>
-    <input type="text" placeholder="Titre" />
-    <textarea placeholder="Description"></textarea>
-    <select>
+
+    
+    <div class="erreurs" *ngIf="erreurs.length > 0">
+      <ul>
+        <li *ngFor="let erreur of erreurs">{{ erreur }}</li>
+      </ul>
+    </div>
+
+    <input type="text" placeholder="Titre" [(ngModel)]="titre" />
+    <textarea placeholder="Description" [(ngModel)]="description"></textarea>
+
+    <select [(ngModel)]="domaine">
       <option value="">Sélectionnez un domaine</option>
       <option value="technologie">Technologie</option>
       <option value="santé">Santé</option>
@@ -19,8 +31,12 @@
       <option value="art">Art</option>
       <option value="autre">Autre</option>
     </select>
-    <label for="file-upload" class="file-label">Téléverser cahier de charge</label>
-    <input type="file" id="file-upload" />
-    <button>Envoyer</button>
+
+    <label for="file-upload" class="file-label">
+      <i class="ri-file-upload-line"></i> Téléverser cahier de charge
+    </label>
+    <input type="file" id="file-upload" (change)="onFileSelected($event)" />
+
+    <button (click)="onSubmit()">Envoyer</button>
   </div>
 </div>

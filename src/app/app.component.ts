@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/UI/footer/footer.component";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent],
+  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

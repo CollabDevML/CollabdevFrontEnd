@@ -9,7 +9,7 @@
 }
 
 .main-frame {
-  position: relative; /* pour positionner le bouton à l’intérieur */
+  position: relative;
   display: flex;
   background-color: #334DAA;
   border-radius: 20px;
@@ -26,39 +26,40 @@
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px; /*  taille de l'icône et du texte augmentée */
   z-index: 10;
+  display: flex;
+  align-items: center;
 }
 
+.retour i {
+  font-size: 24px; /*  taille de l'icône augmentée */
+  margin-right: 6px;
+}
 
 .illustration {
   flex: 1;
   background-color: #334DAA;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centre verticalement */
-  align-items: center; /* Centre horizontalement */
+  justify-content: center;
+  align-items: center;
   color: white;
   text-align: center;
-  box-sizing: border-box;
   padding: 10px;
 }
 
 .illustration img {
-   width: 262px;
+  width: 262px;
   height: 262px;
   object-fit: contain;
   margin-bottom: 10px;
-}
-img{
   border-radius: 10px;
-  box-shadow: #feffff;
 }
 
 .illustration p {
   font-size: 1.1rem;
   font-weight: 500;
-  justify-content: center;
   text-align: center;
 }
 
@@ -75,17 +76,22 @@ h2 {
   margin-bottom: 20px;
   color: #334DAA;
   font-size: 2rem;
+  text-align: center;
 }
 
+/*  Styles uniformes pour tous les champs */
 input[type="text"],
 textarea,
 select {
-  width: 100%;
+  outline-color: #334DAA;
+  width: 100%; /*  largeur uniforme */
   padding: 12px;
   margin-bottom: 20px;
-  border: 1px solid #334DAA;
-  border-radius: 8px;
+  border: 1.5px solid #334DAA;
+  border-radius: 12px;
   font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
 }
 
 textarea {
@@ -93,43 +99,60 @@ textarea {
   resize: none;
 }
 
+/*  Bouton de téléversement stylisé */
 .file-label {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px;
   border: 2px dashed #334DAA;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 20px;
   cursor: pointer;
   text-align: center;
   color: #555;
   font-weight: 500;
   font-size: 0.95rem;
+  width: 92%; 
+  background-color: #f4f4f4;
 }
 
 .file-label i {
-  margin-right: 10px;
+  margin-right: 20px;
+  font-size: 20px;
 }
 
 input[type="file"] {
   display: none;
 }
 
+/*  Bouton d’envoi */
 button {
   background-color: #334DAA;
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  width: 100%;
+  width: 100%; /*  pleine largeur */
   font-weight: bold;
   font-size: 1rem;
 }
 
 button:hover {
   background-color: #283b82;
+}
+
+/*  Messages d'erreurs */
+.erreurs {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
