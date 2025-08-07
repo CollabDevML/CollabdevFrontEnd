@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f1f4fb;
+}
+
+.main{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  gap: 20px;
+}
+/* Header principal */
+.header {
+  text-align: center;
+  padding: 30px 20px;
+ 
+  color: black;
+}
+
+.header h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+/* ----- Card design ----- */
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgb(104, 104, 221);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-section h2 {
+  margin: 0;
+  font-size: 1.3em;
+  color: #2644ac;
+}
+
+.tag {
+  background-color: #f3f4ff;
+  color: #f1b800;
+  font-size: 0.75em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 0.9em;
+  color: #333;
+  margin: 12px 0;
+}
+
+/* Date + lien "Voir plus" sur la même ligne */
+.publie,
+.voirPlusContenair {
+  font-size: 0.75em;
+  color: #555;
+}
+
+.publie-voirplus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Ancienne classe container (plus utilisée) */
+.voirPlusContenair {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.voirPlus {
+  background-color: #2644ac;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.voirPlus:hover {
+  background-color: #1f3791;
+}
+
+
+/* Footer avec auteur + stats */
+.card-footer {
+  border-top: 3px solid #eee;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+.user-info span {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1em;
+  color: #444;
+}
+
+.footer-icons i {
+  margin-right: 4px;
+}

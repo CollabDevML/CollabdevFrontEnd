@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
 import { PropositionIdeeProjetComponent } from './components/porteurProjet/proposition-idee-projet/proposition-idee-projet.component';
+import { ListeIdeeProjetComponent } from './components/porteurProjet/liste-idee-projet/liste-idee-projet.component';
 export const routes: Routes = [
 
   {
@@ -32,5 +33,8 @@ export const routes: Routes = [
     {path: 'footer', component:FooterComponent},
 
     {path: 'porteurProjet', component:PropositionIdeeProjetComponent},
+
+    {path: 'porteurProjetListe', component:ListeIdeeProjetComponent},
+
 
 ];

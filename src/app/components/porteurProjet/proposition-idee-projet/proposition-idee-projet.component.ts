@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IdeeProjetServiceService } from '../../../services/proposition/idee-projet-service.service';
 import { HttpClient } from '@angular/common/http';
+import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     FormsModule,
     CommonModule,
-    
+    SideBarComponent,
+    HeaderComponent
    
   ],
   templateUrl: './proposition-idee-projet.component.html',
