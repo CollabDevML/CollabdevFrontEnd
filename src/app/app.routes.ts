@@ -35,6 +35,6 @@ export const routes: Routes = [
   { path: 'header', component: HeaderComponent },
   { path: 'sidebar', component: SideBarComponent },
   { path: 'footer', component: FooterComponent },
-  {path: 'header-barre', component:RecherchebarreComponent}
+  {path: 'header-barre', component:RecherchebarreComponent},
   { path: 'accueil', component: AccueilComponent },
 ];
