@@ -7,7 +7,7 @@ import { FooterComponent } from "./components/UI/footer/footer.component";
 import { TaskFormComponent } from './components/task-form/task-form.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent],
+  imports: [RouterOutlet,HeaderComponent,CommonModule, TaskFormComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

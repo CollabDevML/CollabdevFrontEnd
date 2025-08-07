@@ -30,10 +30,6 @@ export const routes: Routes = [
     {path: 'header', component:HeaderComponent},
     {path: 'sidebar', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
-<<<<<<< HEAD
     {path: 'task-form', component: TaskFormComponent},
     {path: 'task-list', component: TaskListComponent}
-
-=======
->>>>>>> 15415a01e6523b894500165024b5625f0148adbc
 ];
