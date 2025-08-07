@@ -1,0 +1,17 @@
+<div class="projets-recents">
+  <div class="entete">
+    <h2>Projets récents</h2>
+    <a class="voir-tout" href="#">Voir tout</a>
+  </div>
+
+  <div class="liste-projets">
+    <div class="carte-projet" *ngFor="let projet of projets | slice:0:4">
+      <h3 class="titre">{{ projet.nom }}</h3>
+      <p class="description">{{ projet.description }}</p>
+      <div class="infos">
+        <span class="date">{{ projet.date }}</span>
+        <span class="statut" [class.termine]="projet.termine">{{ projet.termine ? 'Terminé' : 'En cours' }}</span>
+      </div>
+    </div>
+  </div>
+</div>
