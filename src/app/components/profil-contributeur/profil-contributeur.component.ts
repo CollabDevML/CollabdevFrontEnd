@@ -3,10 +3,11 @@ import { User } from '../../models/userProfil/profilUser';
 import { HeaderComponent } from '../UI/header/header.component';
 import { SideBarComponent } from '../UI/side-bar/side-bar.component';
 import { FooterComponent } from '../UI/footer/footer.component';
+import { HeaderProfilComponent } from '../header-profil/header-profil.component';
 
 @Component({
   selector: 'app-profil-contributeur',
-  imports: [HeaderComponent, SideBarComponent, FooterComponent],
+  imports: [HeaderProfilComponent, SideBarComponent, FooterComponent],
   templateUrl: './profil-contributeur.component.html',
   styleUrl: './profil-contributeur.component.css',
 })
