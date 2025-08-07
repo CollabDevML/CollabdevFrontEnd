@@ -1,116 +1,109 @@
-
 .header {
-    /*display: flex;*/
-    width: 100% ;
-    background-color: white;
-    border-top: 1px solid #e3f2fd;
-    border-bottom: solid #7F7F7F 1px;
-    /*box-shadow: 0 2px 4px #7F7F7F;*/
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid #e3f2fd;
+  border-bottom: solid #7f7f7f 1px;
 }
-
 
 .entete {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: relative;
 }
-
 
 .left-section {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1.5;
 }
 
-
 .logo {
-    display: flex;
-    flex-direction: column;
-    /*align-items: flex-start;*/
+  display: flex;
+  flex-direction: column;
 }
 
 .logo-image {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .slogan {
-    font-size: 23px;
-    font-weight: bold;
-    color: #000000;
-    margin: 0;
-    white-space: nowrap;
+  font-size: 23px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+  white-space: nowrap;
 }
 
-
 .bouton-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1.5;
 }
 
 .buttons {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
-.button1, .button2 {
-    background-color: #334DAA;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.button1,
+.button2 {
+  background-color: #334daa;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.button1:hover, .button2:hover {
-    background-color: #334DAA;
+.button1:hover,
+.button2:hover {
+  background-color: #334daa;
 }
 
-.button1 a, .button2 a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
+.button1 a,
+.button2 a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
 }
-
 
 .separator {
-    width: 1px;
-    height: 60px;
-    background-color: #7F7F7F;
-    margin: 0 30px;
+  width: 1px;
+  height: 60px;
+  background-color: #7f7f7f;
+  margin: 0 30px;
 }
 
-
 .right-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    flex: 1;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .copyright {
-    font-size: 12px;
-    color: #000000;
-    margin: 0;
+  font-size: 12px;
+  color: #000000;
+  margin: 0;
 }
 
 .contact-link {
-    font-size: 12px;
-    color: #334DAA;
-    text-decoration: underline;
-    transition: color 0.3s ease;
+  font-size: 12px;
+  color: #334daa;
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
 /*.contact-link:hover {
@@ -118,67 +111,110 @@
 }*/
 
 /* Responsive design */
-@media (max-width: 768px) {
-    .entete {
-        flex-direction: column;
-        height: auto;
-        padding: 15px 20px;
-        gap: 15px;
-    }
-    
+@media (max-width: 900px) {
+  .slogan {
+    display: none;
+  }
+  .logo-image {
+    height: 20px;
+  }
+  .button1,
+  .button2 {
+    padding: 6px 14px;
+  }
+  .button1 a,
+  .button2 a {
+    font-size: 12px;
+  }
+  .copyright,
+  .contact-link {
+    font-size: 10px;
+  }
+  .entete {
+    padding: 0 20px;
+    height: 50px;
+  }
+  .left-section,
+  .right-section {
+    gap: 15px;
+  }
+  .buttons {
     .left-section {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+      flex-direction: column;
+      gap: 15px;
     }
-    
-    .bouton-section {
-        order: 2;
-    }
-    
-    .separator {
-        display: none;
-    }
-    
-    .right-section {
-        order: 3;
-        align-items: center;
-    }
-    
-    .slogan {
-        font-size: 0;
-        text-align: center;
-    }
-    
-    .buttons {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .button1, .button2 {
-        width: 200px;
-    }
-    
-    .logo-image {
-        height: 35px;
-    }
-}
+  }
 
-@media (max-width: 480px) {
+  @media (max-width: 768px) {
     .entete {
-        padding: 10px 15px;
+      padding: 0 15px;
+      height: 45px;
     }
-    
     .logo-image {
-        height: 30px;
+      height: 18px;
     }
-    
+    .button1,
+    .button2 {
+      padding: 5px 12px;
+    }
+    .button1 a,
+    .button2 a {
+      font-size: 11px;
+    }
+    .copyright,
+    .contact-link {
+      font-size: 9px;
+    }
+    .left-section,
+    .right-section {
+      gap: 10px;
+    }
+    .buttons {
+      gap: 10px;
+    }
+    .separator {
+      margin: 0 15px;
+      width: 1px;
+      height: 47px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .entete {
+      padding: 0 10px;
+      height: 40px;
+    }
+    .logo-image {
+      height: 16px;
+    }
+
     .slogan {
-        font-size: 14px;
+      font-size: 14px;
     }
-    
-    .button1, .button2 {
-        width: 180px;
-        padding: 8px 16px;
+
+    .button1,
+    .button2 {
+      padding: 4px 8px;
     }
-} 
+    .button1 a,
+    .button2 a {
+      font-size: 10px;
+    }
+    .copyright,
+    .contact-link {
+      font-size: 8px;
+    }
+    .left-section,
+    .right-section {
+      gap: 8px;
+    }
+    .buttons {
+      gap: 8px;
+    }
+    .separator {
+      margin: 0 10px;
+      width: 1px;
+      height: 47px;
+    }
+  }
+}
