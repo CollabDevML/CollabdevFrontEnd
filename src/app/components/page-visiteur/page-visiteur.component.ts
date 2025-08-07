@@ -21,8 +21,6 @@ export class PageVisiteurComponent {
       next:(data)=>{
         this.listeideeprojet=data;
         console.log(this.listeideeprojet)
-        
-
       },
       error:(erreur)=>{
         console.log(erreur);

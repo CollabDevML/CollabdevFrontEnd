@@ -8,7 +8,7 @@ public uriCDC!:string;
 public nombreSoutien!:number;
 public datePublication!:Date;
 public idUtilisateur!:number;
-public commentaireIdeeProjets!:{description:string;
+public commentaireIdeeProjets!:{contenu:string;
  datePublication:Date;
  idutilisateur:Number;}[];
   

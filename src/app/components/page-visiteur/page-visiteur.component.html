@@ -32,17 +32,31 @@
           <p>{{ ideeprojet.description }}</p>
           <h4>{{ ideeprojet.datePublication }}</h4>
         </div>
-
-        <div
-          class="commentaireideeprojet"
-          *ngFor="let commentaire of ideeprojet.commentaireIdeeProjets"
-        >
-          <div class="entête">{{ ideeprojet.idUtilisateur }}</div>
-          <div class="commentaire">
-            <div class="acteur">{{ commentaire.idutilisateur }}</div>
-            <div class="contenu">{{ commentaire.description }}</div>
+        
+        <div class="commentaireideeprojet">
+            <div class="entête">{{ ideeprojet.idUtilisateur }}</div>
+            <ng-container *ngIf="ideeprojet.commentaireIdeeProjets.length>=2; else inferieur" >
+          <div class="commentaire" *ngFor="let commentaire of ideeprojet.commentaireIdeeProjets.slice(0,2)">
+            <div class="acteur" >{{ commentaire.idutilisateur }}</div>
+            <div class="contenu">{{ commentaire.contenu }}</div>
           </div>
+          </ng-container>
+          <ng-template #inferieur>
+            <ng-container *ngIf="ideeprojet.commentaireIdeeProjets.length<2; else vide" >
+               <div class="commentaire" *ngFor="let commentaire of ideeprojet.commentaireIdeeProjets">
+                  <div class="acteur" >{{ commentaire.idutilisateur }}</div>
+                  <div class="contenu">{{ commentaire.contenu }}</div>
+                </div>
+            </ng-container>
+            <ng-template #vide>
+              <ng-container ><p>cet idée de projet n'a pas de commentaire</p></ng-container>
+            </ng-template>
+
+          </ng-template>
+          
+         
         </div>
+        
       </div>
     </ng-container>
   </div>
