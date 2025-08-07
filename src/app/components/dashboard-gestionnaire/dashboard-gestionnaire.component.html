@@ -1,10 +1,10 @@
 <div id="main">
-  <div class="lateral-nav" [ngStyle]="{ 'background-color': 'yellow' }" [class.lateral-close]="!sidebarOpen">
+  <div class="lateral-nav" [class.lateral-close]="!sidebarOpen">
     <app-sidebargestionnaire
       (AfficherSideBar)="changerEtatSidebar($event)"
     ></app-sidebargestionnaire>
   </div>
-  <div class="dashboard" [class.long-dashboard]=!sidebarOpen>
+  <div class="dashboard" [class.long-dashboard]="!sidebarOpen">
     <div id="en-tete">
       <h3>
         Heureux de vous revoir
@@ -13,15 +13,21 @@
       </h3>
       <img src="/gestionnnairedashboard.png" alt="image" />
     </div>
-    <div  class='side-bar-open' [class.side-bar-close]="!sidebarOpen">
+
+    <div class="side-bar-open" [class.side-bar-close]="!sidebarOpen">
       <div id="contributions">
-        <div>
+        <div class="contribution-card">
           <span class="titre">
             <h4 class="sous-titre">Contributions à valider</h4>
             <button class="tous-voir">Tous voir</button>
           </span>
+
+          <div class="contribution-list">
+            <app-cardcontribution />
+            <app-cardcontribution />
+          </div>
         </div>
-        <div id="statistiques">
+        <div class="statistiques" [class.decale]="!sidebarOpen">
           <h5>Projets</h5>
           <p [ngStyle]="{ display: 'flex', 'flex-direction': 'column' }">
             <span id="en-cours"> 5</span><br />
@@ -36,21 +42,64 @@
           </p>
         </div>
       </div>
+
       <div id="projet-recent">
         <span class="titre">
           <h4 class="sous-titre">Projets récents</h4>
           <button class="tous-voir">Tous voir</button>
         </span>
+
+        <div class="card-content">
+          <app-cardprojet></app-cardprojet>
+          <app-cardprojet></app-cardprojet>
+          <app-cardprojet></app-cardprojet>
+          <app-cardprojet></app-cardprojet>
+        </div>
       </div>
+
       @if (sidebarOpen === false) {
-        <div id="calendrier">
-        app-
+      <div id="calendrier">
+        <full-calendar [options]="calendarOptions"></full-calendar>
       </div>
       }
     </div>
 
     <div id="demande-contribution">
       <h4 class="sous-titre">Démandes de contribution</h4>
+      <table>
+        <thead class="table-header">
+          <tr>
+            <th id="devant">Projet</th>
+            <th>Contributeur</th>
+            <th>Date d'envoie</th>
+            <th>Profil contributeur</th>
+            <th id="derriere">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td class="actions">
+              <button id="accepte">Accepté</button>
+              <button id="refuse">Refusé</button>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td class="actions">
+              <button id="accepte">Accepté</button>
+              <button id="refuse">Refusé</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
