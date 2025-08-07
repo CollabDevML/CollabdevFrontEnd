@@ -8,7 +8,6 @@ import { PorteurProjetComponent } from './components/inscription/porteur-projet/
 import { InscriptionIndexComponent } from './components/inscription/inscription-index/inscription-index.component';
 import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.component';
 import { HeaderComponent } from './components/UI/header/header.component';
-import { Component } from '@angular/core';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
@@ -31,7 +30,10 @@ export const routes: Routes = [
     {path: 'header', component:HeaderComponent},
     {path: 'sidebar', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
+<<<<<<< HEAD
     {path: 'task-form', component: TaskFormComponent},
     {path: 'task-list', component: TaskListComponent}
 
+=======
+>>>>>>> 15415a01e6523b894500165024b5625f0148adbc
 ];

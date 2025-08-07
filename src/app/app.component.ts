@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderpageVisiteurComponent } from './components/headerpage-visiteur/headerpage-visiteur.component';
+import { HeaderComponent } from './components/UI/header/header.component';
 import { Router,Event,NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/UI/footer/footer.component";
 import { TaskFormComponent } from './components/task-form/task-form.component';
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent, TaskFormComponent],
+  imports: [RouterOutlet, HeaderpageVisiteurComponent, CommonModule, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -20,7 +19,7 @@ export class AppComponent {
    {
     if(eve instanceof NavigationEnd){
       this.ispagevisiteur=eve.urlAfterRedirects === '/page-visiteur';
-      console.log(this.ispagevisiteur);
+
     }
    })
 
