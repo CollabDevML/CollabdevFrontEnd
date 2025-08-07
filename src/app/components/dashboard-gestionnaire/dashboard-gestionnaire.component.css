@@ -165,18 +165,17 @@
     box-shadow:  0 5px 10px rgba(0,0,0,0.2);
     border-radius: 10px;
 }
-.fc {
+::ng-deep .fc {
   background-color: #f8f9fa;
   border-radius: 8px;
-  padding: 2px;
   width: 100%;
   height: 60%;
   margin-left: 2px;
   font-size: 1em;
 }
-.fc .fc-toolbar-title {
+::ng-deep .fc .fc-toolbar-title {
     color: #334DAA;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: 100;
 }
 .decale {
