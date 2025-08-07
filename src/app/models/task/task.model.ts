@@ -1,13 +1,14 @@
-export interface User {
-  name: string;
-  avatar: string;
-}
-
 export interface Task {
-  id: number;
-  title: string;
+  // Attributs attendus de votre backend Spring Boot
+  titre: string;
   description: string;
-  dueDate: Date;
-  status: 'Terminé' | 'En cours' | 'À faire';
-  assignee: User;
+  dateDebut: Date;
+  dateFin: Date;
+  pieceAGagner: number;
+  niveau: string;
+
+  // Attributs ajoutés ou calculés côté front-end pour l'affichage
+  id?: number;
+  status?: 'Terminé' | 'En cours' | 'À faire';
+  assignee?: { name: string; avatar: string; };
 }

@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
 export const routes: Routes = [
 
   {
@@ -31,5 +32,6 @@ export const routes: Routes = [
     {path: 'sidebar', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
     {path: 'task-form', component: TaskFormComponent},
+    {path: 'task-list', component: TaskListComponent}
 
 ];
