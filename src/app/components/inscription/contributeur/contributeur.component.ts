@@ -34,7 +34,7 @@ export class ContributeurComponent implements OnInit {
     this.formulaireContributeur = this.fb.group({
       condition: [false,[Validators.requiredTrue]],
       specialite:["",[Validators.required]],
-      type:["DEVELOPPEUR"]
+      type:["",[Validators.required]]
     });
   }
 
@@ -100,6 +100,7 @@ export class ContributeurComponent implements OnInit {
             genre:this.user.getGenre,
             motDePasse:this.user.getMotDePasse,
             niveau: "DEBUTANT",
+            preferences:[],
             specialite: this.formulaireContributeur.value.specialite,
             type: this.formulaireContributeur.value.type,
             pieces: 0,
