@@ -51,24 +51,6 @@ export const routes: Routes = [
     {path: 'popup', component: PopUpsComponent},
     { path: 'accueil', component: AccueilComponent },
   
-  
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'inscription',
-    component: InscriptionComponent,
-    children: [
-      { path: '', component: InscriptionIndexComponent },
-      { path: 'choix', component: InscriptionChoixComponent },
-      { path: 'contributeur', component: ContributeurComponent },
-      { path: 'gestionnaire', component: GestionnaireComponent },
-      { path: 'porteur_de_projet', component: PorteurProjetComponent },
-      { path: '**', redirectTo: '' },
-    ],
-  },
-  { path: 'page-visiteur', component: PageVisiteurComponent },
-  { path: 'header', component: HeaderComponent },
-  { path: 'sidebar', component: SideBarComponent },
-  { path: 'footer', component: FooterComponent },
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },
