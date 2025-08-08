@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../UI/footer/footer.component';
+import { SideBarComponent } from "../UI/side-bar/side-bar.component";
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, SideBarComponent],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })

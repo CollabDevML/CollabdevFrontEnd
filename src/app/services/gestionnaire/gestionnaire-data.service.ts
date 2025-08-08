@@ -6,7 +6,7 @@ import { Env } from '../../env';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', 
 })
 
 export class GestionnaireDataService {

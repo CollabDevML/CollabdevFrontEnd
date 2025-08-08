@@ -1,5 +1,4 @@
 .main-content {
-  height: 100vh;
   overflow-y: auto;
   padding: 2rem 0;
 }
@@ -31,7 +30,7 @@ input, select, textarea, button {
 }
 
 button {
-  background-color: #547AA2;
+  background-color: #334DAA;
   color: white;
   font-weight: bold;
   border: none;

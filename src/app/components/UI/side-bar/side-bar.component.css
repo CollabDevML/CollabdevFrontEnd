@@ -10,7 +10,7 @@
     width: 180px;
     height: calc(100vh - 100px);
     position: fixed;
-    top: 62px;
+    top: 41px;
     background-color: white;
     gap: 80px;
 }

@@ -5,9 +5,11 @@ import { Router,Event,NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/UI/footer/footer.component";
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HeaderComponent,CommonModule, TaskFormComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, CommonModule, TaskFormComponent, FooterComponent, TaskListComponent, SideBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

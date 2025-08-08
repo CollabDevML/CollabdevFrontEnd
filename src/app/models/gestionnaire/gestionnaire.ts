@@ -8,9 +8,9 @@ export class Gestionnaire {
     this.user = user;
     this.uriCv = uriCv;
   }
-
+ 
   //user
-  public get getUser(): Users { 
+  public get getUser(): Users {
     return this.user;
   }
 
