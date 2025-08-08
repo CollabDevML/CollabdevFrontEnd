@@ -159,23 +159,25 @@ input:focus{
     font-size: 14px;
     background-color: black;
     color: white;
-    padding: 6px;
+    padding: 8px;
     border-radius: 50%;
     width: 10px;
     height: 10px;
-    display: inline-flex;
+    display: inline-flex
+;
     justify-content: center;
-    
-    
+    align-items: center;
+
 }
 .commentaire{
      width: 230px;
-    height: 55px;
+    height: 50px;
     background-color:#F4F4F4;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
     padding: 3px;
+    gap: 10px;
    
 }
 
@@ -187,14 +189,16 @@ input:focus{
 .acteur{
     display: flex;
     width: 230px;
-    height: 25px;
+    height: 20px;
     justify-content: space-between;
-   background-color: #334DAA;
    padding: 1px;
+   font-size: 15px;
+   font-weight: bold;
   
 }
 .contenu{
      width: 230px;
     height: 30px;
-   
+   padding-left: 5px;
+   font-size: 13px;
 }
