@@ -51,33 +51,27 @@ app-header {
 /* === Formulaire et illustration === */
 .main-frame {
   display: flex;
+  flex-wrap: wrap;
   background-color: #334DAA;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(51, 77, 170, 0.5);
   overflow: hidden;
   max-width: 900px;
   width: 100%;
-  margin: 100px auto 40px auto;
+  margin-top: 50px;
   position: relative;
 }
-
-.retour {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  z-index: 10;
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 220px; /* pour éviter que ça passe sous la sidebar */
   display: flex;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.retour i {
-  font-size: 24px;
-  margin-right: 6px;
-}
+
+
 
 .illustration {
   flex: 1;

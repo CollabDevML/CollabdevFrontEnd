@@ -1,14 +1,8 @@
-<!-- app.component.html ou le layout principal -->
-<div class="layout">
+<div class="layout-container">
   <app-side-bar></app-side-bar>
 
   <div class="main-content">
-    <!-- Tu peux ajouter ici un app-header si besoin -->
-   
-
-    <!-- Contenu principal de la page -->
     <div class="main-frame">
-      <a href="#" class="retour"><i class="ri-arrow-left-s-line"></i> Retour</a>
 
       <div class="illustration">
         <img src="proposerIdee.png" alt="Illustration de brainstorming" />
@@ -18,49 +12,45 @@
       <div class="form-frame">
         <h2>Proposer votre idée</h2>
 
+        <!-- Zone des erreurs -->
         <div class="erreurs" *ngIf="erreurs.length > 0">
           <ul>
             <li *ngFor="let erreur of erreurs">{{ erreur }}</li>
           </ul>
         </div>
 
+        <!-- Titre de l'idée -->
         <input type="text" placeholder="Titre" [(ngModel)]="titre" />
+
+        <!-- Description -->
         <textarea placeholder="Description" [(ngModel)]="description"></textarea>
 
+        <!-- Domaine dynamique (depuis le backend) -->
         <select [(ngModel)]="domaine">
           <option value="">Sélectionnez un domaine</option>
-          <option value="technologie">Technologie</option>
-          <option value="santé">Santé</option>
-          <option value="éducation">Éducation</option>
-          <option value="environnement">Environnement</option>
-          <option value="finance">Finance</option>
-          <option value="art">Art</option>
-          <option value="autre">Autre</option>
+          <option *ngFor="let d of domaines" [value]="d.key">{{ d.label }}</option>
         </select>
 
-        <!-- Zone du fichier -->
-<div class="zone-fichier">
-  <!-- Bouton de téléversement si aucun fichier encore choisi -->
-  <label *ngIf="!nomFichier" class="file-label" for="file-upload">
-    <i class="ri-file-upload-line"></i> Téléverser cahier de charge
-  </label>
+        <!-- Zone de téléversement -->
+        <div class="zone-fichier">
+          <!-- Affichage si aucun fichier sélectionné -->
+          <label *ngIf="!nomFichier" class="file-label" for="file-upload">
+            <i class="ri-file-upload-line"></i> Téléverser cahier de charge
+          </label>
 
-  <!-- Affichage du nom du fichier + bouton "Changer de fichier" -->
-  <div *ngIf="nomFichier" class="fichier-selectionne">
-    <p>Fichier sélectionné : <strong>{{ nomFichier }}</strong></p>
-    <button type="button" class="changer-fichier" (click)="changerFichier()">Changer de fichier</button>
-  </div>
+          <!-- Affichage nom du fichier + bouton pour changer -->
+          <div *ngIf="nomFichier" class="fichier-selectionne">
+            <p>Fichier sélectionné : <strong>{{ nomFichier }}</strong></p>
+            <button type="button" class="changer-fichier" (click)="changerFichier()">Changer de fichier</button>
+          </div>
 
-  <!-- Champ de type fichier caché -->
-  <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden />
+          <!-- Champ fichier caché -->
+          <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden />
+        </div>
 
-  <!-- Bouton d'envoi -->
-  <button (click)="onSubmit()">Envoyer</button>
-</div>
-
-        
+        <!-- Bouton d'envoi -->
+        <button (click)="onSubmit()">Envoyer</button>
       </div>
     </div>
-
   </div>
 </div>
