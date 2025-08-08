@@ -1,0 +1,40 @@
+.project-section {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.project-section h2 {
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.project-section h2 a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.project-details span:first-child {
+  font-weight: bold;
+}
+
+.project-details span:last-child {
+  color: #6c757d;
+}
+
+.project-item button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

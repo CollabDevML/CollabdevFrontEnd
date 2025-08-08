@@ -70,9 +70,11 @@ export class PropositionIdeeProjetComponent implements OnInit {
 
     // Sinon, téléverser d'abord le fichier puis envoyer
     const formData = new FormData();
-    formData.append('fichier', this.fichier);
+    formData.append('file', this.fichier);
+    formData.append('fileName', this.fichier.name);
+    formData.append('type', 'CDC');
 
-    this.http.post<string>('http://localhost:8080/upload', formData)
+    this.http.post<string>('http://localhost:8180/upload', formData)
       .subscribe({
         next: (uriCDC: string) => {
           this.envoyerIdeeProjet(uriCDC);
@@ -91,7 +93,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
       uriCDC: uriCDC // peut être vide si aucun fichier
     };
 
-    const idPorteur = 1; //  Remplace par le vrai ID
+    const idPorteur = localStorage.getItem("user_id"); //  Remplace par le vrai ID
     const url = `http://localhost:8180/utilisateurs/${idPorteur}/idees-projet`;
 
     this.http.post(url, ideeProjet)
