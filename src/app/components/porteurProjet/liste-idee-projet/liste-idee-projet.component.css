@@ -1,52 +1,63 @@
-body {
+body, html {
   margin: 0;
+  padding: 0;
   font-family: 'Inter', sans-serif;
   background-color: #f1f4fb;
+  height: 100%;
 }
 
-.main{
-  display: flex;
-  justify-content: center;
- flex-wrap: wrap;
- margin-top: 50px;
- 
-}
 .layout {
-  display: flex;
-  min-height: 100vh;
+   display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
+
+/* Sidebar */
 app-side-bar {
-  width: 250px; /* ou 200px si tu préfères */
+  width: 250px;
   flex-shrink: 0;
 }
-/* Header principal */
-.main header {
-  flex-grow: 1;
-  padding: 20px;
-}
-.ri-lightbulb-line{
-  color: #f1b800;
-  font-size: 2em;
-}
-.header h1 {
-  font-size: 2em;
-  margin: 0;
-}
 
-.container {
+/* Contenu principal */
+.content {
+  flex: 1;
   display: flex;
-  justify-content: center;
-  padding: 30px 20px;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-/* ----- Card design ----- */
+/* Header + recherche */
+.main {
+  padding: 20px 40px;
+}
+
+/* Titre principal */
+.header {
+  font-size: 2em;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ri-lightbulb-line {
+  color: #f1b800;
+  font-size: 1.5em;
+}
+
+/* Grille de cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 3 max par ligne */
+  gap: 30px;
+}
+
+/* Card */
 .card {
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgb(104, 104, 221);
-  width: 100%;
-  max-width: 400px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -82,24 +93,11 @@ app-side-bar {
   margin: 12px 0;
 }
 
-/* Date + lien "Voir plus" sur la même ligne */
-.publie,
-.voirPlusContenair {
-  font-size: 0.75em;
-  color: #555;
-}
-
 .publie-voirplus {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-}
-
-/* Ancienne classe container (plus utilisée) */
-.voirPlusContenair {
-  margin-top: 10px;
-  text-align: right;
 }
 
 .voirPlus {
@@ -116,8 +114,6 @@ app-side-bar {
   background-color: #1f3791;
 }
 
-
-/* Footer avec auteur + stats */
 .card-footer {
   border-top: 3px solid #eee;
   padding-top: 10px;
@@ -152,8 +148,4 @@ app-side-bar {
   gap: 10px;
   font-size: 1em;
   color: #444;
-}
-
-.footer-icons i {
-  margin-right: 4px;
 }
