@@ -53,7 +53,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
     this.fichier = null;
   }
 
-  onAfterSubmitSuccess (): void {
+  onSubmit(): void {
     this.erreurs = [];
 
     // Validation sans le fichier obligatoire

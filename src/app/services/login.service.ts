@@ -16,7 +16,7 @@ export class LoginService {
     private toastr: ToastrService
   ) {}
 
-  constructor(private dataG:DataService,private route:Router,private toastr:ToastrService){}
+ 
 
   login(data:Login){
     this.dataG.login(data).subscribe({

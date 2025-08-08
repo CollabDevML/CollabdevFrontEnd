@@ -78,7 +78,7 @@ export const routes: Routes = [
     {path:"**",redirectTo:""}
   ]},
 
-  {path:"**",component:PageNotFoundComponent}
+ 
 
     {path:'dashboard', component:DashboardGestionnaireComponent},
     {path:'card-contribution', component: CardcontributionComponent},
