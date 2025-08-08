@@ -41,7 +41,7 @@ export class DashboardGestionnaireComponent {
     this.dashboardgestionnaireservices.getGestionnaire(2).subscribe(
       result => this.gestionnaire = result
     )
-    console.log(this.gestionnaire.getUser.nom)
+    console.log(this.gestionnaire.uriCv)
   }
   
 

@@ -21,7 +21,7 @@ export class DashboardgestionnaireServiceService {
     return this.gestionnaireS.getGestionnaire(id).pipe(
       map(data => (
         {
-      utilisateur: data.utilisateur,
+      id: data.id,
       uriCv: data.uriCv}
     )))
   }
