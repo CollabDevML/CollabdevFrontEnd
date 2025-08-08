@@ -81,6 +81,7 @@ export class GestionnaireComponent implements OnInit {
             prenom:this.user.getPrenom,
             email:this.user.getEmail,
             genre:this.user.getGenre,
+            preferences:[],
             motDePasse:this.user.getMotDePasse,
             uriCv:response.chemin
           };

@@ -7,11 +7,11 @@ export class PorteurProjet {
   }
 
   //user
-  public get getUser(): Users {
+  get getUser(): Users {
     return this.user;
   }
 
-  public set setUser(user: Users) {
+  set setUser(user: Users) {
     this.user = user;
   }
 }
