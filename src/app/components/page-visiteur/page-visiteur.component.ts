@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ideeprojet } from '../../models/ideeprojet/ideeprojet';
 import { IdeeprojetService } from '../../services/ideeprojet/ideeprojet.service';
-import { HeaderComponent } from '../UI/header/header.component';
+import { ReduirelatailleducommentairePipe } from '../../Pipe/reduirelatailleducommentaire.pipe';
 
 
 @Component({
   selector: 'app-page-visiteur',
-  imports: [CommonModule],
+  imports: [CommonModule,ReduirelatailleducommentairePipe],
   templateUrl: './page-visiteur.component.html',
   styleUrl: './page-visiteur.component.css'
 })

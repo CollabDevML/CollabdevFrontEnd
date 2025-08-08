@@ -21,43 +21,45 @@
       <button class="bouton2">projets</button>
     </div>
 
-    <ng-container *ngIf="!messageerreur">
-      <div
-        class="conteneurideeprojet"
-        *ngFor="let ideeprojet of listeideeprojet"
-      >
-        <div class="ideeprojet">
-          <h3>{{ ideeprojet.titre }}</h3>
-          <h4>{{ ideeprojet.domaine }}</h4>
-          <p>{{ ideeprojet.description }}</p>
-          <h4>{{ ideeprojet.datePublication }}</h4>
-        </div>
-        
-        <div class="commentaireideeprojet">
-            <div class="entête">{{ ideeprojet.idUtilisateur }}</div>
-            <ng-container *ngIf="ideeprojet.commentaireIdeeProjets.length>=2; else inferieur" >
-          <div class="commentaire" *ngFor="let commentaire of ideeprojet.commentaireIdeeProjets.slice(0,2)">
-            <div class="acteur" >{{ commentaire.idutilisateur }}</div>
-            <div class="contenu">{{ commentaire.contenu }}</div>
-          </div>
-          </ng-container>
-          <ng-template #inferieur>
-            <ng-container *ngIf="ideeprojet.commentaireIdeeProjets.length<2; else vide" >
-               <div class="commentaire" *ngFor="let commentaire of ideeprojet.commentaireIdeeProjets">
-                  <div class="acteur" >{{ commentaire.idutilisateur }}</div>
-                  <div class="contenu">{{ commentaire.contenu }}</div>
-                </div>
-            </ng-container>
-            <ng-template #vide>
-              <ng-container ><p>cet idée de projet n'a pas de commentaire</p></ng-container>
-            </ng-template>
-
-          </ng-template>
-          
-         
-        </div>
-        
+    @if (!messageerreur) {
+  @for (ideeprojet of listeideeprojet; track ideeprojet.id) {
+    <div class="conteneurideeprojet">
+      <div class="ideeprojet">
+        <h3>{{ ideeprojet.titre }}</h3>
+        <h4>{{ ideeprojet.domaine }}</h4>
+        <p>{{ ideeprojet.description }}</p>
+        <h4>{{ ideeprojet.datePublication }}</h4>
       </div>
-    </ng-container>
-  </div>
-</div>
+
+      <div class="commentaireideeprojet">
+        <div class="entête"><i class="ri-user-fill icon1"></i>
+        <div class="user">{{ ideeprojet.utilisateur.nom+'  '+ideeprojet.utilisateur.prenom }}</div>
+      </div>
+
+        @if (ideeprojet.commentaireIdeeProjets.length >= 2) {
+          @for (commentaire of ideeprojet.commentaireIdeeProjets.slice(0, 2); track commentaire.id) {
+            <div class="commentaire">
+              <div class="acteur"><i class="ri-user-fill icon2"></i>
+              <div class="user">{{ commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}</div>
+
+              </div>
+              <div class="contenu">{{ commentaire.contenu|reduirelataille:20}}</div>
+            </div>
+          }
+        } @else {
+          @if (ideeprojet.commentaireIdeeProjets.length > 0) {
+            @for (commentaire of ideeprojet.commentaireIdeeProjets; track commentaire.id) {
+              <div class="commentaire">
+                <div class="acteur">{{  commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}</div>
+                <div class="contenu">{{ commentaire.contenu }}</div>
+              </div>
+            }
+          } @else {
+            <p>cet idée de projet n'a pas de commentaire</p>
+          }
+        }
+        <button type="button" class="bouton2">Voir plus</button>
+      </div>
+    </div>
+  }
+}

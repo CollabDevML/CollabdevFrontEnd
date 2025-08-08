@@ -7,9 +7,11 @@ public domaine!:string;
 public uriCDC!:string;
 public nombreSoutien!:number;
 public datePublication!:Date;
-public idUtilisateur!:number;
+public utilisateur!:{prenom:string,nom:string};
 public commentaireIdeeProjets!:{contenu:string;
  datePublication:Date;
- idutilisateur:Number;}[];
+ utilisateur:{prenom:string,nom:string}
+id:number}[];
+
   
 }

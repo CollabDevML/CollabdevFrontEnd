@@ -38,7 +38,7 @@
     flex-direction: column;    
     height: 100%;
     overflow-y: auto;
-    gap: 10px;
+    gap: 15px;
 }
 .recherche{
     display: flex;
@@ -111,9 +111,9 @@ input:focus{
     height: 200px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 15px  rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
     padding: 10px;
-    gap: 10px;
+    gap: 20px;
 }
 .ideeprojet{
     width: 290px;
@@ -134,7 +134,39 @@ input:focus{
 .entête{
     width: 230px;
     height: 45px;
-    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+   padding: 5px;
+}
+.user{
+    width: 180px;
+    
+}
+ 
+.icon1{
+    font-size: 18px;
+    background-color: black;
+    color: white;
+    padding: 13px;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon2{
+    font-size: 14px;
+    background-color: black;
+    color: white;
+    padding: 6px;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: inline-flex;
+    justify-content: center;
+    
+    
 }
 .commentaire{
      width: 230px;
@@ -155,7 +187,10 @@ input:focus{
 .acteur{
     display: flex;
     width: 230px;
-    height: 20px;
+    height: 25px;
+    justify-content: space-between;
+   background-color: #334DAA;
+   padding: 1px;
   
 }
 .contenu{
