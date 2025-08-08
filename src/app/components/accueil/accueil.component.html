@@ -14,17 +14,20 @@
     </div>
     <!-- card -->
     <div class="body">
+      @for (ideeprojet of ideeProjets; track ideeprojet.id) {
       <div class="card">
         <div class="head">
-          <div class="titre">Nom projet</div>
-          <div class="date">date</div>
+          <div class="titre">{{ ideeprojet.titre }}</div>
+          <div class="date">{{ ideeprojet.datePublication }}</div>
         </div>
         <div class="content">
-          <div class="des">description</div>
-          <div class="cdc">cdc</div>
+          <div class="des">{{ ideeprojet.description }}</div>
+          <div class="cdc">{{ ideeprojet.uriCDC }}</div>
         </div>
         <div class="foot">
-          <div class="porteur">nom : a proposé cette idée</div>
+          <div class="porteur">
+            {{ ideeprojet.idUtilisateur }} a proposé cette idée
+          </div>
           <div class="soutien" (click)="handelClick()">
             @if (isSoutienState()) {
             <i class="ri-hand-heart-line bolo"></i>
@@ -34,6 +37,9 @@
           </div>
         </div>
       </div>
+      }@empty {
+      <p>Aucune idée de projet trouvé</p>
+      }
     </div>
   </div>
   <div class="projet">
