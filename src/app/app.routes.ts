@@ -15,6 +15,7 @@ import { DashboardGestionnaireComponent } from './components/dashboard-gestionna
 import { CardcontributionComponent } from './components/UI/cardcontribution/cardcontribution.component';
 import { SidebargestionnaireComponent } from './components/UI/sidebargestionnaire/sidebargestionnaire.component';
 import { CardprojetComponent } from './components/UI/cardprojet/cardprojet.component';
+import { PopUpsComponent } from './components/UI/pop-ups/pop-ups.component';
 export const routes: Routes = [
 
   {
@@ -39,7 +40,8 @@ export const routes: Routes = [
       path:'card-contribution', component: CardcontributionComponent
     },
     {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
-    {path:'cardprojet', component: CardprojetComponent}
+    {path:'cardprojet', component: CardprojetComponent},
+    {path: 'popup', component: PopUpsComponent}
     
     
 

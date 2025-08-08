@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, output, Output } from '@angular/core';
+import { Component, output} from '@angular/core';
 
 @Component({
   selector: 'app-sidebargestionnaire',

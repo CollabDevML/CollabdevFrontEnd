@@ -28,22 +28,26 @@
           </div>
         </div>
         <div class="statistiques" [class.decale]="!sidebarOpen">
-          <h5>Projets</h5>
-          <p [ngStyle]="{ display: 'flex', 'flex-direction': 'column' }">
-            <span id="en-cours"> 5</span><br />
-            En cours
-          </p>
-          <p>
-            <span [ngStyle]="{ 'margin-top': '2px' }">
-              10
-              <hr id="realise" />
-              Réalisés
-            </span>
-          </p>
-        </div>
+  <div class="icon-wrapper">
+    <i class="ri-archive-stack-line"></i>
+  </div>
+
+  <h5>Projets</h5>
+
+  <div class="en-cours">
+    <span id="en-cours">5</span>
+    <p>En cours</p>
+  </div>
+
+  <div class="realises">
+    <hr id="realise" />
+    <p>10 Réalisés</p>
+  </div>
+</div>
+
       </div>
 
-      <div id="projet-recent">
+      <div id="projet-recents">
         <span class="titre">
           <h4 class="sous-titre">Projets récents</h4>
           <button class="tous-voir">Tous voir</button>
@@ -83,8 +87,8 @@
             <td>Blablacar</td>
             <td>Blablacar</td>
             <td class="actions">
-              <button id="accepte">Accepté</button>
-              <button id="refuse">Refusé</button>
+              <button id="accepte" routerLink="/pop-ups">Accepté</button>
+              <button id="refuse" routerLink="/pop-ups">Refusé</button>
             </td>
           </tr>
           

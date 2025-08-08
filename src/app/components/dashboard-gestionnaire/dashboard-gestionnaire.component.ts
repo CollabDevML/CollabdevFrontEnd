@@ -6,6 +6,8 @@ import { CardcontributionComponent } from '../UI/cardcontribution/cardcontributi
 import {FullCalendarModule} from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { CalendarOptions } from '@fullcalendar/core/index.js';
+import { RouterLink } from '@angular/router';
+import { PopUpsComponent } from '../UI/pop-ups/pop-ups.component';
 
 @Component({
   selector: 'app-dashboard-gestionnaire',
@@ -15,6 +17,8 @@ import { CalendarOptions } from '@fullcalendar/core/index.js';
     CardprojetComponent,
     CardcontributionComponent,
     FullCalendarModule,
+    RouterLink,
+    PopUpsComponent,
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css'
