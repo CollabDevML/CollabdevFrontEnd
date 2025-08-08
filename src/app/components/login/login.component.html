@@ -11,7 +11,7 @@
     <div class="contenuLog">
 
       <div class="login-form">
-        <form [formGroup]="loginData" (ngSubmit)="verifier()">
+        <form [formGroup]="loginData" (ngSubmit)="onLogin()">
           <div class="btn-container"></div>
           <div class="error-message" *ngIf="errorMessage">
             {{ errorMessage }}
@@ -69,7 +69,7 @@
 
 
 <!-- ===== MODAL DE SÉLECTION DE RÔLE ===== -->
-<div class="modal" *ngIf="afficheRoleModal">
+<!-- <div class="modal" *ngIf="afficheRoleModal">
   <div class="modal-contenu">
     <h2>Choisir un rôle</h2>
     <select [(ngModel)]="role" required>
@@ -85,5 +85,5 @@
       <button (click)="annulerRole()">Annuler</button>
     </div>
   </div>
-</div>
+</div> -->
 
