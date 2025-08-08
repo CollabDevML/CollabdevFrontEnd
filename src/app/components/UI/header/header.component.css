@@ -1,11 +1,12 @@
 .header {
-  width: calc(100% - 4px);
-  /*display: flex;*/
   width: 100%;
   background-color: white;
   border-top: 1px solid #e3f2fd;
   border-bottom: solid #7f7f7f 1px;
+<<<<<<< HEAD
   /*box-shadow: 0 2px 4px #7F7F7F;*/
+=======
+>>>>>>> 43e1536e338c448842bc240b1f258c3c778ebb9d
 }
 
 .entete {
@@ -29,7 +30,6 @@
 .logo {
   display: flex;
   flex-direction: column;
-  /*align-items: flex-start;*/
 }
 
 .logo-image {
@@ -115,69 +115,110 @@
 }*/
 
 /* Responsive design */
-@media (max-width: 768px) {
-  .entete {
-    flex-direction: column;
-    height: auto;
-    padding: 15px 20px;
-    gap: 15px;
-  }
-
-  .left-section {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .bouton-section {
-    order: 2;
-  }
-
-  .separator {
+@media (max-width: 900px) {
+  .slogan {
     display: none;
   }
-
-  .right-section {
-    order: 3;
-    align-items: center;
+  .logo-image {
+    height: 20px;
   }
-
-  .slogan {
-    font-size: 0;
-    text-align: center;
-  }
-
-  .buttons {
-    flex-direction: column;
-    gap: 20px;
-  }
-
   .button1,
   .button2 {
-    width: 200px;
+    padding: 6px 14px;
   }
-
-  .logo-image {
-    height: 35px;
+  .button1 a,
+  .button2 a {
+    font-size: 12px;
   }
-}
-
-@media (max-width: 480px) {
+  .copyright,
+  .contact-link {
+    font-size: 10px;
+  }
   .entete {
-    padding: 10px 15px;
+    padding: 0 20px;
+    height: 50px;
+  }
+  .left-section,
+  .right-section {
+    gap: 15px;
+  }
+  .buttons {
+    .left-section {
+      flex-direction: column;
+      gap: 15px;
+    }
   }
 
-  .logo-image {
-    height: 30px;
+  @media (max-width: 768px) {
+    .entete {
+      padding: 0 15px;
+      height: 45px;
+    }
+    .logo-image {
+      height: 18px;
+    }
+    .button1,
+    .button2 {
+      padding: 5px 12px;
+    }
+    .button1 a,
+    .button2 a {
+      font-size: 11px;
+    }
+    .copyright,
+    .contact-link {
+      font-size: 9px;
+    }
+    .left-section,
+    .right-section {
+      gap: 10px;
+    }
+    .buttons {
+      gap: 10px;
+    }
+    .separator {
+      margin: 0 15px;
+      width: 1px;
+      height: 47px;
+    }
   }
 
-  .slogan {
-    font-size: 14px;
-  }
+  @media (max-width: 480px) {
+    .entete {
+      padding: 0 10px;
+      height: 40px;
+    }
+    .logo-image {
+      height: 16px;
+    }
 
-  .button1,
-  .button2 {
-    width: 180px;
-    padding: 8px 16px;
+    .slogan {
+      font-size: 14px;
+    }
+
+    .button1,
+    .button2 {
+      padding: 4px 8px;
+    }
+    .button1 a,
+    .button2 a {
+      font-size: 10px;
+    }
+    .copyright,
+    .contact-link {
+      font-size: 8px;
+    }
+    .left-section,
+    .right-section {
+      gap: 8px;
+    }
+    .buttons {
+      gap: 8px;
+    }
+    .separator {
+      margin: 0 10px;
+      width: 1px;
+      height: 47px;
+    }
   }
 }

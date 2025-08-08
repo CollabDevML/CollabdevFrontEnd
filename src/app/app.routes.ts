@@ -13,6 +13,8 @@ import { FooterComponent } from './components/UI/footer/footer.component';
 import { ProfilContributeurComponent } from './components/profil-contributeur/profil-contributeur.component';
 
 // ...existing code...
+import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 export const routes: Routes = [
   {
     path: '',
@@ -37,4 +39,6 @@ export const routes: Routes = [
   { path: 'sidebar', component: SideBarComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'profil', component: ProfilContributeurComponent },
+  { path: 'header-barre', component: RecherchebarreComponent },
+  { path: 'accueil', component: AccueilComponent },
 ];

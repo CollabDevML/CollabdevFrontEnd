@@ -10,7 +10,7 @@
         <div class="profile-avatar">
           <i class="fas fa-user-circle avatar-icon"></i>
         </div>
-        <h2 class="profile-name">Djimé Dembélé</h2>
+        <h2 class="profile-name">{{ utilisateur.prenom }}</h2>
       </div>
 
       <!-- Grille des informations -->
@@ -23,36 +23,36 @@
             <div class="info-item">
               <i class="ri-user-fill"></i>
               <div class="info">
-                <span class="label">Identifiant</span>
-                <span class="value">{{ user.identifiant }}</span>
+                <span class="label">Prenom</span>
+                <span class="value">{{ utilisateur.prenom }} </span>
               </div>
             </div>
             <div class="info-item">
               <i class="ri-building-fill"></i>
               <div class="info">
-                <span class="label">Organisation</span>
-                <span class="value">{{ user.organisation }}</span>
+                <span class="label">Nom</span>
+                <span class="value">{{ utilisateur.nom }}</span>
               </div>
             </div>
             <div class="info-item">
               <i class="ri-calendar-schedule-fill"></i>
               <div class="info">
-                <span class="label">Intitulé du poste</span>
-                <span class="value">{{ user.intitulePoste }}</span>
+                <span class="label"><address>Adresse email</address></span>
+                <span class="value">{{ utilisateur.etat }}</span>
               </div>
             </div>
             <div class="info-item">
               <i class="ri-code-fill"></i>
               <div class="info">
-                <span class="label">Domaine</span>
-                <span class="value">{{ user.domaines.join(", ") }}</span>
+                <span class="label">Genre</span>
+                <span class="value">{{ utilisateur.genre }}</span>
               </div>
             </div>
             <div class="info-item">
               <i class="ri-map-pin-fill"></i>
               <div class="info">
-                <span class="label">Lieu de résidence</span>
-                <span class="value">{{ user.lieuResidence }}</span>
+                <span class="label">Rôle</span>
+                <span class="value">{{ utilisateur.role }}</span>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
               <i class="ri-mail-fill"></i>
               <div class="info">
                 <span class="label">Adresse E-mail</span>
-                <span class="value">{{ user.email }}</span>
+                <span class="value">{{ utilisateur.email }}</span>
               </div>
             </div>
           </div>
@@ -75,38 +75,10 @@
           <div class="card">
             <h3 class="section-title">Vos contributions</h3>
             <div class="contribution-list">
-              <div
-                class="contribution-item"
-                *ngFor="let contribution of user.contributions"
-              >
-                <i class="fas fa-code"></i>
-                <span>{{ contribution.name }}</span>
+              <div class="contribution-item" *ngFor="let projet of projets">
+                <h4>{{ projet.titre }}</h4>
+                <p>{{ projet.description }}</p>
               </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3 class="section-title">Vos accomplissements</h3>
-
-            <div class="badge-container">
-              <div
-                class="badge"
-                *ngFor="let badge of user.accomplishments"
-                [class.achieved]="badge.achieved"
-              >
-                <div class="badge-icon" [style.backgroundColor]="badge.color">
-                  <i class="fas fa-trophy" *ngIf="badge.achieved"></i>
-                </div>
-                <span class="badge-label">{{ badge.level }}</span>
-              </div>
-            </div>
-
-            <div class="feedback-box">
-              <p>
-                Faites-nous part de votre expérience avec les profils et la
-                recherche dans cet annuaire.
-              </p>
-              <button class="feedback-button">Donner votre avis</button>
             </div>
           </div>
         </div>
