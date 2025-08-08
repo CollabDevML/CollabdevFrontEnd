@@ -8,7 +8,6 @@ import { PorteurProjetComponent } from './components/inscription/porteur-projet/
 import { InscriptionIndexComponent } from './components/inscription/inscription-index/inscription-index.component';
 import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.component';
 import { HeaderComponent } from './components/UI/header/header.component';
-import { Component } from '@angular/core';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
 import { IndexPorteurProjetComponent } from './components/proteurProjet/index-porteur-projet/index-porteur-projet.component';
@@ -18,10 +17,18 @@ import { AccueilContributeurComponent } from './components/contributeur/accueil-
 import { IndexGestionnaireComponent } from './components/gestionnaire/index-gestionnaire/index-gestionnaire.component';
 import { AccueilGestionnaireComponent } from './components/gestionnaire/accueil-gestionnaire/accueil-gestionnaire.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-export const routes: Routes = [
+import { DashboardGestionnaireComponent } from './components/dashboard-gestionnaire/dashboard-gestionnaire.component';
+import { CardcontributionComponent } from './components/UI/cardcontribution/cardcontribution.component';
+import { SidebargestionnaireComponent } from './components/UI/sidebargestionnaire/sidebargestionnaire.component';
+import { CardprojetComponent } from './components/UI/cardprojet/cardprojet.component';
+import { PopUpsComponent } from './components/UI/pop-ups/pop-ups.component';
+import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 
+export const routes: Routes = [
   {
     path: '', redirectTo: 'page-visiteur', pathMatch: 'full'
+
   },
   {path:'page-visiteur',component:PageVisiteurComponent},
 
@@ -66,4 +73,14 @@ export const routes: Routes = [
   ]},
 
   {path:"**",component:PageNotFoundComponent}
+
+    {path:'dashboard', component:DashboardGestionnaireComponent},
+    {
+      path:'card-contribution', component: CardcontributionComponent
+    },
+    {path: 'header-barre', component:RecherchebarreComponent},
+    {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
+    {path:'cardprojet', component: CardprojetComponent},
+    {path: 'popup', component: PopUpsComponent},
+    { path: 'accueil', component: AccueilComponent },
 ];

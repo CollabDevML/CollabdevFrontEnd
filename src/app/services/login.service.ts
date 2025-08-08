@@ -7,9 +7,14 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  constructor(
+    private dataG: DataService,
+    private route: Router,
+    private toastr: ToastrService
+  ) {}
 
   constructor(private dataG:DataService,private route:Router,private toastr:ToastrService){}
 
