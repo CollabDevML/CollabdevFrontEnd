@@ -10,12 +10,20 @@ import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.
 import { HeaderComponent } from './components/UI/header/header.component';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
+import { DashboardGestionnaireComponent } from './components/dashboard-gestionnaire/dashboard-gestionnaire.component';
+import { CardcontributionComponent } from './components/UI/cardcontribution/cardcontribution.component';
+import { SidebargestionnaireComponent } from './components/UI/sidebargestionnaire/sidebargestionnaire.component';
+import { CardprojetComponent } from './components/UI/cardprojet/cardprojet.component';
+import { PopUpsComponent } from './components/UI/pop-ups/pop-ups.component';
+import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 export const routes: Routes = [
-
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
   {path: 'login',component:LoginComponent},
   {path: 'inscription',component:InscriptionComponent,children:[
@@ -30,6 +38,16 @@ export const routes: Routes = [
     {path: 'header', component:HeaderComponent},
     {path: 'sidebar', component:SideBarComponent},
     {path: 'footer', component:FooterComponent},
+
+    {path:'dashboard', component:DashboardGestionnaireComponent},
+    {
+      path:'card-contribution', component: CardcontributionComponent
+    },
+    {path: 'header-barre', component:RecherchebarreComponent},
+    {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
+    {path:'cardprojet', component: CardprojetComponent},
+    {path: 'popup', component: PopUpsComponent},
+    { path: 'accueil', component: AccueilComponent },
     {path: 'task-form', component: TaskFormComponent},
     {path: 'task-list', component: TaskListComponent}
 ];
