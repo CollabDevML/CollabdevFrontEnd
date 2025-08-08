@@ -12,44 +12,35 @@
       <div class="form-frame">
         <h2>Proposer votre idée</h2>
 
-        <!-- Zone des erreurs -->
         <div class="erreurs" *ngIf="erreurs.length > 0">
           <ul>
             <li *ngFor="let erreur of erreurs">{{ erreur }}</li>
           </ul>
         </div>
 
-        <!-- Titre de l'idée -->
         <input type="text" placeholder="Titre" [(ngModel)]="titre" />
 
-        <!-- Description -->
         <textarea placeholder="Description" [(ngModel)]="description"></textarea>
 
-        <!-- Domaine dynamique (depuis le backend) -->
         <select [(ngModel)]="domaine">
           <option value="">Sélectionnez un domaine</option>
           <option *ngFor="let d of domaines" [value]="d.key">{{ d.label }}</option>
         </select>
 
-        <!-- Zone de téléversement -->
         <div class="zone-fichier">
-          <!-- Affichage si aucun fichier sélectionné -->
           <label *ngIf="!nomFichier" class="file-label" for="file-upload">
             <i class="ri-file-upload-line"></i> Téléverser cahier de charge
           </label>
 
-          <!-- Affichage nom du fichier + bouton pour changer -->
           <div *ngIf="nomFichier" class="fichier-selectionne">
             <p>Fichier sélectionné : <strong>{{ nomFichier }}</strong></p>
             <button type="button" class="changer-fichier" (click)="changerFichier()">Changer de fichier</button>
           </div>
 
-          <!-- Champ fichier caché -->
           <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden />
         </div>
 
-        <!-- Bouton d'envoi -->
-        <button (click)="onSubmit()">Envoyer</button>
+        <button (click)="onAfterSubmitSuccess() ">Envoyer</button>
       </div>
     </div>
   </div>

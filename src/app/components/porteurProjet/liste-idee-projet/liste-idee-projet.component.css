@@ -149,3 +149,66 @@ app-side-bar {
   font-size: 1em;
   color: #444;
 }
+/* Smartphones (max-width: 767px) */
+@media (max-width: 767px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  app-side-bar {
+    width: 100%;
+    height: auto;
+  }
+
+  .main {
+    padding: 10px 20px;
+  }
+
+  .header {
+    font-size: 1.5em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .voirPlus {
+    font-size: 0.75em;
+    padding: 5px 10px;
+  }
+
+  .user-info span {
+    font-size: 0.8em;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Tablettes (768px à 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main {
+    padding: 20px 30px;
+  }
+
+  .header {
+    font-size: 1.8em;
+  }
+}
+
+/* Grand écran (≥1024px) → comportement par défaut */
+@media (min-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}

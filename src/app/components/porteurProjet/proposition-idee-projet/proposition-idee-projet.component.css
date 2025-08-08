@@ -107,6 +107,8 @@ app-header {
   border-radius: 20px;
   box-sizing: border-box;
   min-width: 300px;
+  display: flex; /* Ajout pour Flexbox */
+  flex-direction: column; /* Organise les éléments verticalement */
 }
 
 h2 {
@@ -136,6 +138,11 @@ textarea {
 }
 
 /* Téléversement */
+.zone-fichier {
+  /* Assure que ce conteneur gère bien ses enfants */
+  margin-bottom: 20px; /* Ajoutez de l'espace sous la zone de fichier */
+}
+
 .file-label {
   display: flex;
   align-items: center;
@@ -143,7 +150,6 @@ textarea {
   padding: 12px;
   border: 2px dashed #334DAA;
   border-radius: 12px;
-  margin-bottom: 20px;
   cursor: pointer;
   text-align: center;
   color: #555;
@@ -156,6 +162,36 @@ textarea {
 .file-label i {
   margin-right: 20px;
   font-size: 20px;
+}
+
+/* Styles pour le fichier sélectionné et le bouton "Changer" */
+.fichier-selectionne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1.5px solid #334DAA;
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  margin-bottom: 20px; /* Ajout de marge pour bien séparer du bouton Envoyer */
+}
+
+.fichier-selectionne p {
+  margin: 0; /* Supprime la marge par défaut du paragraphe */
+  font-size: 1rem;
+  color: #334DAA;
+}
+
+.changer-fichier {
+  background-color: #334DAA;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes */
 }
 
 input[type="file"] {
@@ -191,26 +227,18 @@ button:hover {
 
 /* === Responsive === */
 @media (max-width: 992px) {
- /* .layout-container {
-    flex-direction: column;
-  }*/
-
   app-side-bar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 180px;
-}
-
-
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 180px;
+  }
   .content-area {
     margin-left: 0;
     width: 100%;
     margin-top: 0;
     padding: 1rem;
-    
   }
-
   app-header {
     left: 0;
   }
