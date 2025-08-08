@@ -14,12 +14,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class PopUpsComponent {
   @Input() visible: boolean = true;
-  close= output<void>();
+  close= output<boolean>();
 
   checked: boolean = false;
 
-  fermerPopup() {
-    this.close.emit();
+  fermerPopups() {
     this.visible = false;
+    this.close.emit(this.visible);
   }
 }

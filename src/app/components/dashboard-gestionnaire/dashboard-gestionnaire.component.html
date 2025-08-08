@@ -87,8 +87,8 @@
             <td>Blablacar</td>
             <td>Blablacar</td>
             <td class="actions">
-              <button id="accepte" routerLink="/pop-ups">Accepté</button>
-              <button id="refuse" routerLink="/pop-ups">Refusé</button>
+              <button id="accepte" (click)="openPopups()">Accepté</button>
+              <button id="refuse" (click)="openPopups()">Refusé</button>
             </td>
           </tr>
           
@@ -98,12 +98,16 @@
             <td>Blablacar</td>
             <td>Blablacar</td>
             <td class="actions">
-              <button id="accepte">Accepté</button>
-              <button id="refuse">Refusé</button>
+              <button id="accepte" (click)="openPopups()">Accepté</button>
+              <button id="refuse" (click)="openPopups()">Refusé</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  @if(ispopupVisible === true){
+    <app-pop-ups (close)="closePopups($event)"></app-pop-ups>
+  }
+  
 </div>

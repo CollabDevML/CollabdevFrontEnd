@@ -25,7 +25,8 @@ import { PopUpsComponent } from '../UI/pop-ups/pop-ups.component';
 })
 export class DashboardGestionnaireComponent {
   
-  sidebarOpen!:boolean
+  sidebarOpen:boolean = true;
+  ispopupVisible:boolean = false
 
    calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -33,8 +34,20 @@ export class DashboardGestionnaireComponent {
     weekends: true,
     locale: 'fr'
   };
+
   changerEtatSidebar(value: boolean){
     this.sidebarOpen = value
+  }
+
+  closePopups(valeur: boolean)
+  {
+    this.ispopupVisible = valeur
+  }
+  
+  openPopups()
+  {
+    this.ispopupVisible = true;
+    console.log("je click")
   }
  
   
