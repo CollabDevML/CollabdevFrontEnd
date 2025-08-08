@@ -15,5 +15,6 @@ export class SideBarComponent {
   // Méthode pour basculer entre l'état détaillé et compact de la sidebar
   changerEtatSidebar() {
     this.afficherDetailsSidebar = !this.afficherDetailsSidebar;
+    
   }
 }
