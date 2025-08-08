@@ -1,9 +1,9 @@
 export class Users {
-  private prenom: string;
-  private nom: string;
-  private email: string;
-  private motDePasse: string;
-  private genre: string;
+  public prenom: string;
+  public nom: string;
+  public email: string;
+  public motDePasse: string;
+  public genre: string;
 
   constructor(
     prenom: string,
