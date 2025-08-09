@@ -15,7 +15,7 @@ export class Env {
   public static GETRECOMMANDATIONIDEEPROJET: string =
     Env._env.apiUrl + 'recommandations/idees-projet';
   public static GETRECOMMANDATIONPROJET: string =
-    Env._env.apiUrl + 'recommandations/projet';
+    Env._env.apiUrl + 'recommandations/projets';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';

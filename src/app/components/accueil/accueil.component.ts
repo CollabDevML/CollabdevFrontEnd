@@ -19,16 +19,12 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     const users_id = Number(localStorage.getItem('user_id'));
-    this.accueilService
-      .getRecommandationByideeProjet(users_id)
-      .subscribe((data) => {
-        this.ideeProjets = data;
-      });
-    this.accueilService
-      .getRecommandationByProjet(users_id)
-      .subscribe((data) => {
-        this.projets = data;
-      });
+    this.accueilService.getRecommandationByideeProjet(1).subscribe((data) => {
+      this.ideeProjets = data;
+    });
+    this.accueilService.getRecommandationByProjet(1).subscribe((data) => {
+      this.projets = data;
+    });
     throw new Error('Method not implemented.');
   }
 
