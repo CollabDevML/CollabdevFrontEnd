@@ -11,14 +11,13 @@ import { map, Observable } from 'rxjs';
 })
 export class DashboardgestionnaireServiceService {
   
-  private gestionnaire!: Gestionnaire
   //injection de dépendances
   private gestionnaireS = inject(GestionnaireDataService)
 
   //fetch the data
-  getGestionnaire(id:number):Observable<any>
+  getGestionnaire(id:number, role: string):Observable<any>
   {
-    return this.gestionnaireS.getGestionnaire(id).pipe(
+    return this.gestionnaireS.getGestionnaire(id, role).pipe(
       map(data => (
         {
       utilisateur: data.utilisateur,
