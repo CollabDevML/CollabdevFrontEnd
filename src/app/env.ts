@@ -13,9 +13,9 @@ export class Env {
   public static CREATE_PORTER_PROJET: string =
     Env.INSCRIPTION_URL + '/porteurs-projet';
   public static GETRECOMMANDATIONIDEEPROJET: string =
-    Env._env.apiUrl + 'recommandations/idees-projet/';
+    Env._env.apiUrl + 'recommandations/idees-projet';
   public static GETRECOMMANDATIONPROJET: string =
-    Env._env.apiUrl + 'recommandations/projet/';
+    Env._env.apiUrl + 'recommandations/projet';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';
