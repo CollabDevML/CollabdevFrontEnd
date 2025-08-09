@@ -17,6 +17,7 @@ import { CardprojetComponent } from './components/UI/cardprojet/cardprojet.compo
 import { PopUpsComponent } from './components/UI/pop-ups/pop-ups.component';
 import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { ProjetgestionnairedetailComponent } from './components/projetgestionnairedetail/projetgestionnairedetail.component';
 export const routes: Routes = [
   {
     path: '',
@@ -46,6 +47,7 @@ export const routes: Routes = [
     {path:'cardprojet', component: CardprojetComponent},
     {path: 'popup', component: PopUpsComponent},
     { path: 'accueil', component: AccueilComponent },
+    {path: 'details', component:ProjetgestionnairedetailComponent}
   
   
 ];

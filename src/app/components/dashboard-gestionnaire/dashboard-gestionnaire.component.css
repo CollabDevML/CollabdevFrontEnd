@@ -7,8 +7,7 @@
 }
 .lateral-nav{
     width: 10%;
-    
-    
+
         position: fixed;
         top: 0;
         left: 0;
@@ -111,7 +110,7 @@
     padding-right: 1rem;
   }
   
-  /* On centre verticalement ce bloc via flex dans le parent */
+  
   .statistiques p[ngStyle] {
     display: flex;
     flex-direction: column;
@@ -120,14 +119,14 @@
     flex-grow: 1;
   }
   
-  /* Style du chiffre "5" */
+  
   #en-cours {
     font-weight: bold;
     font-size: 2.5rem;
     color: black;
   }
   
-  /* Bloc des "10 Réalisés" */
+  
   .statistiques p:last-of-type {
     display: flex;
     flex-direction: column;
