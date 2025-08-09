@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { DataService } from '../data.service';
 import { Env } from '../../env';
@@ -12,7 +12,7 @@ import { projet } from '../../models/projet/projet';
 export class AccueilService {
   constructor(private http: HttpClient, private data: DataService) {}
 
-  apiUrl = 'http://localhost:8180/';
+  apiUrl = 'http://localhost:8180';
 
   readonly urlIdee = Env.GETRECOMMANDATIONIDEEPROJET;
   readonly urlProjet = Env.GETRECOMMANDATIONPROJET;
@@ -47,19 +47,27 @@ export class AccueilService {
   // /utilisateurs/idees-projet/7/nombre-soutien?idUtilisateur=5
   // /utilisateurs/idees-projet/7/nombre-soutien?idUtilisateur=5
 
-  soutenirUneIdeeProjet(
-    idIdeeprojet: number,
-    idUtilisateur: number
-  ): Observable<Ideeprojet> {
-    return this.data.postData(
-      `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien?idutilisateur=${idUtilisateur}`,
-      Ideeprojet
+  soutenirUneIdeeProjet(idIdeeprojet: number, idUtilisateur: number) {
+    let params = new HttpParams().set(
+      'idUtilisateur',
+      idUtilisateur.toString()
+    );
+
+    return this.http.post(
+      `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien`,
+      null, // Corps vide car on envoie juste des params
+      { params } // <- Ici dans les options, pas dans le body
     );
   }
 
   retirerSoutien(idIdeeprojet: number, idUtilisateur: number) {
-    return this.data.deleteData(
-      `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien?idutilisateur=${idUtilisateur}`
+    let params = new HttpParams().set(
+      'idUtilisateur',
+      idUtilisateur.toString()
+    );
+    return this.http.delete(
+      `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien`,
+      { params }
     );
   }
 }
