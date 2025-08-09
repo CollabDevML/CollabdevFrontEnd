@@ -1,5 +1,5 @@
 export class Env {
-  private static _env: any = {
+  private static _env = {
     production: false,
     apiUrl: 'http://localhost:8180/',
     authUrl: 'http://localhost:8180',
@@ -12,9 +12,10 @@ export class Env {
     Env.INSCRIPTION_URL + '/gestionnaires';
   public static CREATE_PORTER_PROJET: string =
     Env.INSCRIPTION_URL + '/porteurs-projet';
-  public static GETRECOMMADATION: string =
-    Env._env.apiUrl + 'recommandations/idees-projet/';
-
+  public static GETRECOMMANDATIONIDEEPROJET: string =
+    Env._env.apiUrl + 'recommandations/idees-projet';
+  public static GETRECOMMANDATIONPROJET: string =
+    Env._env.apiUrl + 'recommandations/projets';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';

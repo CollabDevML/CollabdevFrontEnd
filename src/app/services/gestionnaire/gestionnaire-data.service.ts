@@ -21,8 +21,12 @@ export class GestionnaireDataService {
     return this.data.uploadFile(Env.UPLOAD_URL, file,nomFichier,"CV");
   }
 
+<<<<<<< HEAD
   //Pour recupérer un gestionnaire
   getGestionnaire(id: number): Observable<any>{
     return this.data.getDataById(Env.GET_GESTIONNAIRE, id)
   }
+=======
+
+>>>>>>> main
 }
