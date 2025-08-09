@@ -1,3 +1,4 @@
+<div class="recom">Recommandations</div>
 <div class="contener">
   <div class="idee_projet">
     <div class="header">
@@ -30,15 +31,15 @@
           </div>
           <div class="soutien" (click)="handelClick()">
             @if (isSoutienState()) {
-            <i class="ri-hand-heart-line bolo"></i>
-            }@else {
             <i class="ri-hand-heart-fill bolo"></i>
+            }@else {
+            <i class="ri-hand-heart-line bolo"></i>
             }
           </div>
         </div>
       </div>
       }@empty {
-      <p>Aucune idée de projet trouvé</p>
+      <p class="not">Aucune idée de projet trouvé</p>
       }
     </div>
   </div>
@@ -55,16 +56,21 @@
         </select>
       </div>
     </div>
+    @for (projet of projets; track projet.id) {
     <div class="cardProjet">
       <div class="headCard">
         <div class="projetHead">
-          <div class="titre">Titre projet</div>
+          <div class="titre">{{ projet.titre }}</div>
           <div class="cercle"></div>
         </div>
-        <div class="body">description</div>
+        <div class="body">{{ projet.Description }}</div>
         <div class="footidee">
-          <div class="porteur">nom : a proposé cette idée</div>
-          <div class="soutien">23 <i class="ri-group-fill"></i></div>
+          <div class="porteur">
+            {{ projet.idGestionnaire }} a proposé cette idée
+          </div>
+          <div class="soutien">
+            {{ projet.piecesDAcces }} <i class="ri-group-fill"></i>
+          </div>
         </div>
       </div>
       <div class="bodyCard">
@@ -86,5 +92,8 @@
         </div>
       </div>
     </div>
+    }@empty {
+    <p class="not">Aucun projet trouvé</p>
+    }
   </div>
 </div>

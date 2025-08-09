@@ -7,27 +7,25 @@ import { HttpClient } from '@angular/common/http';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
 
-
 @Component({
   selector: 'app-proposition-idee-projet',
   imports: [
     FormsModule,
     CommonModule,
     SideBarComponent,
-    HeaderComponent
-   
+    // HeaderComponent
   ],
   templateUrl: './proposition-idee-projet.component.html',
-   styleUrls: ['./proposition-idee-projet.component.css']
+  styleUrls: ['./proposition-idee-projet.component.css'],
 })
 export class PropositionIdeeProjetComponent implements OnInit {
- titre: string = '';
+  titre: string = '';
   description: string = '';
   domaine: string = '';
   nomFichier: string = '';
   fichier: File | null = null;
 
-  domaines: { key: string, label: string }[] = [];
+  domaines: { key: string; label: string }[] = [];
 
   erreurs: string[] = [];
 
@@ -74,15 +72,17 @@ export class PropositionIdeeProjetComponent implements OnInit {
     formData.append('fileName', this.fichier.name);
     formData.append('type', 'CDC');
 
-    this.http.post<string>('http://localhost:8180/upload', formData)
-      .subscribe({
-        next: (uriCDC: string) => {
-          this.envoyerIdeeProjet(uriCDC);
-        },
-        error: err => {
-          this.erreurs.push("Erreur lors du téléversement du fichier : " + (err.error?.message || err.message));
-        }
-      });
+    this.http.post<string>('http://localhost:8180/upload', formData).subscribe({
+      next: (uriCDC: string) => {
+        this.envoyerIdeeProjet(uriCDC);
+      },
+      error: (err) => {
+        this.erreurs.push(
+          'Erreur lors du téléversement du fichier : ' +
+            (err.error?.message || err.message)
+        );
+      },
+    });
   }
 
   private envoyerIdeeProjet(uriCDC: string): void {
@@ -90,22 +90,24 @@ export class PropositionIdeeProjetComponent implements OnInit {
       titre: this.titre,
       description: this.description,
       domaine: [{ nom: this.domaine }], // format attendu par ton backend
-      uriCDC: uriCDC // peut être vide si aucun fichier
+      uriCDC: uriCDC, // peut être vide si aucun fichier
     };
 
-    const idPorteur = localStorage.getItem("user_id"); //  Remplace par le vrai ID
+    const idPorteur = localStorage.getItem('user_id'); //  Remplace par le vrai ID
     const url = `http://localhost:8180/utilisateurs/${idPorteur}/idees-projet`;
 
-    this.http.post(url, ideeProjet)
-      .subscribe({
-        next: () => {
-          alert("Idée de projet envoyée avec succès !");
-          this.resetForm();
-        },
-        error: err => {
-          this.erreurs.push("Erreur lors de l'envoi du projet : " + (err.error?.message || err.message));
-        }
-      });
+    this.http.post(url, ideeProjet).subscribe({
+      next: () => {
+        alert('Idée de projet envoyée avec succès !');
+        this.resetForm();
+      },
+      error: (err) => {
+        this.erreurs.push(
+          "Erreur lors de l'envoi du projet : " +
+            (err.error?.message || err.message)
+        );
+      },
+    });
   }
 
   resetForm(): void {
@@ -116,4 +118,3 @@ export class PropositionIdeeProjetComponent implements OnInit {
     this.fichier = null;
   }
 }
-
