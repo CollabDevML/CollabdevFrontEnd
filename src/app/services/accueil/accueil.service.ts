@@ -44,9 +44,6 @@ export class AccueilService {
     );
   }
 
-  // /utilisateurs/idees-projet/7/nombre-soutien?idUtilisateur=5
-  // /utilisateurs/idees-projet/7/nombre-soutien?idUtilisateur=5
-
   soutenirUneIdeeProjet(idIdeeprojet: number, idUtilisateur: number) {
     let params = new HttpParams().set(
       'idUtilisateur',

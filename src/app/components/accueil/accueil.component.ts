@@ -59,10 +59,4 @@ export class AccueilComponent implements OnInit {
       });
     }
   }
-
-  //   this.soutiensState.update((state) => ({
-  //     ...state,
-  //     [id]: !state[id],
-  //   }));
-  // }
 }
