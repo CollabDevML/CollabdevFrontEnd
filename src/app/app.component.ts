@@ -8,7 +8,7 @@ import { RecherchebarreComponent } from "./components/UI/recherchebarre/recherch
 import { FooterComponent } from './components/UI/footer/footer.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, CommonModule],
+  imports: [RouterOutlet, HeaderComponent, CommonModule, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
