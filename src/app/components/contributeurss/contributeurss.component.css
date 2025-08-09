@@ -31,7 +31,7 @@
   margin-left: var(
     --sidebar-w,
     180px
-  );
+  ); 
 
 
 @media (min-width: 1400px) {
@@ -108,7 +108,7 @@
   background: #ffffff;
   border-radius: 12px;
   border: 1px solid #e6e8ee;
-
+  
   /*gap: 2px;*/
 }
 .cart{

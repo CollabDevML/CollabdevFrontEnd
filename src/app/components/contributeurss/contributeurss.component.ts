@@ -11,4 +11,3 @@ import { FooterComponent } from '../../components/UI/footer/footer.component';
   styleUrl: './contributeurss.component.css',
 })
 export class ContributeurssComponent {}
-
