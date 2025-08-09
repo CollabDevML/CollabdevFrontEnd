@@ -10,11 +10,6 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(
-    private dataG: DataService,
-    private route: Router,
-    private toastr: ToastrService
-  ) {}
 
   constructor(private dataG:DataService,private route:Router,private toastr:ToastrService){}
 

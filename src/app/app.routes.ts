@@ -66,21 +66,21 @@ export const routes: Routes = [
 
   //Les routes pour le Gestionnaire :
   {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
-    {path:"",component:AccueilGestionnaireComponent},
+    {path:"",component:DashboardGestionnaireComponent},
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}
   ]},
 
-  {path:"**",component:PageNotFoundComponent}
+  // {path:'dashboard', component:DashboardGestionnaireComponent},
+  {
+    path:'card-contribution', component: CardcontributionComponent
+  },
+  {path: 'header-barre', component:RecherchebarreComponent},
+  {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
+  {path:'cardprojet', component: CardprojetComponent},
+  {path: 'popup', component: PopUpsComponent},
+  { path: 'accueil', component: AccueilComponent },
 
-    {path:'dashboard', component:DashboardGestionnaireComponent},
-    {
-      path:'card-contribution', component: CardcontributionComponent
-    },
-    {path: 'header-barre', component:RecherchebarreComponent},
-    {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
-    {path:'cardprojet', component: CardprojetComponent},
-    {path: 'popup', component: PopUpsComponent},
-    { path: 'accueil', component: AccueilComponent },
+  {path:"**",component:PageNotFoundComponent},
 ];

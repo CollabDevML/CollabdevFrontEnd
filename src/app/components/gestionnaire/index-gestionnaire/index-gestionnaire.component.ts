@@ -7,19 +7,27 @@ import { FooterComponent } from '../../UI/footer/footer.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { ResponseGestionnaire } from '../../../models/gestionnaire/response-gestionnaire';
 import { CommonModule } from '@angular/common';
+import { SidebargestionnaireComponent } from '../../UI/sidebargestionnaire/sidebargestionnaire.component';
+import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
+import { RecherchebarreComponent } from "../../UI/recherchebarre/recherchebarre.component";
 
 @Component({
   selector: 'app-index-gestionnaire',
   imports: [
-    HeaderComponent,
     FooterComponent,
     RouterOutlet,
-    CommonModule
-  ],
+    CommonModule,
+    SidebargestionnaireComponent,
+    SideBarComponent,
+    HeaderComponent,
+    RecherchebarreComponent
+],
   templateUrl: './index-gestionnaire.component.html',
   styleUrl: './index-gestionnaire.component.css'
 })
 export class IndexGestionnaireComponent implements OnInit {
+
+  sidebarOpen:boolean = true;
   user!:ResponseGestionnaire;
   constructor(
     private data:DataService,
@@ -29,8 +37,8 @@ export class IndexGestionnaireComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    if (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == ""){
+  ngOnInit(){
+    if (this.data.user_role == null || this.data.user_role == ""){
       this.route.navigate(["login"]);
     }
     this.data.getDataUserById().subscribe({
@@ -43,5 +51,11 @@ export class IndexGestionnaireComponent implements OnInit {
       },
     });
   }
+
+
+  changerEtatSidebar(value: boolean){
+    this.sidebarOpen = value
+  }
+
 
 }
