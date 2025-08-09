@@ -1,10 +1,10 @@
-
 .header {
     width: 100% ;
     background-color: white;
     border-top: 1px solid #e3f2fd;
     border-bottom: solid #7F7F7F 1px;
-    
+    position: sticky;
+    top: 0;
 }
 
 
@@ -16,7 +16,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    position: relative;
 }
 
 
@@ -31,7 +30,7 @@
 .logo {
     display: flex;
     flex-direction: column;
-   
+
 }
 
 .logo-image {
@@ -210,4 +209,5 @@
         width: 1px;
         height: 47px;
     }
+}
 }
