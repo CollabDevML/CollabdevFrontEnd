@@ -43,13 +43,11 @@ export class PorteurProjetComponent implements OnInit {
 
   valider() {
     if (this.conditionUtilisation.valid) {
-      console.log('Conditions acceptées');
-      console.log('Données du porteur de projet :', this.user);
       this.dataPorteur.addPorteur(this.user).subscribe({
         next: (response) => {
-          // console.log('Porteur de projet enregistré avec succès', response);
-          this.toastr.success("Porteur de projet enregistré avec succès","erreur",{
-            timeOut: 1000,
+          console.log('Porteur de projet enregistré avec succès', response);
+          this.toastr.success("Porteur de projet enregistré avec succès","Succès",{
+            timeOut: 2000,
             progressBar: true,
             progressAnimation: 'increasing',
             positionClass: 'toast-top-center'
@@ -62,7 +60,7 @@ export class PorteurProjetComponent implements OnInit {
             error
           );
           this.toastr.error("Erreur lors de l'enregistrement du porteur de projet","erreur",{
-            timeOut: 1000,
+            timeOut: 2000,
             progressBar: true,
             progressAnimation: 'increasing',
             positionClass: 'toast-top-center'
