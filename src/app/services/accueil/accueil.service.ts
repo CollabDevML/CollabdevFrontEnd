@@ -12,6 +12,8 @@ import { projet } from '../../models/projet/projet';
 export class AccueilService {
   constructor(private http: HttpClient, private data: DataService) {}
 
+  apiUrl = 'http://localhost:8180/';
+
   readonly urlIdee = Env.GETRECOMMANDATIONIDEEPROJET;
   readonly urlProjet = Env.GETRECOMMANDATIONPROJET;
   private ideeProjets = signal<Ideeprojet[]>([]);
@@ -39,6 +41,25 @@ export class AccueilService {
         );
         throw error;
       })
+    );
+  }
+
+  // /utilisateurs/idees-projet/7/nombre-soutien?idUtilisateur=5
+  // /utilisateurs/idees-projet/7/nombre-soutien?idUtilisateur=5
+
+  soutenirUneIdeeProjet(
+    idIdeeprojet: number,
+    idUtilisateur: number
+  ): Observable<Ideeprojet> {
+    return this.data.postData(
+      `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien?idutilisateur=${idUtilisateur}`,
+      Ideeprojet
+    );
+  }
+
+  retirerSoutien(idIdeeprojet: number, idUtilisateur: number) {
+    return this.data.deleteData(
+      `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien?idutilisateur=${idUtilisateur}`
     );
   }
 }
