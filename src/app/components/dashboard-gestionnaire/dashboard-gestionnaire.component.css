@@ -101,7 +101,62 @@
     color: #334DAA;
     font-size: 24px;
   }
-  
+  /* ✅ Messages vides */
+.empty-message {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+.empty-message i {
+  font-size: 2rem;
+  color: #F6C434;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ✅ Animations d’apparition */
+.card-content app-cardprojet,
+.contribution-list app-cardcontribution {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.4s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Responsive */
+@media (max-width: 1024px) {
+  #en-tete {
+    flex-direction: column;
+    text-align: center;
+  }
+  #en-tete img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard {
+    padding: 10px;
+  }
+  table {
+    font-size: 0.8rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .tous-voir {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
   h5 {
     font-size: 0.9rem;
     color: #444;
@@ -320,3 +375,85 @@ thead tr {
     background-color: rgba(251, 201, 201, 0.13);
     border: none;
 }
+.tous-voir:hover {
+    background-color: #4a5dbb; /* un bleu un peu plus foncé */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actions button:hover {
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+  }
+  
+
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  .empty-message i {
+    font-size: 2rem;
+    color: #F6C434;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+
+  .card-content app-cardprojet,
+  .contribution-list app-cardcontribution {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+  
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  @media (max-width: 1024px) {
+    #en-tete {
+      flex-direction: column;
+      text-align: center;
+    }
+    #en-tete img {
+      max-width: 200px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .dashboard {
+      padding: 10px;
+    }
+    table {
+      font-size: 0.8rem;
+      display: block;
+      overflow-x: auto;
+    }
+    .tous-voir {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+    }
+  }
+  @media (max-width: 600px) {
+    .contribution-list,
+    .card-content {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch; 
+    }
+  
+    .contribution-list app-cardcontribution,
+    .card-content app-cardprojet {
+      flex: 0 0 auto; 
+      margin-right: 10px;
+    }
+  }
+  
+  

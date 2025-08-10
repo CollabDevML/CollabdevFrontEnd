@@ -131,3 +131,15 @@ p {
     gap: 08px; 
     margin: 6px 0 0 0;
 }
+@media (max-width: 768px) {
+    .sidebar {
+      width: 60px; /* sidebar réduite */
+    }
+    .sidebar.replié {
+      width: 40px;
+    }
+    .btn {
+      left: 50px;
+    }
+  }
+  

@@ -14,5 +14,4 @@ export class projet {
     taches!: any[];
     piecesDAcces!:number;
     idGestionnaire!:number;
-
 }

@@ -32,6 +32,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { ProjetgestionnairedetailComponent } from './components/projetgestionnairedetail/projetgestionnairedetail.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 
 export const routes: Routes = [
   {
@@ -96,5 +97,6 @@ export const routes: Routes = [
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'porteurProjetSuivi', component:ProjetSuiviComponent},
-  { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent}
+  { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent},
+  {path:'pop-options', component:PopupOptionsComponent}
 ];

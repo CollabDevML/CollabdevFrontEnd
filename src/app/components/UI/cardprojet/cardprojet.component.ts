@@ -1,12 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { projet } from '../../../models/projet/projet';
 import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ProjetServiceService } from '../../../services/projet/projet-service.service';
+
 
 @Component({
   selector: 'app-cardprojet',
   imports: [
-    DatePipe,
+  
+
+  DatePipe,
     RouterLink
   ],
   templateUrl: './cardprojet.component.html',
@@ -14,11 +18,11 @@ import { RouterLink } from '@angular/router';
 })
 export class CardprojetComponent {
   @Input() projet!: projet
-
-  constructor(projetService: ProjetService, router: Router) {}
-
-  voirProjet(projet: any) {
+  projetService:ProjetServiceService= inject(ProjetServiceService)
+  router : Router = inject(Router)
+  
+  voirdetail(projet:any)
+  {
     this.projetService.setProjet(projet);
-    this.router.navigate(['/projet-details']);
   }
 }

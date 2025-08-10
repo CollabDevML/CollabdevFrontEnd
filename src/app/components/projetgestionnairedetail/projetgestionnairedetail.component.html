@@ -16,17 +16,15 @@
           <span class="icon">
             <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
           </span>
-          31/07/2025
+          {{projet.dateDebut}}
         </div>
       </div>
 
       <div class="milieur">
-        <h2 class="titre-page">Gestion des cooperatives Agricoles</h2>
+        <h2 class="titre-page">{{projet.titre}}</h2>
         <div class="description-card">
           <p>
-            LoremApp est une plateforme innovante conçue pour optimiser la collaboration entre équipes techniques.
-            Grâce à une interface intuitive et des algorithmes performants, elle permet de centraliser les workflows,
-            automatiser les tâches répétitives et améliorer la productivité.
+            {{projet.Description}}
           </p>
         </div>
       </div>
@@ -36,7 +34,7 @@
           <span class="icon">
             <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
           </span>
-          02/07/2026
+          {{projet.dateFin}}
         </div>
       </div>
     </div>
@@ -44,7 +42,7 @@
 
     <div class="bottom-header">
       <div class="niveau">
-        Niveau <span style="color: black;">Facile</span>
+        Niveau <span style="color: black;">{{projet.niveauDAcces}}</span>
       </div>
       <div class="contributors">
         <div class="top-line">
@@ -76,52 +74,36 @@
       </div>
 
       <!-- LIGNE -->
-      <div class="table-row">
-        <span class="bold">Set up du projet</span>
-        <span>Lien github</span>
-        <span>31/07/2025</span>
-        <span>01/08/2025</span>
-        <span>10</span>
-        <span style="border-radius: 12px;">
-          <span class="etat-badge a-faire">A faire</span>
-        </span>
-        
-        <span class="span-center">👤</span>
-        <span class="span-center">
-          <i class="ri-more-fill"></i>
-        </span>
-        
-      </div>
-
-      <div class="table-row">
-        <span class="bold">Développement de l'API REST</span>
-        <span>Lien github</span>
-        <span>31/07/2025</span>
-        <span>01/08/2025</span>
-        <span>10</span>
-        <span style="border-radius: 12px;">
-          <span class="etat-badge termine">Terminé</span>
-        </span>
-        
-        <span class="span-center">👤</span>
-        <span class="span-center">
-          <i class="ri-more-fill"></i>
-        </span>
-      </div>
-
-      <div class="table-row">
-        <span class="bold">Set up du projet</span>
-        <span>Lien github</span>
-        <span>31/07/2025</span>
-        <span>01/08/2025</span>
-        <span>10</span>
-        <span style="border-radius: 12px;"><span class="etat-badge en-cours">En cours</span></span>
-        <span class="span-center">👤</span>
-        <span class="span-center">
-          <i class="ri-more-fill"></i>
-        </span>
-        
-      </div>
+      @if (projet.taches && projet.taches.length > 0) {
+        @for (tache of projet.taches; track $index) {
+          <div class="table-row">
+            <span class="bold">{{tache.titre}}</span>
+            <span>{{tache.description}}</span>
+            <span>{{tache.dateDebut}}</span>
+            <span>{{tache.dateFin}}</span>
+            <span>{{tache.pieceAGagner}}</span>
+            <span style="border-radius: 12px;">
+              <ng-container *ngIf="tache.contributeur; else pasDeContrib">
+                <span *ngIf="!tache.estFini" class="etat-badge en-cours">En cours</span>
+                <span *ngIf="tache.estFini" class="etat-badge terminé">Terminé</span>
+              </ng-container>
+              <ng-template #pasDeContrib>
+                <span class="etat-badge a-faire">A faire</span>
+              </ng-template>
+            </span>
+            
+            <span class="span-center" (click)="toProfil(tache.contributeur)">
+              👤
+            </span>
+            <span class="span-center" (click)="togglePopup()">
+              <i class="ri-more-fill"></i>
+            </span>
+          </div>
+        }
+      }
     </div>
-
+    <app-popup-options 
+    *ngIf="showPopup" 
+    (close)="showPopup = false">
+  </app-popup-options>
 </div>
