@@ -7,7 +7,7 @@ export class Users {
   private motDePasse: string;
   private genre: string;
   private preferences: [] = [];
-  private projet: projet[] = []
+  
 
   constructor(
     prenom: string,

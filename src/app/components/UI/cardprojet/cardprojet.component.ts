@@ -1,17 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { projet } from '../../../models/projet/projet';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cardprojet',
-  imports: [],
+  imports: [
+    DatePipe
+  ],
   templateUrl: './cardprojet.component.html',
   styleUrl: './cardprojet.component.css'
 })
 export class CardprojetComponent {
-  @Input() projet: { date: string, title: string, description: string, level: string, buttonText: string } = {
-    date: '',
-    title: '',
-    description: '',
-    level: '',
-    buttonText: ''
-  };
+  @Input() projet!: projet
 }
