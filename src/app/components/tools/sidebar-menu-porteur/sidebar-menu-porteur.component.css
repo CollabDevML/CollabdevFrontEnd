@@ -1,0 +1,135 @@
+.container {
+    padding-top: 10px;
+    width: 20%;
+    position: fixed;
+    min-width: 200px;
+    background-color: white;
+    height: 100%;
+    min-height: 500px;
+    z-index: 2;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.container.collapsed {
+    width: 5%;
+    min-width: 62px;
+}
+
+.right-separator.expanded {
+    left: 20%;
+}
+
+.icones {
+    font-size: 24px;
+    color: #334DAA;
+}
+
+p {
+    font-size: 12px;
+    color: #334DAA;
+    width: 200px;
+}
+
+#side-expander-container {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    bottom: 50%;
+    z-index: 3;
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.logo {
+    width: 80%;
+    height: auto;
+}
+
+.logo.collapsed {
+    width: 60%;
+}
+
+.menu-items-container {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 18px;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.menu-items-container.collapsed-top {
+    margin-top: 30px;
+}
+
+.menu-items {
+    gap: 10px;
+    height: 30px;
+    align-items: center;
+    justify-content: start;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.bottom-content {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    position: fixed;
+    width: 20%;
+    bottom: 0;
+}
+
+.profile-icone-frame {
+    background-color: black;
+    border: 2px solid #334DAA;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    padding: 5px;
+}
+
+.profile-icone-frame.chosen {
+    background-color: #334DAA;
+    border: 2px solid black;
+}
+
+.menu-items-container.expanded-bottom {
+    margin-bottom: 4.5px;
+}
+
+#contact-us-frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 62px;
+    border-top: 1px solid black;
+    margin-top: 10px;
+}
+
+.bottom-content.collapsed {
+    width: 5%;
+}
+
+/**/
+
+.icones:hover {
+    transform: scale(1.3);
+}
+
+#sidebar-expander-container:active {
+    transform: rotate(180deg);
+}
