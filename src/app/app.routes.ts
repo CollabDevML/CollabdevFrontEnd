@@ -13,6 +13,7 @@ import { FooterComponent } from './components/UI/footer/footer.component';
 import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
+import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
 export const routes: Routes = [
   {
     path: '',
@@ -39,5 +40,6 @@ export const routes: Routes = [
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'contributeur', component: ContributeurComponent },
-  { path: 'contributeurs', component: ContributeurssComponent }
+  { path: 'contributeurs', component: ContributeurssComponent },
+  { path: 'contributeurss', component: Contributeurs1Component },
 ];
