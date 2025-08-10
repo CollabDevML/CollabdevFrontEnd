@@ -11,9 +11,18 @@ import { Env } from '../env';
 export class DataService {
   //Pour la creation des headers :
   private headers = new HttpHeaders();
-  userData!: Users;
+  
+  userData!:Users;
+  users:any;
+  user_email = localStorage.getItem("user_email") || "";
+  user_id = Number(localStorage.getItem("user_id")) || 0;
+  user_role = localStorage.getItem("user_role") || "";
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http:HttpClient
+  ) {
+    this.users = {};
+    
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -22,7 +31,22 @@ export class DataService {
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,PATCH ,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     });
+
     // this.headers = this.headers.set('Authorization', 'Bearer ' + token);
+  }
+
+  //Les deux methodes qui vont recuperer les données de utilisateurs en fonction de localstorage que ca soit a travers sont email ou son id:
+  getDataUserById():Observable<any>{
+    return this.getDataById(Env.INSCRIPTION_URL,this.user_id,this.user_role);
+  }
+
+  getDataUserByEmail() :Users{
+    this.getDataByEmail(Env.INSCRIPTION_URL,this.user_email).subscribe(
+      (res)=>{
+        this.userData = res;
+      }
+    )
+    return this.userData;
   }
 
   //Pour la recuperation generale des données via n'importe quel chemin
@@ -51,8 +75,13 @@ export class DataService {
   }
 
   //Pour la recuperation d'une donnée par son ID
-  getDataById(url: string, id: number) {
-    return this.http.get(`${url}/${id}`, { headers: this.headers });
+  getDataById(url: string, id: number,role:string):Observable<any>{
+    return this.http.get<Users>(`${url}/${id}?role=${role}`,{headers: this.headers});
+  }
+
+  //Pour la recuperation d'une donnée par son ID
+  getDataByEmail(url: string, email: string):Observable<Users> {
+    return this.http.get<Users>(`${url}/${email}`,{headers: this.headers});
   }
 
   //Pour l'insertion, la mise à jour et la suppression de données par ID
@@ -69,6 +98,7 @@ export class DataService {
   deleteDataById(url: string, id: number) {
     return this.http.delete(`${url}/${id}`, { headers: this.headers });
   }
+
 
   // Pour l'envoi de fichiers
   uploadFile(
