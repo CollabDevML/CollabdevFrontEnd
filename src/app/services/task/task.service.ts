@@ -8,13 +8,10 @@ import { Task } from '../../models/task/task.model';
 })
 export class TaskService {
   // IMPORTANT : Modifiez cette URL pour qu'elle corresponde à votre API
-  private apiUrl = 'http://localhost:8080/api/tasks';
+  private apiUrl = 'http://localhost:8080/utilisateurs/gestionnaires/projets/taches/{tacheId}';
 
   constructor(private http: HttpClient) { }
-
-  /**
-   * Récupère toutes les tâches depuis le backend.
-   */
+  
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl);
   }
