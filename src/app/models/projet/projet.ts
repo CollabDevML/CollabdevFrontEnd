@@ -1,4 +1,5 @@
 export class projet {
+  id!: number;
   titre!: string;
   Description!: string;
   estFini!: boolean;

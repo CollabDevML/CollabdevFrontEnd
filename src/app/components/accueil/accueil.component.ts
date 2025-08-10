@@ -10,7 +10,7 @@ import { projet } from '../../models/projet/projet';
   styleUrl: './accueil.component.css',
 })
 export class AccueilComponent implements OnInit {
-  isSoutienState = signal(false);
+  soutiensState = signal<{ [key: number]: boolean }>({});
 
   constructor(private accueilService: AccueilService) {}
 
@@ -19,24 +19,50 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     const users_id = Number(localStorage.getItem('user_id'));
-    this.accueilService
-      .getRecommandationByideeProjet(users_id)
-      .subscribe((data) => {
-        this.ideeProjets = data;
-      });
-    this.accueilService
-      .getRecommandationByProjet(users_id)
-      .subscribe((data) => {
-        this.projets = data;
-      });
-    throw new Error('Method not implemented.');
+    this.accueilService.getRecommandationByideeProjet(1).subscribe((data) => {
+      this.ideeProjets = data;
+    });
+    this.accueilService.getRecommandationByProjet(1).subscribe((data) => {
+      this.projets = data;
+      throw new Error('Method not implemented.');
+    });
   }
 
-  handelClick(): void {
-    if (this.isSoutienState()) {
-      this.isSoutienState.set(false);
+  // Vérifie si un projet est soutenu
+  isSoutienState(id: number): boolean {
+    // return this.soutiensState.get(id) || false;
+    return this.soutiensState()[id] || false;
+  }
+  // Change l'état de soutien pour un projet spécifique
+  handelClick(id: number): void {
+    if (this.isSoutienState(id)) {
+      // Retirer soutien
+      this.accueilService.retirerSoutien(id, 1).subscribe({
+        next: () => {
+          this.soutiensState.update((state) => ({
+            ...state,
+            [id]: false,
+          }));
+        },
+        error: (err) => console.error('Erreur retrait soutien', err),
+      });
     } else {
-      this.isSoutienState.set(true);
+      // Ajouter soutien
+      this.accueilService.soutenirUneIdeeProjet(id, 1).subscribe({
+        next: () => {
+          this.soutiensState.update((state) => ({
+            ...state,
+            [id]: true,
+          }));
+        },
+        error: (err) => console.error('Erreur ajout soutien', err),
+      });
     }
   }
+
+  //   this.soutiensState.update((state) => ({
+  //     ...state,
+  //     [id]: !state[id],
+  //   }));
+  // }
 }
