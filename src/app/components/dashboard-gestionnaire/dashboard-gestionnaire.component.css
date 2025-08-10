@@ -1,0 +1,323 @@
+#main{
+    display: flex;
+    flex-direction: row;
+} 
+.sous-titre{
+    color:#334DAA;
+}
+.lateral-nav{
+    width: 10%;
+    
+    
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh; /* prend toute la hauteur de l'écran */
+        background-color: white; /* pour éviter qu’on voie le contenu derrière */
+        z-index: 1000; /* au-dessus des autres éléments */
+        transition: width 0.3s ease; /* pour animation fluide */
+      
+      
+}
+.lateral-nav.lateral-close{
+    width: 4.5%;
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 10%;
+    padding-left: 2.5%;
+    transition: margin-left 0.3s ease;
+}
+.dashboard.long-dashboard {
+    margin-left: 4.5%;
+  }
+#en-tete{
+    background-color: #334DAA;
+    border-radius: 17px;
+    width: 100%;
+    height: 14vw;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 1.5em;
+    align-items: center;
+    box-sizing: border-box;
+    border: 0.1px solid white;
+    justify-content: space-between;
+    padding: 0 5rem;
+}
+#en-tete h3{
+    margin-right: 116.914px;
+}
+
+#en-tete img 
+{
+    width: clamp(100px, 25vw, 120px);
+    height: auto;
+    box-shadow: 0px 0px 59px 49px rgba(255, 255, 255, 0.15);
+}
+    
+
+#contributions{
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+    padding-top: 2%;
+    width: 100%;
+}
+.statistiques {
+    position: relative;
+    width: 260px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 1rem;
+  }
+  
+  .icon-wrapper {
+    position: absolute;
+    top: -12px;
+    left: -24px;
+    width: 48px;
+    height: 48px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-wrapper i {
+    color: #334DAA;
+    font-size: 24px;
+  }
+  
+  h5 {
+    font-size: 0.9rem;
+    color: #444;
+    margin: 0.5rem 0 0;
+    text-align: right;
+    padding-right: 1rem;
+  }
+  
+  /* On centre verticalement ce bloc via flex dans le parent */
+  .statistiques p[ngStyle] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  /* Style du chiffre "5" */
+  #en-cours {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: black;
+  }
+  
+  /* Bloc des "10 Réalisés" */
+  .statistiques p:last-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #realise {
+    width: 100%;
+    height: 2px;
+    background-color: #E9E0E0;
+    border: none;
+    margin: 4px 0;
+  }
+  
+.contribution-card{
+    width: 70%;
+    margin-right: 5%;
+    padding: 0 1.5rem;
+     background-color: white;
+    border: 0.1 solid rgb(214, 209, 209);
+    border-radius: 5px;
+    box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.2); 
+
+}
+.statistiques h5{
+    text-align: right;
+}
+
+.titre{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5%;
+    
+}
+
+
+.contribution-list{
+    display: flex;
+    height: 72%;
+    align-items: center;
+    justify-content: space-around;
+}
+#projet-recents{
+    padding-top: 2%;
+    margin-top: 2%;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ border-top: 1px solid #E9E0E0;
+ border-bottom: 1px solid #E9E0E0;
+ 
+ height: auto;
+ padding: 0 1.5rem;
+ box-sizing: border-box;
+  box-shadow:  0 5px 10px rgba(0,0,0,0.2), 
+              0 -5px 10px rgba(0,0,0,0.2);  
+}
+
+.card-content{
+    width: 100%;
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+.tous-voir{
+    width: 9em;
+    height: 1.5em;
+    color: white;
+    border-radius: 2em;
+    background-color: rgba(51, 77, 170, 0.72);
+    border: 1px solid rgb(49, 47, 47);
+}
+.side-bar-open{
+    display: flex;
+    flex-direction: column;
+}
+.side-bar-open.side-bar-close {
+    display: grid;
+    grid-template-columns: 75% 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+}
+.side-bar-open.side-bar-close #contributions{
+    grid-column: 1;
+  grid-row: 1;
+  
+}
+.side-bar-open.side-bar-close #projet-recents{
+    grid-column: 1;
+  grid-row: 2;
+}
+.side-bar-open.side-bar-close #calendrier{
+  grid-column: 2;
+  grid-row: 1 / 3;  
+}
+#calendrier{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow:  0 5px 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    height: 95%;
+    margin-top: auto; 
+    margin-bottom: auto;
+    margin-left: 5px;
+    
+}
+::ng-deep .fc {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 100%;
+  height: 60%;
+  font-size: 1em;
+}
+::ng-deep .fc .fc-toolbar-title {
+    color: #334DAA;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+#demande-contribution{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+   margin-top: 5%;
+}
+#demande-contribution h4{
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+.table-header{
+    background-color: #334DAA;
+    color: white;
+    height: 2vw;
+}
+thead tr {
+    background-color: #334DAA;
+    color: white;
+  }
+  
+  thead th {
+    padding: 12px;
+    border-bottom: none; }
+#devant{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#derriere{
+     border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+}
+#demande-contribution tbody tr {
+    text-align: center;
+    border-bottom: 1px solid #d2cccc; 
+}
+#demande-contribution tbody tr td{
+    padding: 20px;
+}
+#demande-contribution tbody tr:last-child {
+    border-bottom: none; 
+}
+
+.actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.actions button{
+    width: 7vw;
+    border-radius: 4px;
+}
+#accepte{
+    color: #34F651;
+    background-color: #E5FDD3;
+    border: none;
+}
+#refuse{
+    color:#E61316;
+    background-color: rgba(251, 201, 201, 0.13);
+    border: none;
+}

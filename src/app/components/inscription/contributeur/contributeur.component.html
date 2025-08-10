@@ -9,8 +9,17 @@
       <h1>Contributeur</h1>
       <form [formGroup]="formulaireContributeur" (ngSubmit)="valider()" enctype="multipart/form-data" >
         <div class="radio">
-          <input type="radio" id="sexe1" formControlName="type" value="DEVELOPPEUR" checked> Développeur
-          <input type="radio" id="sexe" formControlName="type" value="DESIGNER"> Designer
+          <h2>Choisir un rôle</h2>
+          <select formControlName="type" required>
+            <option value="">-- Sélectionner un type --</option>
+            <option value="DEV_FULLSTACK">DEV FULLSTACK</option>
+            <option value="DEV_MOBILE">DEV MOBILE</option>
+            <option value="DEV_FRONT_END">DEV FRONTEND</option>
+            <option value="DEV_BACK_END">DEV BACKEND</option>
+            <option value="DESIGNER">DESIGNER</option>
+            <option value="TESTER">TESTER</option>
+            <option value="DEV_OPS">DEV OPS</option>
+          </select>
         </div>
         <div class="form-group">
           <input type="text" id="nom" formControlName="specialite" required placeholder="Specialité">

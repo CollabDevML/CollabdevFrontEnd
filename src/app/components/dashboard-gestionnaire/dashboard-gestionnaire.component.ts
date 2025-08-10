@@ -1,0 +1,49 @@
+import { NgClass, NgStyle } from '@angular/common';
+import { Component } from '@angular/core';
+import { SidebargestionnaireComponent } from '../UI/sidebargestionnaire/sidebargestionnaire.component';
+import { CardprojetComponent } from '../UI/cardprojet/cardprojet.component';
+import { CardcontributionComponent } from '../UI/cardcontribution/cardcontribution.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { CalendarOptions } from '@fullcalendar/core/index.js';
+import { RouterLink } from '@angular/router';
+import { PopUpsComponent } from '../UI/pop-ups/pop-ups.component';
+
+@Component({
+  selector: 'app-dashboard-gestionnaire',
+  imports: [
+    NgStyle,
+    SidebargestionnaireComponent,
+    CardprojetComponent,
+    CardcontributionComponent,
+    FullCalendarModule,
+    // RouterLink,
+    PopUpsComponent,
+  ],
+  templateUrl: './dashboard-gestionnaire.component.html',
+  styleUrl: './dashboard-gestionnaire.component.css',
+})
+export class DashboardGestionnaireComponent {
+  sidebarOpen: boolean = true;
+  ispopupVisible: boolean = false;
+
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin],
+    weekends: true,
+    locale: 'fr',
+  };
+
+  changerEtatSidebar(value: boolean) {
+    this.sidebarOpen = value;
+  }
+
+  closePopups(valeur: boolean) {
+    this.ispopupVisible = valeur;
+  }
+
+  openPopups() {
+    this.ispopupVisible = true;
+    console.log('je click');
+  }
+}
