@@ -28,14 +28,23 @@ import { ListeIdeeProjetComponent } from './components/porteurProjet/liste-idee-
 
 import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
-
+import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
+import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+
 export const routes: Routes = [
   {
     path: '', redirectTo: 'page-visiteur', pathMatch: 'full'
 
   },
+
+  { path: 'header', component: HeaderComponent },
+  { path: 'sidebar', component: SideBarComponent },
+  { path: 'footer', component: FooterComponent },
+  { path: 'contributeur', component: ContributeurComponent },
+  { path: 'contributeurs', component: ContributeurssComponent },
+  { path: 'contributeurss', component: Contributeurs1Component },
   {path:'page-visiteur',component:PageVisiteurComponent},
 
   {path: 'login',component:LoginComponent},
