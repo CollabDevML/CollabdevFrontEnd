@@ -6,6 +6,9 @@ import { IdeeProjetServiceService } from '../../../services/proposition/idee-pro
 import { HttpClient } from '@angular/common/http';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
+import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
+import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,99 +24,79 @@ import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.
    styleUrls: ['./proposition-idee-projet.component.css']
 })
 export class PropositionIdeeProjetComponent implements OnInit {
- titre: string = '';
+// Variables du formulaire
+  titre: string = '';
   description: string = '';
-  domaine: string = '';
+  domaine: string = ''; // Cette variable stocke la valeur de l'enum
   nomFichier: string = '';
-  fichier: File | null = null;
-
-  domaines: { key: string, label: string }[] = [];
-
   erreurs: string[] = [];
+  selectedFile: File | null = null;
+  domaines: { key: string, label: string }[] = [];
+  idPorteur: number = 1;
 
   constructor(
-    private http: HttpClient,
-    private domaineService: DomaineIdeeProjetService
-  ) {}
+    private ideeProjetService: IdeeProjetServiceService,
+    private domaineService: DomaineIdeeProjetService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.domaines = this.domaineService.getAllOptions();
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
     if (file) {
+      this.selectedFile = file;
       this.nomFichier = file.name;
-      this.fichier = file;
     }
   }
 
-  changerFichier(): void {
+  changerFichier() {
+    this.selectedFile = null;
     this.nomFichier = '';
-    this.fichier = null;
   }
 
   onSubmit(): void {
     this.erreurs = [];
 
-    // Validation sans le fichier obligatoire
-    if (!this.titre || !this.description || !this.domaine) {
-      this.erreurs.push('Titre, description et domaine sont obligatoires.');
+    if (!this.titre || !this.description || !this.domaine || !this.selectedFile) {
+      this.erreurs.push('Veuillez remplir tous les champs et téléverser un fichier.');
       return;
     }
 
-    // Si aucun fichier → envoyer directement
-    if (!this.fichier) {
-      this.envoyerIdeeProjet('');
-      return;
-    }
+    // Étape 1 : Envoi du fichier
+    this.ideeProjetService.uploadFile(this.selectedFile).subscribe({
+      next: (response) => {
+        const uriCDC = response.chemin;
 
-    // Sinon, téléverser d'abord le fichier puis envoyer
-    const formData = new FormData();
-    formData.append('file', this.fichier);
-    formData.append('fileName', this.fichier.name);
-    formData.append('type', 'CDC');
+        // Étape 2 : Préparation de l'objet pour la soumission
+        const nouvelleIdee: RequestIdeeProjet = {
+          titre: this.titre,
+          description: this.description,
+          // MODIFICATION CLÉ : Le domaine est envoyé comme un tableau de chaînes
+          domaine: [this.domaine],
+          uriCDC: uriCDC
+        };
 
-    this.http.post<string>('http://localhost:8180/upload', formData)
-      .subscribe({
-        next: (uriCDC: string) => {
-          this.envoyerIdeeProjet(uriCDC);
-        },
-        error: err => {
-          this.erreurs.push("Erreur lors du téléversement du fichier : " + (err.error?.message || err.message));
-        }
-      });
-  }
-
-  private envoyerIdeeProjet(uriCDC: string): void {
-    const ideeProjet = {
-      titre: this.titre,
-      description: this.description,
-      domaine: [{ nom: this.domaine }], // format attendu par ton backend
-      uriCDC: uriCDC // peut être vide si aucun fichier
-    };
-
-    const idPorteur = localStorage.getItem("user_id"); //  Remplace par le vrai ID
-    const url = `http://localhost:8180/utilisateurs/${idPorteur}/idees-projet`;
-
-    this.http.post(url, ideeProjet)
-      .subscribe({
-        next: () => {
-          alert("Idée de projet envoyée avec succès !");
-          this.resetForm();
-        },
-        error: err => {
-          this.erreurs.push("Erreur lors de l'envoi du projet : " + (err.error?.message || err.message));
-        }
-      });
-  }
-
-  resetForm(): void {
-    this.titre = '';
-    this.description = '';
-    this.domaine = '';
-    this.nomFichier = '';
-    this.fichier = null;
+        // Étape 3 : Soumission des données du projet
+        this.ideeProjetService.ajouterIdeeProjet(this.idPorteur, nouvelleIdee).subscribe({
+          next: (projectResponse) => {
+            console.log('Idée de projet ajoutée avec succès !', projectResponse);
+            alert('Votre idée de projet a été soumise avec succès.');
+            this.router.navigate(['/']);
+          },
+          error: (projectError) => {
+            console.error('Erreur lors de la soumission de l’idée :', projectError);
+            this.erreurs.push('Une erreur est survenue lors de l’envoi de votre idée.');
+          }
+        });
+      },
+      error: (uploadError) => {
+        console.error('Erreur lors de l’upload du fichier :', uploadError);
+        this.erreurs.push('Une erreur est survenue lors de l’envoi du fichier.');
+      }
+    });
   }
 }
 
