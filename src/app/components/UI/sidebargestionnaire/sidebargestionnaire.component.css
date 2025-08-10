@@ -69,7 +69,7 @@ p {
     display: flex;
     align-items: center;
     gap: 08px;
-    
+
 }
 
 /* Élément de navigation 6 - Déconnexion */
@@ -104,19 +104,19 @@ p {
 
 /* Styles pour l'état replié - Section haute */
 .sidebar.replié .haut {
-    margin: 0 0 0 10px; 
+    margin: 0 0 0 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 08px; 
+    gap: 08px;
 }
 
 /* Styles pour l'état replié - Section basse */
 .sidebar.replié .enbas {
-    margin: 310px 0 6px 10px; 
+    margin: 310px 0 6px 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     gap: 08px;
 }
 
@@ -127,7 +127,7 @@ p {
 .sidebar.replié .nav4,
 .sidebar.replié .nav5,
 .sidebar.replié .nav6 {
-    justify-content: flex-start; 
-    gap: 08px; 
+    justify-content: flex-start;
+    gap: 08px;
     margin: 6px 0 0 0;
 }

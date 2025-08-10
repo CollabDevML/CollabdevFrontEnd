@@ -10,7 +10,7 @@
     width: 180px;
     height: calc(100vh - 100px);
     position: fixed;
-    top: 62px;
+    top: 60px;
     background-color: white;
     gap: 30px;
     transition: all 0.3s ease;
@@ -26,7 +26,7 @@
 /* Section haute de la sidebar */
 .haut{
     margin: 0 0 0 10px;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
 }
 
 /* Style des paragraphes (textes) */
@@ -160,7 +160,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 180px;
     transform: translateY(-50%);

@@ -7,20 +7,21 @@ import { FooterComponent } from '../../UI/footer/footer.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { ResponseGestionnaire } from '../../../models/gestionnaire/response-gestionnaire';
 import { CommonModule } from '@angular/common';
-import { SidebargestionnaireComponent } from '../../UI/sidebargestionnaire/sidebargestionnaire.component';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { RecherchebarreComponent } from "../../UI/recherchebarre/recherchebarre.component";
+import { SidebargestionnaireComponent } from '../../UI/sidebargestionnaire/sidebargestionnaire.component';
 
 @Component({
   selector: 'app-index-gestionnaire',
   imports: [
-    FooterComponent,
+    // FooterComponent,
     RouterOutlet,
     CommonModule,
-    SidebargestionnaireComponent,
+    // SidebargestionnaireComponent,
     SideBarComponent,
-    HeaderComponent,
-    RecherchebarreComponent
+    // HeaderComponent,
+    RecherchebarreComponent,
+    FooterComponent
 ],
   templateUrl: './index-gestionnaire.component.html',
   styleUrl: './index-gestionnaire.component.css'
@@ -29,6 +30,7 @@ export class IndexGestionnaireComponent implements OnInit {
 
   sidebarOpen:boolean = true;
   user!:ResponseGestionnaire;
+  static sidebarOpen: boolean;
   constructor(
     private data:DataService,
     private dataG:GestionnaireDataService,
@@ -53,8 +55,9 @@ export class IndexGestionnaireComponent implements OnInit {
   }
 
 
-  changerEtatSidebar(value: boolean){
+  static changerEtatSidebar(value: boolean){
     this.sidebarOpen = value
+    console.log("La valeur de side : ",this.sidebarOpen)
   }
 
 
