@@ -5,6 +5,7 @@ import { Env } from '../../env';
 import { catchError, Observable, tap } from 'rxjs';
 import { Ideeprojet } from '../../models/ideeprojet/ideeprojet';
 import { projet } from '../../models/projet/projet';
+import { Soutien } from '../../models/soutien';
 
 @Injectable({
   providedIn: 'root',
@@ -44,25 +45,31 @@ export class AccueilService {
     );
   }
 
-  soutenirUneIdeeProjet(idIdeeprojet: number, idUtilisateur: number) {
+  soutenirUneIdeeProjet(
+    idIdeeprojet: number,
+    idUtilisateur: number
+  ): Observable<Soutien> {
     let params = new HttpParams().set(
       'idUtilisateur',
       idUtilisateur.toString()
     );
 
-    return this.http.post(
+    return this.http.post<Soutien>(
       `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien`,
       null, // Corps vide car on envoie juste des params
       { params } // <- Ici dans les options, pas dans le body
     );
   }
 
-  retirerSoutien(idIdeeprojet: number, idUtilisateur: number) {
+  retirerSoutien(
+    idIdeeprojet: number,
+    idUtilisateur: number
+  ): Observable<Soutien> {
     let params = new HttpParams().set(
       'idUtilisateur',
       idUtilisateur.toString()
     );
-    return this.http.delete(
+    return this.http.delete<Soutien>(
       `${this.apiUrl}/utilisateurs/idees-projet/${idIdeeprojet}/nombre-soutien`,
       { params }
     );
