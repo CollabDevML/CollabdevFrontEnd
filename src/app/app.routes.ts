@@ -30,8 +30,10 @@ import { RecherchebarreComponent } from './components/UI/recherchebarre/recherch
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
 import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
+import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+
 
 export const routes: Routes = [
   {
@@ -45,6 +47,7 @@ export const routes: Routes = [
   { path: 'contributeur', component: ContributeurComponent },
   { path: 'contributeurs', component: ContributeurssComponent },
   { path: 'contributeurss', component: Contributeurs1Component },
+  { path: 'contributeursss', component: Contributeurs2Component }
   {path:'page-visiteur',component:PageVisiteurComponent},
 
   {path: 'login',component:LoginComponent},
