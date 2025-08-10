@@ -62,9 +62,12 @@ export const routes: Routes = [
 
   //Les routes pour le Porteur de projet
   {path:"porteur_projet",component:IndexPorteurProjetComponent, children:[
-    {path:"",component:AccueilPorteurProjetComponent},
-    //Les autres routes ici .........
-
+    {path:"",component:AccueilComponent},
+    {path:"accueil",component:AccueilComponent},
+    {path:"mes_projets",component:MesIdeeProjetComponent},
+    {path:"mes_favories",component:ProjetSuiviComponent},
+    {path:"mes_idees",component:ListeIdeeProjetComponent},
+    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
     {path:"**",redirectTo:""}
 
   ]},
@@ -72,7 +75,7 @@ export const routes: Routes = [
 
   //Les routes pour le Contributeur :
   {path:"contributeur",component:IndexContributeurComponent,children:[
-    {path:"",component:AccueilContributeurComponent},
+    {path:"",component:AccueilComponent},
     //Les autres ici ...........
 
     {path:"**",redirectTo:""}
@@ -81,13 +84,24 @@ export const routes: Routes = [
 
   //Les routes pour le Gestionnaire :
   {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
-    {path:"",component:AccueilGestionnaireComponent},
+    {path:"",component:AccueilComponent},
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}
   ]},
 
- 
+  // {path:'dashboard', component:DashboardGestionnaireComponent},
+  {
+    path:'card-contribution', component: CardcontributionComponent
+  },
+  {path: 'header-barre', component:RecherchebarreComponent},
+  {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
+  {path:'cardprojet', component: CardprojetComponent},
+  {path: 'popup', component: PopUpsComponent},
+  { path: 'accueil', component: AccueilComponent },
+
+  {path:"**",component:PageNotFoundComponent},
+
 
     {path:'dashboard', component:DashboardGestionnaireComponent},
     {path:'card-contribution', component: CardcontributionComponent},
@@ -96,7 +110,7 @@ export const routes: Routes = [
     {path:'cardprojet', component: CardprojetComponent},
     {path: 'popup', component: PopUpsComponent},
     { path: 'accueil', component: AccueilComponent },
-  
+
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },

@@ -4,24 +4,32 @@ import { PorteurProjetDataService } from '../../../services/porteurProjet/porteu
 import { DataService } from '../../../services/data.service';
 import { HeaderComponent } from '../../UI/header/header.component';
 import { FooterComponent } from '../../UI/footer/footer.component';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ResponseContributeur } from '../../../models/contributeur/response-contributeur';
 import { CommonModule } from '@angular/common';
 import { ResponsePorteurProjet } from '../../../models/porteurProjet/response-porteur_projet';
+import { RecherchebarreComponent } from "../../UI/recherchebarre/recherchebarre.component";
+import { SideBarComponent } from "../../UI/side-bar/side-bar.component";
+import { Login } from '../../../models/login/login';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-index-porteur-projet',
   imports: [
-    HeaderComponent,
+    // HeaderComponent,
     FooterComponent,
     RouterOutlet,
-    CommonModule
-  ],
+    CommonModule,
+    RecherchebarreComponent,
+    // SideBarComponent
+    RouterLink,
+    RouterLinkActive,
+],
   templateUrl: './index-porteur-projet.component.html',
   styleUrl: './index-porteur-projet.component.css'
 })
 export class IndexPorteurProjetComponent implements OnInit {
-
+  sidebarOpen:boolean = true;
   user!:ResponsePorteurProjet;
   constructor(
     private data:DataService,
@@ -30,11 +38,15 @@ export class IndexPorteurProjetComponent implements OnInit {
   ){
 
   }
+  // Propriété pour contrôler l'affichage détaillé ou compact de la sidebar
+  afficherDetailsSidebar = true;
+
+  // Méthode pour basculer entre l'état détaillé et compact de la sidebar
+  changerEtatSidebar() {
+    this.afficherDetailsSidebar = !this.afficherDetailsSidebar;
+  }
 
   ngOnInit(): void {
-    if  (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == "") {
-      this.route.navigate(["login"]);
-    }
     this.data.getDataUserById().subscribe({
       next:(res)=> {
         this.user = res;
@@ -43,5 +55,13 @@ export class IndexPorteurProjetComponent implements OnInit {
           console.warn(err);
       },
     });
+
+    if  (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == "") {
+      this.route.navigate(["login"]);
+    }
+  }
+
+  deconnexion(){
+    LoginService.logout();
   }
 }
