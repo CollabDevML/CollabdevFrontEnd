@@ -20,7 +20,8 @@
   flex-direction: column;
   gap: 20px;
   min-height: 100vh;
-  margin: 0 75px; /* Espace pour la barre latérale */
+  margin: 0px 50px;
+  margin-left:90px;
 }
 
 /* En-tête */
