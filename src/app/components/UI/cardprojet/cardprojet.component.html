@@ -7,13 +7,13 @@
     <div class="milieu">
       <h3 class="title">{{projet.titre}}</h3>
       <span>
-        {{projet.description}}
+        {{projet.Description}}
       </span>
     </div>
   </div>
   <div class="level">{{projet.niveauDAcces}}</div>
   <div class="bas">
     <i class="ri-account-circle-line" style="color: #334DAA; font-size: 25px;"></i>
-    <button class="visualiser-btn">Visualiser</button>
+    <button class="visualiser-btn" (click)="voirdetails(projet)">Visualiser</button>
   </div>
 </div>

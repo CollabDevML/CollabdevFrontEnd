@@ -3,7 +3,7 @@ import { Contribution } from "../contribution/contribution";
 export class projet {
   id!: number;
     titre!: string;
-    description!: string;
+    Description!: string;
     estFini!: boolean;
     etat!: boolean;
     dateDebut!: string;
@@ -12,4 +12,7 @@ export class projet {
     demandeContributions!: any[];
     contributions!: any[];
     taches!: any[];
+    piecesDAcces!:number;
+    idGestionnaire!:number;
+
 }

@@ -147,3 +147,4 @@ export class DashboardGestionnaireComponent implements OnInit{
       this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
     });
 }
+}

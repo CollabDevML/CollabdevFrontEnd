@@ -34,7 +34,7 @@ export class DashboardgestionnaireServiceService {
       projets : (data.projets ?? []).map((projet: projet) => ({
         id: projet.id,
         titre: projet.titre,
-        description: projet.description,
+        description: projet.Description,
         estFini : projet.estFini,
         etat: projet.etat,
         dateDebut: projet.dateDebut,
@@ -42,7 +42,8 @@ export class DashboardgestionnaireServiceService {
         niveauDAcces: projet.niveauDAcces,
         demandeContributions: projet.demandeContributions,
         contributions: projet.contributions,
-        taches: projet.taches
+        taches: projet.taches,
+        piecesDAcces: projet.piecesDAcces,
       })),
     }
     )))

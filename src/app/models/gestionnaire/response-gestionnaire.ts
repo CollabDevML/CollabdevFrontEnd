@@ -1,6 +1,5 @@
 import { Enumerations } from '../enums/enums';
 import { projet } from '../projet/projet';
-import { projet } from 'src/app/models/projet/projet';
 
 export class ResponseGestionnaire {
   prenom!: string;

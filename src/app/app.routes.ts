@@ -89,7 +89,7 @@ export const routes: Routes = [
     {path:'cardprojet', component: CardprojetComponent},
     {path: 'popup', component: PopUpsComponent},
     { path: 'accueil', component: AccueilComponent },
-    {path: 'details', component:ProjetgestionnairedetailComponent},
+    {path: 'projet-details', component:ProjetgestionnairedetailComponent},
   
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
