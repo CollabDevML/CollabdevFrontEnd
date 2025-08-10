@@ -1,3 +1,5 @@
+import { Contribution } from "../contribution/contribution";
+
 export class projet {
   id!: number;
     titre!: string;

@@ -15,12 +15,13 @@ import { IdToIntService } from '../../services/utiliteur/id-to-int.service';
 import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestionnaire';
 import { projet } from '../../models/projet/projet';
 import { Demandecontributions } from '../../models/demandecontributions/demandecontributions';
+import { Contribution } from '../../models/contribution/contribution';
+import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
 
 
 @Component({
   selector: 'app-dashboard-gestionnaire',
   imports: [
-
   NgStyle,
     SidebargestionnaireComponent,
     CardprojetComponent,
@@ -42,9 +43,13 @@ export class DashboardGestionnaireComponent implements OnInit{
   nbreProjetsTermine:number = 0;
   nbreProjetsEnCours:number = 0;
   demandeContributions: Demandecontributions[] = [];
+  contributionsList: Contribution[]=[];
   //injection de dependance du composant
   dashboardgestionnaireservices = inject(DashboardgestionnaireServiceService)
+  demandescontributionsServices = inject(DemandescontributionsService)
   idToIntService = inject(IdToIntService)
+  selectedAction!: string;
+  selectedDemande: any;
 
   ngOnInit(): void {
     this.userId = this.idToIntService.getId();
@@ -59,6 +64,7 @@ export class DashboardGestionnaireComponent implements OnInit{
       next:(result:any)=> {
         
         this.gestionnaire = result,
+
         //get the recents projets sort by date
         this.projetsRecents = [...this.gestionnaire.projets]
         .sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
@@ -69,13 +75,30 @@ export class DashboardGestionnaireComponent implements OnInit{
     .flatMap(projet => (projet.demandeContributions ?? [])
     .filter(demande => !demande.estValide)
     .map(demande => ({
+      id: demande.id,
       projetNom: projet.titre,         
       contributeurNom: demande.contributeur.nom,  
-      dateEnvoi: demande.dateEnvoi,       
-      ...demande                          // on garde le reste des infos
+      dateEnvoi: demande.dateEnvoi,
+      ...demande       
     })))
-    .sort((a, b) => b.id - a.id)       
+    .sort((a, b) => b.id - a.id);
+    
+    //recupérer les contributions non validés
+    this.contributionsList = this.projetsRecents
+    .flatMap(projet => (projet.contributions ?? [])
+    .filter(contributions => !contributions.estValide)
+    .map(contributions => ({
+      id: contributions.id,
+      nomProjet: contributions.projet.titre,         
+      nomContributeur: contributions.contributeur.nom, 
+      prenomContributeur: contributions.contributeur.prenom, 
+      nomTache: contributions.tache.nom,
+      estValide:contributions.estValide                             // on garde le reste des infos
+    })))
+    .sort((a, b) => b.id - a.id)
+    .slice(0,2);
       },
+
       error:(error) => console.error('Erreur lors de la récupération du gestionnaire', error)
     })
     this.dashboardgestionnaireservices.nbEnCours$
@@ -97,11 +120,30 @@ export class DashboardGestionnaireComponent implements OnInit{
     this.sidebarOpen = value;
   }
 
-  closePopups(valeur: boolean) {
-    this.ispopupVisible = valeur;
+  closePopups(confirmed: boolean) {
+    this.ispopupVisible = false;
+  
+    if (confirmed && this.selectedAction && this.selectedDemande) {
+      if (this.selectedAction === 'accept') {
+        this.acceptDemande(this.selectedDemande);
+      } else {
+        this.declineDemande(this.selectedDemande);
+      }
+    }
   }
-
-  openPopups() {
+  openPopups(action: 'accept' | 'decline', demande: any) {
+    this.selectedAction = action;
+    this.selectedDemande = demande;
     this.ispopupVisible = true;
   }
+  acceptDemande(demande: any) {
+    this.demandescontributionsServices.AccepteDemande(demande.id,true).subscribe(() => {
+      this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
+    });
+  }
+  
+  declineDemande(demande: any) {
+    this.demandescontributionsServices.AccepteDemande(demande.id,false).subscribe(() => {
+      this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
+    });
 }

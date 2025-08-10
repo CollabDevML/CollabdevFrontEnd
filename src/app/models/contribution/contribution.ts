@@ -3,7 +3,9 @@ import { Tache } from "../tache/tache";
 
 export class Contribution {
     id!: number;
-    estValider!: boolean;
-    contributeur!:Contributeur;
-    tache!: Tache;
+    estValide!: boolean;
+    nomProjet!:string;
+    nomContributeur!: string;
+    prenomContributeur!:string;
+    nomTache!: string;
 }

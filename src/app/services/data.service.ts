@@ -99,6 +99,11 @@ export class DataService {
     return this.http.delete(`${url}/${id}`, { headers: this.headers });
   }
 
+  //Pour la mise à jour des données par ID
+  patchDataById(url: string, id: number, value: boolean) {
+    return this.http.patch(`${url}/${id}/estAcceptee/${value}`, {}, { headers: this.headers });
+  }
+  
 
   // Pour l'envoi de fichiers
   uploadFile(
