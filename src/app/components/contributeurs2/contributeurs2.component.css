@@ -1,0 +1,199 @@
+/* Réservation pour header (60px), sidebar (180px), footer (28px) */
+.contenu-accueil--reserve{
+  margin-top: 16px;
+  margin-left: 180px;
+  min-height: calc(100dvh - 60px - 28px);
+  width: calc(100% - 180px);     /* évite le scroll horizontal */
+  overflow: auto;
+}
+
+/* Conteneur principal */
+.contenu-accueil{
+  padding: 0 0 28px 20px;        /* 28px pour le footer */
+  color: #1f2937;
+}
+
+/* Grille 2 colonnes: gauche fluide, droite 420px */
+.grille-contenu{
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) 420px; /* 560px mini pour la colonne gauche */
+  gap: 24px;
+  width: 100%;
+  align-items: start;
+}
+
+
+.colonne-gauche{ min-width: 0; } /* supprime la width: 550px */
+
+
+.bloc-projets--cadre{
+  position: relative;
+  background: #fff;
+  padding: 10px 12px 12px 12px;
+}
+.bloc-projets--cadre::after{
+  content:"";
+  position:absolute; inset:-2px;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(47,85,255,0.10) inset; /* liseré interne subtil */
+  pointer-events:none;
+}
+
+/* Onglets style  */
+.barre-onglets{
+  display: flex; align-items: center; 
+  gap: 40px;
+  padding: 6px 2px 12px 2px;
+  border-bottom: 1px solid #e6e8ee;
+  margin: 0px 4px 8px 4px;
+}
+.ideeprojet, .projet, .gestionnaire{
+  display: inline-flex; 
+  align-items: center; 
+  gap: 06px; 
+  cursor: pointer;
+}
+.ideeprojet span{
+  background:#e5e7f3; 
+  color:#111827; 
+  padding:4px 10px; 
+  font-weight:700; 
+  font-size:12px;
+}
+.projet span, .gestionnaire span{
+  background:#e5e7f3; 
+  color:#111827; 
+  padding:4px 10px; 
+  font-weight:700; 
+  font-size:12px;
+}
+.projet.actif span{ background: #334DAA; color:#fff; } /* onglet actif */
+
+/* Liste des cartes */
+.liste-cartes{ display: grid; 
+  gap: 10px; 
+  width: 100%; 
+}
+
+/* Cartes */
+.carte-projet{
+  display: grid; 
+  grid-template-columns: 44px 1fr auto; 
+  align-items: center; 
+  gap: 12px;
+  border: 1px solid #e6e6ea; 
+  background: #fff; 
+  padding: 12px; 
+  
+}
+.carte-icône{
+  width: 44px; 
+  height: 44px; 
+  display: grid; 
+  place-items: center;
+  background: #ffffff; 
+  color: #000000; 
+  font-size: 20px; 
+  border-radius: 50%;
+}
+.carte-titres{ 
+  display: flex; 
+  flex-wrap: wrap; 
+  align-items: baseline; 
+  gap: 12px; 
+}
+.carte-titre{ 
+  font-size: 15px; 
+  font-weight: 800; 
+  color: #000000; 
+  margin: 0; 
+}
+.carte-gestionnaire{ 
+  color: #282f3b; 
+  font-size: 14px; 
+}
+.carte-tache{ 
+  color: #282f3b; 
+  font-size: 13px; 
+  margin-top: 4px; 
+}
+.etiquette{ 
+  color: #000000; 
+  margin-right: 4px; 
+}
+.valeur{
+   color: #000000; 
+  }
+.carte-actions{
+  display: flex; 
+  align-items: center; 
+}
+.bouton-quitter{
+  background: #F6C434; 
+  color: #ffffff;
+  padding: 8px 12px; 
+  font-weight: 700; 
+  cursor: pointer;
+}
+
+/* Colonne droite: panneau clair */
+.colonne-droite{
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 16px;
+  padding: 16px;
+}
+.slogan-titre{
+  font-size: 24px; 
+  line-height: 1.25; 
+  font-weight: 800; 
+  letter-spacing: -0.01em; 
+  color: #000; 
+  margin: 0;
+  font-family: itim;
+}
+.slogan-point{ color: #000000; }
+.illustration-image{ 
+  display:block; 
+  width:90%; 
+  height:auto; 
+   
+   }
+
+/* Avatars en  */
+.bloc-avatars{
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0,1fr));
+  gap: 12px;
+}
+.avatar-élément{
+  display: grid; grid-template-rows: 28px auto;
+  justify-items: center; 
+  align-items: center; 
+  gap: 6px;
+  border-radius: 8px; 
+  padding: 8px 6px; 
+  background: #fff;
+}
+.avatar-rond{
+  width: 24px; 
+  height: 24px; border-radius: 6px;
+  display: grid; place-items: center;
+  background: #f7f7fb; 
+  color: #111827; 
+  font-weight: 700; 
+  font-size: 12px;
+}
+.avatar-nom{ font-size: 10px; 
+  color: #000; }
+
+/* Responsive */
+@media (max-width:1100px){
+  .grille-contenu{ grid-template-columns: 1fr; }
+  .colonne-droite{ order: -1; }
+}
+@media (max-width:640px){
+  .contenu-accueil{ padding: 0 12px 28px 12px; }
+  .bloc-avatars{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+}

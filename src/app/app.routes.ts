@@ -14,6 +14,7 @@ import { RecherchebarreComponent } from './components/UI/recherchebarre/recherch
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
 import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
+import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
 export const routes: Routes = [
   {
     path: '',
@@ -42,4 +43,5 @@ export const routes: Routes = [
   { path: 'contributeur', component: ContributeurComponent },
   { path: 'contributeurs', component: ContributeurssComponent },
   { path: 'contributeurss', component: Contributeurs1Component },
+  { path: 'contributeursss', component: Contributeurs2Component }
 ];
