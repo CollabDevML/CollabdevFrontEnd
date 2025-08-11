@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { HeaderComponent } from '../../UI/header/header.component';
 import { RecherchebarreComponent } from '../../UI/recherchebarre/recherchebarre.component';
+import { CommonModule } from '@angular/common';
 import { ResponseIdeeProjet2 } from '../../../models/ideeprojet/response-idee-projet2';
 import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -17,7 +18,25 @@ import { CommonModule, DatePipe } from '@angular/common';
   templateUrl: './liste-idee-projet.component.html',
   styleUrl: './liste-idee-projet.component.css'
 })
-export class ListeIdeeProjetComponent implements OnInit {
+
+export class ListeIdeeProjetComponent {
+
+  afficheVoirPlus : boolean = false;
+  voirPlus(id:any) {
+    this.afficheVoirPlus = true;
+  }
+
+  fermerModal() {
+    this.afficheVoirPlus = false;
+  }
+
+  verifier(){
+    if (this.afficheVoirPlus) {
+      this.afficheVoirPlus = false
+    }
+  }
+
+/* export class ListeIdeeProjetComponent implements OnInit {
     // Utilisez le modèle de données correspondant à votre API
   ideesProjet: ResponseIdeeProjet2[] = []; 
 
@@ -34,6 +53,6 @@ export class ListeIdeeProjetComponent implements OnInit {
         console.error('Erreur lors de la récupération des idées de projet:', error);
       }
     });
-  }
+  } */
 }
 

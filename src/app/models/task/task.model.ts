@@ -6,5 +6,6 @@ export interface Task {
   dateDebut: Date;
   dateFin: Date;
   pieceAGagner: number;
+  estFini: boolean;
   niveau: string;
 }

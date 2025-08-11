@@ -46,27 +46,27 @@
     <div class="task-item" *ngFor="let task of tasks">
       <div class="task-content">
         <div class="task-status-icon">
-          <i [ngClass]="{
+          <!-- <i [ngClass]="{
             'fa fa-circle text-secondary': task.status === 'À faire',
             'fa fa-spinner fa-spin text-warning': task.status === 'En cours',
             'fa fa-check-circle text-success': task.status === 'Terminée'
-          }"></i>
+          }"></i> -->
         </div>
         <div class="task-details">
           <h3>{{ task.titre }}</h3>
           <p>{{ task.description }}</p>
           <div class="task-meta">
             <span><i class="fa fa-calendar"></i> Échéance: {{ task.dateFin }}</span>
-            <span [ngClass]="'status-' + task.status.toLowerCase().replace(' ', '-')">
-              <i class="fa fa-clock"></i> Statut: {{ task.status }}
+            <span [ngClass]="'status-' + task.estFini">
+              <i class="fa fa-clock"></i> Statut: {{ task.estFini }}
             </span>
             <span class="task-level"><i class="fa fa-signal"></i> Niveau: {{ task.niveau }}</span>
           </div>
         </div>
       </div>
       <div class="task-assignee">
-        <span>{{ task.assignee.name }}</span>
-        <img [src]="task.assignee.avatar" alt="Avatar de {{ task.assignee.name }}">
+        <!-- <span>{{ task.assignee.name }}</span>
+        <img [src]="task.assignee.avatar" alt="Avatar de {{ task.assignee.name }}"> -->
       </div>
     </div>
   </main>

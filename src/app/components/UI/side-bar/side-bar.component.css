@@ -5,9 +5,9 @@
     width: 180px;
     height: calc(100vh - 100px);
     position: fixed;
-    top: 62px;
+    top: 60px;
     background-color: white;
-    gap: 80px;
+    gap: 30px;
     transition: all 0.3s ease;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     z-index: 0;
@@ -21,7 +21,7 @@
 /* Section haute de la sidebar */
 .haut{
     margin: 0 0 0 10px;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
 }
 
 /* Style des paragraphes (textes) */
@@ -111,7 +111,9 @@ p {
 
 /* Section basse de la sidebar */
 .enbas{
-    margin: 140px 0 6px 10px;
+    /* float: inline-end; */
+    margin: 130px 0 6px 10px;
+    /* padding: 1rem 0; */
 }
 
 /* Élément de navigation 5 - Profil */
@@ -154,7 +156,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 180px;
     transform: translateY(-50%);
@@ -186,16 +188,16 @@ p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 08px;
+    gap: 8px;
 }
 
 /* Styles pour l'état replié - Section basse */
 .sidebar.replié .enbas {
-    margin: 120px 0 6px 10px; 
+    margin: 310px 0 6px 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
-    gap: 06px;
+    align-items: flex-start;
+    gap: 08px;
 }
 
 .sidebar.replié .nav1,

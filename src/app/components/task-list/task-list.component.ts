@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../UI/footer/footer.component';
 import { SideBarComponent } from "../UI/side-bar/side-bar.component";
 import { HeaderComponent } from '../UI/header/header.component';
+import { TaskService } from '../../services/task/task.service';
+import { Task } from '../../models/task/task.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-task-list',
@@ -14,51 +17,22 @@ import { HeaderComponent } from '../UI/header/header.component';
 export class TaskListComponent implements OnInit {
 
   // Tableau de tâches utilisant vos attributs backend
-  tasks: any[] = [];
+  public tasks: Task[] = [];
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.tasks = [
-      {
-        titre: 'Conception de l\'interface utilisateur',
-        description: 'Créer les maquettes pour les pages principales de l\'application',
-        dateDebut: '2025-08-10',
-        dateFin: '30/08/2025', // Corresponds à "Échéance"
-        niveau: 'Difficile',
-        // --- Attributs nécessaires pour le design (à ajouter à votre backend) ---
-        status: 'En cours',
-        assignee: {
-          name: 'Abdoul Ibrahima Sanaké',
-          avatar: 'https://i.pravatar.cc/150?img=1'
-        }
+    this.getTasks();
+  }
+
+  public getTasks(): void {
+    this.taskService.getTasks().subscribe(
+      (response: Task[]) => {
+        this.tasks = response;
       },
-      {
-        titre: 'Développement de l\'API REST',
-        description: 'Implémenter les endpoints pour la gestion des projets',
-        dateDebut: '2025-08-12',
-        dateFin: '30/08/2025',
-        niveau: 'Moyen',
-        // --- Attributs nécessaires pour le design (à ajouter à votre backend) ---
-        status: 'En cours',
-        assignee: {
-          name: 'Mohamed Diop',
-          avatar: 'https://i.pravatar.cc/150?img=3'
-        }
-      },
-      {
-        titre: 'Rédaction de la documentation',
-        description: 'Documentation technique du projet CollabDev',
-        dateDebut: '2025-08-01',
-        dateFin: '28/08/2025',
-        niveau: 'Facile',
-        // --- Attributs nécessaires pour le design (à ajouter à votre backend) ---
-        status: 'Terminée',
-        assignee: {
-          name: 'Fatoumata Sanogo',
-          avatar: 'https://i.pravatar.cc/150?img=5'
-        }
+      (error: HttpErrorResponse) => {
+        alert(error.message);
       }
-    ];
+    );
   }
 }
