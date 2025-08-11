@@ -17,22 +17,22 @@
         <i class="fas fa-search search-icon"></i>
         <input type="text" placeholder="Recherche par ici ..." />
       </div>
-      <button class="bouton1">Idées de projet</button>
-      <button class="bouton2">projets</button>
+      <button class="bouton1" (click)="changebouton('A')" [class.changecouleur]=" boutonactive === 'A'"> <i class="ri-lightbulb-flash-line "></i>Idées de projet</button>
+      <button class="bouton2" (click)="changebouton('B') " [class.changecouleur]=" boutonactive === 'B'"><i class="ri-code-box-line "></i>projets</button>
     </div>
-
+    @if(boutonactive === 'A'){
     @if (!messageerreur) {
   @for (ideeprojet of listeideeprojet; track ideeprojet.id) {
     <div class="conteneurideeprojet">
       <div class="ideeprojet">
-        <h3>{{ ideeprojet.titre }}</h3>
-        <h4>{{ ideeprojet.domaine }}</h4>
-        <p>{{ ideeprojet.description }}</p>
-        <h4>{{ ideeprojet.datePublication }}</h4>
+        <div class="titre">{{ ideeprojet.titre }}</div>
+        <div class="domaine"> {{ getDomainLabelsString([ideeprojet.domaine]) }}</div>
+        <div class="description">{{ ideeprojet.description }}</div>
+       <div class="date">Le{{ideeprojet.datePublication|date:'dd/MM/yyyy'}} à {{ideeprojet.datePublication|date:'HH\'h\'mm'}}</div>
       </div>
 
       <div class="commentaireideeprojet">
-        <div class="entête"><i class="ri-user-fill icon1"></i>
+        <div class="entete"><i class="ri-user-fill icon1"></i>
         <div class="user">{{ ideeprojet.utilisateur.nom+'  '+ideeprojet.utilisateur.prenom }}</div>
       </div>
 
@@ -51,15 +51,55 @@
             @for (commentaire of ideeprojet.commentaireIdeeProjets; track commentaire.id) {
               <div class="commentaire">
                 <div class="acteur">{{  commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}</div>
-                <div class="contenu">{{ commentaire.contenu }}</div>
+                <div class="contenu">{{ commentaire.contenu|reduirelataille:20 }}</div>
               </div>
             }
           } @else {
             <p>cet idée de projet n'a pas de commentaire</p>
           }
         }
-        <button type="button" class="bouton2">Voir plus</button>
+        <div class="dernier">
+       <button type="button" class="bouton3">Voir plus <i class="ri-arrow-right-line like2" ></i></button>
+       <div class="nbsoutien">{{ideeprojet.nombreSoutien}}</div>
+        <i class="ri-hand-heart-line bolo like" ></i>
+       </div>
+
       </div>
     </div>
+  }
+}
+    }
+    <!--projet-->
+  @if(boutonactive === 'B') {
+  @if (!messageerreur) {
+    @for (projet of listeprojet; track projet.id) {
+      <div class="conteneurideeprojet">
+        <div class="ideeprojet">
+          <div class="titre">{{projet.titre}}</div>
+          <div class="descriptionprojet">{{projet.description}}</div>
+          <div class="date">Le{{projet.dateDebut|date:'dd/MM/yyyy'}} à {{projet.dateDebut|date:'HH\'h\'mm'}}</div>
+        </div>
+
+        <div class="commentaireideeprojet">
+          <div class="entete">
+            <i class="ri-user-fill icon1"></i>
+            <div class="user">{{ projet.porteur.nom +'  '+projet.porteur.prenom}}</div>
+          </div>
+          <div class="entete">
+            <i class="ri-user-fill icon1"></i>
+            <div class="user">{{ projet.gestionnaire.prenom +'  '+projet.gestionnaire.nom }}</div>
+          </div>
+          <div class="status">
+            <input type="text" value={{projet.niveauDAcces}} readonly class="niveauaccess">    <input type="text" [(ngModel)]="mavaleur" readonly class="etats">
+           
+          </div>
+           <div class="dernier">
+       <button type="button" class="bouton3">Voir plus  <i class="ri-arrow-right-line like2" ></i></button>
+       <div class="nbcontributeur">200</div>
+        <i class="ri-group-line like1" ></i>
+       </div>
+        </div>
+      </div>
+    }
   }
 }
