@@ -7,21 +7,25 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar-menu-porteur.component.css'
 })
 export class SidebarMenuPorteurComponent {
+  isExpanded: boolean = false;
+  
   public static Menu = {
     HOME: 1,
     PROJECT_IDEAS: 2,
-    FOLLOWED_CONTENTS: 3,
-    PROFILE: 4,
-    LOGOUT: 5
+    DASHBOARD: 3,
+    FOLLOWED_CONTENTS: 4,
+    PROFILE: 5,
+    LOGOUT: 6
   } as const;
-
-  isExpanded: boolean = false;
   currentMenu: any = 1;
 
   collapseSideBar(): void {
-    this.isExpanded = !this.isExpanded;
+    this.isExpanded = !this.isExpanded
   }
   goToMenu(menu: any): void {
     this.currentMenu = menu;
+  }
+  logout(): void {
+
   }
 }

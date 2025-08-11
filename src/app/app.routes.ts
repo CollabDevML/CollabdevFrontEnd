@@ -29,6 +29,8 @@ import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/pr
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
 import { IdeesProjetComponent } from './components/utilisateurs/idees-projet/idees-projet.component';
 import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-porteur/sidebar-menu-porteur.component';
+import { SidebarMenuContributeurComponent } from './components/tools/sidebar-menu-contributeur/sidebar-menu-contributeur.component';
+import { SidebarMenuGestionnaireComponent } from './components/tools/sidebar-menu-gestionnaire/sidebar-menu-gestionnaire.component';
 export const routes: Routes = [
   {
     path: '', redirectTo: 'page-visiteur', pathMatch: 'full'
@@ -94,5 +96,7 @@ export const routes: Routes = [
   { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent},
 
   { path: 'idees-projet', component:IdeesProjetComponent},
-  { path: 'sidebar-menu-porteur', component:SidebarMenuPorteurComponent}
+  { path: 'sidebar-menu-porteur', component:SidebarMenuPorteurComponent},
+  { path: 'sidebar-menu-contributeur',component:SidebarMenuContributeurComponent},
+  { path: 'sidebar-menu-gestionnaire',component:SidebarMenuGestionnaireComponent}
 ];

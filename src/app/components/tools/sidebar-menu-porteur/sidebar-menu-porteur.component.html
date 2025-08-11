@@ -1,96 +1,103 @@
 <aside class="container" [class.collapsed]="!isExpanded">
-    <div class="top-content">
-        <div id="logo-container">
+    <div class="top-container">
+        <div class="logo-container">
             @if(isExpanded) {
-            <img class="logo" src="logoP.png" alt="Logo replié de CollabDev">
+                <img class="logo" src="logoP.png" alt="Logo de CollabDev">
             } @else {
-            <img class="logo " src="logoS.png" alt="Logo replié de CollabDev" [class.collapsed]="!isExpanded">
+                <img class="logo" src="logoS.png" alt="Logo de CollabDev" [class.collapsed]="!isExpanded">
             }
         </div>
-        <div class="menu-items-container" [class.collapsed-top]="!isExpanded">
-            <div id="home-container" class="menu-items" [class.expanded]="isExpanded" (click)="goToMenu(1)">
-                @if (currentMenu == 1) {
-                <i class="ri-home-5-fill icones"></i>
-                @if (isExpanded) {
-                <p><strong>Accueil</strong></p>
-                }
+        <div class="top-menus-container">
+            <div class="home-container menu-container" [class.collapsed]="!isExpanded" (click)="goToMenu(1)">
+                @if(currentMenu == 1){
+                    <i class="ri-home-5-fill icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text"><strong>Accueil</strong></p>
+                    }
                 } @else {
-                <i class="ri-home-5-line icones"></i>
-                @if (isExpanded) {
-                <p>Accueil</p>
-                }
+                    <i class="ri-home-5-line icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text">Accueil</p>
+                    }
                 }
             </div>
-            <div id="project-ideas-container" class="menu-items" [class.expanded]="isExpanded" (click)="goToMenu(2)">
-                @if (currentMenu == 2) {
-                <i class="ri-lightbulb-flash-fill icones"></i>
-                @if (isExpanded) {
-                <p><strong>Mes idées de projet</strong></p>
-                }
+            <div class="project-ideas-container menu-container"  [class.collapsed]="!isExpanded" (click)="goToMenu(2)">
+                @if(currentMenu == 2){
+                    <i class="ri-lightbulb-flash-fill icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text"><strong>Mes idées de projet</strong></p>
+                    }
                 } @else {
-                <i class="ri-lightbulb-flash-line icones"></i>
-                @if (isExpanded) {
-                <p>Mes idées de projet</p>
-                }
+                    <i class="ri-lightbulb-flash-line icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text">Mes idées de projet</p>
+                    }
                 }
             </div>
         </div>
     </div>
-    <div id="side-expander-container" (click)="collapseSideBar()">
-        @if (!isExpanded) {
-        <i class="ri-arrow-right-s-line icones"></i>
-        } @else {
-        <i class="ri-arrow-left-s-line icones"></i>
-        }
-    </div>
-    <div class="bottom-content" [class.collapsed]="!isExpanded">
-        <div class="menu-items-container" [class.expanded-bottom]="isExpanded">
-            <div id="followed-contents-container" class="menu-items" [class.expanded]="isExpanded"
-                (click)="goToMenu(3)">
-                @if (currentMenu == 3) {
-                <i class="ri-copper-coin-fill icones"></i>
-                @if (isExpanded) {
-                <p>Mes contenus suivis</p>
-                }
-                } @else {
-                <i class="ri-copper-coin-line icones"></i>
-                @if (isExpanded) {
-                <p>Mes contenus suivis</p>
-                }
-                }
-            </div>
-            <div id="profile-container" class="menu-items" [class.expanded]="isExpanded" (click)="goToMenu(4)">
-                <div class="profile-icone-frame" [class.chosen]="currentMenu == 4">
-                    <i class="ri-user-3-fill" style="color: white;"></i>
-                </div>
-                @if (isExpanded) {
-                @if (currentMenu == 4) {
-                <p><strong>Profile</strong></p>
-                } @else {
-                <p>Profile</p>
-                }
-                }
-            </div>
-            <div id="logout-container" class="menu-items" [class.expanded]="isExpanded">
-                @if (currentMenu == 5) {
-                <i class="ri-logout-box-fill icones"></i>
-                @if (isExpanded) {
-                <p><strong>Déconnexion</strong></p>
-                }
-                } @else {
-                <i class="ri-logout-box-line icones"></i>
-                @if (isExpanded) {
-                <p>Déconnexion</p>
-                }
-                }
-            </div>
-        </div>
-        <div id="contact-us-frame">
-            @if (isExpanded) {
-            <p color><span style="color: black;">&copy; 2025 CollabDev</span> &nbsp;&nbsp; <a href="http://localhost:4200/sidebar-menu-porteur">Nous contacter</a>
-            </p>
+    <div class="center-container">
+        <div class="side-expander" (click)="collapseSideBar()">
+            @if (!isExpanded) {
+                <i class="ri-arrow-right-s-line icons side-expander-ic"></i>
             } @else {
-            <i class="ri-question-mark icones"></i>
+                <i class="ri-arrow-left-s-line icons side-expander-ic"></i>
+            }
+        </div>
+    </div>
+    <div class="bottom-container">
+        <div class="bottom-menus-container">
+            <div class="contributions-container menu-container"  [class.collapsed]="!isExpanded" (click)="logout()">
+                @if(currentMenu == 5){
+                    <i class="ri-logout-box-fill icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text"><strong>Déconnexion</strong></p>
+                    }
+                } @else {
+                    <i class="ri-logout-box-line icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text">Déconnexion</p>
+                    }
+                }
+            </div>
+            <div class="contributions-container menu-container"  [class.collapsed]="!isExpanded" (click)="goToMenu(4)">
+                @if(currentMenu == 4){
+                    <div class="profile-ic" [class.chosen]="currentMenu == 4">
+                        <i class="ri-user-3-fill" [class.chosen]="currentMenu == 4"></i>
+                    </div>
+                    @if (isExpanded) {
+                        <p class="menus-text"><strong>Profil</strong></p>
+                    }
+                } @else {
+                    <div class="profile-ic" [class.chosen]="currentMenu == 4">
+                        <i class="ri-user-3-fill" [class.chosen]="currentMenu == 4"></i>
+                    </div>
+                    @if (isExpanded) {
+                        <p class="menus-text">Profil</p>
+                    }
+                }
+            </div>
+            <div class="contributions-container menu-container"  [class.collapsed]="!isExpanded" (click)="goToMenu(3)">
+                @if(currentMenu == 3){
+                    <i class="ri-copper-coin-fill icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text"><strong>Contenus suivis</strong></p>
+                    }
+                } @else {
+                    <i class="ri-copper-coin-line icons"></i>
+                    @if (isExpanded) {
+                        <p class="menus-text">Contenus suivis</p>
+                    }
+                }
+            </div>
+        </div>
+        <div class="side-footer-container" [class.collapsed]="!isExpanded">
+            @if(isExpanded) {
+                <p color>
+                    <span style="color: black;">&copy; 2025 CollabDev</span> &nbsp;&nbsp; <a href="http://localhost:4200/sidebar-menu-contributeur">Nous contacter</a>
+                </p>
+            } @else {
+                <i class="ri-question-mark icons question-mark-ic"></i>
             }
         </div>
     </div>
