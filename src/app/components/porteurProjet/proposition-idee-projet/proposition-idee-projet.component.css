@@ -1,8 +1,7 @@
 /* === Contenu principal === */
 .content-area {
-  margin-left: 250px;
   padding: 2rem;
-  width: calc(100% - 250px);
+  width: fit-content;
   margin-top: 60px; /* si header présent */
   box-sizing: border-box;
 }
@@ -18,7 +17,7 @@
   max-width: 900px;
   width: 100%;
   /* margin-top: 50px; */
-  /* position: relative; */
+  position: relative;
 }
 .main-content {
   flex: 1;

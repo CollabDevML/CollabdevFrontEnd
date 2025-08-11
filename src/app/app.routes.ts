@@ -41,11 +41,11 @@ export const routes: Routes = [
     component: InscriptionComponent,
     children: [
       { path: '', component: InscriptionIndexComponent },
-      { path: 'choix', component: InscriptionChoixComponent },
+      { path: 'choix', component: InscriptionChoixComponent},
       { path: 'contributeur', component: ContributeurComponent },
       { path: 'gestionnaire', component: GestionnaireComponent },
-      { path: 'porteur_de_projet', component: PorteurProjetComponent },
-      { path: '**', redirectTo: '' },
+      { path: 'porteur-projet', component: PorteurProjetComponent },
+      { path: '**', redirectTo: '' }
     ],
   },
 
@@ -99,8 +99,6 @@ export const routes: Routes = [
   { path: 'popup', component: PopUpsComponent },
   { path: 'accueil', component: AccueilComponent },
 
-  { path: '**', component: PageNotFoundComponent },
-
   { path: 'dashboard', component: DashboardGestionnaireComponent },
   { path: 'card-contribution', component: CardcontributionComponent },
   { path: 'header-barre', component: RecherchebarreComponent },
@@ -115,4 +113,5 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
