@@ -24,18 +24,32 @@ import { ListeIdeeProjetComponent } from './components/porteurProjet/liste-idee-
 
 import { RecherchebarreComponent } from './components/UI/recherchebarre/recherchebarre.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
-
+import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
+import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
+import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
 import { IdeesProjetComponent } from './components/utilisateurs/idees-projet/idees-projet.component';
 import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-porteur/sidebar-menu-porteur.component';
 import { SidebarMenuContributeurComponent } from './components/tools/sidebar-menu-contributeur/sidebar-menu-contributeur.component';
 import { SidebarMenuGestionnaireComponent } from './components/tools/sidebar-menu-gestionnaire/sidebar-menu-gestionnaire.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { FooterComponent } from './components/UI/footer/footer.component';
+import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
+import { HeaderComponent } from './components/UI/header/header.component';
 export const routes: Routes = [
   {
     path: '', redirectTo: 'page-visiteur', pathMatch: 'full'
 
   },
+
+  { path: 'header', component: HeaderComponent },
+  { path: 'sidebar', component: SideBarComponent },
+  { path: 'footer', component:FooterComponent },
+  { path: 'contributeur', component: ContributeurComponent },
+  { path: 'contributeurs', component: ContributeurssComponent },
+  { path: 'contributeurss', component: Contributeurs1Component },
+  { path: 'contributeursss', component: Contributeurs2Component },
   {path:'page-visiteur',component:PageVisiteurComponent},
 
   {path: 'login',component:LoginComponent},
@@ -53,9 +67,12 @@ export const routes: Routes = [
 
   //Les routes pour le Porteur de projet
   {path:"porteur_projet",component:IndexPorteurProjetComponent, children:[
-    {path:"",component:AccueilPorteurProjetComponent},
-    //Les autres routes ici .........
-
+    {path:"",component:AccueilComponent},
+    {path:"accueil",component:AccueilComponent},
+    {path:"mes_projets",component:MesIdeeProjetComponent},
+    {path:"mes_favories",component:ProjetSuiviComponent},
+    {path:"mes_idees",component:ListeIdeeProjetComponent},
+    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
     {path:"**",redirectTo:""}
 
   ]},
@@ -63,7 +80,7 @@ export const routes: Routes = [
 
   //Les routes pour le Contributeur :
   {path:"contributeur",component:IndexContributeurComponent,children:[
-    {path:"",component:AccueilContributeurComponent},
+    {path:"",component:AccueilComponent},
     //Les autres ici ...........
 
     {path:"**",redirectTo:""}
@@ -72,13 +89,24 @@ export const routes: Routes = [
 
   //Les routes pour le Gestionnaire :
   {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
-    {path:"",component:AccueilGestionnaireComponent},
+    {path:"",component:AccueilComponent},
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}
   ]},
 
- 
+  // {path:'dashboard', component:DashboardGestionnaireComponent},
+  {
+    path:'card-contribution', component: CardcontributionComponent
+  },
+  {path: 'header-barre', component:RecherchebarreComponent},
+  {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
+  {path:'cardprojet', component: CardprojetComponent},
+  {path: 'popup', component: PopUpsComponent},
+  { path: 'accueil', component: AccueilComponent },
+
+  {path:"**",component:PageNotFoundComponent},
+
 
     {path:'dashboard', component:DashboardGestionnaireComponent},
     {path:'card-contribution', component: CardcontributionComponent},
@@ -87,7 +115,7 @@ export const routes: Routes = [
     {path:'cardprojet', component: CardprojetComponent},
     {path: 'popup', component: PopUpsComponent},
     { path: 'accueil', component: AccueilComponent },
-  
+
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },

@@ -4,9 +4,7 @@ import { RecherchebarreComponent } from '../../../UI/recherchebarre/recherchebar
 
 @Component({
   selector: 'app-mes-idee-projet',
-  imports: [
-     SideBarComponent,
-    RecherchebarreComponent  ],
+  imports: [],
   templateUrl: './mes-idee-projet.component.html',
   styleUrl: './mes-idee-projet.component.css'
 })
