@@ -14,19 +14,18 @@ import { Router } from '@angular/router';
   imports: [
     FormsModule,
     CommonModule,
-    SideBarComponent
+    // SideBarComponent
   ],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
 })
 export class PropositionIdeeProjetComponent implements OnInit {
-
   titre: string = '';
   description: string = '';
   domaine: string = ''; // valeur enum
   nomFichier: string = '';
   selectedFile: File | null = null;
-  domaines: { key: string, label: string }[] = [];
+  domaines: { key: string; label: string }[] = [];
   idPorteur: number = 1;
   erreurs: string[] = [];
 
@@ -35,7 +34,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
     private domaineService: DomaineIdeeProjetService,
     private router: Router,
     private http: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.domaines = this.domaineService.getAllOptions();
@@ -76,7 +75,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
       error: (uploadError) => {
         console.error('Erreur upload :', uploadError);
         this.erreurs.push('Erreur lors de l’envoi du fichier.');
-      }
+      },
     });
   }
 
@@ -85,21 +84,23 @@ export class PropositionIdeeProjetComponent implements OnInit {
       titre: this.titre,
       description: this.description,
       domaine: [this.domaine], // tableau de chaînes
-      uriCDC: uriCDC
+      uriCDC: uriCDC,
     };
 
-    this.ideeProjetService.ajouterIdeeProjet(this.idPorteur, nouvelleIdee).subscribe({
-      next: (projectResponse) => {
-        console.log('Projet ajouté avec succès', projectResponse);
-        alert('Votre idée de projet a été soumise avec succès.');
-        this.resetForm();
-        this.router.navigate(['/']);
-      },
-      error: (projectError) => {
-        console.error('Erreur soumission :', projectError);
-        this.erreurs.push('Erreur lors de l’envoi du projet.');
-      }
-    });
+    this.ideeProjetService
+      .ajouterIdeeProjet(this.idPorteur, nouvelleIdee)
+      .subscribe({
+        next: (projectResponse) => {
+          console.log('Projet ajouté avec succès', projectResponse);
+          alert('Votre idée de projet a été soumise avec succès.');
+          this.resetForm();
+          this.router.navigate(['/']);
+        },
+        error: (projectError) => {
+          console.error('Erreur soumission :', projectError);
+          this.erreurs.push('Erreur lors de l’envoi du projet.');
+        },
+      });
   }
 
   private resetForm(): void {

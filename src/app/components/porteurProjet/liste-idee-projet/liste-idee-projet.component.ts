@@ -2,27 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { HeaderComponent } from '../../UI/header/header.component';
 import { RecherchebarreComponent } from '../../UI/recherchebarre/recherchebarre.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ResponseIdeeProjet2 } from '../../../models/ideeprojet/response-idee-projet2';
 import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
-import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-liste-idee-projet',
   imports: [
-    SideBarComponent,
-    RecherchebarreComponent,
-    DatePipe,
-    CommonModule
+    // SideBarComponent,
+    // RecherchebarreComponent,
+    // DatePipe,
+    CommonModule,
   ],
   templateUrl: './liste-idee-projet.component.html',
-  styleUrl: './liste-idee-projet.component.css'
+  styleUrl: './liste-idee-projet.component.css',
 })
-
 export class ListeIdeeProjetComponent {
-
-  afficheVoirPlus : boolean = false;
-  voirPlus(id:any) {
+  afficheVoirPlus: boolean = false;
+  voirPlus(id: any) {
     this.afficheVoirPlus = true;
   }
 
@@ -30,15 +27,15 @@ export class ListeIdeeProjetComponent {
     this.afficheVoirPlus = false;
   }
 
-  verifier(){
+  verifier() {
     if (this.afficheVoirPlus) {
-      this.afficheVoirPlus = false
+      this.afficheVoirPlus = false;
     }
   }
 
-/* export class ListeIdeeProjetComponent implements OnInit {
+  /* export class ListeIdeeProjetComponent implements OnInit {
     // Utilisez le modèle de données correspondant à votre API
-  ideesProjet: ResponseIdeeProjet2[] = []; 
+  ideesProjet: ResponseIdeeProjet2[] = [];
 
   constructor(private ideeProjetService: IdeeprojetService) { }
 
@@ -55,4 +52,3 @@ export class ListeIdeeProjetComponent {
     });
   } */
 }
-
