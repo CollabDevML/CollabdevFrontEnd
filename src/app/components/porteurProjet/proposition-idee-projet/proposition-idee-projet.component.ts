@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../UI/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IdeeProjetServiceService } from '../../../services/proposition/idee-projet-service.service';
@@ -9,26 +8,29 @@ import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.
 import { Env } from '../../../env';
 import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
+import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposition-idee-projet',
+  standalone: true,
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    SideBarComponent
   ],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
 })
 export class PropositionIdeeProjetComponent implements OnInit {
+
   titre: string = '';
   description: string = '';
-  domaine: string = '';
+  domaine: string = ''; // valeur enum
   nomFichier: string = '';
-  fichier: File | null = null;
-
-  domaines: { key: string; label: string }[] = [];
-
+  selectedFile: File | null = null;
+  domaines: { key: string, label: string }[] = [];
+  idPorteur: number = 1;
   erreurs: string[] = [];
   user_id!:number;
   constructor(
@@ -43,25 +45,24 @@ export class PropositionIdeeProjetComponent implements OnInit {
     this.domaines = this.domaineService.getAllOptions();
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
     if (file) {
+      this.selectedFile = file;
       this.nomFichier = file.name;
-      this.fichier = file;
     }
   }
 
-  changerFichier(): void {
+  changerFichier() {
+    this.selectedFile = null;
     this.nomFichier = '';
-    this.fichier = null;
   }
 
   onSubmit(): void {
     this.erreurs = [];
 
-    // Validation sans le fichier obligatoire
     if (!this.titre || !this.description || !this.domaine) {
-      this.erreurs.push('Titre, description et domaine sont obligatoires.');
+      this.erreurs.push('Veuillez remplir tous les champs.');
       return;
     }
 
@@ -107,13 +108,12 @@ export class PropositionIdeeProjetComponent implements OnInit {
     });
   }
 
-
-  resetForm(): void {
+  private resetForm(): void {
     this.titre = '';
     this.description = '';
     this.domaine = '';
     this.nomFichier = '';
-    this.fichier = null;
+    this.selectedFile = null;
   }
 }
 
