@@ -7,6 +7,34 @@
 
     <div class="cards-grid">
       <!-- Répète cette structure pour chaque card -->
+       @for (idee of mesIdeeProjet; track $index) {
+      <div class="card">
+        <div class="card-content">
+          <div class="title-section">
+            <h2>{{idee.titre}}</h2>
+            <div class="tag">Collaboration</div>
+          </div>
+          <p class="description">
+            {{idee.description}}
+          </p>
+          <div class="publie-voirplus">
+            <div class="publie">Publié : {{idee.datePublication}}</div>
+            <a  style="cursor:pointer"class="voirPlus"  (click)="voirPlus(idee)">Voir plus <i class="ri-arrow-right-line"></i></a>
+          </div>
+          <div class="card-footer">
+            <div class="user-info">
+              <img src="logoS.png" alt="User photo">
+              <span>{{idee.utilisateur.prenom}} {{idee.utilisateur.nom}}</span>
+            </div>
+            <div class="footer-icons">
+              <span><i class="ri-message-2-line"></i>8</span>
+              <span (click)="soutenir(idee.id)"><i class="ri-heart-3-fill"></i> {{idee.nombreSoutien}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+<!--
       <div class="card">
         <div class="card-content">
           <div class="title-section">
@@ -18,7 +46,7 @@
           </p>
           <div class="publie-voirplus">
             <div class="publie">Publié : 03/08/2025</div>
-            <a  style="cursor:pointer"class="voirPlus"  (click)="voirPlus(2)">Voir plus <i class="ri-arrow-right-line"></i></a>
+            <a style="cursor:pointer" class="voirPlus" (click)="voirPlus(2)">Voir plus <i class="ri-arrow-right-line"></i></a>
           </div>
           <div class="card-footer">
             <div class="user-info">
@@ -32,9 +60,7 @@
           </div>
         </div>
       </div>
-      <!-- Répéter les .card dans .cards-grid -->
 
-      <!-- Répète cette structure pour chaque card -->
       <div class="card">
         <div class="card-content">
           <div class="title-section">
@@ -60,8 +86,7 @@
           </div>
         </div>
       </div>
-      <!-- Répéter les .card dans .cards-grid -->
-       <!-- Répète cette structure pour chaque card -->
+
       <div class="card">
         <div class="card-content">
           <div class="title-section">
@@ -86,35 +111,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <!-- Répéter les .card dans .cards-grid -->
-       <!-- Répète cette structure pour chaque card -->
-      <div class="card">
-        <div class="card-content">
-          <div class="title-section">
-            <h2>Nianaboli</h2>
-            <div class="tag">Collaboration</div>
-          </div>
-          <p class="description">
-            Nianaboli est une application console conçue pour permettre aux utilisateurs de gérer et de partager
-          </p>
-          <div class="publie-voirplus">
-            <div class="publie">Publié : 03/08/2025</div>
-            <a style="cursor:pointer" class="voirPlus" (click)="voirPlus(2)">Voir plus <i class="ri-arrow-right-line"></i></a>
-          </div>
-          <div class="card-footer">
-            <div class="user-info">
-              <img src="logoS.png" alt="User photo">
-              <span>Niakale Diakité</span>
-            </div>
-            <div class="footer-icons">
-              <span><i class="ri-message-2-line"></i>8</span>
-              <span><i class="ri-heart-3-fill"></i> 235</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Répéter les .card dans .cards-grid -->
+      </div> -->
+
     </div>
   </div>
 </div>
@@ -122,18 +120,13 @@
 
 <div class="modal" *ngIf="afficheVoirPlus" (click)="verifier()">
   <div class="modal-contenu">
-    <h2>Details</h2>
+    <h2>Details du projet</h2>
     <div class="title-section">
-      <h2>Nianaboli</h2>
+      <h2> {{contenus.titre}}</h2>
       <div class="tag">Collaboration</div>
     </div>
     <p class="description">
-      Nianaboli est une application console conçue pour permettre aux utilisateurs de gérer et de partager <br>
-
-      Nianaboli est une application console conçue pour permettre aux utilisateurs de gérer et de partager <br>
-      Nianaboli est une application console conçue pour permettre aux utilisateurs de gérer et de partager <br>
-
-      Nianaboli est une application console conçue pour permettre aux utilisateurs de gérer et de partager <br>
+       {{contenus.description}}
     </p>
 
     <div class="modal-actions">
