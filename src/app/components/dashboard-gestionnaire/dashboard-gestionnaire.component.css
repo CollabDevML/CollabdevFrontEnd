@@ -11,15 +11,25 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100vh; /* prend toute la hauteur de l'écran */
-        background-color: white; /* pour éviter qu’on voie le contenu derrière */
-        z-index: 1000; /* au-dessus des autres éléments */
-        transition: width 0.3s ease; /* pour animation fluide */
+        height: 100vh; 
+        background-color: white; 
+        z-index: 1000; 
+        transition: width 0.3s ease; 
       
       
 }
 .lateral-nav.lateral-close{
     width: 4.5%;
+}
+@media (max-width: 768px) {
+  .lateral-nav {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+  }
+  .lateral-nav.open {
+    width: 250px; /* largeur sidebar ouverte sur mobile */
+  }
 }
 .dashboard{
     display: flex;
@@ -31,6 +41,14 @@
 }
 .dashboard.long-dashboard {
     margin-left: 4.5%;
+  }
+  @media (max-width: 768px) {
+    .dashboard,
+    .dashboard.long-dashboard {
+      margin-left: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 #en-tete{
     background-color: #334DAA;
@@ -101,7 +119,7 @@
     color: #334DAA;
     font-size: 24px;
   }
-  /* ✅ Messages vides */
+  
 .empty-message {
   text-align: center;
   padding: 20px;
@@ -116,7 +134,7 @@
   margin-bottom: 8px;
 }
 
-/* ✅ Animations d’apparition */
+
 .card-content app-cardprojet,
 .contribution-list app-cardcontribution {
   opacity: 0;
@@ -131,31 +149,10 @@
   }
 }
 
-/* ✅ Responsive */
-@media (max-width: 1024px) {
-  #en-tete {
-    flex-direction: column;
-    text-align: center;
-  }
-  #en-tete img {
-    max-width: 200px;
-  }
-}
 
-@media (max-width: 600px) {
-  .dashboard {
-    padding: 10px;
-  }
-  table {
-    font-size: 0.8rem;
-    display: block;
-    overflow-x: auto;
-  }
-  .tous-voir {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-  }
-}
+
+
+
 
   h5 {
     font-size: 0.9rem;
@@ -416,44 +413,38 @@ thead tr {
     }
   }
   
-  
   @media (max-width: 1024px) {
-    #en-tete {
-      flex-direction: column;
-      text-align: center;
+    .lateral-nav {
+      width: 60px; /* sidebar réduite */
     }
-    #en-tete img {
-      max-width: 200px;
+    .lateral-nav.lateral-close {
+      width: 40px;
     }
-  }
-  
-  @media (max-width: 600px) {
     .dashboard {
-      padding: 10px;
+      margin-left: 60px;
+      padding-left: 1rem;
     }
-    table {
-      font-size: 0.8rem;
-      display: block;
-      overflow-x: auto;
-    }
-    .tous-voir {
-      font-size: 0.8rem;
-      padding: 4px 8px;
+    .dashboard.long-dashboard {
+      margin-left: 40px;
     }
   }
-  @media (max-width: 600px) {
-    .contribution-list,
-    .card-content {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      -webkit-overflow-scrolling: touch; 
-    }
   
-    .contribution-list app-cardcontribution,
-    .card-content app-cardprojet {
-      flex: 0 0 auto; 
-      margin-right: 10px;
+  @media (max-width: 600px) {
+    #main {
+      flex-direction: column;
+    }
+    .lateral-nav {
+      position: relative; /* plus fixed */
+      width: 100%;
+      height: auto;
+      z-index: auto;
+    }
+    .dashboard {
+      margin-left: 0;
+      padding-left: 1rem;
+      width: 100%;
     }
   }
+  
   
   

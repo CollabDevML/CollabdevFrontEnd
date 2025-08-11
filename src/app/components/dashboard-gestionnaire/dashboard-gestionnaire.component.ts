@@ -1,4 +1,4 @@
-import { NgClass, NgStyle } from '@angular/common';
+import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { SidebargestionnaireComponent } from '../UI/sidebargestionnaire/sidebargestionnaire.component';
 import { CardprojetComponent } from '../UI/cardprojet/cardprojet.component';
@@ -28,6 +28,7 @@ import { DemandescontributionsService } from '../../services/demandescontributio
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
+    CommonModule
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',
@@ -52,19 +53,19 @@ export class DashboardGestionnaireComponent implements OnInit{
   selectedDemande: any;
 
   ngOnInit(): void {
-    this.userId = this.idToIntService.getId();
-    this.userRole = localStorage.getItem('user_role')
+    this.userId = 2 //this.idToIntService.getId();
+    this.userRole = 'GESTIONNAIRE'//localStorage.getItem('user_role')
     if (this.userId !== null && this.userRole) {
       this.getGestionnaire();
     }
   }
   //get the gestionnaire
   getGestionnaire(){
-    this.dashboardgestionnaireservices.getGestionnaire(this.userId!, this.userRole!).subscribe({
+    this.dashboardgestionnaireservices.getGestionnaire(this.userId!).subscribe({
       next:(result:any)=> {
         
-        this.gestionnaire = result,
-
+        this.gestionnaire = result
+        console.log(result)
         //get the recents projets sort by date
         this.projetsRecents = [...this.gestionnaire.projets]
         .sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())

@@ -6,6 +6,7 @@ import { Login } from '../models/login/login';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,6 +32,7 @@ export class LoginService {
             break;
           case "GESTIONNAIRE" :
             chemin = "gestionnaire";
+            localStorage.setItem("gestionnaire_id",res.Gestionnaire.id)
             break;
           case "PORTEUR_PROJET":
             chemin = "porteur_projet";

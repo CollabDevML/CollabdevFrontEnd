@@ -8,7 +8,7 @@
     <div id="en-tete">
       <h3>
         Heureux de vous revoir
-        <span [ngStyle]="{ color: '#F6C434' }">{{gestionnaire.prenom}}{{gestionnaire.nom}}</span><br />
+        <span [ngStyle]="{ color: '#F6C434' }">{{gestionnaire.prenom}}  {{gestionnaire.nom}}</span><br />
         Gerer vos projets en toute simplicité
       </h3>
       <img src="/gestionnnairedashboard.png" alt="image" />
@@ -52,7 +52,7 @@
       <div id="projet-recents">
         <span class="titre">
           <h4 class="sous-titre">Projets récents</h4>
-          <button class="tous-voir">Tous voir</button>
+          <button class="tous-voir" >Tous voir</button>
         </span>
         <div class="card-content">
           @for (projet of projetsRecents; track $index) {

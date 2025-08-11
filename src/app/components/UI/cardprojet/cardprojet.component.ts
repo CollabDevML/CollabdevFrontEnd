@@ -11,7 +11,6 @@ import { ProjetServiceService } from '../../../services/projet/projet-service.se
   
 
   DatePipe,
-    RouterLink
   ],
   templateUrl: './cardprojet.component.html',
   styleUrl: './cardprojet.component.css'

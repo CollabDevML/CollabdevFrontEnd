@@ -5,12 +5,14 @@ import { ProjetServiceService } from '../../services/projet/projet-service.servi
 import { projet } from '../../models/projet/projet';
 import { ContributeurDataService } from '../../services/contributeur/contributeur-data.service';
 import { PopupOptionsComponent } from '../popup-options/popup-options.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-projetgestionnairedetail',
   imports: [
   SidebargestionnaireComponent,
-  PopupOptionsComponent
+  PopupOptionsComponent,
+  CommonModule,
   ],
   templateUrl: './projetgestionnairedetail.component.html',
   styleUrl: './projetgestionnairedetail.component.css'

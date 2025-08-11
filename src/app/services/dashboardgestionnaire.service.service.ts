@@ -16,18 +16,18 @@ export class DashboardgestionnaireServiceService {
   private gestionnaireS = inject(GestionnaireDataService)
 
   //fetch the data
-  getGestionnaire(id:number, role: string):Observable<any>
+  getGestionnaire(id:number):Observable<any>
   {
-    return this.gestionnaireS.getGestionnaire(id, role).pipe(
+    return this.gestionnaireS.getGestionnaire(id).pipe(
       map(data => (
         {
-      prenom : data.user.prenom,
-      nom : data.user.nom,
+      prenom : data.utilisateur.prenom,
+      nom : data.utilisateur.nom,
       email : data.utilisateur.email,
       genre : data.utilisateur.genre,
       preferences : data.utilisateur.preferences ?? [],
-      uriCV : data.utilisateur.uriCV,
-      estValide : data.utilisatuer.estValide,
+      uriCV : data.uriCV,
+      estValide : data.estValide,
       idGestionnaire : data.id,
       idUtilisateur : data.utilisateur.id,
       // si "projet" est présent dans la réponse
