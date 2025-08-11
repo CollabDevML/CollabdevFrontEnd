@@ -1,68 +1,83 @@
+import { projet } from "./projet/projet";
+
 export class Users {
-  public prenom: string;
-  public nom: string;
-  public email: string;
-  public motDePasse: string;
-  public genre: string;
+  private prenom: string;
+  private nom: string;
+  private email: string;
+  private motDePasse: string;
+  private genre: string;
+  private preferences: [] = [];
+  
 
   constructor(
     prenom: string,
     nom: string,
     email: string,
     motDePasse: string,
-    genre: string
+    genre: string,
+    preferences: []
   ) {
     this.prenom = prenom;
     this.nom = nom;
     this.email = email;
     this.motDePasse = motDePasse;
     this.genre = genre;
+    this.preferences = preferences;
   }
 
   //Getter et setter
   //prenom
-  public get getPrenom(): string {
+  get getPrenom(): string {
     return this.prenom;
   }
 
-  public set setPrenom(prenom: string) {
+  set setPrenom(prenom: string) {
     this.prenom = prenom;
   }
 
   //nom
-  public get getNom(): string {
+  get getNom(): string {
     return this.nom;
   }
 
-  public set setNom(nom: string) {
+  set setNom(nom: string) {
     this.nom = nom;
   }
 
   //Email
-  public get getEmail(): string {
+  get getEmail(): string {
     return this.email;
   }
 
-  public set setEmail(email: string) {
+  set setEmail(email: string) {
     this.email = email;
   }
 
   //Mot de passe
-  public get getMotDePasse(): string {
+  get getMotDePasse(): string {
     return this.motDePasse;
   }
 
-  public set setMotDePase(motDePasse: string) {
+  set setMotDePase(motDePasse: string) {
     this.motDePasse = motDePasse;
   }
 
   //Genre
-  public get getGenre(): string {
+  get getGenre(): string {
     return this.genre;
   }
 
-  public set setGenre(genre: string) {
+  set setGenre(genre: string) {
     this.genre = genre;
+  }
+
+  //Preferences :
+  get getPreferences():[]{
+    return this.preferences;
+  }
+
+  set setPreferences(preferences:[]){
+    this.preferences = preferences;
   }
 
   public static readonly ROLE_CONTRIBUTEUR: string = 'CONTRIBUTEUR';

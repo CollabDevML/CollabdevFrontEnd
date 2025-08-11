@@ -23,6 +23,6 @@ export class GestionnaireDataService {
 
   //Pour recupérer un gestionnaire
   getGestionnaire(id: number): Observable<any>{
-    return this.data.getDataById(Env.GET_GESTIONNAIRE, id)
+    return this.data.getById(Env.GET_GESTIONNAIRE, id)
   }
 }

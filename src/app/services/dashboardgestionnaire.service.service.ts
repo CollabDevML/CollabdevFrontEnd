@@ -2,7 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { GestionnaireDataService } from './gestionnaire/gestionnaire-data.service';
 import { DataService } from './data.service';
 import { Gestionnaire } from '../models/gestionnaire/gestionnaire';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { projet } from '../models/projet/projet';
 
 @Injectable({
   // declares that this service should be created
@@ -11,7 +12,6 @@ import { map, Observable } from 'rxjs';
 })
 export class DashboardgestionnaireServiceService {
   
-  private gestionnaire!: Gestionnaire
   //injection de dépendances
   private gestionnaireS = inject(GestionnaireDataService)
 
@@ -21,8 +21,54 @@ export class DashboardgestionnaireServiceService {
     return this.gestionnaireS.getGestionnaire(id).pipe(
       map(data => (
         {
-      id: data.id,
-      uriCv: data.uriCv}
+      prenom : data.utilisateur.prenom,
+      nom : data.utilisateur.nom,
+      email : data.utilisateur.email,
+      genre : data.utilisateur.genre,
+      preferences : data.utilisateur.preferences ?? [],
+      uriCV : data.uriCV,
+      estValide : data.estValide,
+      idGestionnaire : data.id,
+      idUtilisateur : data.utilisateur.id,
+      // si "projet" est présent dans la réponse
+      projets : (data.projets ?? []).map((projet: projet) => ({
+        id: projet.id,
+        titre: projet.titre,
+        description: projet.Description,
+        estFini : projet.estFini,
+        etat: projet.etat,
+        dateDebut: projet.dateDebut,
+        dateFin: projet.dateFin,
+        niveauDAcces: projet.niveauDAcces,
+        demandeContributions: projet.demandeContributions,
+        contributions: projet.contributions,
+        taches: projet.taches,
+        piecesDAcces: projet.piecesDAcces,
+      })),
+    }
     )))
+  }
+
+  //Calcul des stats
+  projets: projet[] = [];
+  
+  private nbTerminesSubject = new BehaviorSubject<number>(0);
+  private nbEnCoursSubject = new BehaviorSubject<number>(0);
+
+  nbTermines$ = this.nbTerminesSubject.asObservable();
+  nbEnCours$ = this.nbEnCoursSubject.asObservable();
+
+  setProjets(projets: projet[]) {
+    this.projets = projets;
+    this.calculerStats();
+  }
+
+  private calculerStats() {
+    const termines = this.projets.filter(p => p.estFini).length;
+    //doit être changer côté backend
+    const enCours = this.projets.filter(p => !p.etat).length;
+
+    this.nbTerminesSubject.next(termines);
+    this.nbEnCoursSubject.next(enCours);
   }
 }
