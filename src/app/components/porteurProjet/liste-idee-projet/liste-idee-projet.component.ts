@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { HeaderComponent } from '../../UI/header/header.component';
 import { RecherchebarreComponent } from '../../UI/recherchebarre/recherchebarre.component';
-import { CommonModule } from '@angular/common';
 import { ResponseIdeeProjet2 } from '../../../models/ideeprojet/response-idee-projet2';
 import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -10,9 +9,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 @Component({
   selector: 'app-liste-idee-projet',
   imports: [
-    SideBarComponent,
-    RecherchebarreComponent,
-    DatePipe,
     CommonModule
   ],
   templateUrl: './liste-idee-projet.component.html',
