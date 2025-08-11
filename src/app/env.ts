@@ -20,6 +20,10 @@ export class Env {
 
   public static IDEEPROJETLISTE: string =
     Env.INSCRIPTION_URL + '/idees-projet';
+
+  public static TACHE: string =
+    Env.INSCRIPTION_URL + '/gestionnaire/projets/taches';
+
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';

@@ -1,30 +1,28 @@
 <app-side-bar></app-side-bar>
 <app-header></app-header>
 <app-footer></app-footer>
+
 <div class="project-tasks-container">
+
   <header class="tasks-header">
     <div>
       <h1>Toutes les tâches du projet</h1>
       <p>Suivez l'avancement de toutes les tâches et gérez votre équipe efficacement.</p>
     </div>
-    <button class="new-task-btn">+ Nouvelle Tâche</button>
+    <button class="new-task-btn" (click)="addTask()">+ Nouvelle Tâche</button>
   </header>
 
   <section class="tasks-summary">
     <div class="summary-card">
-      <span class="count">4</span>
+      <span class="count">{{ tasks?.length || 0 }}</span>
       <span class="label">Total</span>
     </div>
     <div class="summary-card status-terminated">
-      <span class="count">1</span>
+      <span class="count">{{ countTasksByStatus('Terminée') }}</span>
       <span class="label">Terminées</span>
     </div>
-    <div class="summary-card status-in-progress">
-      <span class="count">2</span>
-      <span class="label">En cours</span>
-    </div>
     <div class="summary-card status-todo">
-      <span class="count">1</span>
+      <span class="count">{{ countTasksByStatus('À faire') }}</span>
       <span class="label">À faire</span>
     </div>
   </section>
@@ -32,42 +30,57 @@
   <div class="tasks-actions">
     <div class="search-bar">
       <i class="fa fa-search"></i>
-      <input type="text" placeholder="Rechercher une tâche...">
+      <input
+        type="text"
+        placeholder="Rechercher une tâche..."
+        [(ngModel)]="searchQuery"
+        (input)="filterTasks()"
+      />
     </div>
-    <select class="status-filter">
-      <option value="all">Tous les status</option>
+
+    <select
+      class="status-filter"
+      [(ngModel)]="selectedStatus"
+      (change)="filterTasks()"
+    >
+      <option value="all">Tous les statuts</option>
       <option value="À faire">À faire</option>
-      <option value="En cours">En cours</option>
       <option value="Terminée">Terminée</option>
     </select>
   </div>
 
   <main class="tasks-list">
-    <div class="task-item" *ngFor="let task of tasks">
+    <div
+      class="task-item"
+      *ngFor="let task of filteredTasks; trackBy: trackByTaskId"
+    >
       <div class="task-content">
         <div class="task-status-icon">
-          <!-- <i [ngClass]="{
-            'fa fa-circle text-secondary': task.status === 'À faire',
-            'fa fa-spinner fa-spin text-warning': task.status === 'En cours',
-            'fa fa-check-circle text-success': task.status === 'Terminée'
-          }"></i> -->
+          <i
+            [ngClass]="{
+              'fa fa-circle text-secondary': task.status === 'À faire',
+              'fa fa-check-circle text-success': task.status === 'Terminée'
+            }"
+          ></i>
         </div>
         <div class="task-details">
           <h3>{{ task.titre }}</h3>
           <p>{{ task.description }}</p>
           <div class="task-meta">
-            <span><i class="fa fa-calendar"></i> Échéance: {{ task.dateFin }}</span>
-            <span [ngClass]="'status-' + task.estFini">
-              <i class="fa fa-clock"></i> Statut: {{ task.estFini }}
+            <span>
+              <i class="fa fa-calendar"></i>
+              Échéance: {{ task.dateFin | date:'dd/MM/yyyy' }}
             </span>
-            <span class="task-level"><i class="fa fa-signal"></i> Niveau: {{ task.niveau }}</span>
+            <span [ngClass]="'status-' + task.status">
+              <i class="fa fa-clock"></i> Statut: {{ task.status }}
+            </span>
+            <span class="task-level">
+              <i class="fa fa-signal"></i> Niveau: {{ task.niveau }}
+            </span>
           </div>
         </div>
       </div>
-      <div class="task-assignee">
-        <!-- <span>{{ task.assignee.name }}</span>
-        <img [src]="task.assignee.avatar" alt="Avatar de {{ task.assignee.name }}"> -->
-      </div>
     </div>
   </main>
+
 </div>

@@ -106,8 +106,6 @@ export const routes: Routes = [
   {path: 'popup', component: PopUpsComponent},
   { path: 'accueil', component: AccueilComponent },
 
-  {path:"**",component:PageNotFoundComponent},
-
 
     {path:'dashboard', component:DashboardGestionnaireComponent},
     {path:'card-contribution', component: CardcontributionComponent},
@@ -128,6 +126,8 @@ export const routes: Routes = [
   { path: 'sidebar-menu-porteur', component:SidebarMenuPorteurComponent},
   { path: 'sidebar-menu-contributeur',component:SidebarMenuContributeurComponent},
   { path: 'sidebar-menu-gestionnaire',component:SidebarMenuGestionnaireComponent},
-  {path: 'task-form', component: TaskFormComponent}, 
-  {path: 'task-list', component: TaskListComponent}
+  {path: 'task-form', component: TaskFormComponent},
+  {path: 'task-list', component: TaskListComponent},
+
+  {path:"**",component:PageNotFoundComponent},
 ];
