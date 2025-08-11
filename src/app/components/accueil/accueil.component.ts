@@ -16,17 +16,21 @@ export class AccueilComponent implements OnInit {
 
   ideeProjets: Ideeprojet[] = [];
   projets: projet[] = [];
+  users_id = Number(localStorage.getItem('user_id'));
 
   ngOnInit(): void {
-    const users_id = Number(localStorage.getItem('user_id'));
-    this.accueilService.getRecommandationByideeProjet(users_id).subscribe((data) => {
-      this.ideeProjets = data;
-    });
-    console.log("Id de l'utilisateur : ",users_id);
-    this.accueilService.getRecommandationByProjet(users_id).subscribe((data) => {
-      this.projets = data;
-      throw new Error('Method not implemented.');
-    });
+    this.accueilService
+      .getRecommandationByideeProjet(this.users_id)
+      .subscribe((data) => {
+        this.ideeProjets = data;
+      });
+    console.log("Id de l'utilisateur : ", this.users_id);
+    this.accueilService
+      .getRecommandationByProjet(this.users_id)
+      .subscribe((data) => {
+        this.projets = data;
+        throw new Error('Method not implemented.');
+      });
   }
 
   // Vérifie si un projet est soutenu
@@ -38,7 +42,7 @@ export class AccueilComponent implements OnInit {
   handelClick(id: number): void {
     if (this.isSoutienState(id)) {
       // Retirer soutien
-      this.accueilService.retirerSoutien(id, 1).subscribe({
+      this.accueilService.retirerSoutien(id, this.users_id).subscribe({
         next: () => {
           this.soutiensState.update((state) => ({
             ...state,
@@ -49,7 +53,7 @@ export class AccueilComponent implements OnInit {
       });
     } else {
       // Ajouter soutien
-      this.accueilService.soutenirUneIdeeProjet(id, 1).subscribe({
+      this.accueilService.soutenirUneIdeeProjet(id, this.users_id).subscribe({
         next: () => {
           this.soutiensState.update((state) => ({
             ...state,
@@ -60,10 +64,4 @@ export class AccueilComponent implements OnInit {
       });
     }
   }
-
-  //   this.soutiensState.update((state) => ({
-  //     ...state,
-  //     [id]: !state[id],
-  //   }));
-  // }
 }

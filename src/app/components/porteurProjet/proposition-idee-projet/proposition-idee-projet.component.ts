@@ -13,10 +13,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposition-idee-projet',
-  imports: [
-    FormsModule,
-    CommonModule
-  ],
+  imports: [FormsModule, CommonModule],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
 })
@@ -30,13 +27,13 @@ export class PropositionIdeeProjetComponent implements OnInit {
   domaines: { key: string; label: string }[] = [];
 
   erreurs: string[] = [];
-  user_id!:number;
+  user_id!: number;
   constructor(
     private http: HttpClient,
     private domaineService: DomaineIdeeProjetService,
-    private data:DataService,
-    private dataPorteur:PorteurProjetDataService,
-    private route:Router
+    private data: DataService,
+    private dataPorteur: PorteurProjetDataService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +64,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
 
     // Si aucun fichier → envoyer directement
     if (!this.fichier) {
-      alert("Veillez selectionner un fichier !!!");
+      alert('Veillez selectionner un fichier !!!');
       return;
     }
 
@@ -76,9 +73,9 @@ export class PropositionIdeeProjetComponent implements OnInit {
     formData.append('file', this.fichier);
     formData.append('fileName', this.fichier.name);
     formData.append('type', 'CDC');
-    this.dataPorteur.uploadCDC(this.fichier,this.fichier.name).subscribe({
-      next:(res)=>{
-        console.log("Le chemin c'est : ",res.chemin);
+    this.dataPorteur.uploadCDC(this.fichier, this.fichier.name).subscribe({
+      next: (res) => {
+        console.log("Le chemin c'est : ", res.chemin);
         const ideeProjet = {
           titre: this.titre,
           description: this.description,
@@ -89,7 +86,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
             alert('Idée de projet envoyée avec succès !');
-            this.route.navigateByUrl("/porteur_projet/mes_idees");
+            this.route.navigateByUrl('/porteur_projet/mes_idees');
             this.resetForm();
           },
           error: (err) => {
@@ -100,13 +97,12 @@ export class PropositionIdeeProjetComponent implements OnInit {
           },
         });
       },
-      error:(err)=>{
+      error: (err) => {
         alert("Erreur mlors de l'Upload de fichier !!!");
         console.log(err);
-      }
+      },
     });
   }
-
 
   resetForm(): void {
     this.titre = '';
@@ -116,4 +112,3 @@ export class PropositionIdeeProjetComponent implements OnInit {
     this.fichier = null;
   }
 }
-
