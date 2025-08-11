@@ -1,0 +1,241 @@
+/* Styles généraux pour la page */
+body, html {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.layout-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+app-side-bar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+/* Barre de recherche (en haut du main-content) */
+app-recherchebarre {
+  height: 60px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.content-frame {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Conteneur principal de la carte */
+.form-card-container {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Section du formulaire (côté gauche) */
+.form-section {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo img {
+  width: 126px;
+  margin-bottom: 20px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  border: 2px solid #547AA2;
+  box-shadow: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.5;
+}
+input[type="date"] {
+  position: relative;
+}
+input[type="date"]::before {
+  content: attr(placeholder);
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+  display: block;
+}
+input[type="date"]:valid::before {
+  display: none;
+}
+/* fin des styles spécifiques */
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row input,
+.form-row select {
+  width: 50%;
+}
+
+button {
+  background-color: #334DAA;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #283b82;
+}
+
+
+.illustration-section {
+  position: relative;
+  width: 362px;
+  background-color: rgba(51, 77, 170, 0.8);
+  border-radius: 100px 0 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 49px 59px rgba(255, 255, 255, 0.25);
+}
+
+.illustration-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+}
+
+.illustration-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.illustration-image {
+  width: 230px;
+  height: 153px;
+  border-radius: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.illustration-content p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Media Queries pour la réactivité */
+@media (max-width: 1024px) {
+  .form-card-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+  
+  app-side-bar {
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+  }
+  
+  app-recherchebarre {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  .form-card-container {
+    flex-direction: column;
+  }
+  
+  .illustration-section {
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+    padding: 40px 20px;
+  }
+  
+  .form-section {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .form-row input,
+  .form-row select {
+    width: 100%;
+  }
+}
