@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { HeaderComponent } from '../../UI/header/header.component';
 import { RecherchebarreComponent } from '../../UI/recherchebarre/recherchebarre.component';
-import { CommonModule } from '@angular/common';
 import { ResponseIdeeProjet2 } from '../../../models/ideeprojet/response-idee-projet2';
 import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -38,7 +37,7 @@ export class ListeIdeeProjetComponent {
 
 /* export class ListeIdeeProjetComponent implements OnInit {
     // Utilisez le modèle de données correspondant à votre API
-  ideesProjet: ResponseIdeeProjet2[] = []; 
+  ideesProjet: ResponseIdeeProjet2[] = [];
 
   constructor(private ideeProjetService: IdeeprojetService) { }
 
