@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IdeeProjetServiceService } from '../../../services/proposition/idee-projet-service.service';
 import { HttpClient } from '@angular/common/http';
-import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
-import { Env } from '../../../env';
 import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
 import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
@@ -13,12 +10,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposition-idee-projet',
-  standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    SideBarComponent
-  ],
+  imports: [FormsModule, CommonModule],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
 })
@@ -32,13 +24,13 @@ export class PropositionIdeeProjetComponent implements OnInit {
   domaines: { key: string, label: string }[] = [];
   idPorteur: number = 1;
   erreurs: string[] = [];
-  user_id!:number;
+  user_id!: number;
   constructor(
     private http: HttpClient,
     private domaineService: DomaineIdeeProjetService,
-    private data:DataService,
-    private dataPorteur:PorteurProjetDataService,
-    private route:Router
+    private data: DataService,
+    private dataPorteur: PorteurProjetDataService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -115,5 +107,5 @@ export class PropositionIdeeProjetComponent implements OnInit {
 //     this.nomFichier = '';
 //     this.selectedFile = null;
 //   }
-}
 
+}
