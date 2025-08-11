@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../UI/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IdeeProjetServiceService } from '../../../services/proposition/idee-projet-service.service';
 import { HttpClient } from '@angular/common/http';
-import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
-import { Env } from '../../../env';
 import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
 import { Router } from '@angular/router';
