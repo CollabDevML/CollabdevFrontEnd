@@ -11,9 +11,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 @Component({
   selector: 'app-liste-idee-projet',
   imports: [
-    SideBarComponent,
-    RecherchebarreComponent,
-    DatePipe,
     CommonModule
   ],
   templateUrl: './liste-idee-projet.component.html',
