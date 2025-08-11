@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 export interface Utilisateur {
   id: number;
@@ -17,9 +17,10 @@ export interface Utilisateur {
 export interface ReponseProfil {
   id: number;
   utilisateur: Utilisateur;
-  uriCv: string;
-  estValide: boolean;
+  uriCv?: string;
+  estValide?: boolean;
   projets: any[];
+  profilId?: number;
 }
 export interface Projet {
   id: number;
@@ -31,15 +32,88 @@ export interface Projet {
   providedIn: 'root',
 })
 export class UtilisateurService {
-  private baseUrl = 'http://localhost:8180/utilisateurs/gestionnaires';
+  private baseUrl = 'http://localhost:8180/utilisateurs';
+  private apiRoot = 'http://localhost:8180';
 
   constructor(private http: HttpClient) {}
 
-  getUtilisateurById(id: number): Observable<ReponseProfil> {
-    return this.http.get<ReponseProfil>(`${this.baseUrl}/${id}`);
+  getUtilisateurById(id: number, role: string): Observable<ReponseProfil> {
+    return this.http.get<any>(`${this.baseUrl}/${id}?role=${role}`).pipe(
+      map((response: any) => {
+        const utilisateur: Utilisateur = {
+          id: response.id,
+          prenom: response.prenom,
+          nom: response.nom,
+          email: response.email,
+          genre: response.genre,
+          role: role,
+          etat: true,
+          preferences: Array.isArray(response.preferences)
+            ? response.preferences
+            : [],
+        };
+
+        const reponseProfil: ReponseProfil = {
+          id: response.id,
+          utilisateur,
+          uriCv: response.uriCv,
+          estValide: response.estValide,
+          projets: Array.isArray(response.projets) ? response.projets : [],
+          profilId:
+            // Contributeur
+            response.idContributeur ||
+            response.contributeurId ||
+            response.id_contributeur ||
+            // Gestionnaire
+            response.idGestionnaire ||
+            response.gestionnaireId ||
+            response.id_gestionnaire ||
+            // Porteur de projet
+            response.idPorteurProjet ||
+            response.porteurProjetId ||
+            response.id_porteur_projet ||
+            undefined,
+        };
+        return reponseProfil;
+      })
+    );
   }
 
   updatePreferences(id: number, preferences: string[]): Observable<string[]> {
     return this.http.put<string[]>(`${this.baseUrl}/${id}`, preferences);
+  }
+
+  getContributionsByUser(
+    id: number,
+    role: string,
+    profilId?: number
+  ): Observable<Projet[]> {
+    let url = '';
+    switch (role) {
+      case 'GESTIONNAIRE':
+        url = `${this.apiRoot}/gestionnaires/${id}/projets`;
+        break;
+      case 'CONTRIBUTEUR':
+        if (!profilId) {
+          return of([]);
+        }
+        url = `${this.apiRoot}/utilisateurs/contributeurs/projets/${profilId}`;
+        break;
+      case 'PORTEUR_PROJET':
+      default:
+        return of([]);
+    }
+    return this.http.get<Projet[]>(url).pipe(catchError(() => of([])));
+  }
+
+  // Mise à jour des infos utilisateur selon le rôle (sans changer le rôle)
+  updateContributeur(profilId: number, payload: any) {
+    const url = `${this.apiRoot}/utilisateurs/contributeurs/${profilId}`;
+    return this.http.put<any>(url, payload);
+  }
+
+  updatePorteurProjet(profilId: number, utilisateurPayload: any) {
+    const url = `${this.apiRoot}/utilisateurs/porteurs-projet/${profilId}`;
+    return this.http.put<any>(url, utilisateurPayload);
   }
 }

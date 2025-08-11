@@ -4,13 +4,23 @@
   <div class="layout-body">
     <app-side-bar></app-side-bar>
 
-    <div class="profile-wrapper">
+    <div class="profile-wrapper" *ngIf="utilisateur">
       <!-- Bandeau supérieur -->
       <div class="profile-banner">
         <div class="profile-avatar">
           <i class="fas fa-user-circle avatar-icon"></i>
         </div>
-        <h2 class="profile-name">{{ utilisateur.prenom }}</h2>
+        <h2 class="profile-name">
+          {{ utilisateur.prenom }} {{ utilisateur.nom }}
+        </h2>
+        <button
+          class="edit-profile-btn"
+          (click)="ouvrirEdition()"
+          aria-label="Modifier le profil"
+        >
+          <i class="ri-edit-2-line"></i>
+          Modifier le profil
+        </button>
       </div>
 
       <!-- Grille des informations -->
@@ -37,8 +47,8 @@
             <div class="info-item">
               <i class="ri-calendar-schedule-fill"></i>
               <div class="info">
-                <span class="label"><address>Adresse email</address></span>
-                <span class="value">{{ utilisateur.etat }}</span>
+                <span class="label">Adresse email</span>
+                <span class="value">{{ utilisateur.email }}</span>
               </div>
             </div>
             <div class="info-item">
@@ -73,14 +83,87 @@
         <!-- Partie droite -->
         <div class="profile-right">
           <div class="card">
-            <h3 class="section-title">Vos contributions</h3>
-            <div class="contribution-list">
+            <h3 class="section-title">
+              {{
+                role === "GESTIONNAIRE"
+                  ? "Projets auxquels vous êtes gestionnaire"
+                  : role === "CONTRIBUTEUR"
+                  ? "Projets auxquels vous contribuez"
+                  : role === "PORTEUR_PROJET"
+                  ? "Projets que vous avez proposés"
+                  : "Vos contributions"
+              }}
+            </h3>
+            <div
+              *ngIf="projets.length; else noContrib"
+              class="contribution-list"
+            >
               <div class="contribution-item" *ngFor="let projet of projets">
-                <h4>{{ projet.titre }}</h4>
-                <p>{{ projet.description }}</p>
+                <h4>{{ projet.titre || projet.titreProjet || "Projet" }}</h4>
+                <p>{{ projet.description || projet.Description }}</p>
               </div>
             </div>
+            <ng-template #noContrib>
+              <p>Aucun Projet pour le moment.</p>
+            </ng-template>
           </div>
+        </div>
+      </div>
+
+      <!-- Modal d'édition inline -->
+      <div
+        class="modal-overlay"
+        *ngIf="isEditOpen"
+        (click)="fermerEdition()"
+      ></div>
+      <div
+        class="modal"
+        *ngIf="isEditOpen"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="editTitle"
+      >
+        <div class="modal-header">
+          <h3 id="editTitle">Modifier le profil</h3>
+          <button
+            class="icon-btn"
+            (click)="fermerEdition()"
+            aria-label="Fermer"
+          >
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4 class="section-subtitle">Informations</h4>
+          <div class="form-grid">
+            <label>
+              <span>Prénom</span>
+              <input type="text" [(ngModel)]="formEdit.prenom" />
+            </label>
+            <label>
+              <span>Nom</span>
+              <input type="text" [(ngModel)]="formEdit.nom" />
+            </label>
+            <label class="grid-full">
+              <span>Email</span>
+              <input type="email" [(ngModel)]="formEdit.email" />
+            </label>
+            <label class="grid-full" *ngIf="utilisateur.genre !== undefined">
+              <span>Genre</span>
+              <select [(ngModel)]="formEdit.genre">
+                <option value="HOMME">H</option>
+                <option value="FEMME">F</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="secondary-btn" (click)="fermerEdition()">
+            Annuler
+          </button>
+          <button class="primary-btn" (click)="enregistrerModifications()">
+            Enregistrer
+          </button>
         </div>
       </div>
     </div>
