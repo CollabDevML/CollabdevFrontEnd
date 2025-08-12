@@ -1,14 +1,9 @@
 <div class="main">
-  <div class="lateral-nav" [class.lateral-close]="!sidebarOpen">
-    <app-sidebargestionnaire
-      (AfficherSideBar)="changerEtatSidebar($event)"
-    ></app-sidebargestionnaire>
-  </div>
   <div class="content" [class.long-content]="!sidebarOpen">
     <div class="indicator">
       <div class="cercle"></div>
     </div>
-    
+
     <!-- SECTION ÉTAT / EN-TÊTE -->
     <div class="etat">
       <div class="gauche">
@@ -91,7 +86,7 @@
                 <span class="etat-badge a-faire">A faire</span>
               </ng-template>
             </span>
-            
+
             <span class="span-center" (click)="toProfil(tache.contributeur)">
               👤
             </span>
@@ -102,8 +97,8 @@
         }
       }
     </div>
-    <app-popup-options 
-    *ngIf="showPopup" 
+    <app-popup-options
+    *ngIf="showPopup"
     (close)="showPopup = false">
   </app-popup-options>
 </div>

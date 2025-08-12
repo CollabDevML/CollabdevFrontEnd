@@ -13,34 +13,31 @@ export class InscriptionChoixComponent implements OnInit {
   user!: Users; // Pour stocker les données de l'utilisateur si nécessaire
   constructor(private route:Router,private rt:ActivatedRoute, private data:DataService){}
   ngOnInit() {
-    // this.rt.params.subscribe(params => {
-    //   const user = params['user'];
-    //   if (user) {
-    //     console.log("Utilisateur reçu: ", user);
-    //     this.user = user;
-    //   } else {
-    //     console.error("Aucun utilisateur trouvé dans les paramètres.");
-    //   }
-    // });
     if (!this.data.userData) {
       console.error("Aucune donnée utilisateur trouvée dans le service.");
       this.route.navigate(['inscription']);
     } else {
-      this.user = this.data.userData; // Récupérer les données de l'utilisateur depuis le service
+      this.user = this.data.userData; 
+      
+        console.log(`les données enregistrements dans le choix : ${this.user.getEmail}`)// Récupérer les données de l'utilisateur depuis le service
     }
   }
   choix(ch:string){
     switch(ch){
-      case "IDEE":
-        return this.route.navigate(['inscription/porteur_de_projet']);
+      case "PORTEUR_PROJET":
+        this.route.navigate(['inscription/porteur-projet']);
+        break;
       case "GESTIONNAIRE":
-        return this.route.navigate(['inscription/gestionnaire']);
+        this.route.navigate(['inscription/gestionnaire']);
+        break;
       case "CONTRIBUTEUR":
-        return this.route.navigate(['inscription/contributeur']);
+        console.log("Ici le porteur");
+        this.route.navigate(['inscription/contributeur']);
+        break;
       default:
         console.error("Choix invalide: " + ch);
-        return this.route.navigate(['inscription/choix']);
-
+        this.route.navigate(['inscription/choix']);
+        break;
     }
 
   }

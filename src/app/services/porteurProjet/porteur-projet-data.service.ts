@@ -20,7 +20,31 @@ export class PorteurProjetDataService {
 
   //Pour l'upload d'un fichier:
   uploadCDC(file: File,nomFichier:string): Observable<any> {
-    return this.data.uploadFile(Env.LOGIN_URL, file,nomFichier,"CDC");
+    return this.data.uploadFile(Env.UPLOAD_URL, file,nomFichier,"CDC");
+  }
+
+  //Pour la creation d'idee de projet :
+  newIdee(ideeProjet:any){
+    const idPorteur = localStorage.getItem('user_id');
+    return this.data.postData(Env.INSCRIPTION_URL+"/"+idPorteur+"/"+"idees-projet", ideeProjet);
+  }
+
+  //Lister les idees de projet :
+  listeIdeeProjet(){
+    return this.data.getData(Env.IDEEPROJETLISTE);
+  }
+
+  //soutenir une idee de projet :
+
+  soutenirIdeeProjet(idIdeeProjet:number){
+    const idPorteur = Number(localStorage.getItem('user_id'));
+    return this.data.postData(Env.IDEEPROJETLISTE+"/"+idIdeeProjet+"/nombre-soutien",{idUtilisateur:idPorteur});
+  }
+
+  //Pour lister mes projet en cours :
+  listerMesProjet(){
+    const idPorteur = Number(localStorage.getItem('user_id'));
+    return this.data.getData(Env.IDEEPROJETLISTE+"/"+idPorteur+"/utilisateur");
   }
 
 }

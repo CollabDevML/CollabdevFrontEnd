@@ -11,7 +11,7 @@ import { Env } from '../env';
 export class DataService {
   //Pour la creation des headers :
   private headers = new HttpHeaders();
-  
+
   userData!:Users;
   users:any;
   user_email = localStorage.getItem("user_email") || "";
@@ -22,7 +22,7 @@ export class DataService {
     private http:HttpClient
   ) {
     this.users = {};
-    
+
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',

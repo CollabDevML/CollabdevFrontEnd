@@ -25,6 +25,7 @@ app-side-bar {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  margin-bottom: 5%;
 }
 
 /* Header + recherche */
@@ -149,6 +150,71 @@ app-side-bar {
   font-size: 1em;
   color: #444;
 }
+
+
+/* ===== MODAL STYLES ===== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal.show {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal.hide {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+/* ===== CONTENU DU MODAL ===== */
+.modal-contenu {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-contenu h2 {
+  color: #334DAA;
+  margin-bottom: 15px;
+}
+
+.modal-contenu select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 10px;
+  background-color: #334DAA;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
 /* Smartphones (max-width: 767px) */
 @media (max-width: 767px) {
   .layout {

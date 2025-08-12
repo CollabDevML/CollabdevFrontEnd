@@ -8,12 +8,12 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100vh; 
-        background-color: white; 
+        height: 100vh;
+        background-color: white;
         z-index: 1000; /* au-dessus des autres éléments */
         transition: width 0.3s ease; /* pour animation fluide */
-      
-      
+
+
 }
 .lateral-nav.lateral-close{
     width: 4.5%;
@@ -23,20 +23,20 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-left: 12%;
-    padding-left: 2.5%;
+    margin: 10px 10px;
+    padding: 5px;
     margin-top: 6px;
     transition: margin-left 0.3s ease;
     background: #D9D9D9;
     border-radius: 8px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.60);
     min-height: 97vh; /* hauteur du viewport */
-    box-sizing: border-box; 
+    box-sizing: border-box;
   }
 .content.long-content {
     margin-left: 6.5%;
   }
-  
+
   /*indicteur d'état du projet*/
   .indicator{
     display:flex;
@@ -45,12 +45,12 @@
     margin-bottom: 20px;
   }
   .cercle {
-    width: 10px;        
-    height: 10px;         
-    background-color: #f4c542; 
-    border-radius: 50%;    
+    width: 10px;
+    height: 10px;
+    background-color: #f4c542;
+    border-radius: 50%;
   }
-  
+
   /* Section État */
   .etat {
     display: flex;
@@ -70,7 +70,7 @@
     flex-direction: column;
     gap: 0.4rem;
   }
-  
+
   .date-badge {
     background-color: #f4c542;
     padding: 0.5rem 1rem;
@@ -80,14 +80,14 @@
     align-items: center;
     gap: 0.5rem;
   }
-  
+
   .titre-page {
     text-align: center;
     color: #334DAA;
     font-size: 1.5rem;
     font-weight: bold;
   }
-  
+
   .description-card {
     background: #D9D9D9;
     padding: 1rem;
@@ -95,7 +95,7 @@
     box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
     max-width: 400px;
   }
-  
+
   /* Section contributeurs + bouton */
   .bottom-header {
     display: flex;
@@ -138,7 +138,7 @@
     font-size: 0.9rem;
     margin-top: 0.2rem;
   }
-  
+
   /* Bouton */
   .button{
     display: flex;
@@ -160,7 +160,7 @@
     justify-content: space-around;
     cursor: pointer;
   }
-  
+
   /* Tableau */
   .table-container {
     width: 100%;
@@ -168,7 +168,7 @@
     overflow-x: auto; /* pour scroll horizontal si écran trop petit */
     font-family: Arial, sans-serif;
   }
-  
+
   /* Header */
   .table-header {
     display: grid;
@@ -181,8 +181,8 @@
     margin-bottom: 15px;
     /*user-select: none;*/
   }
-  
-  
+
+
   /* Lignes */
   .table-row {
     display: grid;
@@ -195,12 +195,12 @@
     border-radius: 6px; /* arrondi sur toutes les lignes */
     word-break: break-word; /* pour casser les longs mots */
   }
-  
+
   /* Supprimer l'espace et arrondi sur la dernière ligne */
   .table-row:last-child {
     margin-bottom: 0;
   }
-  
+
   /* Pour limiter la hauteur et éviter que la ligne soit trop grande */
   .table-row span {
     overflow: hidden;
@@ -208,9 +208,9 @@
     white-space: nowrap; /* empêcher le retour à la ligne */
     padding-right: 4px;
     text-align: left;
-    
+
   }
-  
+
   .table-row .text-center{
     text-align: center;
   }
@@ -220,7 +220,7 @@
     max-height: 3em; /* limite à environ 2 lignes */
     overflow: hidden;
   }
-  
+
   /* Exemple pour badge d'état avec arrondi */
   .etat-badge {
     padding: 0.2em 0.5em;
@@ -233,20 +233,20 @@
     border:none;
     text-align: center;
   }
-  
+
   /* Variantes couleurs */
-  .a-faire 
+  .a-faire
   { background-color: #F4F4F4;
-    color: black; 
+    color: black;
   }
-  .en-cours 
-  { color: #F6C434; 
-    background-color: rgba(246, 196, 52, 0.23); 
+  .en-cours
+  { color: #F6C434;
+    background-color: rgba(246, 196, 52, 0.23);
   }
-  .termine { color: #34F651; 
+  .termine { color: #34F651;
   background-color: #E5FDD3;
 }
-  
+
   /* Responsive */
   /* Pour écrans plus petits, adapter la grille en 4 colonnes avec deux lignes */
   @media (max-width: 768px) {
@@ -260,8 +260,8 @@
       display: none;
     }
   }
-  
-  
+
+
   /* Responsive */
   @media (max-width: 1024px) {
     .table-header, .table-row {
@@ -283,4 +283,3 @@
       grid-template-columns: 1fr;
     }
   }
-  
