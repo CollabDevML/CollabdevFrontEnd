@@ -28,9 +28,9 @@ export class IndexContributeurComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == "") {
-      this.route.navigate(["login"]);
-    }
+    // if (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == "") {
+    //   this.route.navigate(["login"]);
+    // }
     this.data.getDataUserById().subscribe({
       next:(res)=> {
         this.user = res;

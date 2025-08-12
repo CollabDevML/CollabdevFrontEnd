@@ -7,6 +7,11 @@
     grid-template-columns: 5% 95%;
 }
 
+.principal-container.signin {
+    display: contents;
+    grid-template-columns: none;
+}
+
 .pages-container, .sidebar-container {
     width: 100%;
     transition: width 0.3s ease-in-out;

@@ -1,0 +1,58 @@
+<div class="principal-container" [class.isExpanded]="isExpanded">
+    <div class="left-container">
+        <div class="ideas-text-container">
+            <h1 class="ideas-text">Mes idées de projet</h1>
+            <div class="line"></div>
+            <div class="sortby-container">
+                <select name="sortby" id="sortby" class="sortby">
+                    <option value="recent">Récentes</option>
+                    <option value="old">Anciennes</option>
+                </select>
+            </div>
+        </div>
+        <div class="ideas-container">
+            <div class="idea-container">
+                <div class="idea-title-container">
+                    <h2 class="idea-title">CollabDev</h2>
+                    <p class="idea-date">Il y'a <span style="font-weight: bold;">2 jours</span></p>
+                    <i class="ri-more-2-fill idea-option"></i>
+                </div>
+                <div class="idea-description-container">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum veritatis quas repellat hic consectetur neque eos in suscipit. Iure id aliquid soluta! Ad sapiente numquam repellat consequuntur repudiandae vel sint.
+                </div>
+                <div class="idea-cdc-container">
+                    <i class="ri-file-pdf-2-line idea-pdf-logo"></i>
+                    <p class="idea-pdf-text"><u>Voir le cahier des charges</u></p>
+                    <i class="ri-hand-heart-line idea-help"></i>
+                </div>
+                <div class="idea-comments-container">
+                    <div class="idea-comments-header">
+                        <i class="ri-question-answer-line idea-comments-logo"></i>
+                        <p class="idea-comments-text">Commentaires</p>
+                        <p class="idea-comments-see-more"><u>Voir plus</u></p>
+                    </div>
+                    <div class="idea-comments-body">
+                        <div class="comment">
+                            <div class="comment-header">
+                                <img src="ghost.jpg" alt="Photo de Ghost" class="comment-user-profile">
+                                <p class="comment-user-name">Par <strong>Djimé Dembélé</strong></p>
+                                <p class="comment-date">Il y'a <strong>2 heures</strong></p>
+                            </div>
+                            <div class="comment-body">
+                                <p class="comment-content">Je pense que c'est un très bon projet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-container">
+        <h1 class="right-first-text" [class.expanded]="isExpanded">Et si votre idée devenait le prochain grand projet?</h1>
+        <img src="idees-projet.png" alt="Image d'un utilisateur qui propose des idées" class="idea-image" [class.expanded]="isExpanded">
+        <p class="right-second-text" [class.expanded]="isExpanded">Partagez votre idée, et ensemble, faisons-en quelque chose de concret et d'impactant.</p>
+        <div class="propose-button" [class.expanded]="isExpanded" routerLink="proposer">
+            <p style="color: white; font-size: 14pt;">Proposer une idée de projet</p>
+        </div>
+    </div>
+</div>
