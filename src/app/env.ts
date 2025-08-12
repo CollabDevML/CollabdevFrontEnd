@@ -20,9 +20,12 @@ export class Env {
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';
 
-  //urls pour recupérer les données d'un gestionnaire
-  public static GET_GESTIONNAIRE: string = Env._env.apiUrl + 'utilisateurs/gestionnaires'
+  //urls pour recupérer les données d'un utilisateur gestionnaire
+  public static GET_UTILISATEURGESTIONNAIRE: string = Env._env.apiUrl + 'utilisateurs'
 
   //urls pour accepter/refuser une demande de contribution
   public static MODIFIER_EST_ACCEPTEE: string = Env._env.apiUrl + 'gestionnaires/projets/demandes-contribution'
+
+  //urls pour recupérer les données d'un gestionnaire
+  public static GET_GESTIONNAIRE: string = Env._env.apiUrl + 'utilisateurs/gestionnaires'
 }

@@ -105,9 +105,7 @@ export class DataService {
   }
   
   
-  getById(url:string, id: number){
-    return this.http.get(`${url}/${id}`,{ headers: this.headers })
-  }
+  
 
   // Pour l'envoi de fichiers
   uploadFile(

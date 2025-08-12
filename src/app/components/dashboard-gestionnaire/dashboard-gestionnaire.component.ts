@@ -37,12 +37,13 @@ export class DashboardGestionnaireComponent implements OnInit{
   
   sidebarOpen:boolean = true;
   ispopupVisible:boolean = false;
-  gestionnaire!: ResponseGestionnaire
+  gestionnaire!: any
   userId! : number|null;
   userRole!: string|null; 
   projetsRecents!: projet[];
   nbreProjetsTermine:number = 0;
   nbreProjetsEnCours:number = 0;
+  
   demandeContributions: Demandecontributions[] = [];
   contributionsList: Contribution[]=[];
   //injection de dependance du composant
@@ -53,8 +54,8 @@ export class DashboardGestionnaireComponent implements OnInit{
   selectedDemande: any;
 
   ngOnInit(): void {
-    this.userId = 2 //this.idToIntService.getId();
-    this.userRole = 'GESTIONNAIRE'//localStorage.getItem('user_role')
+    this.userId = this.idToIntService.getId();
+    this.userRole = localStorage.getItem('user_role')
     if (this.userId !== null && this.userRole) {
       this.getGestionnaire();
     }
@@ -66,6 +67,10 @@ export class DashboardGestionnaireComponent implements OnInit{
         
         this.gestionnaire = result
         console.log(result)
+
+        //recupérer la liste des projets du gestionnaires
+        
+        
         //get the recents projets sort by date
         this.projetsRecents = [...this.gestionnaire.projets]
         .sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
@@ -94,7 +99,7 @@ export class DashboardGestionnaireComponent implements OnInit{
       nomContributeur: contributions.contributeur.nom, 
       prenomContributeur: contributions.contributeur.prenom, 
       nomTache: contributions.tache.nom,
-      estValide:contributions.estValide                             // on garde le reste des infos
+      estValide:contributions.estValide                             
     })))
     .sort((a, b) => b.id - a.id)
     .slice(0,2);

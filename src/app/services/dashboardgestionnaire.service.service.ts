@@ -8,50 +8,50 @@ import { projet } from '../models/projet/projet';
 @Injectable({
   // declares that this service should be created
   // by the root application injector.
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardgestionnaireServiceService {
-  
   //injection de dépendances
-  private gestionnaireS = inject(GestionnaireDataService)
-
+  private gestionnaireS = inject(GestionnaireDataService);
+  data: any;
   //fetch the data
-  getGestionnaire(id:number):Observable<any>
-  {
+  getUtilisateurGestionnaire(id: number, role: string): Observable<any> {
+    this.data = this.gestionnaireS.getUtilisateurGestionnaire(id, role);
+    console.log(this.data)
+    return this.data;
+  }
+
+  getGestionnaire(id = this.data.idGestionnaire): Observable<any> {
     return this.gestionnaireS.getGestionnaire(id).pipe(
-      map(data => (
-        {
-      prenom : data.utilisateur.prenom,
-      nom : data.utilisateur.nom,
-      email : data.utilisateur.email,
-      genre : data.utilisateur.genre,
-      preferences : data.utilisateur.preferences ?? [],
-      uriCV : data.uriCV,
-      estValide : data.estValide,
-      idGestionnaire : data.id,
-      idUtilisateur : data.utilisateur.id,
-      // si "projet" est présent dans la réponse
-      projets : (data.projets ?? []).map((projet: projet) => ({
-        id: projet.id,
-        titre: projet.titre,
-        description: projet.Description,
-        estFini : projet.estFini,
-        etat: projet.etat,
-        dateDebut: projet.dateDebut,
-        dateFin: projet.dateFin,
-        niveauDAcces: projet.niveauDAcces,
-        demandeContributions: projet.demandeContributions,
-        contributions: projet.contributions,
-        taches: projet.taches,
-        piecesDAcces: projet.piecesDAcces,
-      })),
-    }
-    )))
+      map((res) => ({
+        prenom: res.utilisateur.prenom,
+        nom: res.uitlisateur.nom,
+        email: res.utilisateur.email,
+        genre: res.utilisateur.genre,
+        preferences: res.utilisateur.preferences ?? [],
+        uriCV: res.uriCV,
+        estValide: res.estValide,
+        projets: (res.projets ?? []).map((projet:any) => ({
+          id: projet.id,
+          titre: projet.titre,
+          description: projet.description,
+          estFini: projet.estFini,
+          etat: projet.etat,
+          dateDebut: projet.dateDebut,
+          dateFin: projet.dateFin,
+          niveauDAcces: projet.niveauDAcces,
+          demandeContributions: projet.demandeContributions,
+          contributions: projet.contributions,
+          taches: projet.taches,
+          piecesDAcces: projet.piecesDAcces,
+        })),
+      }))
+    );
   }
 
   //Calcul des stats
   projets: projet[] = [];
-  
+
   private nbTerminesSubject = new BehaviorSubject<number>(0);
   private nbEnCoursSubject = new BehaviorSubject<number>(0);
 
@@ -64,9 +64,9 @@ export class DashboardgestionnaireServiceService {
   }
 
   private calculerStats() {
-    const termines = this.projets.filter(p => p.estFini).length;
+    const termines = this.projets.filter((p) => p.estFini).length;
     //doit être changer côté backend
-    const enCours = this.projets.filter(p => !p.etat).length;
+    const enCours = this.projets.filter((p) => !p.etat).length;
 
     this.nbTerminesSubject.next(termines);
     this.nbEnCoursSubject.next(enCours);
