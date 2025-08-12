@@ -1,5 +1,3 @@
-import { NgClass, NgStyle } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { SidebargestionnaireComponent } from '../UI/sidebargestionnaire/sidebargestionnaire.component';
@@ -17,27 +15,21 @@ import { DashboardgestionnaireServiceService } from '../../services/dashboardges
 import { Gestionnaire } from '../../models/gestionnaire/gestionnaire';
 import { Observable } from 'rxjs/internal/Observable';
 import { IdToIntService } from '../../services/utiliteur/id-to-int.service';
-import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestionnaire';
 import { projet } from '../../models/projet/projet';
 import { Demandecontributions } from '../../models/demandecontributions/demandecontributions';
 import { Contribution } from '../../models/contribution/contribution';
 import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
 
-
 @Component({
   selector: 'app-dashboard-gestionnaire',
   imports: [
     NgStyle,
-  NgStyle,
-    SidebargestionnaireComponent,
+    NgStyle,
     CardprojetComponent,
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
-    // SidebargestionnaireComponent,
-    // RouterOutlet
-],
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',
@@ -67,85 +59,80 @@ export class DashboardGestionnaireComponent implements OnInit {
       },
     });
   }
-
-  sidebarOpen:boolean = true;
-  ispopupVisible:boolean = false
-export class DashboardGestionnaireComponent implements OnInit{
-
-  sidebarOpen:boolean = true;
-  ispopupVisible:boolean = false;
-  gestionnaire!: ResponseGestionnaire
-  userId! : number|null;
-  userRole!: string|null;
+  sidebarOpen: boolean = true;
+  ispopupVisible: boolean = false;
+  gestionnaire!: ResponseGestionnaire;
+  userId!: number | null;
+  userRole!: string | null;
   projetsRecents!: projet[];
-  nbreProjetsTermine:number = 0;
-  nbreProjetsEnCours:number = 0;
+  nbreProjetsTermine: number = 0;
+  nbreProjetsEnCours: number = 0;
   demandeContributions: Demandecontributions[] = [];
-  contributionsList: Contribution[]=[];
+  contributionsList: Contribution[] = [];
   //injection de dependance du composant
-  dashboardgestionnaireservices = inject(DashboardgestionnaireServiceService)
-  demandescontributionsServices = inject(DemandescontributionsService)
-  idToIntService = inject(IdToIntService)
+  dashboardgestionnaireservices = inject(DashboardgestionnaireServiceService);
+  demandescontributionsServices = inject(DemandescontributionsService);
+  idToIntService = inject(IdToIntService);
   selectedAction!: string;
   selectedDemande: any;
 
-  ngOnInit(): void {
-    this.userId = 2 //this.idToIntService.getId();
-    this.userRole = 'GESTIONNAIRE'//localStorage.getItem('user_role')
-    if (this.userId !== null && this.userRole) {
-      this.getGestionnaire();
-    }
-  }
   //get the gestionnaire
-  getGestionnaire(){
+  getGestionnaire() {
     this.dashboardgestionnaireservices.getGestionnaire(this.userId!).subscribe({
-      next:(result:any)=> {
-
-        this.gestionnaire = result
-        console.log(result)
+      next: (result: any) => {
+        this.gestionnaire = result;
+        console.log(result);
         //get the recents projets sort by date
         this.projetsRecents = [...this.gestionnaire.projets]
-        .sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
-        .slice(0, 4);
+          .sort(
+            (a, b) =>
+              new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime()
+          )
+          .slice(0, 4);
 
         // Récupérer toutes les demandes de contributions NON validées de tous ces projets
-    this.demandeContributions = this.projetsRecents
-    .flatMap(projet => (projet.demandeContributions ?? [])
-    .filter(demande => !demande.estValide)
-    .map(demande => ({
-      id: demande.id,
-      projetNom: projet.titre,
-      contributeurNom: demande.contributeur.nom,
-      dateEnvoi: demande.dateEnvoi,
-      ...demande
-    })))
-    .sort((a, b) => b.id - a.id);
+        this.demandeContributions = this.projetsRecents
+          .flatMap((projet) =>
+            (projet.demandeContributions ?? [])
+              .filter((demande) => !demande.estValide)
+              .map((demande) => ({
+                id: demande.id,
+                projetNom: projet.titre,
+                contributeurNom: demande.contributeur.nom,
+                dateEnvoi: demande.dateEnvoi,
+                ...demande,
+              }))
+          )
+          .sort((a, b) => b.id - a.id);
 
-    //recupérer les contributions non validés
-    this.contributionsList = this.projetsRecents
-    .flatMap(projet => (projet.contributions ?? [])
-    .filter(contributions => !contributions.estValide)
-    .map(contributions => ({
-      id: contributions.id,
-      nomProjet: contributions.projet.titre,
-      nomContributeur: contributions.contributeur.nom,
-      prenomContributeur: contributions.contributeur.prenom,
-      nomTache: contributions.tache.nom,
-      estValide:contributions.estValide                             // on garde le reste des infos
-    })))
-    .sort((a, b) => b.id - a.id)
-    .slice(0,2);
+        //recupérer les contributions non validés
+        this.contributionsList = this.projetsRecents
+          .flatMap((projet) =>
+            (projet.contributions ?? [])
+              .filter((contributions) => !contributions.estValide)
+              .map((contributions) => ({
+                id: contributions.id,
+                nomProjet: contributions.projet.titre,
+                nomContributeur: contributions.contributeur.nom,
+                prenomContributeur: contributions.contributeur.prenom,
+                nomTache: contributions.tache.nom,
+                estValide: contributions.estValide, // on garde le reste des infos
+              }))
+          )
+          .sort((a, b) => b.id - a.id)
+          .slice(0, 2);
       },
 
-      error:(error) => console.error('Erreur lors de la récupération du gestionnaire', error)
-    })
-    this.dashboardgestionnaireservices.nbEnCours$
-    .subscribe(nb =>this.nbreProjetsEnCours = nb);
-    this.dashboardgestionnaireservices.nbTermines$
-    .subscribe(nb =>this.nbreProjetsTermine = nb)
+      error: (error) =>
+        console.error('Erreur lors de la récupération du gestionnaire', error),
+    });
+    this.dashboardgestionnaireservices.nbEnCours$.subscribe(
+      (nb) => (this.nbreProjetsEnCours = nb)
+    );
+    this.dashboardgestionnaireservices.nbTermines$.subscribe(
+      (nb) => (this.nbreProjetsTermine = nb)
+    );
   }
-
-
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -175,18 +162,23 @@ export class DashboardGestionnaireComponent implements OnInit{
     this.ispopupVisible = true;
     console.log('je click');
   }
-
-
-  }
   acceptDemande(demande: any) {
-    this.demandescontributionsServices.AccepteDemande(demande.id,true).subscribe(() => {
-      this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
-    });
+    this.demandescontributionsServices
+      .AccepteDemande(demande.id, true)
+      .subscribe(() => {
+        this.demandeContributions = this.demandeContributions.filter(
+          (d) => d.id !== demande.id
+        );
+      });
   }
 
   declineDemande(demande: any) {
-    this.demandescontributionsServices.AccepteDemande(demande.id,false).subscribe(() => {
-      this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
-    });
-}
+    this.demandescontributionsServices
+      .AccepteDemande(demande.id, false)
+      .subscribe(() => {
+        this.demandeContributions = this.demandeContributions.filter(
+          (d) => d.id !== demande.id
+        );
+      });
+  }
 }
