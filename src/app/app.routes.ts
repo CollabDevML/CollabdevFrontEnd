@@ -31,11 +31,16 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
 import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
 import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
+
+import { ProjetgestionnairedetailComponent } from './components/projetgestionnairedetail/projetgestionnairedetail.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
 import { IdeesProjetComponent } from './components/idees-projet/idees-projet.component';
 import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/formulaire-projet/formulaire-projet.component';
+
+import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -91,7 +96,7 @@ export const routes: Routes = [
     {path:"mon_espace",component:DashboardGestionnaireComponent},
     {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
     {path:"nouveau_projet",component:FormulaireProjetComponent},
-
+    {path:"details_projet",component:ProjetgestionnairedetailComponent},
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}
@@ -106,6 +111,10 @@ export const routes: Routes = [
     { path: 'accueil', component: AccueilComponent },
 
 
+    {path: 'projet-details', component:ProjetgestionnairedetailComponent},
+
+  { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
+  { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
 
@@ -116,5 +125,6 @@ export const routes: Routes = [
   { path: 'formulaireProjet', component:FormulaireProjetComponent},
   { path: 'detailProjet', component:DetailleProjetComponent},
   { path: 'formulaireProjet', component:FormulaireProjetComponent},
-  { path: '**', component: PageNotFoundComponent }
+  {path:'pop-options', component:PopupOptionsComponent},
+   { path: '**', component: PageNotFoundComponent },
 ];

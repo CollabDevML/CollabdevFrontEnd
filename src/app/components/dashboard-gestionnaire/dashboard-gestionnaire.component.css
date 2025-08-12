@@ -9,6 +9,7 @@
     width: 10%;
 
 
+
         position: fixed;
         top: 0;
         left: 0;
@@ -22,6 +23,16 @@
 .lateral-nav.lateral-close{
     width: 4.5%;
 }
+@media (max-width: 768px) {
+  .lateral-nav {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+  }
+  .lateral-nav.open {
+    width: 250px; /* largeur sidebar ouverte sur mobile */
+  }
+}
 .dashboard{
     display: flex;
     flex-direction: column;
@@ -32,6 +43,14 @@
 }
 .dashboard.long-dashboard {
     margin-left: 4.5%;
+  }
+  @media (max-width: 768px) {
+    .dashboard,
+    .dashboard.long-dashboard {
+      margin-left: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 #en-tete{
     background-color: #334DAA;

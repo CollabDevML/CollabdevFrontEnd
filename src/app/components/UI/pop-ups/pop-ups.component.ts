@@ -18,8 +18,13 @@ export class PopUpsComponent {
 
   checked: boolean = false;
 
-  fermerPopups() {
-    this.visible = false;
-    this.close.emit(this.visible);
+  confirmer() {
+    if (this.checked) {
+      this.close.emit(true);
+    }
+  }
+
+  annuler() {
+    this.close.emit(false);
   }
 }
