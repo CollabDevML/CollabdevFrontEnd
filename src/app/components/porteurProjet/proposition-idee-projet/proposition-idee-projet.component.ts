@@ -3,8 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
+import { Env } from '../../../env';
 import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
+import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
 import { Router } from '@angular/router';
 
 @Component({

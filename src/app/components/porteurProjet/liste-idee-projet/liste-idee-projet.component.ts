@@ -2,19 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { HeaderComponent } from '../../UI/header/header.component';
 import { RecherchebarreComponent } from '../../UI/recherchebarre/recherchebarre.component';
-import { CommonModule } from '@angular/common';
 import { PorteurProjet } from '../../../models/porteurProjet/porteur-projet';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
+import { ResponseIdeeProjet2 } from '../../../models/ideeprojet/response-idee-projet2';
+import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-liste-idee-projet',
-  imports: [CommonModule],
+  imports: [
+    CommonModule
+  ],
   templateUrl: './liste-idee-projet.component.html',
   styleUrl: './liste-idee-projet.component.css',
 })
-export class ListeIdeeProjetComponent implements OnInit {
-  mesIdeeProjet: any;
-  afficheVoirPlus: boolean = false;
+
+export class ListeIdeeProjetComponent implements OnInit{
+  mesIdeeProjet:any;
+  afficheVoirPlus : boolean = false;
   contenus: any;
   constructor(private data: PorteurProjetDataService) {}
 
@@ -62,4 +67,5 @@ export class ListeIdeeProjetComponent implements OnInit {
       },
     });
   }
+
 }
