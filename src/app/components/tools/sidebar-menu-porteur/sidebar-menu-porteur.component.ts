@@ -8,13 +8,15 @@ import { routes } from '../../../app.routes';
   templateUrl: './sidebar-menu-porteur.component.html',
   styleUrl: './sidebar-menu-porteur.component.css'
 })
-export class SidebarMenuPorteurComponent {  
+export class SidebarMenuPorteurComponent {
   public static Menu = {
     HOME: 1,
     PROJECT_IDEAS: 2,
     FOLLOWED_CONTENTS: 3,
     PROFILE: 4,
-    LOGOUT: 5
+    LOGOUT: 5,
+    LIST:6,
+    ADD:7,
   } as const;
   currentMenu: any = 2;
 
@@ -39,17 +41,30 @@ export class SidebarMenuPorteurComponent {
       case 3: {
         this.router.navigate(['porteur_projet/mes_favories'])
         break;
-      } 
+      }
       case 4: {
         break;
       }
       case 5:{
         break;
       }
+      case 6: {
+        this.router.navigate(['porteur_projet/mes_projets'])
+        break;
+      }
+      case 7:{
+        this.router.navigate(['porteur_projet/nouvelle_idee'])
+        break;
+      }
     }
   }
   logout(): void {
-
+    localStorage.removeItem("isExpanded")
+    localStorage.removeItem("user_role")
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("chemin")
+    window.location.reload()
+    this.router.navigate(['login'])
   }
 
   getIsExpanded(): boolean {

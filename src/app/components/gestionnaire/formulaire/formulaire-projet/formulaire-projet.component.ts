@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulaire-projet',
@@ -6,6 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './formulaire-projet.component.html',
   styleUrl: './formulaire-projet.component.css'
 })
-export class FormulaireProjetComponent {
+export class FormulaireProjetComponent implements OnInit {
 
+  constructor(private route:Router){}
+  ngOnInit(): void {
+  }
+
+  choix(ch:string){
+
+  }
 }
