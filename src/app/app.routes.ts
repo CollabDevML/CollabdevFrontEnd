@@ -32,6 +32,7 @@ import { ContributeurssComponent } from './components/contributeurss/contributeu
 import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+import { DetailCommentaireComponent } from './components/detail-commentaire/detail-commentaire.component';
 
 export const routes: Routes = [
   {
@@ -102,5 +103,6 @@ export const routes: Routes = [
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'porteurProjetSuivi', component:ProjetSuiviComponent},
-  { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent}
+  { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent},
+  { path: 'detailCommentaire', component:DetailCommentaireComponent},
 ];
