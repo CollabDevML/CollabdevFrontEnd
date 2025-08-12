@@ -11,7 +11,7 @@ import { PopUpsComponent } from '../UI/pop-ups/pop-ups.component';
 import { DataService } from '../../services/data.service';
 import { GestionnaireDataService } from '../../services/gestionnaire/gestionnaire-data.service';
 import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestionnaire';
-import { DashboardgestionnaireServiceService } from '../../services/dashboardgestionnaire.service.service';
+import { DashboardgestionnaireServiceService, Projet } from '../../services/dashboardgestionnaire.service.service';
 import { Gestionnaire } from '../../models/gestionnaire/gestionnaire';
 import { Observable } from 'rxjs/internal/Observable';
 import { IdToIntService } from '../../services/utiliteur/id-to-int.service';
@@ -53,18 +53,23 @@ export class DashboardGestionnaireComponent implements OnInit {
       next:(res)=> {
         this.user = res;
         console.log(res);
+         console.log("user existe")
+      this.getProject(this.user.idGestionnaire)
       },
       error:(err)=> {
           console.warn(err);
       },
     });
+  
+     
+    
   }
   sidebarOpen: boolean = true;
   ispopupVisible: boolean = false;
   gestionnaire!: ResponseGestionnaire;
   userId!: number | null;
   userRole!: string | null;
-  projetsRecents!: projet[];
+  projetsRecents!: Projet[];
   nbreProjetsTermine: number = 0;
   nbreProjetsEnCours: number = 0;
   demandeContributions: Demandecontributions[] = [];
@@ -76,6 +81,23 @@ export class DashboardGestionnaireComponent implements OnInit {
   selectedAction!: string;
   selectedDemande: any;
 
+   //get projets
+   getProject(id: number){
+      this.dashboardgestionnaireservices.getGestionnaireProjet(id).subscribe({
+        next:(res) =>{
+         this.projetsRecents = [...res]
+         .sort( (a, b) =>
+              new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime()
+          )
+          .slice(0, 5);
+          console.log(this.projetsRecents)
+        },
+        error(err) {
+            console.warn(err)
+        },
+  })
+   }
+  /*
   //get the gestionnaire
   getGestionnaire() {
     this.dashboardgestionnaireservices.getGestionnaire(this.userId!).subscribe({
@@ -132,8 +154,9 @@ export class DashboardGestionnaireComponent implements OnInit {
     this.dashboardgestionnaireservices.nbTermines$.subscribe(
       (nb) => (this.nbreProjetsTermine = nb)
     );
-  }
+  }*/
 
+ 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin],

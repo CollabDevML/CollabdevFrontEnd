@@ -16,7 +16,7 @@ import { ProjetServiceService } from '../../../services/projet/projet-service.se
   styleUrl: './cardprojet.component.css'
 })
 export class CardprojetComponent {
-  @Input() projet!: projet
+  @Input() projet!: any
   projetService:ProjetServiceService= inject(ProjetServiceService)
   router : Router = inject(Router)
 

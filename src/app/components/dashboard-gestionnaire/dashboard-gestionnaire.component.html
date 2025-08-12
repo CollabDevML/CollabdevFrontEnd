@@ -21,10 +21,15 @@
           </span>
 
           <div class="contribution-list">
-            @for (contributions of contributionsList; track $index) {
+            @if(contributionsList.length > 0){
+              @for (contributions of contributionsList; track $index) {
               <app-cardcontribution [contribution]="contributions"/>
+            }}@else {
+                0 projet recent 
             }
 
+            
+            
           </div>
         </div>
         <div class="statistiques" [class.decale]="!sidebarOpen">
@@ -53,9 +58,14 @@
           <button class="tous-voir" >Tous voir</button>
         </span>
         <div class="card-content">
-          @for (projet of projetsRecents; track $index) {
+          @if(projetsRecents.length > 0){
+             @for (projet of projetsRecents; track $index) {
             <app-cardprojet [projet]="projet"></app-cardprojet>
           }
+          }@else {
+              0 projet recent
+          }
+         
         </div>
 
       </div>
