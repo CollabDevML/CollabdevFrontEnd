@@ -1,0 +1,109 @@
+<div id="main">
+  <div class="dashboard" [class.long-dashboard]="!sidebarOpen">
+
+    <div id="en-tete">
+      <h3>
+        Heureux de vous revoir
+        <span [ngStyle]="{ color: '#F6C434' }"
+          >{{ user.prenom }} {{ user.nom }}</span
+        ><br />
+        Gerer vos projets en toute simplicité
+      </h3>
+      <img src="/gestionnnairedashboard.png" alt="image" />
+    </div>
+
+    <div class="side-bar-open" [class.side-bar-close]="!sidebarOpen">
+      <div id="contributions">
+        <div class="contribution-card">
+          <span class="titre">
+            <h4 class="sous-titre">Contributions à valider</h4>
+            <button class="tous-voir">Tous voir</button>
+          </span>
+
+          <div class="contribution-list">
+            <app-cardcontribution />
+            <app-cardcontribution />
+          </div>
+        </div>
+        <div class="statistiques" [class.decale]="!sidebarOpen">
+          <div class="icon-wrapper">
+            <i class="ri-archive-stack-line"></i>
+          </div>
+
+          <h5>Projets</h5>
+
+          <div class="en-cours">
+            <span id="en-cours">5</span>
+            <p>En cours</p>
+          </div>
+
+          <div class="realises">
+            <hr id="realise" />
+            <p>10 Réalisés</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="projet-recents">
+        <span class="titre">
+          <h4 class="sous-titre">Projets récents</h4>
+          <button class="tous-voir">Tous voir</button>
+        </span>
+
+        <div class="card-content">
+          <app-cardprojet></app-cardprojet>
+          <app-cardprojet></app-cardprojet>
+          <app-cardprojet></app-cardprojet>
+          <app-cardprojet></app-cardprojet>
+        </div>
+      </div>
+
+      @if (sidebarOpen === false) {
+      <div id="calendrier">
+        <full-calendar [options]="calendarOptions"></full-calendar>
+      </div>
+      }
+    </div>
+
+    <div id="demande-contribution">
+      <h4 class="sous-titre">Démandes de contribution</h4>
+      <table>
+        <thead class="table-header">
+          <tr>
+            <th id="devant">Projet</th>
+            <th>Contributeur</th>
+            <th>Date d'envoie</th>
+            <th>Profil contributeur</th>
+            <th id="derriere">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td class="actions">
+              <button id="accepte" (click)="openPopups()">Accepté</button>
+              <button id="refuse" (click)="openPopups()">Refusé</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td>Blablacar</td>
+            <td class="actions">
+              <button id="accepte" (click)="openPopups()">Accepté</button>
+              <button id="refuse" (click)="openPopups()">Refusé</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  @if(ispopupVisible === true){
+  <app-pop-ups (close)="closePopups($event)"></app-pop-ups>
+  }
+</div>

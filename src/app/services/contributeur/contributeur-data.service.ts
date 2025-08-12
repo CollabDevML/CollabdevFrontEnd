@@ -19,4 +19,5 @@ export class ContributeurDataService {
   uploadCV(file: File,nomFichier:string): Observable<any> {
     return this.data.uploadFile(Env.UPLOAD_URL, file,nomFichier,"CV");
   }
+
 }
