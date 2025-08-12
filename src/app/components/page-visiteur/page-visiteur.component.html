@@ -15,14 +15,14 @@
     <div class="recherche">
       <div class="conteneurinput">
         <i class="fas fa-search search-icon"></i>
-        <input type="text" placeholder="Recherche par ici ..." />
+        <input type="text" placeholder="Recherche par ici ..." [(ngModel)]="recherche", (input)="search()"/>
       </div>
       <button class="bouton1" (click)="changebouton('A')" [class.changecouleur]=" boutonactive === 'A'"> <i class="ri-lightbulb-flash-line "></i>Idées de projet</button>
       <button class="bouton2" (click)="changebouton('B') " [class.changecouleur]=" boutonactive === 'B'"><i class="ri-code-box-line "></i>projets</button>
     </div>
     @if(boutonactive === 'A'){
     @if (!messageerreur) {
-  @for (ideeprojet of listeideeprojet; track ideeprojet.id) {
+  @for (ideeprojet of listeideeprojetfilter; track ideeprojet.id) {
     <div class="conteneurideeprojet">
       <div class="ideeprojet">
         <div class="titre">{{ ideeprojet.titre }}</div>
