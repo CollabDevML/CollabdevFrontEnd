@@ -117,7 +117,7 @@ export const routes: Routes = [
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent},
-  { path: 'formulaireProjet', component:FormulaireProjetComponent}
+  { path: 'formulaireProjet', component:FormulaireProjetComponent},
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: '**', component: PageNotFoundComponent }
