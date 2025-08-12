@@ -5,6 +5,7 @@
     width: 100%;
     background-color: #e0dddd;
     position: fixed;
+    margin-top: 60px;
 }
 .colonneGauche{
     display: flex;

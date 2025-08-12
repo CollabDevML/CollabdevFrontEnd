@@ -35,27 +35,22 @@ import { Contributeurs2Component } from './components/contributeurs2/contributeu
 import { ProjetgestionnairedetailComponent } from './components/projetgestionnairedetail/projetgestionnairedetail.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
-
-
+import { IdeesProjetComponent } from './components/idees-projet/idees-projet.component';
 import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/formulaire-projet/formulaire-projet.component';
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 
 export const routes: Routes = [
   {
-    path: '', redirectTo: 'page-visiteur', pathMatch: 'full'
-
+    path: '',
+    redirectTo: 'accueil',
+    pathMatch: 'full',
   },
 
-  { path: 'header', component: HeaderComponent },
-  { path: 'sidebar', component: SideBarComponent },
-  { path: 'footer', component: FooterComponent },
-  { path: 'contributeur', component: ContributeurComponent },
-  { path: 'contributeurs', component: ContributeurssComponent },
-  { path: 'contributeurss', component: Contributeurs1Component },
-  { path: 'contributeursss', component: Contributeurs2Component },
-  {path:'page-visiteur',component:PageVisiteurComponent},
-
-  {path: 'login',component:LoginComponent},
+  { path: 'page-visiteur', component: PageVisiteurComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'accueil', component: AccueilComponent},
+  { path: 'idees-projet', component: IdeesProjetComponent},
+  { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent},
 
   //Les routes concernants l'inscription :
   {path: 'inscription',component:InscriptionComponent,children:[
@@ -69,17 +64,18 @@ export const routes: Routes = [
 
 
   //Les routes pour le Porteur de projet
-  {path:"porteur_projet",component:IndexPorteurProjetComponent, children:[
-    {path:"",component:AccueilComponent},
-    {path:"accueil",component:AccueilComponent},
-    {path:"mes_projets",component:MesIdeeProjetComponent},
-    {path:"mes_favories",component:ProjetSuiviComponent},
-    {path:"mes_idees",component:ListeIdeeProjetComponent},
-    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
-    {path:"**",redirectTo:""}
-
-  ]},
-
+  {
+    path: 'porteur_projet',
+    component: IndexPorteurProjetComponent,
+    children: [
+      { path: '', component: AccueilComponent },
+      { path: 'accueil', component: AccueilComponent },
+      { path: 'mes_projets', component: MesIdeeProjetComponent },
+      { path: 'mes_favories', component: ProjetSuiviComponent },
+      { path: 'mes_idees', component: ListeIdeeProjetComponent },
+      { path: '**', redirectTo: '' },
+    ],
+  },
 
   //Les routes pour le Contributeur :
   {path:"contributeur",component:IndexContributeurComponent,children:[
