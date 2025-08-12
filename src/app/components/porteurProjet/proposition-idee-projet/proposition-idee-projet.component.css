@@ -1,49 +1,7 @@
-/* === Layout global === */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f2f5;
-}
-
-.layout-container {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* === Sidebar === */
-app-side-bar {
-  width: 180px;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1000;
-}
-
-/* === Header (si utilisé) === */
-app-header {
-  position: fixed;
-  top: 0;
-  left: 250px;
-  right: 0;
-  height: 60px;
-  background-color: #fff;
-  z-index: 999;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
 /* === Contenu principal === */
 .content-area {
-  margin-left: 250px;
   padding: 2rem;
-  width: calc(100% - 250px);
+  width: fit-content;
   margin-top: 60px; /* si header présent */
   box-sizing: border-box;
 }
@@ -55,19 +13,19 @@ app-header {
   background-color: #334DAA;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(51, 77, 170, 0.5);
-  overflow: hidden;
+  /* overflow: hidden; */
   max-width: 900px;
   width: 100%;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   position: relative;
 }
 .main-content {
   flex: 1;
   padding: 2rem;
-  margin-left: 220px; /* pour éviter que ça passe sous la sidebar */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  margin-bottom: 5%;
 }
 
 

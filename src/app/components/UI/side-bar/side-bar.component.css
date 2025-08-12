@@ -9,13 +9,13 @@
 .sidebar{
     width: 180px;
     height: calc(100vh - 100px);
-    position: absolute;
-    top: 62px;
+    position: fixed;
+    top: 60px;
     background-color: white;
-    gap: 80px;
+    gap: 30px;
     transition: all 0.3s ease;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 0;
 }
 
 /* État replié de la sidebar */
@@ -26,7 +26,7 @@
 /* Section haute de la sidebar */
 .haut{
     margin: 0 0 0 10px;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
 }
 
 /* Style des paragraphes (textes) */
@@ -116,8 +116,9 @@ p {
 
 /* Section basse de la sidebar */
 .enbas{
-    margin: 310px 0 6px 10px;
-    padding: 1rem 0;
+    /* float: inline-end; */
+    margin: 130px 0 6px 10px;
+    /* padding: 1rem 0; */
 }
 
 /* Élément de navigation 5 - Profil */
@@ -159,7 +160,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 180px;
     transform: translateY(-50%);
@@ -187,19 +188,19 @@ p {
 
 /* Styles pour l'état replié - Section haute */
 .sidebar.replié .haut {
-    margin: 0 0 0 10px; 
+    margin: 0 0 0 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 08px; 
+    gap: 8px;
 }
 
 /* Styles pour l'état replié - Section basse */
 .sidebar.replié .enbas {
-    margin: 310px 0 6px 10px; 
+    margin: 310px 0 6px 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     gap: 08px;
 }
 
@@ -209,8 +210,8 @@ p {
 .sidebar.replié .nav4,
 .sidebar.replié .nav5,
 .sidebar.replié .nav6 {
-    justify-content: flex-start; 
-    gap: 08px; 
+    justify-content: flex-start;
+    gap: 08px;
     margin: 6px 0 0 0;
 }
 
@@ -221,23 +222,23 @@ p {
     .sidebar {
         width: 200px;
     }
-    
+
     .sidebar.replié {
         width: 70px;
     }
-    
+
     .btn {
         left: 200px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 70px;
     }
-    
+
     p {
         font-size: 14px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 1rem 0.75rem;
     }
@@ -248,15 +249,15 @@ p {
     .sidebar {
         width: 180px;
     }
-    
+
     .sidebar.replié {
         width: 60px;
     }
-    
+
     .btn {
         left: 180px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 60px;
     }
@@ -267,23 +268,23 @@ p {
     .sidebar {
         width: 160px;
     }
-    
+
     .sidebar.replié {
         width: 55px;
     }
-    
+
     .btn {
         left: 160px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 55px;
     }
-    
+
     p {
         font-size: 11px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 0.5rem 0.25rem;
     }
@@ -296,30 +297,30 @@ p {
         top: 60px;
         height: calc(100vh - 60px);
     }
-    
+
     .sidebar.replié {
         width: 50px;
     }
-    
+
     .btn {
         left: 140px;
         width: 28px;
         height: 28px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 50px;
     }
-    
+
     p {
         font-size: 10px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 0.5rem 0.25rem;
         gap: 6px;
     }
-    
+
     .enbas {
         margin: 250px 0 6px 10px;
     }
@@ -332,47 +333,47 @@ p {
         top: 60px;
         height: calc(100vh - 60px);
     }
-    
+
     .sidebar.replié {
         width: 45px;
     }
     .selector{
         font-size: none;
     }
-    
+
     .btn {
         left: 120px;
         width: 26px;
         height: 26px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 45px;
     }
-    
+
     p {
         font-size: 9px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 0.4rem 0.2rem;
         gap: 4px;
     }
-    
+
     .haut {
         margin: 0 0 0 8px;
         padding: 0.5rem 0;
     }
-    
+
     .enbas {
         margin: 200px 0 6px 8px;
         padding: 0.5rem 0;
     }
-    
+
     .sidebar.replié .haut {
         margin: 0 0 0 8px;
     }
-    
+
     .sidebar.replié .enbas {
         margin: 200px 0 6px 8px;
     }
@@ -385,44 +386,44 @@ p {
         top: 60px;
         height: calc(100vh - 60px);
     }
-    
+
     .sidebar.replié {
         width: 40px;
     }
-    
+
     .btn {
         left: 100px;
         width: 24px;
         height: 24px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 40px;
     }
-    
+
     p {
         font-size: 8px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 0.3rem 0.15rem;
         gap: 3px;
     }
-    
+
     .haut {
         margin: 0 0 0 6px;
         padding: 0.4rem 0;
     }
-    
+
     .enbas {
         margin: 180px 0 6px 6px;
         padding: 0.4rem 0;
     }
-    
+
     .sidebar.replié .haut {
         margin: 0 0 0 6px;
     }
-    
+
     .sidebar.replié .enbas {
         margin: 180px 0 6px 6px;
     }
@@ -435,44 +436,44 @@ p {
         top: 60px;
         height: calc(100vh - 60px);
     }
-    
+
     .sidebar.replié {
         width: 35px;
     }
-    
+
     .btn {
         left: 80px;
         width: 22px;
         height: 22px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 35px;
     }
-    
+
     p {
         font-size: 7px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 0.25rem 0.1rem;
         gap: 2px;
     }
-    
+
     .haut {
         margin: 0 0 0 4px;
         padding: 0.3rem 0;
     }
-    
+
     .enbas {
         margin: 150px 0 6px 4px;
         padding: 0.3rem 0;
     }
-    
+
     .sidebar.replié .haut {
         margin: 0 0 0 4px;
     }
-    
+
     .sidebar.replié .enbas {
         margin: 150px 0 6px 4px;
     }
@@ -485,44 +486,44 @@ p {
         top: 60px;
         height: calc(100vh - 60px);
     }
-    
+
     .sidebar.replié {
         width: 30px;
     }
-    
+
     .btn {
         left: 70px;
         width: 20px;
         height: 20px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 30px;
     }
-    
+
     p {
         font-size: 6px;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         padding: 0.2rem 0.05rem;
         gap: 1px;
     }
-    
+
     .haut {
         margin: 0 0 0 3px;
         padding: 0.2rem 0;
     }
-    
+
     .enbas {
         margin: 120px 0 6px 3px;
         padding: 0.2rem 0;
     }
-    
+
     .sidebar.replié .haut {
         margin: 0 0 0 3px;
     }
-    
+
     .sidebar.replié .enbas {
         margin: 120px 0 6px 3px;
     }
@@ -544,12 +545,12 @@ p {
         z-index: 1000;
         box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     }
-    
+
     .sidebar.replié {
         width: 100%;
         height: 50px;
     }
-    
+
     .haut {
         display: flex;
         flex-direction: row;
@@ -559,7 +560,7 @@ p {
         flex: 1;
         justify-content: center;
     }
-    
+
     .enbas {
         display: flex;
         flex-direction: row;
@@ -569,7 +570,7 @@ p {
         flex: 1;
         justify-content: center;
     }
-    
+
     .nav1, .nav2, .nav3, .nav4, .nav5, .nav6 {
         flex-direction: column;
         align-items: center;
@@ -577,21 +578,21 @@ p {
         margin: 0;
         gap: 2px;
     }
-    
+
     p {
         font-size: 8px;
         text-align: center;
     }
-    
+
     .sidebar.replié p {
         opacity: 1;
         width: auto;
     }
-    
+
     .btn {
-        display: none; 
+        display: none;
     }
-    
+
     /* Ajuster l'espacement pour éviter le chevauchement avec le header */
     .sidebar {
         top: calc(100vh - 60px);
@@ -605,25 +606,25 @@ p {
         top: 60px;
         height: calc(100vh - 60px);
     }
-    
+
     .sidebar.replié {
         width: 35px;
     }
-    
+
     .btn {
         left: 80px;
         width: 22px;
         height: 22px;
     }
-    
+
     .sidebar.replié + .btn {
         left: 35px;
     }
-    
+
     .enbas {
         margin: 120px 0 6px 4px;
     }
-    
+
     .sidebar.replié .enbas {
         margin: 120px 0 6px 4px;
     }
