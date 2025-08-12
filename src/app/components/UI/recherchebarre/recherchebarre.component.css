@@ -17,6 +17,11 @@
   justify-content: space-between;
   padding: 0 2rem;
   gap: 1rem;
+  position:fixed;
+  top: 0;
+  background-attachment: fixed;
+  background-color: #fff;
+  width: 100%;
 }
 
 
@@ -46,7 +51,7 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .contenu-bloc {
@@ -66,7 +71,7 @@
   border: 1px solid #000000;
   border-radius: 25px;
   padding: 05px 05px;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .search-icon {
@@ -218,11 +223,11 @@
     max-width: 1400px;
     padding: 0 3rem;
   }
-  
+
   .contenu-bloc {
     max-width: 700px;
   }
-  
+
   .logo-image {
     height: 45px;
   }
@@ -241,11 +246,11 @@
     padding: 0 1.5rem;
     gap: 0.75rem;
   }
-  
+
   .separator {
     margin: 0 15px;
   }
-  
+
   .section-droite {
     min-width: 90px;
   }
@@ -329,64 +334,64 @@
     height: auto;
     padding: 0.5rem 0;
   }
-  
+
   .barreRecherche {
     flex-direction: column;
     height: auto;
     gap: 0.75rem;
     padding: 0 0.75rem;
   }
-  
+
   .logo-section {
     order: 1;
   }
-  
+
   .logo-image {
     height: 32px;
   }
-  
+
   .recherche-section {
     order: 2;
     width: 100%;
   }
-  
+
   .contenu-bloc {
     flex-direction: column;
     gap: 0.5rem;
     max-width: 100%;
   }
-  
+
   .encapsuleur {
     width: 100%;
     padding: 8px 12px;
   }
-  
+
   .dans-recherche {
     font-size: 16px;
   }
-  
+
   .element-recheche {
     width: 100%;
     justify-content: center;
     gap: 0.5rem;
   }
-  
+
   .element-btn {
     width: 36px;
     height: 36px;
   }
-  
+
   .button-recherche {
     flex: 1;
     max-width: 120px;
     padding: 10px 16px;
     font-size: 14px;
   }
-  
+
   .separator {
     display: none;
   }
-  
+
   .section-droite {
     order: 3;
     flex-direction: row;
@@ -394,11 +399,11 @@
     gap: 1rem;
     width: 100%;
   }
-  
+
   .copyright-text {
     font-size: 11px;
   }
-  
+
   .contact-link {
     font-size: 11px;
   }
@@ -410,68 +415,68 @@
     height: auto;
     padding: 0.5rem 0;
   }
-  
+
   .barreRecherche {
     flex-direction: column;
     height: auto;
     gap: 0.5rem;
     padding: 0 0.5rem;
   }
-  
+
   .logo-section {
     order: 1;
   }
-  
+
   .logo-image {
     height: 28px;
   }
-  
+
   .recherche-section {
     order: 2;
     width: 100%;
   }
-  
+
   .contenu-bloc {
     flex-direction: column;
     gap: 0.5rem;
     max-width: 100%;
   }
-  
+
   .encapsuleur {
     width: 100%;
     padding: 6px 10px;
   }
-  
+
   .dans-recherche {
     font-size: 14px;
   }
-  
+
   .dans-recherche::placeholder {
     font-size: 14px;
   }
-  
+
   .element-recheche {
     width: 100%;
     justify-content: center;
     gap: 0.25rem;
   }
-  
+
   .element-btn {
     width: 32px;
     height: 32px;
   }
-  
+
   .button-recherche {
     flex: 1;
     max-width: 100px;
     padding: 8px 12px;
     font-size: 13px;
   }
-  
+
   .separator {
     display: none;
   }
-  
+
   .section-droite {
     order: 3;
     flex-direction: column;
@@ -479,16 +484,16 @@
     gap: 0.5rem;
     width: 100%;
   }
-  
+
   .notification-container {
     order: 1;
   }
-  
+
   .copyright-text {
     order: 2;
     font-size: 10px;
   }
-  
+
   .contact-link {
     order: 3;
     font-size: 10px;
@@ -501,68 +506,68 @@
     height: auto;
     padding: 0.25rem 0;
   }
-  
+
   .barreRecherche {
     flex-direction: column;
     height: auto;
     gap: 0.5rem;
     padding: 0 0.25rem;
   }
-  
+
   .logo-section {
     order: 1;
   }
-  
+
   .logo-image {
     height: 24px;
   }
-  
+
   .recherche-section {
     order: 2;
     width: 100%;
   }
-  
+
   .contenu-bloc {
     flex-direction: column;
     gap: 0.25rem;
     max-width: 100%;
   }
-  
+
   .encapsuleur {
     width: 100%;
     padding: 4px 8px;
   }
-  
+
   .dans-recherche {
     font-size: 13px;
   }
-  
+
   .dans-recherche::placeholder {
     font-size: 13px;
   }
-  
+
   .element-recheche {
     width: 100%;
     justify-content: center;
     gap: 0.25rem;
   }
-  
+
   .element-btn {
     width: 28px;
     height: 28px;
   }
-  
+
   .button-recherche {
     flex: 1;
     max-width: 80px;
     padding: 6px 8px;
     font-size: 12px;
   }
-  
+
   .separator {
     display: none;
   }
-  
+
   .section-droite {
    width: 100%;
    display: flex;
@@ -571,11 +576,11 @@
     gap: 20px;
     justify-content: flex-end;
   }
-  
+
   .copyright-text {
     font-size: 9px;
   }
-  
+
   .contact-link {
     font-size: 9px;
   }
@@ -877,30 +882,30 @@
     max-height: calc(100vh - 60px);
     border-radius: 0;
   }
-  
+
   .suggestions,
   .results-container {
     padding: 0.75rem;
   }
-  
+
   .result-item {
     padding: 0.5rem;
   }
-  
+
   .result-icon {
     width: 32px;
     height: 32px;
     font-size: 1rem;
   }
-  
+
   .result-title {
     font-size: 0.9rem;
   }
-  
+
   .result-description {
     font-size: 0.8rem;
   }
-  
+
   .result-type {
     font-size: 0.7rem;
   }

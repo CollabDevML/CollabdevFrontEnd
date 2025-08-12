@@ -1,14 +1,14 @@
 #main{
     display: flex;
     flex-direction: row;
-} 
+}
 .sous-titre{
     color:#334DAA;
 }
 .lateral-nav{
     width: 10%;
-    
-    
+
+
         position: fixed;
         top: 0;
         left: 0;
@@ -16,8 +16,8 @@
         background-color: white; /* pour éviter qu’on voie le contenu derrière */
         z-index: 1000; /* au-dessus des autres éléments */
         transition: width 0.3s ease; /* pour animation fluide */
-      
-      
+
+
 }
 .lateral-nav.lateral-close{
     width: 4.5%;
@@ -53,13 +53,13 @@
     margin-right: 116.914px;
 }
 
-#en-tete img 
+#en-tete img
 {
     width: clamp(100px, 25vw, 120px);
     height: auto;
     box-shadow: 0px 0px 59px 49px rgba(255, 255, 255, 0.15);
 }
-    
+
 
 #contributions{
     display: flex;
@@ -82,7 +82,7 @@
     justify-content: space-between;
     padding-top: 1rem;
   }
-  
+
   .icon-wrapper {
     position: absolute;
     top: -12px;
@@ -97,12 +97,12 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .icon-wrapper i {
     color: #334DAA;
     font-size: 24px;
   }
-  
+
   h5 {
     font-size: 0.9rem;
     color: #444;
@@ -110,7 +110,7 @@
     text-align: right;
     padding-right: 1rem;
   }
-  
+
   /* On centre verticalement ce bloc via flex dans le parent */
   .statistiques p[ngStyle] {
     display: flex;
@@ -119,14 +119,14 @@
     justify-content: center;
     flex-grow: 1;
   }
-  
+
   /* Style du chiffre "5" */
   #en-cours {
     font-weight: bold;
     font-size: 2.5rem;
     color: black;
   }
-  
+
   /* Bloc des "10 Réalisés" */
   .statistiques p:last-of-type {
     display: flex;
@@ -136,7 +136,7 @@
     margin: 0;
     padding: 0;
   }
-  
+
   #realise {
     width: 100%;
     height: 2px;
@@ -144,7 +144,7 @@
     border: none;
     margin: 4px 0;
   }
-  
+
 .contribution-card{
     width: 70%;
     margin-right: 5%;
@@ -152,7 +152,7 @@
      background-color: white;
     border: 0.1 solid rgb(214, 209, 209);
     border-radius: 5px;
-    box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.2); 
+    box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.2);
 
 }
 .statistiques h5{
@@ -166,7 +166,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2.5%;
-    
+
 }
 
 
@@ -184,12 +184,12 @@
  flex-direction: column;
  border-top: 1px solid #E9E0E0;
  border-bottom: 1px solid #E9E0E0;
- 
+
  height: auto;
  padding: 0 1.5rem;
  box-sizing: border-box;
-  box-shadow:  0 5px 10px rgba(0,0,0,0.2), 
-              0 -5px 10px rgba(0,0,0,0.2);  
+  box-shadow:  0 5px 10px rgba(0,0,0,0.2),
+              0 -5px 10px rgba(0,0,0,0.2);
 }
 
 .card-content{
@@ -215,12 +215,12 @@
     display: grid;
     grid-template-columns: 75% 1fr;
     grid-template-rows: 1fr 1fr;
-    
+
 }
 .side-bar-open.side-bar-close #contributions{
     grid-column: 1;
   grid-row: 1;
-  
+
 }
 .side-bar-open.side-bar-close #projet-recents{
     grid-column: 1;
@@ -228,7 +228,7 @@
 }
 .side-bar-open.side-bar-close #calendrier{
   grid-column: 2;
-  grid-row: 1 / 3;  
+  grid-row: 1 / 3;
 }
 #calendrier{
     display: flex;
@@ -237,10 +237,11 @@
     box-shadow:  0 5px 10px rgba(0,0,0,0.2);
     border-radius: 10px;
     height: 95%;
-    margin-top: auto; 
+    margin-top: auto;
     margin-bottom: auto;
     margin-left: 5px;
-    
+    z-index: 0;
+
 }
 ::ng-deep .fc {
   background-color: #f8f9fa;
@@ -278,7 +279,7 @@ thead tr {
     background-color: #334DAA;
     color: white;
   }
-  
+
   thead th {
     padding: 12px;
     border-bottom: none; }
@@ -292,13 +293,13 @@ thead tr {
 }
 #demande-contribution tbody tr {
     text-align: center;
-    border-bottom: 1px solid #d2cccc; 
+    border-bottom: 1px solid #d2cccc;
 }
 #demande-contribution tbody tr td{
     padding: 20px;
 }
 #demande-contribution tbody tr:last-child {
-    border-bottom: none; 
+    border-bottom: none;
 }
 
 .actions{
