@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="conteneur">
+   
+    <div class="carte-profil">
+        <div class="entete-profil">
+            
+            <i class="ri-user-fill avatar-profil" style="font-size: 50px; color: white;"></i>
+            <div class="info-profil">
+                <h1>Nianaboli</h1>
+                <div class="sous-titre-profil"> <h2> Mme Dembelle Fatoumata Kaloga </h2> </div>
+                <div class="localisation-profil">
+                    <p style="color: #23E311;"><b>Porteurs d'Idées</b></p>
+                    <p>Le 06/07/2024 à 20h01</p></div>
+            </div>
+        </div>
+        
+        <div class="description-profil1">
+            <h3> Domaine : Collaboration, Bénévolat, Informatique, Développement. </h3>
+        </div>
+        
+        <div class="description-profil">
+            Nianaboli est une application console conçue pour permettre aux utilisateurs de gérer et de partager efficacement leurs dépenses collaboratives.
+        </div>
+        
+        <div class="statistiques-profil">
+            <i class="ri-edit-box-line" style="font-size: 25px;"></i>
+            <a href="#" class="lien-profil"><b>Voir le cahier des charges!</b></a>
+            <span class="nombre-statistiques">235</span>
+            <i class="ri-hand-heart-line icone-statistiques"></i>
+        </div>
+        
+    </div>
+
+
+    <div class="section-commentaires">
+        <h2 class="titre-commentaires">Commentaires</h2>
+        
+        <div class="commentaire">
+           
+            <i class="ri-user-fill avatar-commentaire "></i>
+            <div class="contenu-commentaire1">
+                <div class="entete-commentaire">
+                    <div>
+                        <span class="auteur-commentaire">Mohamed Diop</span>
+                        <span class="badge-commentaire">Professionnel</span>
+                    </div>
+                    <a href="#" class="actions-commentaire">Porteurs d'idées</a>
+                </div>
+                <div class="texte-commentaire">
+                    J'aimerais me joindre à ce projet et je suis disponible pour toute collaboration. Je suis un développeur mobile avec une expérience dans React Native et Flutter.
+                </div>
+                <div class="date-commentaire">Le 06/07/2024 à 20h01</div>
+            </div>
+        </div>
+        @for(commentaire of listecommentaire.commentaireIdeeProjets;track listecommentaire.id){
+        <div class="commentaire" >
+            <i class="ri-user-fill avatar-commentaire"></i>
+            <div class="contenu-commentaire">
+                <div class="entete-commentaire">
+                    <div>
+                        <span class="auteur-commentaire">{{commentaire.utilisateur.prenom+'  '+commentaire.utilisateur.nom}}</span>
+                        <span class="badge-commentaire">Contributeur</span>
+                    </div>
+                    <a href="#" class="actions-commentaire">Contributeurs</a>
+                </div>
+                <div class="texte-commentaire">
+                   {{commentaire.contenu}}
+                </div>
+                <div class="date-commentaire">Le{{commentaire.datePublication|date:'dd/MM/yyyy'}} à {{commentaire.datePublication|date:'HH\'h\'mm'}}</div>
+            </div>
+        </div>}
+
+      
+                   
+
+       
+        
+
+        
+        </div>
+    </div>
+

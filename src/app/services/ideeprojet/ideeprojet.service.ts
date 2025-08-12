@@ -9,7 +9,7 @@ import { Ideeprojet } from '../../models/ideeprojet/ideeprojet';
 export class IdeeprojetService {
 
   url='http://localhost:8180/utilisateurs/idees-projet/v2'
-
+  donneeIdeeProjet!:Ideeprojet;
   constructor(private http:HttpClient){}
   Recupererideeprojet():Observable<Ideeprojet[]>{
     return this.http.get<Ideeprojet[]>(this.url);

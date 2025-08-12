@@ -122,9 +122,10 @@ export class PageVisiteurComponent {
     }
   }
 }
-cliquezMoi(donnee:any){
-  this.projetservice.donneeIdeeProjet = donnee;
-  this.route.navigate([""])
+voirplus(donnee:Ideeprojet){
+  this.ideeprojetservice.donneeIdeeProjet = donnee;
+  console.log("donnée cliquer :", donnee)
+  this.route.navigate(['/detailCommentaire'])
 }
 
 
