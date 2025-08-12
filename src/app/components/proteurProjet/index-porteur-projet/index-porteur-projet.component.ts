@@ -16,14 +16,8 @@ import { LoginService } from '../../../services/login.service';
 @Component({
   selector: 'app-index-porteur-projet',
   imports: [
-    // HeaderComponent,
-    FooterComponent,
     RouterOutlet,
     CommonModule,
-    RecherchebarreComponent,
-    // SideBarComponent
-    RouterLink,
-    RouterLinkActive,
 ],
   templateUrl: './index-porteur-projet.component.html',
   styleUrl: './index-porteur-projet.component.css'

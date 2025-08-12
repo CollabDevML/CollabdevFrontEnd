@@ -25,6 +25,36 @@ export class SidebarMenuGestionnaireComponent {
   }
   goToMenu(menu: any): void {
     this.currentMenu = menu;
+    switch(menu) {
+      case 1:  {
+        this.router.navigate(['gestionnaire/accueil'])
+        break;
+      }
+      case 2: {
+        this.router.navigate(['gestionnaire/mes_idees']);
+        break;
+      }
+      case 3: {
+        this.router.navigate(['gestionnaire/mon_espace'])
+        break;
+      }
+      case 4: {
+        this.router.navigate(['gestionnaire/nouveau_projet'])
+        break;
+      }
+      case 5:{
+        break;
+      }
+      case 6: {
+        // this.router.navigate(['gestionnaire/mes_proj'])
+        break;
+      }
+      case 7:{
+        this.router.navigate(['gestionnaire/nouvelle_idee'])
+        break;
+      }
+    }
+
   }
   logout(): void {
     localStorage.removeItem("isExpanded")

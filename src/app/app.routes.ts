@@ -89,6 +89,12 @@ export const routes: Routes = [
   //Les routes pour le Gestionnaire :
   {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
     {path:"",component:AccueilComponent},
+    {path:"accueil",component:AccueilComponent},
+    {path:"mes_idees",component:MesIdeeProjetComponent},
+    {path:"mon_espace",component:DashboardGestionnaireComponent},
+    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
+    {path:"nouveau_projet",component:FormulaireProjetComponent},
+
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}
