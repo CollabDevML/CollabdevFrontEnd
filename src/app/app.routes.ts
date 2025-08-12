@@ -31,6 +31,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/formulaire-projet/formulaire-projet.component';
 export const routes: Routes = [
   {
     path: '', redirectTo: 'page-visiteur', pathMatch: 'full'
@@ -81,19 +82,6 @@ export const routes: Routes = [
     {path:"**",redirectTo:""}
   ]},
 
-  // {path:'dashboard', component:DashboardGestionnaireComponent},
-  {
-    path:'card-contribution', component: CardcontributionComponent
-  },
-  {path: 'header-barre', component:RecherchebarreComponent},
-  {path:'sidebargestionnaire', component: SidebargestionnaireComponent},
-  {path:'cardprojet', component: CardprojetComponent},
-  {path: 'popup', component: PopUpsComponent},
-  { path: 'accueil', component: AccueilComponent },
-
-  {path:"**",component:PageNotFoundComponent},
-
-
     {path:'dashboard', component:DashboardGestionnaireComponent},
     {path:'card-contribution', component: CardcontributionComponent},
     {path: 'header-barre', component:RecherchebarreComponent},
@@ -102,10 +90,9 @@ export const routes: Routes = [
     {path: 'popup', component: PopUpsComponent},
     { path: 'accueil', component: AccueilComponent },
 
-  { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
-  { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
+
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
-  { path: 'porteurProjetSuivi', component:ProjetSuiviComponent},
-  { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent}
+  { path: 'formulaireProjet', component:FormulaireProjetComponent},
+  { path: '**', component: PageNotFoundComponent }
 ];

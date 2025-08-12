@@ -61,6 +61,7 @@ export class SidebarMenuPorteurComponent {
     localStorage.removeItem("user_role")
     localStorage.removeItem("user_id")
     localStorage.removeItem("chemin")
+    window.location.reload()
     this.router.navigate(['login'])
   }
 

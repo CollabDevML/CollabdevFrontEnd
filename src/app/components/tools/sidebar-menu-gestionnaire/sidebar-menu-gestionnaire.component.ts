@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-menu-gestionnaire',
@@ -17,6 +18,8 @@ export class SidebarMenuGestionnaireComponent {
   } as const;
   currentMenu: any = 1;
 
+  public constructor(private router:Router) {}
+
   collapseSideBar(): void {
     localStorage.setItem('isExpanded', String(Number(!this.getIsExpanded())));
   }
@@ -24,8 +27,14 @@ export class SidebarMenuGestionnaireComponent {
     this.currentMenu = menu;
   }
   logout(): void {
-
+    localStorage.removeItem("isExpanded")
+    localStorage.removeItem("user_role")
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("chemin")
+    window.location.reload()
+    this.router.navigate(['login'])
   }
+
 
   getIsExpanded(): boolean {
     return Number(localStorage.getItem('isExpanded')) === 1;
