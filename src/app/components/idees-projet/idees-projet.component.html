@@ -1,0 +1,34 @@
+<div class="principal-container" [class.isExpanded]="isExpanded">
+    <div class="left-container">
+        <div class="ideas-text-container">
+            <h1 class="ideas-text">Mes idées de projet</h1>
+            <div class="line"></div>
+            <div class="sortby-container">
+                <select name="sortby" id="sortby" class="sortby">
+                    <option value="recent">Récentes</option>
+                    <option value="old">Anciens</option>
+                </select>
+            </div>
+        </div>
+        <div class="ideas-container">
+            <div class="idea">
+                <div class="idea-tiles-container">
+                    <h2>CollabDev</h2>
+                </div>
+                <div class="idea-description-container">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum veritatis quas repellat hic consectetur neque eos in suscipit. Iure id aliquid soluta! Ad sapiente numquam repellat consequuntur repudiandae vel sint.
+                </div>
+                <div class="idea-cdc-container"></div>
+                <div class="idea-comments-container"></div>
+            </div>
+        </div>
+    </div>
+    <div class="right-container">
+        <h1 class="right-first-text" [class.expanded]="isExpanded">Et si votre idée devenait le prochain grand projet?</h1>
+        <img src="idees-projet.png" alt="Image d'un utilisateur qui propose des idées" class="idea-image" [class.expanded]="isExpanded">
+        <p class="right-second-text" [class.expanded]="isExpanded">Partagez votre idée, et ensemble, faisons-en quelque chose de concret et d'impactant.</p>
+        <div class="propose-button" [class.expanded]="isExpanded">
+            <p style="color: white; font-size: 14pt;">Proposer une idée de projet</p>
+        </div>
+    </div>
+</div>

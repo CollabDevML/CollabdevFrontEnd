@@ -25,15 +25,18 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+import { IdeesProjetComponent } from './components/idees-projet/idees-projet.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'page-visiteur',
+    redirectTo: 'accueil',
     pathMatch: 'full',
   },
-  { path: 'page-visiteur', component: PageVisiteurComponent },
 
+  { path: 'page-visiteur', component: PageVisiteurComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'accueil', component: AccueilComponent},
+  { path: 'idees-projet', component: IdeesProjetComponent},
 
   //Les routes concernants l'inscription :
   {
