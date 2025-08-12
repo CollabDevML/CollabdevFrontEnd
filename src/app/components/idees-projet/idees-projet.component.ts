@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { IdeesProjetService } from '../../services/idees-projet.service';
+import { ResponseIdeeProjet2 } from '../../models/ideeprojet/response-idee-projet2';
 
 @Component({
   selector: 'app-idees-projet',
@@ -9,10 +11,31 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './idees-projet.component.html',
   styleUrl: './idees-projet.component.css'
 })
-export class IdeesProjetComponent {
+export class IdeesProjetComponent implements OnInit{
+
+  userId: number = 0;
+
+  public ideesProjet: ResponseIdeeProjet2[] = []
+
+  public constructor(private ideesProjetService: IdeesProjetService) {}
+
+  ngOnInit(): void {
+    this.userId = Number(localStorage.getItem('user_id'));
+    if(this.userId !== 0) {
+      this.ideesProjetService.getUserIdeas(this.userId).subscribe(
+        {
+          next: (data: ResponseIdeeProjet2[]) => {
+            this.ideesProjet = data
+          },
+          error: (error) => {
+            console.log(error)
+          }
+        }
+      );
+    }
+  }
 
   public get isExpanded(): boolean {
     return Number(localStorage.getItem('isExpanded')) === 1;
   }
-
 }

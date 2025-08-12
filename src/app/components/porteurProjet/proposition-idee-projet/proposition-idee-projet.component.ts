@@ -108,7 +108,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
             alert('Idée de projet envoyée avec succès !');
-            this.route.navigateByUrl('/porteur_projet/mes_idees');
+            this.route.navigateByUrl('/idees-projet');
             this.resetForm();
           },
           error: (err) => {
