@@ -18,9 +18,11 @@ export class SidebarMenuPorteurComponent {
     LIST:6,
     ADD:7,
   } as const;
-  currentMenu: any = 1;
+  currentMenu: any = 2;
 
-  public constructor(private router:Router) {}
+  public constructor(private router:Router) {
+    this.goToMenu(this.currentMenu)
+  }
 
   collapseSideBar(): void {
     localStorage.setItem('isExpanded', String(Number(!this.getIsExpanded())));
@@ -29,11 +31,11 @@ export class SidebarMenuPorteurComponent {
     this.currentMenu = menu;
     switch(menu) {
       case 1:  {
-        this.router.navigate(['porteur_projet/accueil'])
+        this.router.navigate(['/accueil'])
         break;
       }
       case 2: {
-        this.router.navigate(['porteur_projet/mes_idees']);
+        this.router.navigate(['/idees-projet']);
         break;
       }
       case 3: {
