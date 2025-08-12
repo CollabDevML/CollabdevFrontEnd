@@ -1,14 +1,12 @@
 <div id="main">
-  <div class="lateral-nav" [class.lateral-close]="!sidebarOpen">
-    <app-sidebargestionnaire
-      (AfficherSideBar)="changerEtatSidebar($event)"
-    ></app-sidebargestionnaire>
-  </div>
   <div class="dashboard" [class.long-dashboard]="!sidebarOpen">
+
     <div id="en-tete">
       <h3>
         Heureux de vous revoir
-        <span [ngStyle]="{ color: '#F6C434' }">{{gestionnaire.prenom}}  {{gestionnaire.nom}}</span><br />
+        <span [ngStyle]="{ color: '#F6C434' }"
+          >{{ user.prenom }} {{ user.nom }}</span
+        ><br />
         Gerer vos projets en toute simplicité
       </h3>
       <img src="/gestionnnairedashboard.png" alt="image" />
@@ -26,15 +24,15 @@
             @for (contributions of contributionsList; track $index) {
               <app-cardcontribution [contribution]="contributions"/>
             }
-            
+
           </div>
         </div>
         <div class="statistiques" [class.decale]="!sidebarOpen">
-  <div class="icon-wrapper">
-    <i class="ri-archive-stack-line"></i>
-  </div>
+          <div class="icon-wrapper">
+            <i class="ri-archive-stack-line"></i>
+          </div>
 
-  <h5>Projets</h5>
+          <h5>Projets</h5>
 
   <div class="en-cours">
     <span id="en-cours">{{nbreProjetsEnCours}}</span>
@@ -59,7 +57,7 @@
             <app-cardprojet [projet]="projet"></app-cardprojet>
           }
         </div>
-        
+
       </div>
 
       @if (sidebarOpen === false) {
@@ -103,5 +101,5 @@
   </div>
   @if(ispopupVisible === true){
     <app-pop-ups (close)="closePopups($event)"></app-pop-ups>
-  } 
+  }
 </div>

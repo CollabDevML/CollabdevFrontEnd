@@ -1,3 +1,5 @@
+import { NgClass, NgStyle } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { SidebargestionnaireComponent } from '../UI/sidebargestionnaire/sidebargestionnaire.component';
@@ -6,8 +8,11 @@ import { CardcontributionComponent } from '../UI/cardcontribution/cardcontributi
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { CalendarOptions } from '@fullcalendar/core/index.js';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { PopUpsComponent } from '../UI/pop-ups/pop-ups.component';
+import { DataService } from '../../services/data.service';
+import { GestionnaireDataService } from '../../services/gestionnaire/gestionnaire-data.service';
+import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestionnaire';
 import { DashboardgestionnaireServiceService } from '../../services/dashboardgestionnaire.service.service';
 import { Gestionnaire } from '../../models/gestionnaire/gestionnaire';
 import { Observable } from 'rxjs/internal/Observable';
@@ -22,24 +27,56 @@ import { DemandescontributionsService } from '../../services/demandescontributio
 @Component({
   selector: 'app-dashboard-gestionnaire',
   imports: [
+    NgStyle,
   NgStyle,
     SidebargestionnaireComponent,
     CardprojetComponent,
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
+    // SidebargestionnaireComponent,
+    // RouterOutlet
+],
     CommonModule
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',
 })
+export class DashboardGestionnaireComponent implements OnInit {
+  user!:ResponseGestionnaire;
+
+  constructor(
+    private data:DataService,
+    private dataG:GestionnaireDataService,
+    private route:Router
+  ){
+
+  }
+
+  ngOnInit(){
+    if (this.data.user_role == null || this.data.user_role == ""){
+      this.route.navigate(["login"]);
+    }
+    this.data.getDataUserById().subscribe({
+      next:(res)=> {
+        this.user = res;
+        console.log(res);
+      },
+      error:(err)=> {
+          console.warn(err);
+      },
+    });
+  }
+
+  sidebarOpen:boolean = true;
+  ispopupVisible:boolean = false
 export class DashboardGestionnaireComponent implements OnInit{
-  
+
   sidebarOpen:boolean = true;
   ispopupVisible:boolean = false;
   gestionnaire!: ResponseGestionnaire
   userId! : number|null;
-  userRole!: string|null; 
+  userRole!: string|null;
   projetsRecents!: projet[];
   nbreProjetsTermine:number = 0;
   nbreProjetsEnCours:number = 0;
@@ -63,36 +100,36 @@ export class DashboardGestionnaireComponent implements OnInit{
   getGestionnaire(){
     this.dashboardgestionnaireservices.getGestionnaire(this.userId!).subscribe({
       next:(result:any)=> {
-        
+
         this.gestionnaire = result
         console.log(result)
         //get the recents projets sort by date
         this.projetsRecents = [...this.gestionnaire.projets]
         .sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
         .slice(0, 4);
-        
+
         // Récupérer toutes les demandes de contributions NON validées de tous ces projets
     this.demandeContributions = this.projetsRecents
     .flatMap(projet => (projet.demandeContributions ?? [])
     .filter(demande => !demande.estValide)
     .map(demande => ({
       id: demande.id,
-      projetNom: projet.titre,         
-      contributeurNom: demande.contributeur.nom,  
+      projetNom: projet.titre,
+      contributeurNom: demande.contributeur.nom,
       dateEnvoi: demande.dateEnvoi,
-      ...demande       
+      ...demande
     })))
     .sort((a, b) => b.id - a.id);
-    
+
     //recupérer les contributions non validés
     this.contributionsList = this.projetsRecents
     .flatMap(projet => (projet.contributions ?? [])
     .filter(contributions => !contributions.estValide)
     .map(contributions => ({
       id: contributions.id,
-      nomProjet: contributions.projet.titre,         
-      nomContributeur: contributions.contributeur.nom, 
-      prenomContributeur: contributions.contributeur.prenom, 
+      nomProjet: contributions.projet.titre,
+      nomContributeur: contributions.contributeur.nom,
+      prenomContributeur: contributions.contributeur.prenom,
       nomTache: contributions.tache.nom,
       estValide:contributions.estValide                             // on garde le reste des infos
     })))
@@ -107,8 +144,8 @@ export class DashboardGestionnaireComponent implements OnInit{
     this.dashboardgestionnaireservices.nbTermines$
     .subscribe(nb =>this.nbreProjetsTermine = nb)
   }
-  
-  
+
+
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -123,7 +160,7 @@ export class DashboardGestionnaireComponent implements OnInit{
 
   closePopups(confirmed: boolean) {
     this.ispopupVisible = false;
-  
+
     if (confirmed && this.selectedAction && this.selectedDemande) {
       if (this.selectedAction === 'accept') {
         this.acceptDemande(this.selectedDemande);
@@ -136,13 +173,17 @@ export class DashboardGestionnaireComponent implements OnInit{
     this.selectedAction = action;
     this.selectedDemande = demande;
     this.ispopupVisible = true;
+    console.log('je click');
+  }
+
+
   }
   acceptDemande(demande: any) {
     this.demandescontributionsServices.AccepteDemande(demande.id,true).subscribe(() => {
       this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
     });
   }
-  
+
   declineDemande(demande: any) {
     this.demandescontributionsServices.AccepteDemande(demande.id,false).subscribe(() => {
       this.demandeContributions = this.demandeContributions.filter(d => d.id !== demande.id);
