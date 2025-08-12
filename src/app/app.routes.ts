@@ -98,7 +98,7 @@ export const routes: Routes = [
     {path:"mon_espace",component:DashboardGestionnaireComponent},
     {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
     {path:"nouveau_projet",component:FormulaireProjetComponent},
-
+    {path:"details_projet",component:ProjetgestionnairedetailComponent},
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}

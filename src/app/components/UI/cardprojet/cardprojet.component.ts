@@ -8,7 +8,7 @@ import { ProjetServiceService } from '../../../services/projet/projet-service.se
 @Component({
   selector: 'app-cardprojet',
   imports: [
-  
+
 
   DatePipe,
   ],
@@ -19,9 +19,10 @@ export class CardprojetComponent {
   @Input() projet!: projet
   projetService:ProjetServiceService= inject(ProjetServiceService)
   router : Router = inject(Router)
-  
+
   voirdetail(projet:any)
   {
     this.projetService.setProjet(projet);
+    this.router.navigate(["details_projet"]);
   }
 }
