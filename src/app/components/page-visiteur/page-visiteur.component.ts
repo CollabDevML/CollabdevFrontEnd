@@ -7,6 +7,7 @@ import { ProjetService} from '../../services/projet/projet.service';
 import { projet } from '../../models/projet/projet';
 import { FormsModule } from '@angular/forms';
 import { DomaineIdeeProjetService } from '../../services/domaine-idee-projet.service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-visiteur',
@@ -27,12 +28,72 @@ export class PageVisiteurComponent {
   boutonactive:'A'|'B'='A';
    changebouton(bouton:'A'|'B'){
    this.boutonactive=bouton
+   this.search()
    
  }
 
  getDomainLabelsString(domaineKeys: string[]): string {
   return domaineKeys.map(key => this.domaineService.getLabelFromEnum(key)).join(', ');
 }
+
+  
+
+    
+   
+
+  //contructeur
+  constructor(private ideeprojetservice:IdeeprojetService,private projetservice:ProjetService,private domaineService: DomaineIdeeProjetService,private route:Router){};
+
+  ngOnInit():void{
+   
+    this.ideeprojetservice.Recupererideeprojet().subscribe({
+      next:(data)=>{
+        this.listeideeprojet=data;
+        this.search()
+        console.log(this.listeideeprojet)
+        console.log(this.listeideeprojetfilter)
+       
+   
+
+      },
+      error:(erreur)=>{
+        console.log(erreur);
+        this.messageerreur="Une erreur est survenu lors du chargement";
+      }
+    })
+
+    //projet
+
+
+    this.projetservice.recupererprojet().subscribe({
+      next:(data)=>{
+        this.listeprojet=data;
+       this.listeprojet.forEach(projet =>{
+        if(projet.estFini){
+          this.mavaleur='Fini'
+        }else{this.mavaleur='En cours'}
+       })
+        
+      
+
+        //methode de recherche
+      
+        console.log(this.listeprojetfilter)
+        console.log(this.listeprojet)
+        },
+
+      error:(erreur)=>{
+        this.erreur="Une erreur est survenu lors du chargement";
+        console.log("me voici", erreur)
+      }
+    })
+
+   //methode recherche
+
+  
+    
+  }
+
 
    //recherche
    search() {
@@ -61,133 +122,10 @@ export class PageVisiteurComponent {
     }
   }
 }
-
-    
-   
-
-  //contructeur
-  constructor(private ideeprojetservice:IdeeprojetService,private projetservice:ProjetService,private domaineService: DomaineIdeeProjetService){};
-
-  ngOnInit():void{
-    this.ideeprojetservice.Recupererideeprojet().subscribe({
-      next:(data)=>{
-        this.listeideeprojet=data;
-        console.log(this.listeideeprojet)
-        //test
-        this.listeideeprojet = [
-  {
-    id: 1,
-    titre: 'Application mobile de gestion',
-    description: 'Une appli pour gérer ses tâches quotidiennes',
-    domaine: 'Productivité',
-    uriCDC: 'http://exemple.com/cdc1',
-    nombreSoutien: 15,
-    datePublication: new Date('2024-01-10'),
-    utilisateur: { prenom: 'Sophie', nom: 'Durand' },
-    commentaireIdeeProjets: [
-      {
-        id: 1,
-        contenu: 'Super idée !',
-        datePublication: new Date('2024-01-12'),
-        utilisateur: { prenom: 'Paul', nom: 'Martin' }
-      }
-    ]
-  },
-  {
-    id: 2,
-    titre: 'Plateforme de e-learning',
-    description: 'Site web pour apprendre en ligne facilement',
-    domaine: 'Éducation',
-    uriCDC: 'http://exemple.com/cdc2',
-    nombreSoutien: 22,
-    datePublication: new Date('2024-02-05'),
-    utilisateur: { prenom: 'Lucas', nom: 'Martin' },
-    commentaireIdeeProjets: []
-  }
-];
-
-      },
-      error:(erreur)=>{
-        console.log(erreur);
-        this.messageerreur="Une erreur est survenu lors du chargement";
-      }
-    })
-
-    //projet
-
-
-    this.projetservice.recupererprojet().subscribe({
-      next:(data)=>{
-        this.listeprojet=data;
-       if(this.listeprojet.some((projet =>
-        projet.estFini))){
-          this.mavaleur='Fini'
-        }else{this.mavaleur='Encours'}
-        //test
-        this.listeprojet = [
-  {
-    id: 101,
-    titre: 'Site e-commerce',
-    description: 'Création d’une boutique en ligne moderne',
-    estFini: false,
-    dateDebut: new Date('2024-04-01'),
-    dateFin: new Date('2024-12-31'),
-    niveauDAcces: 'Public',
-    utilisateur: { prenom: 'Clara', nom: 'Petit' },
-    etat: true,
-    idGestionnaire: 1,
-    piecesDAcces: 5,
-    gestionnaire: { prenom: 'Paul', nom: 'Lemoine' },
-    porteur: { prenom: 'Clara', nom: 'Petit' },
-    nombreContributeurs: 10,
-    commentaires: [
-      {
-        id: 1,
-        contenu: 'Projet très intéressant',
-        dateCommentaire: new Date('2024-04-10'),
-        utilisateur: { prenom: 'Emma', nom: 'Leroy' }
-      }
-    ]
-  },
-  {
-    id: 102,
-    titre: 'Application fitness',
-    description: 'App mobile pour suivre ses séances de sport',
-    estFini: false,
-    dateDebut: new Date('2024-05-15'),
-    dateFin: new Date('2024-11-30'),
-    niveauDAcces: 'Privé',
-    utilisateur: { prenom: 'Maxime', nom: 'Moreau' },
-    etat: true,
-    idGestionnaire: 2,
-    piecesDAcces: 3,
-    gestionnaire: { prenom: 'Julie', nom: 'Bernard' },
-    porteur: { prenom: 'Maxime', nom: 'Moreau' },
-    nombreContributeurs: 5,
-    commentaires: []
-  }
-];
-
-      
-
-        //methode de recherche
-      
-        
-        console.log(this.listeprojet)
-        },
-
-      error:(erreur)=>{
-        this.erreur="Une erreur est survenu lors du chargement";
-        console.log("me voici", erreur)
-      }
-    })
-
-   //methode recherche
-
-   this.boutonactive='A'
-   this.search()
-    
-  }
+cliquezMoi(donnee:any){
+  this.projetservice.donneeIdeeProjet = donnee;
+  this.route.navigate([""])
+}
 
 
 }

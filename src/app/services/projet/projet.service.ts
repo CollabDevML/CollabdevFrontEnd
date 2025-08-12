@@ -10,7 +10,7 @@ import { projet } from '../../models/projet/projet';
 export class ProjetService {
  urlapi='http://localhost:8180/gestionnaires/projets/v2';
  constructor(private http:HttpClient){}
-
+  donneeIdeeProjet:any;
 
  recupererprojet():Observable<projet[]>{
   console.log(this.urlapi)

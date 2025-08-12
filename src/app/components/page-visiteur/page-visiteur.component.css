@@ -179,6 +179,12 @@ input:focus{
   padding: 5px;
 }
 .user{
+   width: 165px;
+   padding-top: 4px;
+   font-size: 14px;
+   font-weight: bold;
+}
+.user1{
    width: 180px;
    padding-top: 8px;
    font-size: 14px;
@@ -232,7 +238,7 @@ input:focus{
 }
 .acteur{
    display: flex;
-   width: 230px;
+   width: 217px;
    height: 20px;
    justify-content: space-between;
   padding: 1px;
@@ -336,7 +342,143 @@ input:focus{
     position: relative;
     margin-left: 2px;
 }
+.type1{
+  color: #23E311;
+    width: 120px;
+    margin-left: 59px;
+}
+.type2{
+  color: #334DAA;
+    width: 120px;
+    margin-left: 87px;
+    font-size: 13px;
+}
+.rolec{
+   width: 30px;
+   color: #F6C434;
+}
+.rolep{
+   width: 30px;
+   color: #23E311;
+}
+.roleg{
+   width: 30px;
+   color: #334DAA;
+}
 
 
+
+
+
+
+
+/* ------- Tablette (768px à 1024px) ------- */
+@media screen and (max-width: 1024px) {
+   .conteneurPrincipal {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+   }
+
+   .colonneGauche {
+      padding-left: 20px;
+   }
+
+   .colonneDroite {
+      padding-left: 20px;
+      padding-right: 20px;
+   }
+
+   .conteneurideeprojet {
+      flex-direction: column;
+      height: auto;
+   }
+
+   .ideeprojet,
+   .commentaireideeprojet {
+      flex: 1;
+      width: 100%;
+   }
+
+   .entete,
+   .status,
+   .commentaire,
+   .dernier,
+   .titre,
+   .domaine,
+   .description,
+   .date,
+   .descriptionprojet {
+      width: 100%;
+   }
+}
+
+/* ------- Mobile (moins de 768px) ------- */
+@media screen and (max-width: 767px) {
+   .conteneurPrincipal {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+   }
+
+   .colonneGauche,
+   .colonneDroite {
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+   }
+
+   .image {
+      height: auto;
+      width: 100%;
+      margin-left: 0;
+   }
+
+   .texte {
+      width: 100%;
+      font-size: 22px;
+      margin-left: 0;
+   }
+
+   .recherche {
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+   }
+
+   .conteneurinput {
+      width: 100%;
+   }
+
+   input {
+      width: calc(100% - 30px);
+   }
+
+   .conteneurideeprojet {
+      flex-direction: column;
+      width: 100%;
+   }
+
+   .ideeprojet,
+   .commentaireideeprojet {
+      width: 100%;
+      flex-direction: column;
+   }
+
+   .commentaireideeprojet {
+      margin-top: 10px;
+   }
+
+   .titre,
+   .domaine,
+   .description,
+   .date,
+   .descriptionprojet,
+   .entete,
+   .status,
+   .commentaire,
+   .dernier {
+      width: 100%;
+   }
+}
 
 

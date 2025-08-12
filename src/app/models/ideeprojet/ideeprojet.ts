@@ -10,8 +10,9 @@ public datePublication!:Date;
 public utilisateur!:{prenom:string,nom:string};
 public commentaireIdeeProjets!:{contenu:string;
  datePublication:Date;
- utilisateur:{prenom:string,nom:string}
+ utilisateur:{prenom:string,nom:string,role:string}
 id:number}[];
+
 
   
 }

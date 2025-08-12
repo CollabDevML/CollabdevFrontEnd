@@ -15,7 +15,7 @@
     <div class="recherche">
       <div class="conteneurinput">
         <i class="fas fa-search search-icon"></i>
-        <input type="text" placeholder="Recherche par ici ..." [(ngModel)]="recherche", (input)="search()"/>
+        <input type="text" placeholder="Recherche par ici ..." [(ngModel)]="recherche" (input)="search()"/>
       </div>
       <button class="bouton1" (click)="changebouton('A')" [class.changecouleur]=" boutonactive === 'A'"> <i class="ri-lightbulb-flash-line "></i>Idées de projet</button>
       <button class="bouton2" (click)="changebouton('B') " [class.changecouleur]=" boutonactive === 'B'"><i class="ri-code-box-line "></i>projets</button>
@@ -33,15 +33,24 @@
 
       <div class="commentaireideeprojet">
         <div class="entete"><i class="ri-user-fill icon1"></i>
-        <div class="user">{{ ideeprojet.utilisateur.nom+'  '+ideeprojet.utilisateur.prenom }}</div>
+        <div class="user1">{{ ideeprojet.utilisateur.nom+'  '+ideeprojet.utilisateur.prenom }}</div>
       </div>
 
         @if (ideeprojet.commentaireIdeeProjets.length >= 2) {
           @for (commentaire of ideeprojet.commentaireIdeeProjets.slice(0, 2); track commentaire.id) {
             <div class="commentaire">
               <div class="acteur"><i class="ri-user-fill icon2"></i>
-              <div class="user">{{ commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}</div>
-
+                <div class="user">{{ commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}  </div>
+               <!--role-->
+                @if(commentaire.utilisateur.role  ==='CONTRIBUTEUR'){
+                <div class="rolec">C</div>
+                }@else if (commentaire.utilisateur.role==='GESTIONNAIRE') {
+                    <div class="roleg">G</div>
+                
+                  }@else if (commentaire.utilisateur.role==='PORTEUR_PROJET') {
+                    <div class="rolep">P</div>
+                  }
+                
               </div>
               <div class="contenu">{{ commentaire.contenu|reduirelataille:20}}</div>
             </div>
@@ -50,16 +59,37 @@
           @if (ideeprojet.commentaireIdeeProjets.length > 0) {
             @for (commentaire of ideeprojet.commentaireIdeeProjets; track commentaire.id) {
               <div class="commentaire">
-                <div class="acteur">{{  commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}</div>
+        
+                <div class="acteur"> <i class="ri-user-fill icon2"></i> <div class="user"> {{  commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }} </div>
+                @if(commentaire.utilisateur.role  ==='CONTRIBUTEUR'){
+                <div class="rolec">C</div>
+                }@else if (commentaire.utilisateur.role==='GESTIONNAIRE') {
+                    <div class="roleg">G</div>
+                
+                  }@else if (commentaire.utilisateur.role==='PORTEUR_PROJET') {
+                    <div class="roleP">P</div>
+                  }
+              </div>
+                
+
+                
                 <div class="contenu">{{ commentaire.contenu|reduirelataille:20 }}</div>
               </div>
+
+
+
+
+
             }
+
+
+
           } @else {
             <p>cet idée de projet n'a pas de commentaire</p>
           }
         }
         <div class="dernier">
-       <button type="button" class="bouton3">Voir plus <i class="ri-arrow-right-line like2" ></i></button>
+       <button type="button" class="bouton3" >Voir plus <i class="ri-arrow-right-line like2" ></i></button>
        <div class="nbsoutien">{{ideeprojet.nombreSoutien}}</div>
         <i class="ri-hand-heart-line bolo like" ></i>
        </div>
@@ -72,7 +102,7 @@
     <!--projet-->
   @if(boutonactive === 'B') {
   @if (!messageerreur) {
-    @for (projet of listeprojet; track projet.id) {
+    @for (projet of listeprojetfilter; track projet.id) {
       <div class="conteneurideeprojet">
         <div class="ideeprojet">
           <div class="titre">{{projet.titre}}</div>
@@ -83,11 +113,15 @@
         <div class="commentaireideeprojet">
           <div class="entete">
             <i class="ri-user-fill icon1"></i>
-            <div class="user">{{ projet.porteur.nom +'  '+projet.porteur.prenom}}</div>
+            <div class="user1">{{ projet.porteur.nom +'  '+projet.porteur.prenom}}
+              <div class="type1">Porteur de l'idée</div>
+            </div>
           </div>
           <div class="entete">
             <i class="ri-user-fill icon1"></i>
-            <div class="user">{{ projet.gestionnaire.prenom +'  '+projet.gestionnaire.nom }}</div>
+            <div class="user">{{ projet.gestionnaire.prenom +'  '+projet.gestionnaire.nom }}
+              <div class="type2">Gestionnaire</div>
+            </div>
           </div>
           <div class="status">
             <input type="text" value={{projet.niveauDAcces}} readonly class="niveauaccess">    <input type="text" [(ngModel)]="mavaleur" readonly class="etats">
