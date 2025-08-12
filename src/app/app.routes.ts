@@ -25,6 +25,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
+import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/formulaire-projet/formulaire-projet.component';
 export const routes: Routes = [
   {
     path: '',
@@ -111,6 +112,8 @@ export const routes: Routes = [
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
+  { path: 'porteurProjetMesIdee', component:MesIdeeProjetComponent},
+  { path: 'formulaireProjet', component:FormulaireProjetComponent}
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: '**', component: PageNotFoundComponent }
