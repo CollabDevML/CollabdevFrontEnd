@@ -60,7 +60,26 @@ export class PropositionIdeeProjetComponent implements OnInit {
 
     // Si aucun fichier → envoyer directement
     if (!this.fichier) {
-      alert('Veillez selectionner un fichier !!!');
+        const ideeProjet = {
+          titre: this.titre,
+          description: this.description,
+          domaine: [this.domaine],
+          uriCDC: null,
+        };
+        console.log(ideeProjet);
+        this.dataPorteur.newIdee(ideeProjet).subscribe({
+          next: () => {
+            alert('Idée de projet envoyée avec succès !');
+            this.route.navigateByUrl('/porteur_projet/mes_idees');
+            this.resetForm();
+          },
+          error: (err) => {
+            this.erreurs.push(
+              "Erreur lors de l'envoi du projet : " +
+                (err.error?.message || err.message)
+            );
+          },
+        });
       return;
     }
 

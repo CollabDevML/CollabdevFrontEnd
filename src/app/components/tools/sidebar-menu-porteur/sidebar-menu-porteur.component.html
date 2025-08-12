@@ -1,6 +1,6 @@
 <aside class="container" [class.collapsed]="!getIsExpanded()">
     <div class="top-container">
-        <div class="logo-container">
+        <div class="logo-container" (click)="goToMenu(1)">
             @if(getIsExpanded()) {
                 <img class="logo" src="logoP.png" alt="Logo de CollabDev">
             } @else {
@@ -25,12 +25,38 @@
                 @if(currentMenu == 2){
                     <i class="ri-lightbulb-flash-fill icons"></i>
                     @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Mes idées de projet</strong></p>
+                        <p class="menus-text"><strong>Les idées de projet</strong></p>
                     }
                 } @else {
                     <i class="ri-lightbulb-flash-line icons"></i>
                     @if (getIsExpanded()) {
-                        <p class="menus-text">Mes idées de projet</p>
+                        <p class="menus-text">Les idées de projet</p>
+                    }
+                }
+            </div>
+            <div class="project-ideas-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(6)">
+                @if(currentMenu == 6){
+                    <i class="ri-layout-masonry-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Mes idées</strong></p>
+                    }
+                } @else {
+                    <i class="ri-layout-masonry-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Mes idées</p>
+                    }
+                }
+            </div>
+            <div class="project-ideas-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(7)">
+                @if(currentMenu == 7){
+                    <i class="ri-folder-add-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Proposer ICI</strong></p>
+                    }
+                } @else {
+                    <i class="ri-folder-add-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Proposer ICI</p>
                     }
                 }
             </div>

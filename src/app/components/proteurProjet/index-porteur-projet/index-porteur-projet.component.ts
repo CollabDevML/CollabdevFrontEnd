@@ -56,9 +56,9 @@ export class IndexPorteurProjetComponent implements OnInit {
       },
     });
 
-    if  (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == "") {
-      this.route.navigate(["login"]);
-    }
+    // if  (this.data.user_role == null || this.data.user_role == undefined || this.data.user_role == "") {
+    //   this.route.navigate(["login"]);
+    // }
   }
 
   deconnexion(){
