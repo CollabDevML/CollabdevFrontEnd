@@ -87,7 +87,7 @@
     gap: 20px;
     overflow-y: auto; 
     overflow-x: hidden;
-    scrollbar-width: none;
+    scrollbar-width: thin;
     scrollbar-color: #334DAA transparent;
     padding: 1%;
 }
