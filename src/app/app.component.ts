@@ -30,14 +30,14 @@ export class AppComponent {
     localStorage.setItem('isExpanded', '0');
     this.router.events.subscribe((eve: Event) => {
       if (eve instanceof NavigationEnd) {
-        this.ispagevisiteur = eve.url === '/page-visiteur';
+        this.ispagevisiteur = eve.urlAfterRedirects === '/page-visiteur';
       }
       if (eve instanceof NavigationEnd) {
-        this.isLoginPage = eve.url === '/login';
+        this.isLoginPage = eve.urlAfterRedirects === '/login';
       }
        if (eve instanceof NavigationEnd) {
         const allLinks =  ['/inscription', '/inscription/choix', '/inscription/gestionnaire', '/inscription/contributeur', '/inscription/porteur-projet']
-        this.isSignInPages = allLinks.includes(eve.url);
+        this.isSignInPages = allLinks.includes(eve.urlAfterRedirects);
       }
     });
   }
