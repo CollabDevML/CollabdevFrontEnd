@@ -97,7 +97,8 @@ export class UtilisateurService {
         if (!profilId) {
           return of([]);
         }
-        url = `${this.apiRoot}/utilisateurs/contributeurs/projets/${profilId}`;
+        // Utiliser profilId (id contributeur) ici
+        url = `${this.apiRoot}/utilisateurs/contributeurs/${profilId}/contributions`;
         break;
       case 'PORTEUR_PROJET':
       default:
