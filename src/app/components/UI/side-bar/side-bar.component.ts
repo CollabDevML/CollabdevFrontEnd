@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
-import { RouterModule } from '@angular/router';
+import { IndexGestionnaireComponent } from '../../gestionnaire/index-gestionnaire/index-gestionnaire.component';
 
 @Component({
   selector: 'app-side-bar',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.css',
 })

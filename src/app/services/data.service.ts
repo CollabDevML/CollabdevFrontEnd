@@ -11,7 +11,7 @@ import { Env } from '../env';
 export class DataService {
   //Pour la creation des headers :
   private headers = new HttpHeaders();
-  
+
   userData!:Users;
   users:any;
   user_email = localStorage.getItem("user_email") || "";
@@ -22,10 +22,10 @@ export class DataService {
     private http:HttpClient
   ) {
     this.users = {};
-    
+
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,PATCH ,OPTIONS',
@@ -99,6 +99,15 @@ export class DataService {
     return this.http.delete(`${url}/${id}`, { headers: this.headers });
   }
 
+  //Pour la mise à jour des données par ID
+  patchDataById(url: string, id: number, value: boolean) {
+    return this.http.patch(`${url}/${id}/estAcceptee/${value}`, {}, { headers: this.headers });
+  }
+  
+  
+  getById(url:string, id: number){
+    return this.http.get(`${url}/${id}`,{ headers: this.headers })
+  }
 
   // Pour l'envoi de fichiers
   uploadFile(

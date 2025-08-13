@@ -29,22 +29,13 @@
   <!-- Section basse de la sidebar -->
   <aside class="enbas">
     <!-- Navigation Profil -->
-    <a
-      class="nav5"
-      [routerLink]="['/profil']"
-      style="
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-      "
-    >
+    <div class="nav5">
       <i
         class="ri-account-circle-line"
         style="color: #334daa; font-size: 25px"
       ></i>
       <p *ngIf="afficherDetailsSidebar">Profil</p>
-    </a>
+    </div>
     <!-- Navigation Déconnexion -->
     <div class="nav6">
       <i class="ri-login-box-line" style="color: #334daa; font-size: 25px"></i>

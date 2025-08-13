@@ -3,10 +3,8 @@
   background-color: white;
   border-top: 1px solid #e3f2fd;
   border-bottom: solid #7f7f7f 1px;
-<<<<<<< HEAD
-  /*box-shadow: 0 2px 4px #7F7F7F;*/
-=======
->>>>>>> 43e1536e338c448842bc240b1f258c3c778ebb9d
+  position: sticky;
+  top: 0;
 }
 
 .entete {
@@ -17,7 +15,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  position: relative;
 }
 
 .left-section {
@@ -111,7 +108,7 @@
 }
 
 /*.contact-link:hover {
-    color: #334DAA;
+  color: #334DAA;
 }*/
 
 /* Responsive design */

@@ -6,6 +6,7 @@ import { Login } from '../models/login/login';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,6 +20,7 @@ export class LoginService {
       next: (res:any) => {
         localStorage.setItem("user_role",res.role)
         localStorage.setItem("user_id",res.id)
+        localStorage.setItem("isExpanded","1")
         let chemin = "";
         if (res.role == "CONTRIBUTEUR") {
           chemin = "contributeur";
@@ -39,13 +41,15 @@ export class LoginService {
         })
         this.route.navigate([chemin]);
       },
-      error: (err) => {
-        this.toastr.error("Veuillez renseigner tout les champs","erreur",{
+      error: (err:any) => {
+        console.log(err.message)
+        this.toastr.error(err.message,"erreur",{
           timeOut: 3000,
           progressBar: true,
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
+
         this.route.navigate(["login"]);
       }
     })

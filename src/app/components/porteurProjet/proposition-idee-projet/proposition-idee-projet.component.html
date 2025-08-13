@@ -10,38 +10,37 @@
       </div>
 
       <div class="form-frame">
-        <h2>Proposer votre idée</h2>
+  <h2>Proposer votre idée</h2>
 
-        <div class="erreurs" *ngIf="erreurs.length > 0">
-          <ul>
-            <li *ngFor="let erreur of erreurs">{{ erreur }}</li>
-          </ul>
-        </div>
+  <div class="erreurs" *ngIf="erreurs.length > 0">
+    <ul>
+      <li *ngFor="let erreur of erreurs">{{ erreur }}</li>
+    </ul>
+  </div>
 
-        <input type="text" placeholder="Titre" [(ngModel)]="titre" />
+  <input type="text" placeholder="Titre" [(ngModel)]="titre" />
+  <textarea placeholder="Description" [(ngModel)]="description"></textarea>
 
-        <textarea placeholder="Description" [(ngModel)]="description"></textarea>
+  <select [(ngModel)]="domaine">
+    <option value="">Sélectionnez un domaine</option>
+    <option *ngFor="let d of domaines" [value]="d.key">{{ d.label }}</option>
+  </select>
 
-        <select [(ngModel)]="domaine">
-          <option value="">Sélectionnez un domaine</option>
-          <option *ngFor="let d of domaines" [value]="d.key">{{ d.label }}</option>
-        </select>
+  <div class="zone-fichier">
+    <label *ngIf="!nomFichier" class="file-label" for="file-upload">
+      <i class="ri-file-upload-line"></i> Téléverser cahier de charge
+    </label>
 
-        <div class="zone-fichier">
-          <label *ngIf="!nomFichier" class="file-label" for="file-upload">
-            <i class="ri-file-upload-line"></i> Téléverser cahier de charge
-          </label>
+    <div *ngIf="nomFichier" class="fichier-selectionne">
+      <p>Fichier sélectionné : <strong>{{ nomFichier }}</strong></p>
+      <button type="button" class="changer-fichier" (click)="changerFichier()">Changer de fichier</button>
+    </div>
 
-          <div *ngIf="nomFichier" class="fichier-selectionne">
-            <p>Fichier sélectionné : <strong>{{ nomFichier }}</strong></p>
-            <button type="button" class="changer-fichier" (click)="changerFichier()">Changer de fichier</button>
-          </div>
+    <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden />
+  </div>
 
-          <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden />
-        </div>
-
-        <button (click)="onSubmit() ">Envoyer</button>
-      </div>
+  <button (click)="onSubmit()">Envoyer</button>
+</div>
     </div>
 
   </div>
