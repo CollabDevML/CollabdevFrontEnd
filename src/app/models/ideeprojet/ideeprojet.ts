@@ -1,15 +1,16 @@
 export class Ideeprojet {
-  id!: number;
-  titre!: string;
-  description!: string;
-  domaine!: string;
-  uriCDC!: string;
-  nombreSoutien!: number;
-  datePublication!: Date;
-  idUtilisateur!: number;
-  commentaireIdeeProjets!: {
-    description: string;
-    datePublication: Date;
-    idutilisateur: Number;
+  readonly id!: number;
+  public titre!: string;
+  public description!: string;
+  public domaine!: string;
+  public uriCDC!: string;
+  public nombreSoutien!: number;
+  public datePublication!: Date;
+  public utilisateur!: { prenom: string; nom: string };
+  public commentaireIdeeProjets!: {
+    contenu: string;
+    dateCommentaire: Date;
+    utilisateur: { prenom: string; nom: string; role: string };
+    id: number;
   }[];
 }

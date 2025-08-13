@@ -1,0 +1,37 @@
+.popup {
+    position: absolute; /* Flottant près du bouton ... */
+    top: 200px; /* Décalage vers le bas par rapport au bouton */
+    right: 20px; /* Collé à droite du conteneur parent */
+    width: 220px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.2s ease-out;
+    z-index: 1000;
+  }
+  
+  .popup-btn {
+    border: none;
+    background-color: transparent;
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .popup-btn:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .delete:hover {
+    background-color: #ffdddd;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

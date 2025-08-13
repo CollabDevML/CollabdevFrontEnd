@@ -34,6 +34,7 @@
   padding: 20px;
   margin: 20px;
   box-sizing: border-box;
+  margin-bottom: 5%;
 }
 
 .page-header {
@@ -60,7 +61,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   max-height: 557px;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-right: 15px;
 }
 

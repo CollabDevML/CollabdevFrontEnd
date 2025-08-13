@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from "../header/header.component";
+import { HeaderComponent } from '../header/header.component';
+import { IndexGestionnaireComponent } from '../../gestionnaire/index-gestionnaire/index-gestionnaire.component';
 
 @Component({
   selector: 'app-side-bar',
   imports: [CommonModule],
   templateUrl: './side-bar.component.html',
-  styleUrl: './side-bar.component.css'
+  styleUrl: './side-bar.component.css',
 })
 export class SideBarComponent {
   // Propriété pour contrôler l'affichage détaillé ou compact de la sidebar
@@ -15,6 +16,5 @@ export class SideBarComponent {
   // Méthode pour basculer entre l'état détaillé et compact de la sidebar
   changerEtatSidebar() {
     this.afficherDetailsSidebar = !this.afficherDetailsSidebar;
-    
   }
 }

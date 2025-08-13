@@ -16,7 +16,17 @@ export class Env {
     Env._env.apiUrl + 'recommandations/idees-projet';
   public static GETRECOMMANDATIONPROJET: string =
     Env._env.apiUrl + 'recommandations/projets';
+
+
+  public static IDEEPROJETLISTE: string =
+    Env.INSCRIPTION_URL + '/idees-projet';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';
+
+  //urls pour recupérer les données d'un gestionnaire
+  public static GET_GESTIONNAIRE: string = Env._env.apiUrl + 'utilisateurs/gestionnaires'
+
+  //urls pour accepter/refuser une demande de contribution
+  public static MODIFIER_EST_ACCEPTEE: string = Env._env.apiUrl + 'gestionnaires/projets/demandes-contribution'
 }

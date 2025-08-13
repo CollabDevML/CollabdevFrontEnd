@@ -1,3 +1,5 @@
+import { projet } from "./projet/projet";
+
 export class Users {
   private prenom: string;
   private nom: string;
@@ -5,6 +7,7 @@ export class Users {
   private motDePasse: string;
   private genre: string;
   private preferences: [] = [];
+  
 
   constructor(
     prenom: string,

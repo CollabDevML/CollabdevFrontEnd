@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../UI/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IdeeProjetServiceService } from '../../../services/proposition/idee-projet-service.service';
 import { HttpClient } from '@angular/common/http';
-import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
+import { Env } from '../../../env';
+import { DataService } from '../../../services/data.service';
+import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
+import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposition-idee-projet',
-  imports: [
-    FormsModule,
-    CommonModule,
-    SideBarComponent,
-    // HeaderComponent
-  ],
+  imports: [FormsModule, CommonModule],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
 })
@@ -28,10 +25,13 @@ export class PropositionIdeeProjetComponent implements OnInit {
   domaines: { key: string; label: string }[] = [];
 
   erreurs: string[] = [];
-
+  user_id!: number;
   constructor(
     private http: HttpClient,
-    private domaineService: DomaineIdeeProjetService
+    private domaineService: DomaineIdeeProjetService,
+    private data: DataService,
+    private dataPorteur: PorteurProjetDataService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +62,26 @@ export class PropositionIdeeProjetComponent implements OnInit {
 
     // Si aucun fichier → envoyer directement
     if (!this.fichier) {
-      this.envoyerIdeeProjet('');
+        const ideeProjet = {
+          titre: this.titre,
+          description: this.description,
+          domaine: [this.domaine],
+          uriCDC: null,
+        };
+        console.log(ideeProjet);
+        this.dataPorteur.newIdee(ideeProjet).subscribe({
+          next: () => {
+            alert('Idée de projet envoyée avec succès !');
+            this.route.navigateByUrl("/idees-projet")
+            this.resetForm();
+          },
+          error: (err) => {
+            this.erreurs.push(
+              "Erreur lors de l'envoi du projet : " +
+                (err.error?.message || err.message)
+            );
+          },
+        });
       return;
     }
 
@@ -71,41 +90,33 @@ export class PropositionIdeeProjetComponent implements OnInit {
     formData.append('file', this.fichier);
     formData.append('fileName', this.fichier.name);
     formData.append('type', 'CDC');
-
-    this.http.post<string>('http://localhost:8180/upload', formData).subscribe({
-      next: (uriCDC: string) => {
-        this.envoyerIdeeProjet(uriCDC);
+    this.dataPorteur.uploadCDC(this.fichier, this.fichier.name).subscribe({
+      next: (res) => {
+        console.log("Le chemin c'est : ", res.chemin);
+        const ideeProjet = {
+          titre: this.titre,
+          description: this.description,
+          domaine: [this.domaine],
+          uriCDC: res.chemin,
+        };
+        console.log(ideeProjet);
+        this.dataPorteur.newIdee(ideeProjet).subscribe({
+          next: () => {
+            alert('Idée de projet envoyée avec succès !');
+            this.route.navigateByUrl('/idees-projet');
+            this.resetForm();
+          },
+          error: (err) => {
+            this.erreurs.push(
+              "Erreur lors de l'envoi du projet : " +
+                (err.error?.message || err.message)
+            );
+          },
+        });
       },
       error: (err) => {
-        this.erreurs.push(
-          'Erreur lors du téléversement du fichier : ' +
-            (err.error?.message || err.message)
-        );
-      },
-    });
-  }
-
-  private envoyerIdeeProjet(uriCDC: string): void {
-    const ideeProjet = {
-      titre: this.titre,
-      description: this.description,
-      domaine: [{ nom: this.domaine }], // format attendu par ton backend
-      uriCDC: uriCDC, // peut être vide si aucun fichier
-    };
-
-    const idPorteur = localStorage.getItem('user_id'); //  Remplace par le vrai ID
-    const url = `http://localhost:8180/utilisateurs/${idPorteur}/idees-projet`;
-
-    this.http.post(url, ideeProjet).subscribe({
-      next: () => {
-        alert('Idée de projet envoyée avec succès !');
-        this.resetForm();
-      },
-      error: (err) => {
-        this.erreurs.push(
-          "Erreur lors de l'envoi du projet : " +
-            (err.error?.message || err.message)
-        );
+        alert("Erreur mlors de l'Upload de fichier !!!");
+        console.log(err);
       },
     });
   }
