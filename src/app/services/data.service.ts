@@ -80,9 +80,9 @@ export class DataService {
   }
 
   //Pour la recuperation d'une donnée par son ID
-  getById(url: string, id: number):Observable<any>{
-    return this.http.get<Users>(`${url}/${id}`,{headers: this.headers});
-  }
+  // getById(url: string, id: number):Observable<any>{
+  //   return this.http.get<Users>(`${url}/${id}`,{headers: this.headers});
+  // }
 
   //Pour la recuperation d'une donnée par son ID
   getDataByEmail(url: string, email: string):Observable<Users> {

@@ -1,9 +1,7 @@
-<app-side-bar></app-side-bar>
 <app-header></app-header>
+<app-side-bar></app-side-bar>
 <app-footer></app-footer>
-
-<div class="project-tasks-container">
-
+<div class="task-container">
   <header class="tasks-header">
     <div>
       <h1>Toutes les tâches du projet</h1>
@@ -12,9 +10,9 @@
     <button class="new-task-btn" (click)="addTask()">+ Nouvelle Tâche</button>
   </header>
 
-  <section class="tasks-summary">
+   <section class="tasks-summary">
     <div class="summary-card">
-      <span class="count">{{ tasks?.length || 0 }}</span>
+      <span class="count">{{ taches?.length || 0 }}</span>
       <span class="label">Total</span>
     </div>
     <div class="summary-card status-terminated">
@@ -52,7 +50,7 @@
   <main class="tasks-list">
     <div
       class="task-item"
-      *ngFor="let task of filteredTasks; trackBy: trackByTaskId"
+      *ngFor="let task of taches; trackBy: trackByTaskId"
     >
       <div class="task-content">
         <div class="task-status-icon">
@@ -83,4 +81,14 @@
     </div>
   </main>
 
+  <!-- Loader -->
+  <div *ngIf="loading" class="loading">Chargement...</div>
+
+  <!-- Erreur -->
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <!-- Liste vide -->
+  <div *ngIf="!loading && taches.length === 0 && !errorMessage" class="empty">
+    Aucune tâche trouvée.
+  </div>
 </div>

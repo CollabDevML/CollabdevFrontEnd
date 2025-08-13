@@ -1,20 +1,10 @@
 .header {
-<<<<<<< HEAD
-  width: 100%;
-  background-color: white;
-  border-top: 1px solid #e3f2fd;
-  border-bottom: solid #7f7f7f 1px;
-  position: fixed;
-  z-index: 2;
-=======
     width: 100% ;
     background-color: white;
     border-top: 1px solid #e3f2fd;
     border-bottom: solid #7F7F7F 1px;
     position: sticky;
     top: 0;
-
->>>>>>> 4a194ac8e8f5d042971cab592c867221428a9e69
 }
 
 .entete {

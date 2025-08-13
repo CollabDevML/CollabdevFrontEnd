@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/UI/header/header.component';
 import { SidebarMenuContributeurComponent } from './components/tools/sidebar-menu-contributeur/sidebar-menu-contributeur.component';
 import { SidebarMenuGestionnaireComponent } from './components/tools/sidebar-menu-gestionnaire/sidebar-menu-gestionnaire.component';
-import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-porteur/sidebar-menu-porteur.component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -14,7 +13,6 @@ import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-por
     CommonModule,
     SidebarMenuContributeurComponent,
     SidebarMenuGestionnaireComponent,
-    SidebarMenuPorteurComponent ,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

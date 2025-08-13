@@ -19,7 +19,7 @@
 <div class="task-form-container">
   <h2>➕ Ajouter une nouvelle Tache</h2>
 
-  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="tacheForm" (ngSubmit)="onSubmit()">
     <label for="title">Titre de la tâche</label>
     <input id="title" formControlName="title" placeholder="Ex: Développement du module d'authentification" />
 
@@ -27,9 +27,9 @@
     <textarea id="description" formControlName="description" placeholder="Décrivez les détails de la tâche..."></textarea>
 
     <label for="assignee">Assigner à</label>
-    <select id="assignee" formControlName="assignee">
-      <option value="">-- Sélectionner --</option>
-      <option value="abdoul">Abdoul Ibrahima Samaké</option>
+    <select formControlName="idContributeur">
+      <option value="">+ Sélectionner un membre</option>
+      <option *ngFor="let m of membres" [value]="m.id">{{ m.nom }}</option>
     </select>
 
     <div class="dates">

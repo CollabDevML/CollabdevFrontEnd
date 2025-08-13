@@ -42,6 +42,8 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
+import { AttributionTacheComponent } from './components/attribution-tache/attribution-tache/attribution-tache.component';
+import { ListeTachesComponent } from './components/liste-taches/liste-taches/liste-taches.component';
 
 export const routes: Routes = [
   {
@@ -141,5 +143,7 @@ export const routes: Routes = [
   { path: 'detailProjet', component: DetailleProjetComponent },
   { path: 'formulaireProjet', component: FormulaireProjetComponent },
   { path: 'pop-options', component: PopupOptionsComponent },
+  {path: 'attribution-tache', component: AttributionTacheComponent},
+  {path: 'listes-taches', component: ListeTachesComponent},
   { path: '**', component: PageNotFoundComponent },
 ];
