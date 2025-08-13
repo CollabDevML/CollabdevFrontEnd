@@ -10,35 +10,34 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-projetgestionnairedetail',
   imports: [
-  SidebargestionnaireComponent,
-  PopupOptionsComponent,
-  CommonModule,
+    // SidebargestionnaireComponent,
+    PopupOptionsComponent,
+    CommonModule,
   ],
   templateUrl: './projetgestionnairedetail.component.html',
-  styleUrl: './projetgestionnairedetail.component.css'
+  styleUrl: './projetgestionnairedetail.component.css',
 })
 export class ProjetgestionnairedetailComponent {
   projet!: projet;
   //injection de dépendances
-  projetService:ProjetServiceService = inject(ProjetServiceService)
-  sidebarOpen:boolean = true;
+  projetService: ProjetServiceService = inject(ProjetServiceService);
+  sidebarOpen: boolean = true;
   showPopup = false;
-  contributeurService: ContributeurDataService = inject(ContributeurDataService)
-  changerEtatSidebar(value: boolean){
-    this.sidebarOpen = value
+  contributeurService: ContributeurDataService = inject(
+    ContributeurDataService
+  );
+  changerEtatSidebar(value: boolean) {
+    this.sidebarOpen = value;
   }
 
   ngOnInit() {
     this.projet = this.projetService.getProjet();
   }
-  toProfil(contributeur:any){
-    this.contributeurService.setProjet(contributeur)
+  toProfil(contributeur: any) {
+    this.contributeurService.setProjet(contributeur);
   }
-  
 
-togglePopup() {
-  this.showPopup = !this.showPopup;
-}
-
-
+  togglePopup() {
+    this.showPopup = !this.showPopup;
+  }
 }

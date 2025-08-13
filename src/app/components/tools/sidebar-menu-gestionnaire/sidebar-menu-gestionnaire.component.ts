@@ -31,7 +31,7 @@ export class SidebarMenuGestionnaireComponent {
         break;
       }
       case 2: {
-        this.router.navigate(['gestionnaire/mes_idees']);
+        this.router.navigate(['idees-projet']);
         break;
       }
       case 3: {
@@ -57,6 +57,7 @@ export class SidebarMenuGestionnaireComponent {
       }
     }
   }
+
   logout(): void {
     localStorage.removeItem('isExpanded');
     localStorage.removeItem('user_role');

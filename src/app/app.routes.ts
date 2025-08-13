@@ -10,6 +10,7 @@ import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.
 import { HeaderComponent } from './components/UI/header/header.component';
 import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
+import { DetailCommentaireComponent } from './components/detail-commentaire/detail-commentaire.component';
 import { IndexPorteurProjetComponent } from './components/proteurProjet/index-porteur-projet/index-porteur-projet.component';
 import { AccueilPorteurProjetComponent } from './components/proteurProjet/accueil-porteur-projet/accueil-porteur-projet.component';
 import { IndexContributeurComponent } from './components/contributeur/index-contributeur/index-contributeur.component';
@@ -36,25 +37,23 @@ import { ProjetgestionnairedetailComponent } from './components/projetgestionnai
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
 
-import { DetailCommentaireComponent } from './components/detail-commentaire/detail-commentaire.component';
 import { IdeesProjetComponent } from './components/idees-projet/idees-projet.component';
 import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/formulaire-projet/formulaire-projet.component';
 
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
-import { ProfilContributeurComponent } from './components/profil-contributeur/profil-contributeur.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'accueil',
+    // redirectTo: 'accueil',
+    redirectTo: 'page-visiteur',
     pathMatch: 'full',
   },
 
   { path: 'page-visiteur', component: PageVisiteurComponent },
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent },
-  { path: 'profil', component: ProfilContributeurComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
 
@@ -68,6 +67,18 @@ export const routes: Routes = [
       { path: 'contributeur', component: ContributeurComponent },
       { path: 'gestionnaire', component: GestionnaireComponent },
       { path: 'porteur_de_projet', component: PorteurProjetComponent },
+      { path: '**', redirectTo: '' },
+    ],
+  },
+  {
+    path: 'inscription',
+    component: InscriptionComponent,
+    children: [
+      { path: '', component: InscriptionIndexComponent },
+      { path: 'choix', component: InscriptionChoixComponent },
+      { path: 'contributeur', component: ContributeurComponent },
+      { path: 'gestionnaire', component: GestionnaireComponent },
+      { path: 'porteur-projet', component: PorteurProjetComponent },
       { path: '**', redirectTo: '' },
     ],
   },
@@ -130,6 +141,9 @@ export const routes: Routes = [
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },
   { path: 'accueil', component: AccueilComponent },
+  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
+  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
+  { path: 'detailCommentaire', component: DetailCommentaireComponent },
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: 'detailCommentaire', component: DetailCommentaireComponent },

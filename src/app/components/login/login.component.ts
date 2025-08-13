@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     const user_email = localStorage.getItem('user_role');
     const chemin = localStorage.getItem('chemin');
     if (user_email != null && chemin != null) {
-      this.route.navigate([chemin]);
+      this.route.navigate(['accueil']);
     }
     this.spinner.show();
     setTimeout(() => {
