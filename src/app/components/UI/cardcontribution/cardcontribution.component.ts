@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Contribution } from '../../../models/contribution/contribution';
 
 @Component({
   selector: 'app-cardcontribution',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './cardcontribution.component.css'
 })
 export class CardcontributionComponent {
-
+  @Input() contribution!: Contribution
 }

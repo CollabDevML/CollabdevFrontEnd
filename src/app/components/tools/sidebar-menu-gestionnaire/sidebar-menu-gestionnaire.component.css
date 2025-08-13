@@ -1,6 +1,7 @@
 .container{
     width: 20%;
     height: 100%;
+    background-color: white;
     position: fixed;
     display: grid;
     min-width: 256px;
@@ -54,6 +55,7 @@ p {
 .logo {
     width: 80%;
     height: auto;
+    transition: all 0.3s ease-in-out;
 }
 
 .logo:hover {

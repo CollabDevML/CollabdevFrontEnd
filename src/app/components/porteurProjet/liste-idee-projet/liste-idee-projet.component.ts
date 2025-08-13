@@ -10,6 +10,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-liste-idee-projet',
+<<<<<<< HEAD
   imports: [CommonModule],
   templateUrl: './liste-idee-projet.component.html',
   styleUrl: './liste-idee-projet.component.css',
@@ -17,6 +18,18 @@ import { CommonModule, DatePipe } from '@angular/common';
 export class ListeIdeeProjetComponent implements OnInit {
   mesIdeeProjet: any;
   afficheVoirPlus: boolean = false;
+=======
+  imports: [
+    CommonModule
+  ],
+  templateUrl: './liste-idee-projet.component.html',
+  styleUrl: './liste-idee-projet.component.css',
+})
+
+export class ListeIdeeProjetComponent implements OnInit{
+  mesIdeeProjet:any;
+  afficheVoirPlus : boolean = false;
+>>>>>>> 21312e0b4515130838253389cb7236cd5303d9dc
   contenus: any;
   constructor(private data: PorteurProjetDataService) {}
 
@@ -82,5 +95,5 @@ export class ListeIdeeProjetComponent implements OnInit {
       },
     });
   }
-}
 
+}

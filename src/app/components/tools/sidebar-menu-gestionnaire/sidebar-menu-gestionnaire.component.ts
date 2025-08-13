@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-menu-gestionnaire',
@@ -7,8 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar-menu-gestionnaire.component.css'
 })
 export class SidebarMenuGestionnaireComponent {
-  isExpanded: boolean = false;
-
   public static Menu = {
     HOME: 1,
     PROJECT_IDEAS: 2,
@@ -19,13 +18,56 @@ export class SidebarMenuGestionnaireComponent {
   } as const;
   currentMenu: any = 1;
 
+  public constructor(private router:Router) {}
+
   collapseSideBar(): void {
-    this.isExpanded = !this.isExpanded
+    localStorage.setItem('isExpanded', String(Number(!this.getIsExpanded())));
   }
   goToMenu(menu: any): void {
     this.currentMenu = menu;
-  }
-  logout(): void {
+    switch(menu) {
+      case 1:  {
+        this.router.navigate(['gestionnaire/accueil'])
+        break;
+      }
+      case 2: {
+        this.router.navigate(['gestionnaire/mes_idees']);
+        break;
+      }
+      case 3: {
+        this.router.navigate(['gestionnaire/mon_espace'])
+        break;
+      }
+      case 4: {
+        this.router.navigate(['gestionnaire/nouveau_projet'])
+        break;
+      }
+      case 5:{
+        break;
+      }
+      case 6: {
+        // this.router.navigate(['gestionnaire/mes_proj'])
+        break;
+      }
+      case 7:{
+        this.router.navigate(['gestionnaire/nouvelle_idee'])
+        break;
+      }
+    }
 
   }
+  logout(): void {
+    localStorage.removeItem("isExpanded")
+    localStorage.removeItem("user_role")
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("chemin")
+    window.location.reload()
+    this.router.navigate(['login'])
+  }
+
+
+  getIsExpanded(): boolean {
+    return Number(localStorage.getItem('isExpanded')) === 1;
+  }
+
 }

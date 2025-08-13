@@ -1,0 +1,27 @@
+.principal-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.principal-container.collapsed {
+    grid-template-columns: 5% 95%;
+}
+
+.principal-container.signin {
+    display: contents;
+    grid-template-columns: none;
+}
+
+.pages-container, .sidebar-container {
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.sidebar-container {
+    min-width: 200px;
+}
+
+.sidebar-container.collapsed {
+    min-width: 64px;
+}

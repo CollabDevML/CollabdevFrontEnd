@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-menu-contributeur',
@@ -7,7 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar-menu-contributeur.component.css'
 })
 export class SidebarMenuContributeurComponent {
-  isExpanded: boolean = false;
 
   public static Menu = {
     HOME: 1,
@@ -19,13 +19,26 @@ export class SidebarMenuContributeurComponent {
   } as const;
   currentMenu: any = 1;
 
+  public constructor(private router:Router) {}
+
   collapseSideBar(): void {
-    this.isExpanded = !this.isExpanded
+    localStorage.setItem('isExpanded', String(Number(!this.getIsExpanded())));
   }
   goToMenu(menu: any): void {
     this.currentMenu = menu;
   }
   logout(): void {
-
+    localStorage.removeItem("isExpanded")
+    localStorage.removeItem("user_role")
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("chemin")
+    window.location.reload()
+    this.router.navigate(['login'])
   }
+
+
+  getIsExpanded(): boolean {
+    return Number(localStorage.getItem('isExpanded')) === 1;
+  }
+
 }
