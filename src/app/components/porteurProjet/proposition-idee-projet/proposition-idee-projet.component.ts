@@ -3,8 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomaineIdeeProjetService } from '../../../services/domaine-idee-projet.service.service';
+import { Env } from '../../../env';
 import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
+import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
 import { Router } from '@angular/router';
 
 @Component({
@@ -60,7 +62,26 @@ export class PropositionIdeeProjetComponent implements OnInit {
 
     // Si aucun fichier → envoyer directement
     if (!this.fichier) {
-      alert('Veillez selectionner un fichier !!!');
+        const ideeProjet = {
+          titre: this.titre,
+          description: this.description,
+          domaine: [this.domaine],
+          uriCDC: null,
+        };
+        console.log(ideeProjet);
+        this.dataPorteur.newIdee(ideeProjet).subscribe({
+          next: () => {
+            alert('Idée de projet envoyée avec succès !');
+            this.route.navigateByUrl("/idees-projet")
+            this.resetForm();
+          },
+          error: (err) => {
+            this.erreurs.push(
+              "Erreur lors de l'envoi du projet : " +
+                (err.error?.message || err.message)
+            );
+          },
+        });
       return;
     }
 
@@ -82,7 +103,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
             alert('Idée de projet envoyée avec succès !');
-            this.route.navigateByUrl('/porteur_projet/mes_idees');
+            this.route.navigateByUrl('/idees-projet');
             this.resetForm();
           },
           error: (err) => {

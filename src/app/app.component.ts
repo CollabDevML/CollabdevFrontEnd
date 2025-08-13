@@ -21,8 +21,8 @@ import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-por
 })
 export class AppComponent {
   title = 'collabdev';
-  ispagevisiteur = false;
-  isLoginPage: boolean = true;
+  ispagevisiteur:boolean = false;
+  isLoginPage: boolean = false;
   isSignInPages: boolean = false;
   currentUserRole = localStorage.getItem('user_role');
   static router: Router;
@@ -33,12 +33,11 @@ export class AppComponent {
         this.ispagevisiteur = eve.urlAfterRedirects === '/page-visiteur';
       }
       if (eve instanceof NavigationEnd) {
-        const loginLink = ['/login']
-        this.isLoginPage = loginLink.includes(eve.urlAfterRedirects);
+        this.isLoginPage = eve.urlAfterRedirects === '/login';
       }
        if (eve instanceof NavigationEnd) {
         const allLinks =  ['/inscription', '/inscription/choix', '/inscription/gestionnaire', '/inscription/contributeur', '/inscription/porteur-projet']
-        this.isLoginPage = allLinks.includes(eve.urlAfterRedirects);
+        this.isSignInPages = allLinks.includes(eve.urlAfterRedirects);
       }
     });
   }

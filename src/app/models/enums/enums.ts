@@ -50,4 +50,31 @@ export namespace Enumerations {
     SUPPRIMER
   }
 
+  export enum DomaineIdeeProjet {
+    FINTECH,
+    EDTECH,
+    HEALTHTECH,
+    AGRITECH,
+    LEGALTECH,
+    GOVTECH,
+    GREENTECH,
+    PROPTECH,
+    INSURTECH,
+    HRTECH,
+    RETAILTECH,
+    TRAVELTECH,
+    SPORTTECH,
+    ADTECH,
+    MARTECH,
+    MUSICTECH,
+    FASHIONTECH,
+    FOODTECH,
+    CYBERSECURITY,
+    AI_ML,
+    IOT,
+    BIG_DATA,
+    CLOUD_COMPUTING,
+    BLOCKCHAIN
+  }
+
 }

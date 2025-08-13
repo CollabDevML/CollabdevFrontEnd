@@ -5,11 +5,13 @@ import { Contributeur } from '../../models/contributeur/contributeur';
 import { Env } from '../../env';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class ContributeurDataService {
   constructor( private data: DataService) {}
+  contributeur: any
   //Pour la creation d'un compte Contributeurs:
   addContributeur(contributeur: any): Observable<Contributeur> {
     return this.data.postData(Env.CREATE_CONTRIBUTEUR, contributeur);
@@ -18,6 +20,15 @@ export class ContributeurDataService {
   //Pour l'upload d'un fichier:
   uploadCV(file: File,nomFichier:string): Observable<any> {
     return this.data.uploadFile(Env.UPLOAD_URL, file,nomFichier,"CV");
+  }
+
+  //recupérer un contributeur à partir de son icone
+  setProjet(contributeur: any) {
+    this.contributeur = contributeur
+  }
+
+  getProjet() {
+    return this.contributeur;
   }
 
 }

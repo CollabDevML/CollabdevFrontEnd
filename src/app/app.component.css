@@ -7,13 +7,24 @@
     grid-template-columns: 5% 95%;
 }
 
+.principal-container.hide {
+    display: inline;
+    grid-template-columns: none;
+}
+
 .pages-container, .sidebar-container {
     width: 100%;
     transition: width 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .sidebar-container {
     min-width: 200px;
+}
+
+.sidebar-container.hide {
+    display: none;
+    min-width: 0px;
 }
 
 .sidebar-container.collapsed {
