@@ -13,7 +13,14 @@ export class DetailCommentaireComponent implements OnInit{
   listecommentaire!:Ideeprojet
   constructor(private ideeprojetservice:IdeeprojetService){}
   ngOnInit(): void {
-      this.listecommentaire = this.ideeprojetservice.donneeIdeeProjet
-  }
+    
 
-}
+
+       this.ideeprojetservice.donneeIdeeProjet$.subscribe(data => {
+      if (data) {this.listecommentaire=data
+        console.log("me voici" ,this.listecommentaire)
+      
+  }})}
+  
+
+       }

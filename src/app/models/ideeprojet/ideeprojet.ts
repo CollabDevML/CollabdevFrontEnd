@@ -9,7 +9,7 @@ public nombreSoutien!:number;
 public datePublication!:Date;
 public utilisateur!:{prenom:string,nom:string};
 public commentaireIdeeProjets!:{contenu:string;
- datePublication:Date;
+dateCommentaire:Date;
  utilisateur:{prenom:string,nom:string,role:string}
 id:number}[];
 

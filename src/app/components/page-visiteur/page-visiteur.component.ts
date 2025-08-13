@@ -123,8 +123,8 @@ export class PageVisiteurComponent {
   }
 }
 voirplus(donnee:Ideeprojet){
-  this.ideeprojetservice.donneeIdeeProjet = donnee;
-  console.log("donnée cliquer :", donnee)
+  this.ideeprojetservice.setDonneeIdeeProjet(donnee)  ;
+  
   this.route.navigate(['/detailCommentaire'])
 }
 
