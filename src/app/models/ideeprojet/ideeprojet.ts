@@ -1,4 +1,3 @@
-
 export class Ideeprojet {
 readonly id!:number;
 public titre!:string;
@@ -12,7 +11,4 @@ public commentaireIdeeProjets!:{contenu:string;
 dateCommentaire:Date;
  utilisateur:{prenom:string,nom:string,role:string}
 id:number}[];
-
-
-  
 }

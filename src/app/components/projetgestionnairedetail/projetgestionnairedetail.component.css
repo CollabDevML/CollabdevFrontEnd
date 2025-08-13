@@ -1,0 +1,285 @@
+.main{
+  display: flex;
+    flex-direction: row;
+}
+.lateral-nav{
+    width: 10%;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000; /* au-dessus des autres éléments */
+        transition: width 0.3s ease; /* pour animation fluide */
+
+
+}
+.lateral-nav.lateral-close{
+    width: 4.5%;
+}
+/* Contenu principal avec ombre */
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 10px 10px;
+    padding: 5px;
+    margin-top: 6px;
+    transition: margin-left 0.3s ease;
+    background: #D9D9D9;
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.60);
+    min-height: 97vh; /* hauteur du viewport */
+    box-sizing: border-box;
+  }
+.content.long-content {
+    margin-left: 6.5%;
+  }
+
+  /*indicteur d'état du projet*/
+  .indicator{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  .cercle {
+    width: 10px;
+    height: 10px;
+    background-color: #f4c542;
+    border-radius: 50%;
+  }
+
+  /* Section État */
+  .etat {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .span-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gauche, .milieur, .droite {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .date-badge {
+    background-color: #f4c542;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .titre-page {
+    text-align: center;
+    color: #334DAA;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .description-card {
+    background: #D9D9D9;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+    max-width: 400px;
+  }
+
+  /* Section contributeurs + bouton */
+  .bottom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .niveau{
+    color: #334DAA;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 10em;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  .niveau span{
+    color: black;
+    font-weight: 200;
+  }
+  .contributors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contributors .top-line {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    justify-content: end;
+  }
+  .contributors .count {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align:end;
+  }
+  .contributors .label {
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+  }
+
+  /* Bouton */
+  .button{
+    display: flex;
+    width: 100%;
+    align-items:center;
+    justify-content: right;
+    margin-bottom: 0.5rem;
+  }
+  .btn-new-task {
+    background-color: white;
+    border: 1px solid #334DAA;
+    color: #334DAA;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    width: 12em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+
+  /* Tableau */
+  .table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* pour scroll horizontal si écran trop petit */
+    font-family: Arial, sans-serif;
+  }
+
+  /* Header */
+  .table-header {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    background-color: #334DAA;
+    color: white;
+    padding: 0.6rem;
+    border-radius: 6px 6px 0 0;
+    font-weight: bold;
+    margin-bottom: 15px;
+    /*user-select: none;*/
+  }
+
+
+  /* Lignes */
+  .table-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    background: white;
+    padding: 0.6rem;
+    margin-bottom: 15px; /* espace entre les lignes */
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* léger effet d'ombre */
+    border-radius: 6px; /* arrondi sur toutes les lignes */
+    word-break: break-word; /* pour casser les longs mots */
+  }
+
+  /* Supprimer l'espace et arrondi sur la dernière ligne */
+  .table-row:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Pour limiter la hauteur et éviter que la ligne soit trop grande */
+  .table-row span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* empêcher le retour à la ligne */
+    padding-right: 4px;
+    text-align: left;
+
+  }
+
+  .table-row .text-center{
+    text-align: center;
+  }
+  /* Si tu préfères que le texte dans certaines colonnes puisse faire un retour à la ligne (ex description) */
+  .table-row span.description {
+    white-space: normal;
+    max-height: 3em; /* limite à environ 2 lignes */
+    overflow: hidden;
+  }
+
+  /* Exemple pour badge d'état avec arrondi */
+  .etat-badge {
+    padding: 0.2em 0.5em;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border:none;
+    text-align: center;
+  }
+
+  /* Variantes couleurs */
+  .a-faire
+  { background-color: #F4F4F4;
+    color: black;
+  }
+  .en-cours
+  { color: #F6C434;
+    background-color: rgba(246, 196, 52, 0.23);
+  }
+  .termine { color: #34F651;
+  background-color: #E5FDD3;
+}
+
+  /* Responsive */
+  /* Pour écrans plus petits, adapter la grille en 4 colonnes avec deux lignes */
+  @media (max-width: 768px) {
+    .table-header, .table-row {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: auto;
+    }
+    /* Masquer certaines colonnes si besoin */
+    .table-header span:nth-child(n+5),
+    .table-row span:nth-child(n+5) {
+      display: none;
+    }
+  }
+
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .table-header, .table-row {
+      grid-template-columns: repeat(4, 1fr);
+      font-size: 0.9rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .etat {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .bottom-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .table-header, .table-row {
+      grid-template-columns: 1fr;
+    }
+  }

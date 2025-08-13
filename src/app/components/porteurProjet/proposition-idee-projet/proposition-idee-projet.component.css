@@ -1,0 +1,219 @@
+/* === Contenu principal === */
+.content-area {
+  padding: 2rem;
+  width: fit-content;
+  margin-top: 60px; /* si header présent */
+  box-sizing: border-box;
+}
+
+/* === Formulaire et illustration === */
+.main-frame {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #334DAA;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(51, 77, 170, 0.5);
+  /* overflow: hidden; */
+  max-width: 900px;
+  width: 100%;
+  /* margin-top: 50px; */
+  position: relative;
+}
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-start; */
+  margin-bottom: 5%;
+}
+
+
+
+
+.illustration {
+  flex: 1;
+  background-color: #334DAA;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.illustration img {
+  width: 262px;
+  height: 262px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.illustration p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* === Formulaire === */
+.form-frame {
+  flex: 1;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  min-width: 300px;
+  display: flex; /* Ajout pour Flexbox */
+  flex-direction: column; /* Organise les éléments verticalement */
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #334DAA;
+  font-size: 2rem;
+  text-align: center;
+}
+
+input[type="text"],
+textarea,
+select {
+  outline-color: #334DAA;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1.5px solid #334DAA;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Téléversement */
+.zone-fichier {
+  /* Assure que ce conteneur gère bien ses enfants */
+  margin-bottom: 20px; /* Ajoutez de l'espace sous la zone de fichier */
+}
+
+.file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: 2px dashed #334DAA;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95rem;
+  width: 92%;
+  background-color: #f4f4f4;
+}
+
+.file-label i {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+/* Styles pour le fichier sélectionné et le bouton "Changer" */
+.fichier-selectionne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1.5px solid #334DAA;
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  margin-bottom: 20px; /* Ajout de marge pour bien séparer du bouton Envoyer */
+}
+
+.fichier-selectionne p {
+  margin: 0; /* Supprime la marge par défaut du paragraphe */
+  font-size: 1rem;
+  color: #334DAA;
+}
+
+.changer-fichier {
+  background-color: #334DAA;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes */
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button {
+  background-color: #334DAA;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #283b82;
+}
+
+.erreurs {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === Responsive === */
+@media (max-width: 992px) {
+  app-side-bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 180px;
+  }
+  .content-area {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 0;
+    padding: 1rem;
+  }
+  app-header {
+    left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-frame {
+    flex-direction: column;
+    border-radius: 20px;
+  }
+
+  .form-frame {
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .illustration {
+    padding: 20px;
+  }
+}

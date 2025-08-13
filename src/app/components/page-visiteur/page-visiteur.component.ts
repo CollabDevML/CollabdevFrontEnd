@@ -8,12 +8,13 @@ import { projet } from '../../models/projet/projet';
 import { FormsModule } from '@angular/forms';
 import { DomaineIdeeProjetService } from '../../services/domaine-idee-projet.service.service';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../UI/header/header.component';
 
 @Component({
   selector: 'app-page-visiteur',
   imports: [CommonModule,ReduirelatailleducommentairePipe,FormsModule],
   templateUrl: './page-visiteur.component.html',
-  styleUrl: './page-visiteur.component.css'
+  styleUrl: './page-visiteur.component.css',
 })
 export class PageVisiteurComponent {
   listeideeprojet!:Ideeprojet[];
@@ -56,7 +57,7 @@ export class PageVisiteurComponent {
    
 
       },
-      error:(erreur)=>{
+      error: (erreur) => {
         console.log(erreur);
         this.messageerreur="Une erreur est survenu lors du chargement";
       }

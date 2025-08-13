@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header">
+    <div class="en-tete">
+      <span class="date">{{projet.dateDebut | date:'dd/MMM/YYYY'}}</span>
+      <i class="ri-bookmark-line" style="color: white; font-size: 25px"></i>
+    </div>
+    <div class="milieu">
+      <h3 class="title">{{projet.titre}}</h3>
+      <span>
+        {{projet.description}}
+      </span>
+    </div>
+  </div>
+  <div class="level">{{projet.niveauDAcces}}</div>
+  <div class="bas">
+    <i class="ri-account-circle-line" style="color: #334DAA; font-size: 25px;"></i>
+    <button class="visualiser-btn" (click)="voirdetail(projet)">Visualiser</button>
+  </div>
+</div>
