@@ -47,4 +47,15 @@ export class IdeesProjetComponent implements OnInit{
     return Number(localStorage.getItem('isExpanded')) === 1;
   }
 
+  helpIdea(idIdea: number) {
+    this.ideesProjetService.helpIdea(this.userId, idIdea).subscribe({
+      next: (data) => {
+        console.log(data)
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
 }

@@ -9,7 +9,7 @@
     z-index: 5;
     align-items: center;
     justify-content: center;
-    transition: grid-template-columns 0.4s ease-in-out;
+    transition: grid-template-columns 1s ease-in-out;
 }
 
 .principal-container.isExpanded {
