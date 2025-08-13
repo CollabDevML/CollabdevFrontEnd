@@ -95,7 +95,7 @@
               class="contribution-list"
             >
               <div class="contribution-item" *ngFor="let projet of projets">
-                <h4>{{ projet.titre || projet.titreProjet || "Projet" }}</h4>
+                <h4>{{ projet.titre || projet.titreProjet }}</h4>
                 <p>{{ projet.description || projet.Description }}</p>
               </div>
             </div>
