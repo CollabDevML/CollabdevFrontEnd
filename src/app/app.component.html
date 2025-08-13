@@ -1,28 +1,29 @@
 @if(ispagevisiteur){
-    <app-header></app-header>
-    <router-outlet/>
-} @else if (!isLoginPage) {
-    <div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.signin]="!isSignInPages">
-        <div class="sidebar-container" [class.collapsed]="!getIsExpanded()">
-        @switch (currentUserRole) {
-            @case ('CONTRIBUTEUR') {
-                <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>
-            }
-            @case ('GESTIONNAIRE') {
-                <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire> 
-            }
-            @case ('PORTEUR_PROJET') {
-                <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
-            }
-            @default {
-                <div style="display:  none;"></div>
-            }
-        }
-        </div>
-        <div class="pages-container" [class.collapsed]="!getIsExpanded()">
-            <router-outlet/>
-        </div>
-    </div>
+    <app-header></app-header> 
 } @else {
-    <router-outlet/>
+    @if (isLoginPage) {
+        <router-outlet></router-outlet>
+    } @else {
+        <div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.signin]="isSignInPages">
+            <div class="sidebar-container" [class.collapsed]="!getIsExpanded()">
+            @switch (currentUserRole) {
+                @case ('CONTRIBUTEUR') {
+                    <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>
+                }
+                @case ('GESTIONNAIRE') {
+                    <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire> 
+                }
+                @case ('PORTEUR_PROJET') {
+                    <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
+                }
+                @default {
+                    <div style="display: none;"></div>
+                }
+            }
+            </div>
+            <div class="pages-container" [class.collapsed]="!getIsExpanded()">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    }
 }

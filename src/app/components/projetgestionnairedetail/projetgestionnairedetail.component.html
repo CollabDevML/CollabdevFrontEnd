@@ -1,0 +1,104 @@
+<div class="main">
+  <div class="content" [class.long-content]="!sidebarOpen">
+    <div class="indicator">
+      <div class="cercle"></div>
+    </div>
+
+    <!-- SECTION ÉTAT / EN-TÊTE -->
+    <div class="etat">
+      <div class="gauche">
+        <div class="date-badge">
+          <span class="icon">
+            <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
+          </span>
+          {{projet.dateDebut}}
+        </div>
+      </div>
+
+      <div class="milieur">
+        <h2 class="titre-page">{{projet.titre}}</h2>
+        <div class="description-card">
+          <p>
+            {{projet.Description}}
+          </p>
+        </div>
+      </div>
+
+      <div class="droite">
+        <div class="date-badge">
+          <span class="icon">
+            <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
+          </span>
+          {{projet.dateFin}}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="bottom-header">
+      <div class="niveau">
+        Niveau <span style="color: black;">{{projet.niveauDAcces}}</span>
+      </div>
+      <div class="contributors">
+        <div class="top-line">
+          <i class="ri-group-line" style="font-size: 25px;"></i>
+          <span class="count">12</span>
+        </div>
+        <div class="label">Contributeurs</div>
+      </div>
+    </div>
+
+    <div class="button">
+      <button class="btn-new-task">
+        <i class="ri-add-circle-fill" style="color:#334DAA; font-size: 20px"></i>
+        <span>Nouvelle tache</span>
+      </button>
+    </div>
+
+    <!-- TABLEAU -->
+    <div class="table-container">
+      <div class="table-header">
+        <span>Titre</span>
+        <span>Description</span>
+        <span>Date debut</span>
+        <span>Date fin</span>
+        <span>Pièces</span>
+        <span style="text-align: center;">État</span>
+        <span >Contributeur</span>
+        <span style="text-align: center;">Action</span>
+      </div>
+
+      <!-- LIGNE -->
+      @if (projet.taches && projet.taches.length > 0) {
+        @for (tache of projet.taches; track $index) {
+          <div class="table-row">
+            <span class="bold">{{tache.titre}}</span>
+            <span>{{tache.description}}</span>
+            <span>{{tache.dateDebut}}</span>
+            <span>{{tache.dateFin}}</span>
+            <span>{{tache.pieceAGagner}}</span>
+            <span style="border-radius: 12px;">
+              <ng-container *ngIf="tache.contributeur; else pasDeContrib">
+                <span *ngIf="!tache.estFini" class="etat-badge en-cours">En cours</span>
+                <span *ngIf="tache.estFini" class="etat-badge terminé">Terminé</span>
+              </ng-container>
+              <ng-template #pasDeContrib>
+                <span class="etat-badge a-faire">A faire</span>
+              </ng-template>
+            </span>
+
+            <span class="span-center" (click)="toProfil(tache.contributeur)">
+              👤
+            </span>
+            <span class="span-center" (click)="togglePopup()">
+              <i class="ri-more-fill"></i>
+            </span>
+          </div>
+        }
+      }
+    </div>
+    <app-popup-options
+    *ngIf="showPopup"
+    (close)="showPopup = false">
+  </app-popup-options>
+</div>

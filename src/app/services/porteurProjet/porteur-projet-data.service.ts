@@ -42,6 +42,9 @@ export class PorteurProjetDataService {
   }
 
   //Pour lister mes projet en cours :
-  listeMesProjet(){}
+  listerMesProjet(){
+    const idPorteur = Number(localStorage.getItem('user_id'));
+    return this.data.getData(Env.IDEEPROJETLISTE+"/"+idPorteur+"/utilisateur");
+  }
 
 }

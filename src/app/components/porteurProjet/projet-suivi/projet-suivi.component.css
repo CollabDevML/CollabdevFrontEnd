@@ -1,4 +1,4 @@
-/* Styling for the overall page layout */
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 }
 
 .header-placeholder {
-  /* You can adjust the height of your header here */
+  
   height: 60px;
   width: 100%;
 }
@@ -20,12 +20,11 @@
 }
 
 .sidebar-placeholder {
-  /* You can adjust the width of your sidebar here */
+ 
   width: 250px;
   height: 100%;
 }
 
-/* The existing styles for your component, adjusted to fit */
 .container {
   flex-grow: 1;
   background: #F4F4F4;
@@ -46,9 +45,19 @@
   margin-bottom: 20px;
 }
 
+/* Styles pour le conteneur de l'icône */
 .arrow-left {
+  /* La div parente peut être utilisée pour le positionnement ou le padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles pour l'icône Remixicon elle-même */
+.arrow-left .remixicon {
   font-size: 30px;
   color: #334DAA;
+  cursor: pointer;
 }
 
 .title {
@@ -93,8 +102,21 @@
   gap: 5px;
 }
 
-.icon {
-  font-size: 14px;
+/* Styles pour le nouveau conteneur de photo */
+.photo-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .name {
