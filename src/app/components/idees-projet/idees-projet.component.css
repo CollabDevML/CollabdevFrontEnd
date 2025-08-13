@@ -176,7 +176,7 @@ p {
 
 .idea-container {
     width: 90%;
-    height: 90%;
+    height: fit-content;
     background-color: white;
     display: grid;
     grid-template-rows: auto auto auto auto auto;
