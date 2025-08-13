@@ -43,7 +43,7 @@ export class SidebarMenuGestionnaireComponent {
         break;
       }
       case 5: {
-        this.router.navigate(['profil']);
+        this.router.navigate(['/profil']);
         break;
         break;
       }

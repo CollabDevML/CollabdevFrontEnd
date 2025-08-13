@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderProfilComponent } from '../header-profil/header-profil.component';
-import { SideBarComponent } from '../UI/side-bar/side-bar.component';
 import { FooterComponent } from '../UI/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,22 +10,16 @@ import {
 
 @Component({
   selector: 'app-profil-contributeur',
-  imports: [
-    HeaderProfilComponent,
-    SideBarComponent,
-    FooterComponent,
-    CommonModule,
-    FormsModule,
-  ],
-  templateUrl: './profil-contributeur.component.html',
-  styleUrl: './profil-contributeur.component.css',
+  imports: [FooterComponent, CommonModule, FormsModule],
+  templateUrl: './profil.component.html',
+  styleUrl: './profil.component.css',
 })
-export class ProfilContributeurComponent implements OnInit {
+export class ProfilComponent implements OnInit {
   utilisateur!: Utilisateur;
   idUtilisateur = 1; // valeur par défaut, sera remplacée par l'ID du localStorage
   // Préférences retirées du flux d'édition
   projets: any[] = []; // <-- initialisation du tableau projets
-  role: string = 'CONTRIBUTEUR';
+  role: string | null = '';
   profilId?: number;
   isEditOpen = false;
   // Champs de saisie pour l'édition
@@ -42,7 +34,7 @@ export class ProfilContributeurComponent implements OnInit {
 
   ngOnInit(): void {
     const idFromStorage = localStorage.getItem('user_id');
-    const roleFromStorage = localStorage.getItem('user_role') || 'CONTRIBUTEUR';
+    const roleFromStorage = localStorage.getItem('user_role');
     this.role = roleFromStorage;
     if (idFromStorage) {
       this.idUtilisateur = isNaN(Number(idFromStorage))
@@ -51,7 +43,7 @@ export class ProfilContributeurComponent implements OnInit {
     }
 
     this.utilisateurService
-      .getUtilisateurById(this.idUtilisateur, roleFromStorage)
+      .getUtilisateurById(this.idUtilisateur, this.role || '')
       .subscribe({
         next: (data: ReponseProfil) => {
           this.utilisateur = data.utilisateur;
@@ -68,7 +60,7 @@ export class ProfilContributeurComponent implements OnInit {
             this.utilisateurService
               .getContributionsByUser(
                 this.idUtilisateur,
-                roleFromStorage,
+                this.role || '',
                 this.profilId
               )
               .subscribe({

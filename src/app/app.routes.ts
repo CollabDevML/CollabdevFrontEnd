@@ -42,6 +42,7 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 export const routes: Routes = [
   {
@@ -135,6 +136,7 @@ export const routes: Routes = [
   { path: 'popup', component: PopUpsComponent },
   { path: 'accueil', component: AccueilComponent },
 
+  { path: 'profil', component: ProfilComponent },
   { path: 'projet-details', component: ProjetgestionnairedetailComponent },
 
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
