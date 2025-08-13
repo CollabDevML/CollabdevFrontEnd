@@ -43,6 +43,8 @@ export class SidebarMenuPorteurComponent {
         break;
       }
       case 4: {
+        this.router.navigate(['profil']);
+        break;
         break;
       }
       case 5: {

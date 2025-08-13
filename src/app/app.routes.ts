@@ -54,7 +54,7 @@ export const routes: Routes = [
   { path: 'page-visiteur', component: PageVisiteurComponent },
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent },
-  { path: 'login', component: ProfilContributeurComponent },
+  { path: 'profil', component: ProfilContributeurComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
 
