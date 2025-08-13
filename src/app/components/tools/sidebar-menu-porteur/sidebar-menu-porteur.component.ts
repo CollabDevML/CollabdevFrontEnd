@@ -18,7 +18,7 @@ export class SidebarMenuPorteurComponent {
     LIST:6,
     ADD:7,
   } as const;
-  currentMenu: any = 2;
+  currentMenu: any = 1;
 
   public constructor(private router:Router) {
     this.goToMenu(this.currentMenu)
@@ -58,12 +58,12 @@ export class SidebarMenuPorteurComponent {
       }
     }
   }
+
   logout(): void {
     localStorage.removeItem("isExpanded")
     localStorage.removeItem("user_role")
     localStorage.removeItem("user_id")
     localStorage.removeItem("chemin")
-    window.location.reload()
     this.router.navigate(['login'])
   }
 

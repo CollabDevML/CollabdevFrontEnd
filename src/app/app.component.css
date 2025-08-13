@@ -7,8 +7,8 @@
     grid-template-columns: 5% 95%;
 }
 
-.principal-container.signin {
-    display: contents;
+.principal-container.hide {
+    display: inline;
     grid-template-columns: none;
 }
 
@@ -20,6 +20,11 @@
 
 .sidebar-container {
     min-width: 200px;
+}
+
+.sidebar-container.hide {
+    display: none;
+    min-width: 0px;
 }
 
 .sidebar-container.collapsed {
