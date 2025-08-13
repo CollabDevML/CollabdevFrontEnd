@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ResponseIdeeProjet2 } from '../models/ideeprojet/response-idee-projet2';
 import { Observable, map } from 'rxjs';
+import { isDuration } from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class IdeesProjetService {
         commentaireIdeeProjets: responseIdeeProjet.commentaireIdeeProjets
       })))
     );
+  }
+
+  helpIdea(userId: number, ideaId: number): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/idees-projet/${ideaId}/nombre-soutien?idUtilisateur=${userId}`, {});
   }
 
 }

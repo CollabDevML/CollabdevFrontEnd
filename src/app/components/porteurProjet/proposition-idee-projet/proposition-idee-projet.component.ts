@@ -72,12 +72,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
             alert('Idée de projet envoyée avec succès !');
-            const role = localStorage.getItem("user_role");
-            if (role === "GESTIONNAIRE") {
-              this.route.navigateByUrl('/gestionnaire/mes_idees');
-            }else{
-              this.route.navigateByUrl('/porteur_projet/mes_idees');
-            }
+            this.route.navigateByUrl("/idees-projet")
             this.resetForm();
           },
           error: (err) => {
