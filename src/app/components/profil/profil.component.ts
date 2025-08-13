@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FooterComponent } from '../UI/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -10,7 +9,7 @@ import {
 
 @Component({
   selector: 'app-profil-contributeur',
-  imports: [FooterComponent, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css',
 })
