@@ -15,8 +15,13 @@
                 <div class="idea-container">
                     <div class="idea-title-container">
                         <h2 class="idea-title">{{ideeProjet.titre}}</h2>
-                        <p class="idea-date">Il y'a <span style="font-weight: bold;">{{ideeProjet.datePublication}}</span></p>
+                        <p class="idea-date">{{ideeProjet.datePublication | elapsedTime}}</p>
                         <i class="ri-more-2-fill idea-option"></i>
+                    </div>
+                    <div class="idea-domaines-container">
+                        @for (domaine of ideeProjet.domaine; track $index) {
+                            <div class="idea-domaine-container">{{labelFromEnum(domaine.toString())}}</div>
+                        }
                     </div>
                     <div class="idea-description-container">
                         {{ideeProjet.description}}
@@ -27,7 +32,7 @@
                         <i class="ri-hand-heart-line idea-help"></i>
                     </div>
                     @if(ideeProjet.commentaireIdeeProjets.length !== 0) {
-                            <div class="idea-comments-container">
+                        <div class="idea-comments-container">
                             <div class="idea-comments-header">
                                 <i class="ri-question-answer-line idea-comments-logo"></i>
                                 <p class="idea-comments-text">Commentaires</p>
@@ -39,7 +44,7 @@
                                             <div class="comment-header">
                                                 <img src="ghost.jpg" alt="Photo de Ghost" class="comment-user-profile">
                                                 <p class="comment-user-name">Par <strong>{{ideeProjet.commentaireIdeeProjets[0].utilisateur.prenom}} {{ideeProjet.commentaireIdeeProjets[0].utilisateur.nom}}</strong></p>
-                                                <p class="comment-date">Il y'a <strong>{{ideeProjet.commentaireIdeeProjets[0].dateCommentaire}}</strong></p>
+                                                <p class="comment-date">{{ideeProjet.commentaireIdeeProjets[0].dateCommentaire | elapsedTime}}</p>
                                             </div>
                                             <div class="comment-body">
                                                 <p class="comment-content">{{ideeProjet.commentaireIdeeProjets[0].contenu}}</p>
@@ -51,7 +56,7 @@
                                             <div class="comment-header">
                                                 <img src="ghost.jpg" alt="Photo de Ghost" class="comment-user-profile">
                                                 <p class="comment-user-name">Par <strong>{{ideeProjet.commentaireIdeeProjets[1].utilisateur.prenom}} {{ideeProjet.commentaireIdeeProjets[1].utilisateur.nom}}</strong></p>
-                                                <p class="comment-date">Il y'a <strong>{{ideeProjet.commentaireIdeeProjets[1].dateCommentaire}}</strong></p>
+                                                <p class="comment-date">{{ideeProjet.commentaireIdeeProjets[1].dateCommentaire | elapsedTime}}</p>
                                             </div>
                                             <div class="comment-body">
                                                 <p class="comment-content">{{ideeProjet.commentaireIdeeProjets[1].contenu}}</p>

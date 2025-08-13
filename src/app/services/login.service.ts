@@ -39,7 +39,7 @@ export class LoginService {
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-        this.route.navigate([chemin]);
+        this.route.navigate(['accueil']);
       },
       error: (err:any) => {
         console.log(err.message)
