@@ -1,39 +1,10 @@
 <app-header></app-header>
 <div class="conteneur">
-   
-    <div class="carte-profil">
-        <div class="entete-profil">
-            
-            <i class="ri-user-fill avatar-profil" class=""></i>
-            <div class="info-profil">
-                <h1>{{listecommentaire.titre}}</h1>
-                
-                <div class="sous-titre-profil"> <i class="ri-user-fill icon2"></i> <div class="user"> {{listecommentaire.utilisateur.nom+ '  '+listecommentaire.utilisateur.prenom}}
-                <div class="localisation-profil">
-                    <p style="color: #23E311;"><b>Porteurs d'Idées</b></p>
-                    <p class="date-commentaire">Le {{listecommentaire.datePublication|date:'dd/MM/yyyy'}} à {{listecommentaire.datePublication|date:'HH\'h\'mm'}}</p></div>
-            </div>     
-                </div>
-             </div>
-               
-        </div>
-        
-        <div class="description-profil1">
-            <h3> {{listecommentaire.domaine}} </h3>
-        </div>
-        
-        <div class="description-profil">
-            {{listecommentaire.description}}
-        </div>
-        
-        <div class="statistiques-profil">
-            <i class="ri-edit-box-line" style="font-size: 25px;"></i>
-            <a [href]="'http://localhost:8080' + listecommentaire.uriCDC" target="_blank" class="lien-profil">Voir le cahier des charges!</a>
-            <span class="nombre-statistiques">{{listecommentaire.nombreSoutien}}</span>
-            <i class="ri-hand-heart-line icone-statistiques"></i>
-        </div>
-        
-    </div>
+  <div class="carte-profil">
+    <div class="entete-profil">
+      <i class="ri-user-fill avatar-profil" class=""></i>
+      <div class="info-profil">
+        <h1>{{ listecommentaire.titre }}</h1>
 
 
     <div class="section-commentaires">
@@ -64,15 +35,61 @@
                 </div>
                 <div class="date-commentaire">Le {{commentaire.dateCommentaire|date:'dd/MM/yyyy'}} à {{commentaire.dateCommentaire|date:'HH\'h\'mm'}}</div>
             </div>
-        </div>}}
-
-      
-                   
-
-       
-        
-
-        
+          </div>}}
         </div>
+      </div>
     </div>
 
+    <div class="description-profil1">
+      <h3>{{ listecommentaire.domaine }}</h3>
+    </div>
+
+    <div class="description-profil">
+      {{ listecommentaire.description }}
+    </div>
+
+    <div class="statistiques-profil">
+      <i class="ri-edit-box-line" style="font-size: 25px"></i>
+      <a
+        [href]="'http://localhost:8080' + listecommentaire.uriCDC"
+        target="_blank"
+        class="lien-profil"
+        >Voir le cahier des charges!</a
+      >
+      <span class="nombre-statistiques">{{
+        listecommentaire.nombreSoutien
+      }}</span>
+      <i class="ri-hand-heart-line icone-statistiques"></i>
+    </div>
+  </div>
+
+  <div class="section-commentaires">
+    <h2 class="titre-commentaires">Commentaires</h2>
+
+    @if (listecommentaire!.commentaireIdeeProjets) { @for(commentaire of
+    listecommentaire.commentaireIdeeProjets;track listecommentaire.id){
+    <div class="commentaire">
+      <i class="ri-user-fill avatar-commentaire"></i>
+      <div class="contenu-commentaire">
+        <div class="entete-commentaire">
+          <div class="auteur-commentaire">
+            {{
+              commentaire.utilisateur.prenom +
+                "  " +
+                commentaire.utilisateur.nom
+            }}
+          </div>
+          <div class="actions-commentaire">Contributeurs</div>
+        </div>
+        <div class="texte-commentaire">
+          {{ commentaire.contenu }}
+        </div>
+        <div class="date-commentaire">
+          Le {{ commentaire.dateCommentaire | date : "dd/MM/yyyy" }} à
+          {{ commentaire.dateCommentaire | date : "HH'h'mm" }}
+        </div>
+      </div>
+    </div>
+    }}
+  </div>
+</div>

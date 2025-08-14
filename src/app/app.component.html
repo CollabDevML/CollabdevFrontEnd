@@ -1,5 +1,5 @@
-<div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isPageDetailCommentaire">
-    <div class="sidebar-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isPageDetailCommentaire">
+<div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage">
+    <div class="sidebar-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage">
     @switch (currentUserRole) {
         @case ('CONTRIBUTEUR') {
             <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     const user_email = localStorage.getItem('user_role');
     const chemin = localStorage.getItem('chemin');
-    if (user_email != null && chemin != null) {
+    if (user_email != null) {
       this.route.navigate(['accueil']);
     }
     this.spinner.show();
