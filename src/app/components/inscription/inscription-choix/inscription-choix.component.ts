@@ -7,39 +7,45 @@ import { DataService } from '../../../services/data.service';
   selector: 'app-inscription-choix',
   imports: [RouterLink],
   templateUrl: './inscription-choix.component.html',
-  styleUrl: './inscription-choix.component.css'
+  styleUrl: './inscription-choix.component.css',
 })
 export class InscriptionChoixComponent implements OnInit {
   user!: Users; // Pour stocker les données de l'utilisateur si nécessaire
-  constructor(private route:Router,private rt:ActivatedRoute, private data:DataService){}
+  constructor(
+    private route: Router,
+    private rt: ActivatedRoute,
+    private data: DataService
+  ) {}
   ngOnInit() {
     if (!this.data.userData) {
-      console.error("Aucune donnée utilisateur trouvée dans le service.");
+      console.error('Aucune donnée utilisateur trouvée dans le service.');
       this.route.navigate(['inscription']);
     } else {
-      this.user = this.data.userData; 
-      
-        console.log(`les données enregistrements dans le choix : ${this.user.getEmail}`)// Récupérer les données de l'utilisateur depuis le service
+      this.user = this.data.userData;
+
+      console.log(
+        `les données enregistrements dans le choix : ${this.user.getEmail}`
+      ); // Récupérer les données de l'utilisateur depuis le service
     }
   }
-  choix(ch:string){
-    switch(ch){
-      case "PORTEUR_PROJET":
-        this.route.navigate(['inscription/porteur-projet']);
+  choix(ch: string) {
+    switch (ch) {
+      case 'PORTEUR_PROJET':
+        console.log('CHOIX PP=====================');
+        this.route.navigate(['inscription/porteur_projet']);
         break;
-      case "GESTIONNAIRE":
+      case 'GESTIONNAIRE':
+        console.log('CHOIX G=====================');
         this.route.navigate(['inscription/gestionnaire']);
         break;
-      case "CONTRIBUTEUR":
-        console.log("Ici le porteur");
+      case 'CONTRIBUTEUR':
+        console.log('Ici le porteur');
         this.route.navigate(['inscription/contributeur']);
         break;
       default:
-        console.error("Choix invalide: " + ch);
+        console.error('Choix invalide: ' + ch);
         this.route.navigate(['inscription/choix']);
         break;
     }
-
   }
-
 }

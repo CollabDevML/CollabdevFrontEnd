@@ -26,19 +26,21 @@ export class PorteurProjetComponent implements OnInit {
     private route: Router,
     private data: DataService,
     private dataPorteur: PorteurProjetDataService,
-    private toastr:ToastrService,
+    private toastr: ToastrService
   ) {
     this.conditionUtilisation = this.fb.group({
       condition: [false, [Validators.requiredTrue]],
     });
   }
   ngOnInit() {
-    if (!this.data.userData) {
-      console.error('Aucune donnée utilisateur trouvée dans le service.');
-      this.route.navigate(['inscription']);
-    } else {
-      this.user = this.data.userData; // Récupérer les données de l'utilisateur depuis le service
-    }
+    console.error('je suis dans projetcomponent===========');
+    // if (!this.data.userData) {
+    //   console.error('je suis dans projetcomponent===========');
+    //   console.error('Aucune donnée utilisateur trouvée dans le service.');
+    //   this.route.navigate(['inscription']);
+    // } else {
+    //   this.user = this.data.userData; // Récupérer les données de l'utilisateur depuis le service
+    // }
   }
 
   valider() {
@@ -46,12 +48,16 @@ export class PorteurProjetComponent implements OnInit {
       this.dataPorteur.addPorteur(this.user).subscribe({
         next: (response) => {
           console.log('Porteur de projet enregistré avec succès', response);
-          this.toastr.success("Porteur de projet enregistré avec succès","Succès",{
-            timeOut: 2000,
-            progressBar: true,
-            progressAnimation: 'increasing',
-            positionClass: 'toast-top-center'
-          })
+          this.toastr.success(
+            'Porteur de projet enregistré avec succès',
+            'Succès',
+            {
+              timeOut: 2000,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              positionClass: 'toast-top-center',
+            }
+          );
           this.route.navigate(['login']);
         },
         error: (error) => {
@@ -59,24 +65,32 @@ export class PorteurProjetComponent implements OnInit {
             "Erreur lors de l'enregistrement du porteur de projet",
             error
           );
-          this.toastr.error("Erreur lors de l'enregistrement du porteur de projet","erreur",{
-            timeOut: 2000,
-            progressBar: true,
-            progressAnimation: 'increasing',
-            positionClass: 'toast-top-center'
-          })
+          this.toastr.error(
+            "Erreur lors de l'enregistrement du porteur de projet",
+            'erreur',
+            {
+              timeOut: 2000,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              positionClass: 'toast-top-center',
+            }
+          );
           // this.route.navigate(['inscription']);
         },
       });
       // this.route.navigate(['inscription/choix']);
     } else {
       // console.error("Veuillez accepter les conditions d'utilisation");
-      this.toastr.error("Veuillez accepter les conditions d'utilisation","erreur",{
-        timeOut: 1000,
-        progressBar: true,
-        progressAnimation: 'increasing',
-        positionClass: 'toast-top-center'
-      })
+      this.toastr.error(
+        "Veuillez accepter les conditions d'utilisation",
+        'erreur',
+        {
+          timeOut: 1000,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          positionClass: 'toast-top-center',
+        }
+      );
     }
   }
 }

@@ -191,7 +191,7 @@ app-side-bar {
 }
 
 .feedback-button {
-  background-color: #ff8c42;
+  background-color: #f7c13f;
   border: none;
   color: white;
   padding: 8px 18px;
@@ -202,7 +202,7 @@ app-side-bar {
 }
 
 .feedback-button:hover {
-  background-color: #e67c37;
+  background-color: #f7c03fbe;
 }
 /* Cartes blanches réutilisables pour tout (à propos, contact, contributions, etc.) */
 .card {
@@ -383,7 +383,7 @@ app-side-bar {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #ff8c42;
+  background: #f7c13f;
   color: #fff;
   border: none;
   padding: 10px 14px;
@@ -395,7 +395,7 @@ app-side-bar {
 }
 .edit-profile-btn:hover {
   transform: translateY(-1px);
-  background: #e67c37;
+  background: #f7c03fcf;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
 }
 .edit-profile-btn i {

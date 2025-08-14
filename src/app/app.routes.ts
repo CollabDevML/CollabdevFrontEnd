@@ -79,7 +79,7 @@ export const routes: Routes = [
       { path: 'choix', component: InscriptionChoixComponent },
       { path: 'contributeur', component: ContributeurComponent },
       { path: 'gestionnaire', component: GestionnaireComponent },
-      { path: 'porteur-projet', component: PorteurProjetComponent },
+      { path: 'porteur_projet', component: PorteurProjetComponent },
       { path: '**', redirectTo: '' },
     ],
   },
