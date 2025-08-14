@@ -28,4 +28,8 @@ export class IdeesProjetService {
     );
   }
 
+  helpIdea(userId: number, ideaId: number): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/idees-projet/${ideaId}/nombre-soutien?idUtilisateur=${userId}`, {});
+  }
+
 }

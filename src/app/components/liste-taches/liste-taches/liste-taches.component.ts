@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TacheService, ResponseTache } from '../../../services/tache.service';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from "../../UI/header/header.component";
-import { FooterComponent } from "../../UI/footer/footer.component";
-import { SideBarComponent } from "../../UI/side-bar/side-bar.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste-taches',
   standalone: true,
-  imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent, SideBarComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './liste-taches.component.html',
   styleUrls: ['./liste-taches.component.css']
 })
@@ -17,14 +15,17 @@ export class ListeTachesComponent implements OnInit {
   taches: ResponseTache[] = [];
   filteredTaches: [] = [];
 
-  public searchQuery: string = '';
-  public selectedStatus: string = 'all';
+  searchQuery: string = '';
+  selectedStatus: string = 'all';
 
   loading = false;
   errorMessage = '';
   projetId = 1; // Exemple : à passer dynamiquement selon ton contexte
 
-  constructor(private tacheService: TacheService) {}
+  constructor(
+    private tacheService: TacheService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchTaches();
@@ -68,6 +69,6 @@ export class ListeTachesComponent implements OnInit {
 
 
   addTask(): void {
-    console.log('Ajouter une nouvelle tâche (fonctionnalité à implémenter)');
+    this.router.navigate(['/attribution-tache']);
   }
 }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/UI/header/header.component';
 import { SidebarMenuContributeurComponent } from './components/tools/sidebar-menu-contributeur/sidebar-menu-contributeur.component';
 import { SidebarMenuGestionnaireComponent } from './components/tools/sidebar-menu-gestionnaire/sidebar-menu-gestionnaire.component';
+import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-porteur/sidebar-menu-porteur.component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -13,6 +14,7 @@ import { SidebarMenuGestionnaireComponent } from './components/tools/sidebar-men
     CommonModule,
     SidebarMenuContributeurComponent,
     SidebarMenuGestionnaireComponent,
+    SidebarMenuPorteurComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -28,14 +30,14 @@ export class AppComponent {
     localStorage.setItem('isExpanded', '0');
     this.router.events.subscribe((eve: Event) => {
       if (eve instanceof NavigationEnd) {
-        this.ispagevisiteur = eve.url === '/page-visiteur';
+        this.ispagevisiteur = eve.urlAfterRedirects === '/page-visiteur';
       }
       if (eve instanceof NavigationEnd) {
-        this.isLoginPage = eve.url === '/login';
+        this.isLoginPage = eve.urlAfterRedirects === '/login';
       }
        if (eve instanceof NavigationEnd) {
         const allLinks =  ['/inscription', '/inscription/choix', '/inscription/gestionnaire', '/inscription/contributeur', '/inscription/porteur-projet']
-        this.isSignInPages = allLinks.includes(eve.url);
+        this.isSignInPages = allLinks.includes(eve.urlAfterRedirects);
       }
     });
   }

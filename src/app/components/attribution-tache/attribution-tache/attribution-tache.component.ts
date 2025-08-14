@@ -3,17 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RequestTache, TacheService } from '../../../services/tache.service';
-import { HeaderComponent } from "../../UI/header/header.component";
-import { FooterComponent } from "../../UI/footer/footer.component";
-import { SideBarComponent } from "../../UI/side-bar/side-bar.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attribution-tache',
   imports: [
     ReactiveFormsModule,
-    HeaderComponent,
-    FooterComponent,
-    SideBarComponent
 ],
   templateUrl: './attribution-tache.component.html',
   styleUrls: ['./attribution-tache.component.css']
@@ -26,7 +21,8 @@ export class AttributionTacheComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private tacheService: TacheService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +40,7 @@ export class AttributionTacheComponent implements OnInit {
   }
 
   loadMembres() {
-    this.http.get<any[]>('http://localhost:8080/api/contributeurs') // adapte l’URL à ton backend
+    this.http.get<any[]>('http://localhost:8180/utilisateurs/contributeurs') // adapte l’URL à ton backend
       .subscribe(data => this.membres = data);
   }
 
@@ -73,6 +69,6 @@ export class AttributionTacheComponent implements OnInit {
 
   voirToutesTaches() {
   // Redirige ou affiche la liste des tâches
-  // Exemple : this.router.navigate(['/mes-taches']);
+  this.router.navigate(['/listes-taches']);
 }
 }

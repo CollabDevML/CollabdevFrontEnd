@@ -1,57 +1,63 @@
-<app-header></app-header>
-<app-footer></app-footer>
-<app-side-bar></app-side-bar>
 <div class="main-content">
   <div class="team-header">
-  <div class="team-header__text">
-    <h2>Gérez vos tâches en <span class="blue">équipe</span></h2>
-    <p>Attribuez des tâches, suivez les progrès et récompensez les efforts avec notre système de pièces.</p>
-    <div class="team-header__links">
-      <a href="#"><span class="icon">☆</span> Système de récompenses</a>
-      <span class="separator">~</span>
-      <a href="#">Suivi en temps réel</a>
-    </div>
-  </div>
-  <div class="team-header__image">
-    <img src="imgLog1.png" alt="Illustration équipe">
-  </div>
-</div>
-<div class="task-form-container">
-  <h2>➕ Ajouter une nouvelle Tache</h2>
-
-  <form [formGroup]="tacheForm" (ngSubmit)="onSubmit()">
-    <label for="title">Titre de la tâche</label>
-    <input id="title" formControlName="title" placeholder="Ex: Développement du module d'authentification" />
-
-    <label for="description">Description</label>
-    <textarea id="description" formControlName="description" placeholder="Décrivez les détails de la tâche..."></textarea>
-
-    <label for="assignee">Assigner à</label>
-    <select formControlName="idContributeur">
-      <option value="">+ Sélectionner un membre</option>
-      <option *ngFor="let m of membres" [value]="m.id">{{ m.nom }}</option>
-    </select>
-
-    <div class="dates">
-      <div>
-        <label for="startDate">Date début</label>
-        <input id="startDate" type="date" formControlName="startDate" />
-      </div>
-
-      <div>
-        <label for="endDate">Date fin</label>
-        <input id="endDate" type="date" formControlName="endDate" />
+    <div class="team-header__text">
+      <h2>Gérez vos tâches en <span class="blue">équipe</span></h2>
+      <p>Attribuez des tâches, suivez les progrès et récompensez les efforts avec notre système de pièces.</p>
+      <div class="team-header__links">
+        <a href="#"><span class="icon">☆</span> Système de récompenses</a>
+        <span class="separator">~</span>
+        <a href="#">Suivi en temps réel</a>
       </div>
     </div>
+    <div class="team-header__image">
+      <img src="imgLog1.png" alt="Illustration équipe">
+    </div>
+  </div>
+  <div class="task-form-container">
+    <h2>➕ Ajouter une nouvelle Tache</h2>
+    <form [formGroup]="tacheForm" (ngSubmit)="onSubmit()">
+      <label for="titre">Titre de la tâche</label>
+      <input id="titre" formControlName="titre" placeholder="Ex: Développement du module d'authentification" />
 
-    <label for="reward">Pièce à gagner</label>
-    <input id="reward" type="number" formControlName="reward" />
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description"
+        placeholder="Décrivez les détails de la tâche..."></textarea>
 
-    <button type="submit">Attribuer la tâche</button>
-    <button type="button" class="btn-taches" (click)="voirToutesTaches()">
-      <img src="icone-de-dossier-symbole-png-bleu.png" alt="Liste" style="height: 1.2rem; margin-right: 0.5rem;" />
-      Voir toutes mes tâches
-    </button>
-  </form>
-</div>
+      <label for="assignee">Assigner à</label>
+      <select formControlName="idContributeur">
+        <option value="">+ Sélectionner un membre</option>
+        <option *ngFor="let m of membres" [value]="m.id">{{ m.nom }}</option>
+      </select>
+
+      <div class="dates">
+        <div>
+          <label for="dateDebut">Date début</label>
+          <input id="dateDebut" type="date" formControlName="dateDebut" />
+        </div>
+
+        <div>
+          <label for="dateFin">Date fin</label>
+          <input id="dateFin" type="date" formControlName="dateFin" />
+        </div>
+      </div>
+
+      <label for="pieceAGagner">Pièce à gagner 🪙</label>
+      <input id="pieceAGagner" type="number" formControlName="pieceAGagner" />
+
+      <label for="niveau">Niveau</label>
+      <select id="niveau" formControlName="niveau">
+        <option value="SIMPLE">SIMPLE</option>
+        <option value="NOVICE">NOVICE</option>
+        <option value="INTERMEDIAIRE">INTERMEDIAIRE</option>
+        <option value="DIFFICILE">DIFFICILE</option>
+        <option value="COMPLEXE">COMPLEXE</option>
+      </select>
+
+      <button type="submit">Attribuer la tâche</button>
+      <button type="button" class="btn-taches" (click)="voirToutesTaches()">
+        <img src="icone-de-dossier-symbole-png-bleu.png" alt="Liste" style="height: 1.2rem; margin-right: 0.5rem;" />
+        Voir toutes mes tâches
+      </button>
+    </form>
+  </div>
 </div>
