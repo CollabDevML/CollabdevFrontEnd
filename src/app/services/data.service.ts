@@ -15,12 +15,14 @@ export class DataService {
   userData!:Users;
   users:any;
   user_email = localStorage.getItem("user_email") || "";
-  user_id = Number(localStorage.getItem("user_id")) || 0;
-  user_role = localStorage.getItem("user_role") || "";
+  user_id!:number;
+  user_role!:string;
 
   constructor(
     private http:HttpClient
   ) {
+    this.user_id = Number(localStorage.getItem("user_id")) ;
+    this.user_role = localStorage.getItem("user_role") || "";
     this.users = {};
 
     this.headers = new HttpHeaders({
@@ -103,9 +105,9 @@ export class DataService {
   patchDataById(url: string, id: number, value: boolean) {
     return this.http.patch(`${url}/${id}/estAcceptee/${value}`, {}, { headers: this.headers });
   }
-  
-  
-  getById(url:string, id: number){
+
+
+  getById(url:string, id: number):Observable<any>{
     return this.http.get(`${url}/${id}`,{ headers: this.headers })
   }
 

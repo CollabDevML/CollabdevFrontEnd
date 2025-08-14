@@ -1,1 +1,12 @@
- <router-outlet></router-outlet>
+<div
+  class="principal-container"
+  [class.collapsed]="!getIsExpanded()"
+  [class.signin]="isSignInPages"
+>
+  <div class="sidebar-container" [class.collapsed]="!getIsExpanded()">
+    <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire>
+  </div>
+  <div class="pages-container" [class.collapsed]="!getIsExpanded()"></div>
+  <router-outlet></router-outlet>
+</div>
+

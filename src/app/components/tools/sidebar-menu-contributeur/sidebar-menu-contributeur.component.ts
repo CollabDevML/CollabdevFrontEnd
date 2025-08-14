@@ -32,7 +32,7 @@ export class SidebarMenuContributeurComponent {
     localStorage.removeItem("user_role")
     localStorage.removeItem("user_id")
     localStorage.removeItem("chemin")
-    window.location.reload()
+    // window.location.reload()
     this.router.navigate(['login'])
   }
 

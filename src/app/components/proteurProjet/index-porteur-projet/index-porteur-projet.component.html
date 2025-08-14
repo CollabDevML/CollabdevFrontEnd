@@ -1,2 +1,11 @@
-<!-- <app-recherchebarre></app-recherchebarre> -->
-<router-outlet></router-outlet>
+<div
+  class="principal-container"
+  [class.collapsed]="!getIsExpanded()"
+  [class.signin]="isSignInPages"
+>
+  <div class="sidebar-container" [class.collapsed]="!getIsExpanded()">
+    <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
+  </div>
+  <div class="pages-container" [class.collapsed]="!getIsExpanded()"></div>
+  <router-outlet></router-outlet>
+</div>

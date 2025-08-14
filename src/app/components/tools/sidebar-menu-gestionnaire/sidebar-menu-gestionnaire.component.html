@@ -25,12 +25,12 @@
                 @if(currentMenu == 2){
                     <i class="ri-lightbulb-flash-fill icons"></i>
                     @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Mes idées de projet</strong></p>
+                        <p class="menus-text"><strong>Les idées de projet</strong></p>
                     }
                 } @else {
                     <i class="ri-lightbulb-flash-line icons"></i>
                     @if (getIsExpanded()) {
-                        <p class="menus-text">Mes idées de projet</p>
+                        <p class="menus-text">Les idées de projet</p>
                     }
                 }
             </div>
@@ -47,19 +47,7 @@
                     }
                 }
             </div>
-            <div class="contributions-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(4)">
-                @if(currentMenu == 4){
-                    <i class="ri-folder-add-fill icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Créer un Projet</strong></p>
-                    }
-                } @else {
-                    <i class="ri-folder-add-line icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text">Créer un Projet</p>
-                    }
-                }
-            </div>
+
         </div>
     </div>
     <div class="center-container">

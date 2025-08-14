@@ -11,14 +11,14 @@ import { projet } from '../models/projet/projet';
   providedIn: 'root'
 })
 export class DashboardgestionnaireServiceService {
-  
+
   //injection de dépendances
   private gestionnaireS = inject(GestionnaireDataService)
 
   //fetch the data
   getGestionnaire(id:number):Observable<any>
   {
-    return this.gestionnaireS.getGestionnaire(id).pipe(
+    this.gestionnaireS.getProjetGestionnaire(id).pipe(
       map(data => (
         {
       prenom : data.utilisateur.prenom,
@@ -34,7 +34,7 @@ export class DashboardgestionnaireServiceService {
       projets : (data.projets ?? []).map((projet: projet) => ({
         id: projet.id,
         titre: projet.titre,
-        description: projet.Description,
+        description: projet.description,
         estFini : projet.estFini,
         etat: projet.etat,
         dateDebut: projet.dateDebut,
@@ -47,11 +47,13 @@ export class DashboardgestionnaireServiceService {
       })),
     }
     )))
+
+    return this.gestionnaireS.getProjetGestionnaire(id);
   }
 
   //Calcul des stats
   projets: projet[] = [];
-  
+
   private nbTerminesSubject = new BehaviorSubject<number>(0);
   private nbEnCoursSubject = new BehaviorSubject<number>(0);
 

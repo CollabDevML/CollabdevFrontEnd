@@ -38,11 +38,12 @@ import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet
 import { IdeesProjetComponent } from './components/idees-projet/idees-projet.component';
 import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/formulaire-projet/formulaire-projet.component';
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'accueil',
+    redirectTo: 'page-visiteur',
     pathMatch: 'full',
   },
 
@@ -50,7 +51,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent},
   { path: 'idees-projet', component: IdeesProjetComponent},
-  { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent},
+  // { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent},
 
   //Les routes concernants l'inscription :
   {path: 'inscription',component:InscriptionComponent,children:[
@@ -58,9 +59,9 @@ export const routes: Routes = [
     {path:'choix', component:InscriptionChoixComponent},
     {path:'contributeur', component:ContributeurComponent},
     {path:'gestionnaire', component:GestionnaireComponent},
-    {path:'porteur_de_projet', component:PorteurProjetComponent},
+    {path:'porteur-projet', component:PorteurProjetComponent},
     {path:'**', redirectTo: ''},
-  ]},
+  ],},
 
 
   //Les routes pour le Porteur de projet
@@ -72,7 +73,8 @@ export const routes: Routes = [
       { path: 'accueil', component: AccueilComponent },
       { path: 'mes_projets', component: MesIdeeProjetComponent },
       { path: 'mes_favories', component: ProjetSuiviComponent },
-      { path: 'mes_idees', component: ListeIdeeProjetComponent },
+      { path: 'mes_idees', component: IdeesProjetComponent },
+      { path: 'proposer', component: PropositionIdeeProjetComponent },
       { path: '**', redirectTo: '' },
     ],
   },
@@ -95,6 +97,7 @@ export const routes: Routes = [
     {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
     {path:"nouveau_projet",component:FormulaireProjetComponent},
     {path:"details_projet",component:ProjetgestionnairedetailComponent},
+    {path:"nouvelle_tache",component:TaskFormComponent},
     //Les autres routes ici ..............
 
     {path:"**",redirectTo:""}

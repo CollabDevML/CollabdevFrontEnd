@@ -1,0 +1,73 @@
+<div class="project-tasks-container">
+  <section class="tasks-summary">
+    <div class="summary-card">
+      <span class="count">{{ tasks?.length || 0 }}</span>
+      <span class="label">Total</span>
+    </div>
+    <div class="summary-card status-terminated">
+      <span class="count">{{ countTasksByStatus('Terminée') }}</span>
+      <span class="label">Terminées</span>
+    </div>
+    <div class="summary-card status-todo">
+      <span class="count">{{ countTasksByStatus('À faire') }}</span>
+      <span class="label">À faire</span>
+    </div>
+  </section>
+
+  <div class="tasks-actions">
+    <div class="search-bar">
+      <i class="fa fa-search"></i>
+      <input
+        type="text"
+        placeholder="Rechercher une tâche..."
+        [(ngModel)]="searchQuery"
+        (input)="filterTasks()"
+      />
+    </div>
+
+    <select
+      class="status-filter"
+      [(ngModel)]="selectedStatus"
+      (change)="filterTasks()"
+    >
+      <option value="all">Tous les statuts</option>
+      <option value="À faire">À faire</option>
+      <option value="Terminée">Terminée</option>
+    </select>
+  </div>
+
+  <main class="tasks-list">
+    <div
+      class="task-item"
+      *ngFor="let task of filteredTasks; trackBy: trackByTaskId"
+    >
+      <div class="task-content">
+        <div class="task-status-icon">
+          <i
+            [ngClass]="{
+              'fa fa-circle text-secondary': task.status === 'À faire',
+              'fa fa-check-circle text-success': task.status === 'Terminée'
+            }"
+          ></i>
+        </div>
+        <div class="task-details">
+          <h3>{{ task.titre }}</h3>
+          <p>{{ task.description }}</p>
+          <div class="task-meta">
+            <span>
+              <i class="fa fa-calendar"></i>
+              Échéance: {{ task.dateFin | date:'dd/MM/yyyy' }}
+            </span>
+            <span [ngClass]="'status-' + task.status">
+              <i class="fa fa-clock"></i> Statut: {{ task.status }}
+            </span>
+            <span class="task-level">
+              <i class="fa fa-signal"></i> Niveau: {{ task.niveau }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>

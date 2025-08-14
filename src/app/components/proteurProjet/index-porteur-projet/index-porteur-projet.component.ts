@@ -12,17 +12,21 @@ import { RecherchebarreComponent } from "../../UI/recherchebarre/recherchebarre.
 import { SideBarComponent } from "../../UI/side-bar/side-bar.component";
 import { Login } from '../../../models/login/login';
 import { LoginService } from '../../../services/login.service';
+import { SidebarMenuPorteurComponent } from '../../tools/sidebar-menu-porteur/sidebar-menu-porteur.component';
 
 @Component({
   selector: 'app-index-porteur-projet',
   imports: [
     RouterOutlet,
     CommonModule,
+    SidebarMenuPorteurComponent
 ],
   templateUrl: './index-porteur-projet.component.html',
   styleUrl: './index-porteur-projet.component.css'
 })
 export class IndexPorteurProjetComponent implements OnInit {
+
+  isSignInPages: boolean = false;
   sidebarOpen:boolean = true;
   user!:ResponsePorteurProjet;
   constructor(
@@ -57,5 +61,9 @@ export class IndexPorteurProjetComponent implements OnInit {
 
   deconnexion(){
     LoginService.logout();
+  }
+
+  getIsExpanded(): boolean {
+    return Number(localStorage.getItem('isExpanded')) === 1;
   }
 }

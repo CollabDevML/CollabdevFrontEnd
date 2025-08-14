@@ -10,12 +10,8 @@ import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-por
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    HeaderComponent,
-    CommonModule,
-    SidebarMenuContributeurComponent,
-    SidebarMenuGestionnaireComponent,
-    SidebarMenuPorteurComponent ,
-  ],
+    CommonModule
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

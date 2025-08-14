@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Users } from '../../../models/users';
 import { DataService } from '../../../services/data.service';
+import { NgxSpinnerComponent } from "ngx-spinner";
 
 @Component({
   selector: 'app-inscription-choix',
-  imports: [RouterLink],
+  imports: [RouterLink, NgxSpinnerComponent],
   templateUrl: './inscription-choix.component.html',
   styleUrl: './inscription-choix.component.css'
 })
@@ -17,8 +18,8 @@ export class InscriptionChoixComponent implements OnInit {
       console.error("Aucune donnée utilisateur trouvée dans le service.");
       this.route.navigate(['inscription']);
     } else {
-      this.user = this.data.userData; 
-      
+      this.user = this.data.userData;
+
         console.log(`les données enregistrements dans le choix : ${this.user.getEmail}`)// Récupérer les données de l'utilisateur depuis le service
     }
   }

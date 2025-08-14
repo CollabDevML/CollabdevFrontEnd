@@ -1,9 +1,16 @@
 <div class="content">
   <div class="main">
-    <h1 class="header">
-      <i class="ri-lightbulb-line"></i>
-      Donner vie à vos idées, Collaborez en toute Sécurité
-    </h1>
+    @if (gestionnaire) {
+      <h1 class="header">
+        <i class="ri-lightbulb-line"></i>
+        D'autres Idées de Projet qui peuvent vous interessez !!!
+      </h1>
+    }@else {
+      <h1 class="header">
+        <i class="ri-lightbulb-line"></i>
+        Donner vie à vos idées, Collaborez en toute Sécurité
+      </h1>
+    }
 
     <div class="cards-grid">
       <!-- Répète cette structure pour chaque card -->
@@ -39,8 +46,8 @@
   </div>
 </div>
 
-
-<div class="modal" *ngIf="afficheVoirPlus" (click)="verifier()">
+@if (afficheVoirPlus) {
+<div class="modal" (click)="verifier()">
   <div class="modal-contenu">
     <h2>Details du projet</h2>
     <div class="title-section">
@@ -50,9 +57,12 @@
     <p class="description">
        {{contenus.description}}
     </p>
-
+    @if (gestionnaire) {
+      <button type="button" (click)="cliqueMoi(contenus)">Créer un Projet</button>
+    }
     <div class="modal-actions">
       <button (click)="fermerModal()">Fermer</button>
     </div>
   </div>
 </div>
+}

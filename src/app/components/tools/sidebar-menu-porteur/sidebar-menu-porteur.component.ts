@@ -31,11 +31,11 @@ export class SidebarMenuPorteurComponent {
     this.currentMenu = menu;
     switch(menu) {
       case 1:  {
-        this.router.navigate(['/accueil'])
+        this.router.navigate(['porteur_projet/accueil'])
         break;
       }
       case 2: {
-        this.router.navigate(['/idees-projet']);
+        this.router.navigate(['porteur_projet/mes_idees'])
         break;
       }
       case 3: {
@@ -46,10 +46,6 @@ export class SidebarMenuPorteurComponent {
         break;
       }
       case 5:{
-        break;
-      }
-      case 6: {
-        this.router.navigate(['porteur_projet/mes_projets'])
         break;
       }
       case 7:{
@@ -63,7 +59,7 @@ export class SidebarMenuPorteurComponent {
     localStorage.removeItem("user_role")
     localStorage.removeItem("user_id")
     localStorage.removeItem("chemin")
-    window.location.reload()
+    // window.location.reload()
     this.router.navigate(['login'])
   }
 

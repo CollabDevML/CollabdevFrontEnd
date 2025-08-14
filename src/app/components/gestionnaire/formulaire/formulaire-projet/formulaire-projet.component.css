@@ -123,6 +123,7 @@ textarea {
 .form-row input,
 .form-row select {
   width: 50%;
+  z-index: 20;
 }
 
 button {
@@ -196,34 +197,34 @@ button:hover {
   .layout-container {
     flex-direction: column;
   }
-  
+
   app-side-bar {
     width: 100%;
     position: relative;
     height: auto;
   }
-  
+
   .main-content {
     flex-grow: 1;
   }
-  
+
   app-recherchebarre {
     position: relative;
     left: 0;
     top: 0;
     width: 100%;
   }
-  
+
   .form-card-container {
     flex-direction: column;
   }
-  
+
   .illustration-section {
     width: 100%;
     border-radius: 0 0 20px 20px;
     padding: 40px 20px;
   }
-  
+
   .form-section {
     padding: 30px;
   }
@@ -233,7 +234,7 @@ button:hover {
   .form-row {
     flex-direction: column;
   }
-  
+
   .form-row input,
   .form-row select {
     width: 100%;

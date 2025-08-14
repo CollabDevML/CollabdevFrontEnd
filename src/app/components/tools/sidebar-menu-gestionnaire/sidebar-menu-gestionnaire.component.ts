@@ -38,10 +38,6 @@ export class SidebarMenuGestionnaireComponent {
         this.router.navigate(['gestionnaire/mon_espace'])
         break;
       }
-      case 4: {
-        this.router.navigate(['gestionnaire/nouveau_projet'])
-        break;
-      }
       case 5:{
         break;
       }
@@ -61,7 +57,7 @@ export class SidebarMenuGestionnaireComponent {
     localStorage.removeItem("user_role")
     localStorage.removeItem("user_id")
     localStorage.removeItem("chemin")
-    window.location.reload()
+    // window.location.reload()
     this.router.navigate(['login'])
   }
 

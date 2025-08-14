@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { SideBarComponent } from '../../UI/side-bar/side-bar.component';
 import { RecherchebarreComponent } from "../../UI/recherchebarre/recherchebarre.component";
 import { SidebargestionnaireComponent } from '../../UI/sidebargestionnaire/sidebargestionnaire.component';
+import { SidebarMenuGestionnaireComponent } from '../../tools/sidebar-menu-gestionnaire/sidebar-menu-gestionnaire.component';
 
 @Component({
   selector: 'app-index-gestionnaire',
@@ -17,17 +18,14 @@ import { SidebargestionnaireComponent } from '../../UI/sidebargestionnaire/sideb
     // FooterComponent,
     RouterOutlet,
     CommonModule,
-    // SidebargestionnaireComponent,
-    SideBarComponent,
-    // HeaderComponent,
-    RecherchebarreComponent,
-    FooterComponent
+    SidebarMenuGestionnaireComponent
 ],
   templateUrl: './index-gestionnaire.component.html',
   styleUrl: './index-gestionnaire.component.css'
 })
 export class IndexGestionnaireComponent implements OnInit {
 
+  isSignInPages: boolean = false;
   sidebarOpen:boolean = true;
   user!:ResponseGestionnaire;
   static sidebarOpen: boolean;
@@ -55,10 +53,8 @@ export class IndexGestionnaireComponent implements OnInit {
   }
 
 
-  static changerEtatSidebar(value: boolean){
-    this.sidebarOpen = value
-    console.log("La valeur de side : ",this.sidebarOpen)
+  getIsExpanded(): boolean {
+    return Number(localStorage.getItem('isExpanded')) === 1;
   }
-
 
 }

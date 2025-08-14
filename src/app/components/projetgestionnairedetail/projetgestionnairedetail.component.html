@@ -11,7 +11,7 @@
           <span class="icon">
             <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
           </span>
-          {{projet.dateDebut}}
+          {{date(projet.dateDebut) | date:"dd/MMM/yyyy"}}
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <h2 class="titre-page">{{projet.titre}}</h2>
         <div class="description-card">
           <p>
-            {{projet.Description}}
+            {{projet.description}}
           </p>
         </div>
       </div>
@@ -29,7 +29,7 @@
           <span class="icon">
             <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
           </span>
-          {{projet.dateFin}}
+          {{date(projet.dateFin) | date:"dd/MMM/yyyy"}}
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="button">
-      <button class="btn-new-task">
+      <button class="btn-new-task" routerLink="../nouvelle_tache">
         <i class="ri-add-circle-fill" style="color:#334DAA; font-size: 20px"></i>
         <span>Nouvelle tache</span>
       </button>
@@ -57,7 +57,7 @@
 
     <!-- TABLEAU -->
     <div class="table-container">
-      <div class="table-header">
+      <!-- <div class="table-header">
         <span>Titre</span>
         <span>Description</span>
         <span>Date debut</span>
@@ -66,10 +66,10 @@
         <span style="text-align: center;">État</span>
         <span >Contributeur</span>
         <span style="text-align: center;">Action</span>
-      </div>
+      </div> -->
 
       <!-- LIGNE -->
-      @if (projet.taches && projet.taches.length > 0) {
+      <!-- @if (projet.taches && projet.taches.length > 0) {
         @for (tache of projet.taches; track $index) {
           <div class="table-row">
             <span class="bold">{{tache.titre}}</span>
@@ -95,7 +95,10 @@
             </span>
           </div>
         }
-      }
+      } -->
+
+      <app-task-list></app-task-list>
+
     </div>
     <app-popup-options
     *ngIf="showPopup"

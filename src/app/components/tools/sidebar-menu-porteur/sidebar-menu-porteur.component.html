@@ -22,41 +22,15 @@
                 }
             </div>
             <div class="project-ideas-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(2)">
-                @if(currentMenu == 2){
-                    <i class="ri-lightbulb-flash-fill icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Les idées de projet</strong></p>
-                    }
-                } @else {
-                    <i class="ri-lightbulb-flash-line icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text">Les idées de projet</p>
-                    }
-                }
-            </div>
-            <div class="project-ideas-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(6)">
                 @if(currentMenu == 6){
                     <i class="ri-layout-masonry-fill icons"></i>
                     @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Mes idées</strong></p>
+                        <p class="menus-text"><strong>Idées de projet</strong></p>
                     }
                 } @else {
                     <i class="ri-layout-masonry-line icons"></i>
                     @if (getIsExpanded()) {
-                        <p class="menus-text">Mes idées</p>
-                    }
-                }
-            </div>
-            <div class="project-ideas-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(7)">
-                @if(currentMenu == 7){
-                    <i class="ri-folder-add-fill icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Proposer ICI</strong></p>
-                    }
-                } @else {
-                    <i class="ri-folder-add-line icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text">Proposer ICI</p>
+                        <p class="menus-text">Idées de projet</p>
                     }
                 }
             </div>

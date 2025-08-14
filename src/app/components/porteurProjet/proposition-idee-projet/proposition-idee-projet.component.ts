@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -8,12 +8,14 @@ import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
 import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
 import { Router } from '@angular/router';
+import { NgxSpinnerComponent, NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-proposition-idee-projet',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NgxSpinnerComponent],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PropositionIdeeProjetComponent implements OnInit {
   titre: string = '';
@@ -31,7 +33,8 @@ export class PropositionIdeeProjetComponent implements OnInit {
     private domaineService: DomaineIdeeProjetService,
     private data: DataService,
     private dataPorteur: PorteurProjetDataService,
-    private route: Router
+    private route: Router,
+    private spinner:NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -54,9 +57,11 @@ export class PropositionIdeeProjetComponent implements OnInit {
   onSubmit(): void {
     this.erreurs = [];
 
+    this.spinner.show();
     // Validation sans le fichier obligatoire
     if (!this.titre || !this.description || !this.domaine) {
       this.erreurs.push('Titre, description et domaine sont obligatoires.');
+      this.spinner.hide();
       return;
     }
 
@@ -71,16 +76,18 @@ export class PropositionIdeeProjetComponent implements OnInit {
         console.log(ideeProjet);
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
-            alert('Idée de projet envoyée avec succès !');
             const role = localStorage.getItem("user_role");
             if (role === "GESTIONNAIRE") {
+              this.spinner.hide();
               this.route.navigateByUrl('/gestionnaire/mes_idees');
             }else{
+              this.spinner.hide();
               this.route.navigateByUrl('/porteur_projet/mes_idees');
             }
             this.resetForm();
           },
           error: (err) => {
+            this.spinner.hide();
             this.erreurs.push(
               "Erreur lors de l'envoi du projet : " +
                 (err.error?.message || err.message)
@@ -107,11 +114,13 @@ export class PropositionIdeeProjetComponent implements OnInit {
         console.log(ideeProjet);
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
-            alert('Idée de projet envoyée avec succès !');
+            // alert('Idée de projet envoyée avec succès !');
+            this.spinner.hide();
             this.route.navigateByUrl('/porteur_projet/mes_idees');
             this.resetForm();
           },
           error: (err) => {
+            this.spinner.hide();
             this.erreurs.push(
               "Erreur lors de l'envoi du projet : " +
                 (err.error?.message || err.message)
@@ -120,6 +129,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
         });
       },
       error: (err) => {
+        this.spinner.hide();
         alert("Erreur mlors de l'Upload de fichier !!!");
         console.log(err);
       },
