@@ -9,7 +9,6 @@
     z-index: 5;
     align-items: center;
     justify-content: center;
-    transition: grid-template-columns 1s ease-in-out;
 }
 
 .principal-container.isExpanded {
@@ -233,8 +232,9 @@ h2 {
 }
 
 .idea-description-container {
-    width: 100%;
+    width: fit-content;
     font-size: 10pt;
+    word-break: break-word;
 }
 
 .idea-cdc-container {
@@ -271,6 +271,10 @@ h2 {
 .idea-help {
     font-size: 24px;
     transition: transform 0.3s ease-in-out;
+}
+
+.idea-help {
+    color: #334DAA;
 }
 
 .idea-help:hover {
