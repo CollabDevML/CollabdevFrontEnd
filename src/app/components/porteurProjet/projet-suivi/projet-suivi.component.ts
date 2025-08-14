@@ -6,8 +6,6 @@ import { RecherchebarreComponent } from '../../UI/recherchebarre/recherchebarre.
 @Component({
   selector: 'app-projet-suivi',
   imports: [
-    SideBarComponent,
-    RecherchebarreComponent
   ],
   templateUrl: './projet-suivi.component.html',
   styleUrl: './projet-suivi.component.css'

@@ -6,49 +6,59 @@ import { Login } from '../models/login/login';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(
-    private dataG: DataService,
-    private route: Router,
-    private toastr: ToastrService
-  ) {}
+  static routes: Router;
+  isLoging: boolean = false;
 
- 
+  constructor(public route:Router,private dataG:DataService,private toastr:ToastrService){}
 
   login(data:Login){
+    this.isLoging = true;
     this.dataG.login(data).subscribe({
       next: (res:any) => {
-        console.log(res);
+        this.isLoging = false;
+        if(res.message) {
+            this.toastr.error("Authentification échouée, veuillez réessayer","Satut d'authentification",{
+            timeOut: 3000,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            positionClass: 'toast-top-right'
+          });
+          this.route.navigateByUrl('/login')
+          return;
+        }
+        console.log(res)
         localStorage.setItem("user_role",res.role)
         localStorage.setItem("user_id",res.id)
+        localStorage.setItem("isExpanded","1")
         let chemin = "";
-        switch(res.role){
-          case "CONTRIBUTEUR":
-            chemin = "contributeur";
-            break;
-          case "GESTIONNAIRE" :
-            chemin = "gestionnaire";
-            break;
-          case "PORTEUR_PROJET":
-            chemin = "porteur_projet";
-            break;
-          default:
-            chemin = ""
+        if (res.role == "CONTRIBUTEUR") {
+          chemin = "contributeur";
+          localStorage.setItem("chemin",chemin)
+        }else if(res.role == "GESTIONNAIRE"){
+          chemin = "gestionnaire";
+          localStorage.setItem("chemin",chemin)
         }
-        localStorage.setItem("chemin",chemin)
-        this.toastr.success("Authentification reussie avec succès","succès",{
-          timeOut: 1000,
+        else if (res.role == "PORTEUR_PROJET"){
+          chemin = "porteur_projet";
+          localStorage.setItem("chemin",chemin)
+        }
+        this.toastr.success("Authentification reussie avec succès","Satut d'authentification",{
+          timeOut: 3000,
           progressBar: true,
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-        this.route.navigate([chemin]);
+        this.route.navigateByUrl('accueil');
       },
-      error: (err) => {
-        this.toastr.error("Veuillez renseigner tout les champs","erreur",{
+      error: (err:any) => {
+        this.isLoging = false;
+        console.log(err.message)
+        this.toastr.error(err.message,"erreur",{
           timeOut: 3000,
           progressBar: true,
           progressAnimation: 'increasing',
@@ -59,9 +69,12 @@ export class LoginService {
     })
   }
 
-  logout(){
-    localStorage.removeItem("user_email");
+
+  static logout(){
+    const route = new Router();
+    localStorage.removeItem("user_role");
+    localStorage.removeItem("user_id");
     localStorage.removeItem("chemin");
-    this.route.navigate(["login"]);
+    route.navigate(["login"]);
   }
 }

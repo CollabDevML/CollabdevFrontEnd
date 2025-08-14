@@ -1,12 +1,31 @@
-export class projet {
-  id!: number;
-  titre!: string;
-  Description!: string;
-  estFini!: boolean;
-  dateDebut!: Date;
-  dateFin!: Date;
-  Niveau!: string;
-  etat!: boolean;
-  idGestionnaire!: number;
-  piecesDAcces!: number;
-}
+export class projet{
+    id!:number
+   titre!:string;
+   description!:string;
+   estFini!:boolean;
+   dateDebut!:Date;
+   dateFin!:Date;
+   niveauDAcces!: string;
+   utilisateur!:{prenom:string,nom:string}
+   etat!:boolean;
+   idGestionnaire!:number;
+   demandeContributions!: any[];
+   piecesDAcces!:number;
+   gestionnaire!: { prenom: string, nom: string }; // ✅ objet
+   porteur!: { prenom: string, nom: string };   
+   taches!: any[];
+   contributions!: any[];
+
+  
+   nombreContributeurs!:number;
+  commentaires!: 
+            {
+                id:number,
+                contenu:string,
+                dateCommentaire: Date,
+                utilisateur: {
+                    prenom:string,
+                    nom:string
+                }
+            }[]
+ }

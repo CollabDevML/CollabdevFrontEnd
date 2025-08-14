@@ -1,3 +1,5 @@
+import { projet } from "./projet/projet";
+
 export class Users {
   private prenom: string;
   private nom: string;
@@ -5,6 +7,7 @@ export class Users {
   private motDePasse: string;
   private genre: string;
   private preferences: [] = [];
+  
 
   constructor(
     prenom: string,
@@ -69,11 +72,11 @@ export class Users {
   }
 
   //Preferences :
-  get getPreferences():[]{
+  get getPreferences(): [] {
     return this.preferences;
   }
 
-  set setPreferences(preferences:[]){
+  set setPreferences(preferences: []) {
     this.preferences = preferences;
   }
 

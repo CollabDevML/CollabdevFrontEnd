@@ -1,14 +1,12 @@
 <div id="main">
-  <div class="lateral-nav" [class.lateral-close]="!sidebarOpen">
-    <app-sidebargestionnaire
-      (AfficherSideBar)="changerEtatSidebar($event)"
-    ></app-sidebargestionnaire>
-  </div>
   <div class="dashboard" [class.long-dashboard]="!sidebarOpen">
+
     <div id="en-tete">
       <h3>
         Heureux de vous revoir
-        <span [ngStyle]="{ color: '#F6C434' }">Kadiatou Tall</span><br />
+        <span [ngStyle]="{ color: '#F6C434' }"
+          >{{ user.prenom }} {{ user.nom }}</span
+        ><br />
         Gerer vos projets en toute simplicité
       </h3>
       <img src="/gestionnnairedashboard.png" alt="image" />
@@ -23,25 +21,27 @@
           </span>
 
           <div class="contribution-list">
-            <app-cardcontribution />
-            <app-cardcontribution />
+            @for (contributions of contributionsList; track $index) {
+              <app-cardcontribution [contribution]="contributions"/>
+            }
+
           </div>
         </div>
         <div class="statistiques" [class.decale]="!sidebarOpen">
-  <div class="icon-wrapper">
-    <i class="ri-archive-stack-line"></i>
-  </div>
+          <div class="icon-wrapper">
+            <i class="ri-archive-stack-line"></i>
+          </div>
 
-  <h5>Projets</h5>
+          <h5>Projets</h5>
 
   <div class="en-cours">
-    <span id="en-cours">5</span>
+    <span id="en-cours">{{nbreProjetsEnCours}}</span>
     <p>En cours</p>
   </div>
 
   <div class="realises">
     <hr id="realise" />
-    <p>10 Réalisés</p>
+    <p>{{nbreProjetsTermine}} Réalisés</p>
   </div>
 </div>
 
@@ -50,15 +50,14 @@
       <div id="projet-recents">
         <span class="titre">
           <h4 class="sous-titre">Projets récents</h4>
-          <button class="tous-voir">Tous voir</button>
+          <button class="tous-voir" >Tous voir</button>
         </span>
-
         <div class="card-content">
-          <app-cardprojet></app-cardprojet>
-          <app-cardprojet></app-cardprojet>
-          <app-cardprojet></app-cardprojet>
-          <app-cardprojet></app-cardprojet>
+          @for (projet of projetsRecents; track $index) {
+            <app-cardprojet [projet]="projet"></app-cardprojet>
+          }
         </div>
+
       </div>
 
       @if (sidebarOpen === false) {
@@ -82,25 +81,19 @@
         </thead>
         <tbody>
           <tr>
-            <td>Blablacar</td>
-            <td>Blablacar</td>
-            <td>Blablacar</td>
-            <td>Blablacar</td>
-            <td class="actions">
-              <button id="accepte" (click)="openPopups()">Accepté</button>
-              <button id="refuse" (click)="openPopups()">Refusé</button>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>Blablacar</td>
-            <td>Blablacar</td>
-            <td>Blablacar</td>
-            <td>Blablacar</td>
-            <td class="actions">
-              <button id="accepte" (click)="openPopups()">Accepté</button>
-              <button id="refuse" (click)="openPopups()">Refusé</button>
-            </td>
+            @if(demandeContributions.length > 0)
+            {
+              @for (demande of demandeContributions; track $index) {
+                <td>{{demande.projetNom}}</td>
+                <td>{{demande.contributeurNom}}</td>
+                <td>{{demande.dateEnvoi}}</td>
+                <td>{{demande.profileContributeur}}</td>
+                <td class="actions">
+                  <button id="accepte" (click)="openPopups('accept',demande)">Accepté</button>
+                  <button id="refuse" (click)="openPopups('decline',demande)">Refusé</button>
+                </td>
+              }
+            }
           </tr>
         </tbody>
       </table>
@@ -109,5 +102,4 @@
   @if(ispopupVisible === true){
     <app-pop-ups (close)="closePopups($event)"></app-pop-ups>
   }
-  
 </div>
