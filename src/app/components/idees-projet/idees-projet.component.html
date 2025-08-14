@@ -29,7 +29,11 @@
                     <div class="idea-cdc-container">
                         <i class="ri-file-pdf-2-line idea-pdf-logo"></i>
                         <p class="idea-pdf-text"><u>Voir le cahier des charges</u></p>
-                        <i class="ri-hand-heart-line idea-help" (click)="helpIdea(ideeProjet.id)"></i>
+                        @if (isHelped(ideeProjet.id)){
+                            <i class="ri-hand-heart-fill idea-help" (click)="helpIdea(ideeProjet.id)" [class.isHelped]="isHelped(ideeProjet.id)"></i>
+                        } @else {
+                            <i class="ri-hand-heart-line idea-help" (click)="helpIdea(ideeProjet.id)" [class.isHelped]="isHelped(ideeProjet.id)"></i>
+                        }
                     </div>
                     @if(ideeProjet.commentaireIdeeProjets.length !== 0) {
                         <div class="idea-comments-container">
