@@ -5,7 +5,7 @@
   --surface: #f5f6fa; /* Fond de page */
   --fond-carte: #ffffff; /* Fond des cartes */
   --bord-carte: #e6e8ee; /* Bordure des cartes */
-  --texte-primaire: #0f172a; /* Titre/texte fort */
+  --texte-primaire: #000000; /* Titre/texte fort */
   --texte-secondaire: #6b7280; /* Texte faible */
   --rayon-carte: 12px;
   --etiquette-facile-bg: #fdecc8;
@@ -14,7 +14,7 @@
 
 .page-principale {
   /* Variables dimensionnelles avec les valeurs */
-  --footer-h: 38px; /* Hauteur du footer */
+  --footer-h: 28px; /* Hauteur du footer */
   --sidebar-w: 180px; /* Largeur sidebar (desktop) */
   --bottom-sidebar-h: 60px; /* Hauteur sidebar basse (mobile portrait) */
 

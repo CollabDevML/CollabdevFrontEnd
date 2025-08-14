@@ -1,0 +1,87 @@
+<app-recherchebarre></app-recherchebarre>
+
+<section class="contenu-accueil contenu-accueil--reserve" role="main">
+  <div class="grille-contenu">
+    
+    <div class="colonne-gauche">
+      <div class="bloc-projets bloc-projets--cadre">
+        <div class="barre-onglets">
+          <div class="ideeprojet">
+            <i class="ri-lightbulb-flash-line" aria-hidden="true" style="font-size:20px"></i>
+            <span>Idée de Projet</span>
+          </div>
+          <div class="projet actif">
+            <i class="ri-folder-2-line" aria-hidden="true" style="font-size:20px"></i>
+            <span>Mes projets</span>
+          </div>
+          <div class="gestionnaire">
+            <i class="ri-health-book-line" aria-hidden="true" style="font-size:20px"></i>
+            <span>Contact Gestionnaire</span>
+          </div>
+        </div>
+
+        <!-- Message de chargement -->
+        <div *ngIf="loading" class="loading-message">
+          Chargement des projets...
+        </div>
+
+        <!-- Message si aucun projet -->
+        <div *ngIf="!loading && projets.length === 0" class="no-projects-message">
+          Aucun projet trouvé.
+        </div>
+
+        <!-- Liste dynamique des projets -->
+        <div class="liste-cartes" role="list" *ngIf="!loading && projets.length > 0">
+          <article 
+            class="carte-projet" 
+            [class.carte-inactive]="!projet.actif"
+            role="listitem" 
+            [attr.aria-labelledby]="'projet-' + projet.id + '-titre'"
+            *ngFor="let projet of projets; trackBy: trackByProjetId">
+            
+            <div class="carte-icône" aria-hidden="true">👤</div>
+            
+            <div class="carte-corps">
+              <div class="carte-titres">
+                <h3 class="carte-titre" [id]="'projet-' + projet.id + '-titre'">
+                  {{ projet.nom }}
+                </h3>
+                <div class="carte-gestionnaire">
+                  <span class="etiquette">Gestionnaire:</span>
+                  <span class="valeur">{{ projet.gestionnaire }}</span>
+                </div>
+              </div>
+              <div class="carte-tache">
+                <span class="etiquette">Tâche:</span>
+                <span class="valeur">{{ projet.tache }}</span>
+              </div>
+            </div>
+            
+            <div *ngFor="let p of listeProjets">
+            <div>{{ p.nom }} - {{ p.gestionnaire }}</div>
+            <button (click)="quitterProjet(p.id)">Quitter le projet</button>
+            </div>
+
+          </article>
+        </div>
+      </div>
+    </div>
+     
+    <div class="colonne-droite">
+      <div class="bloc-slogan">
+        <h2 class="slogan-titre"> Votre vision, notre <br>Collaboration, un <br>succès partagé<span class="slogan-point">.</span></h2>
+      </div>
+      <div class="bloc-illustration">
+        <img class="illustration-image" src="contributeur.png" alt="Illustration de collaboration" />
+      </div>
+      <div class="bloc-avatars" role="list" aria-label="Participants">
+        <div class="avatar-élément" role="listitem"><div class="avatar-rond" aria-hidden="true">M</div><div class="avatar-nom">Moussa</div></div>
+        <div class="avatar-élément" role="listitem"><div class="avatar-rond" aria-hidden="true">A</div><div class="avatar-nom">Abdoul</div></div>
+        <div class="avatar-élément" role="listitem"><div class="avatar-rond" aria-hidden="true">N</div><div class="avatar-nom">Nantenin</div></div>
+        <div class="avatar-élément" role="listitem"><div class="avatar-rond" aria-hidden="true">D</div><div class="avatar-nom">Djimé</div></div>
+        <div class="avatar-élément" role="listitem"><div class="avatar-rond" aria-hidden="true">N</div><div class="avatar-nom">Nakale</div></div>
+        <div class="avatar-élément" role="listitem"><div class="avatar-rond" aria-hidden="true">K</div><div class="avatar-nom">Kadidia</div></div>
+      </div>
+    </div>
+  </div>
+</section>

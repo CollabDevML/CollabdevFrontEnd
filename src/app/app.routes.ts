@@ -33,6 +33,7 @@ import { Contributeurs1Component } from './components/contributeurs1/contributeu
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
 import { MesIdeeProjetComponent } from './components/porteurProjet/PorteurProjet/mes-idee-projet/mes-idee-projet.component';
 import { DetailCommentaireComponent } from './components/detail-commentaire/detail-commentaire.component';
+import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
 
 export const routes: Routes = [
   {
@@ -74,6 +75,7 @@ export const routes: Routes = [
   //Les routes pour le Contributeur :
   {path:"contributeur",component:IndexContributeurComponent,children:[
     {path:"",component:AccueilContributeurComponent},
+    {path:"projetscontri", component: Contributeurs2Component},
     //Les autres ici ...........
 
     {path:"**",redirectTo:""}

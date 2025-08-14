@@ -18,5 +18,7 @@ export class Env {
     Env._env.apiUrl + 'recommandations/projets';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
+  public static PROJET: string = Env._env.apiUrl + "gestionnaires/" +"projets"
+
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';
 }
