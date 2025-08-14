@@ -20,6 +20,7 @@ export class IdeesProjetComponent implements OnInit{
   userId: number = 0;
 
   public ideesProjet: ResponseIdeeProjet2[] = []
+  public ideesSoutenues: Map<number, boolean> = new Map();
 
   public constructor(private ideesProjetService: IdeesProjetService, private domaineService: DomaineIdeeProjetService) {}
 
@@ -36,6 +37,25 @@ export class IdeesProjetComponent implements OnInit{
           }
         }
       );
+    }
+    for(const ideeProjet of this.ideesProjet) {
+      var isHelped: boolean = false;
+      this.ideesProjetService.isHelped(this.userId, ideeProjet.id).subscribe({
+        next: (data) => {
+          isHelped = data;
+        }
+      })
+      this.ideesSoutenues.set(ideeProjet.id, isHelped);
+    }
+    console.log(this.ideesSoutenues)
+  }
+
+  isHelped(ideaId: number): boolean {
+    const estSoutenu = this.ideesSoutenues.get(ideaId)
+    if(typeof estSoutenu === undefined) {
+      return false;
+    } else {
+      return estSoutenu!;
     }
   }
 
