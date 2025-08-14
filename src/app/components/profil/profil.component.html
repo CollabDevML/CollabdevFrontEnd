@@ -103,64 +103,78 @@
               <p>Aucun Projet pour le moment.</p>
             </ng-template>
           </div>
-        </div>
-      </div>
 
-      <!-- Modal d'édition inline -->
-      <div
-        class="modal-overlay"
-        *ngIf="isEditOpen"
-        (click)="fermerEdition()"
-      ></div>
-      <div
-        class="modal"
-        *ngIf="isEditOpen"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="editTitle"
-      >
-        <div class="modal-header">
-          <h3 id="editTitle">Modifier le profil</h3>
-          <button
-            class="icon-btn"
-            (click)="fermerEdition()"
-            aria-label="Fermer"
-          >
-            <i class="ri-close-line"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h4 class="section-subtitle">Informations</h4>
-          <div class="form-grid">
-            <label>
-              <span>Prénom</span>
-              <input type="text" [(ngModel)]="formEdit.prenom" />
-            </label>
-            <label>
-              <span>Nom</span>
-              <input type="text" [(ngModel)]="formEdit.nom" />
-            </label>
-            <label class="grid-full">
-              <span>Email</span>
-              <input type="email" [(ngModel)]="formEdit.email" />
-            </label>
-            <label class="grid-full" *ngIf="utilisateur.genre !== undefined">
-              <span>Genre</span>
-              <select [(ngModel)]="formEdit.genre">
-                <option value="HOMME">H</option>
-                <option value="FEMME">F</option>
-              </select>
-            </label>
+          <!-- Carte des badges -->
+          <!-- Carte des badges -->
+          <div class="card" *ngIf="role === 'CONTRIBUTEUR'">
+            <h3 class="section-title">Vos badges</h3>
+            <div class="badges-container" *ngIf="badges.length; else noBadges">
+              <div *ngFor="let badge of badges" class="badge-item">
+                <img
+                  [src]="badge.imageUrl"
+                  [alt]="badge.nom"
+                  class="badge-image"
+                />
+                <p class="badge-name">{{ badge.nom }}</p>
+              </div>
+            </div>
+
+            <ng-template #noBadges>
+              <p>Aucun badge pour le moment.</p>
+            </ng-template>
           </div>
         </div>
-        <div class="modal-footer">
-          <button class="secondary-btn" (click)="fermerEdition()">
-            Annuler
-          </button>
-          <button class="primary-btn" (click)="enregistrerModifications()">
-            Enregistrer
-          </button>
+      </div>
+    </div>
+
+    <!-- Modal d'édition inline -->
+    <div
+      class="modal-overlay"
+      *ngIf="isEditOpen"
+      (click)="fermerEdition()"
+    ></div>
+    <div
+      class="modal"
+      *ngIf="isEditOpen"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="editTitle"
+    >
+      <div class="modal-header">
+        <h3 id="editTitle">Modifier le profil</h3>
+        <button class="icon-btn" (click)="fermerEdition()" aria-label="Fermer">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 class="section-subtitle">Informations</h4>
+        <div class="form-grid">
+          <label>
+            <span>Prénom</span>
+            <input type="text" [(ngModel)]="formEdit.prenom" />
+          </label>
+          <label>
+            <span>Nom</span>
+            <input type="text" [(ngModel)]="formEdit.nom" />
+          </label>
+          <label class="grid-full">
+            <span>Email</span>
+            <input type="email" [(ngModel)]="formEdit.email" />
+          </label>
+          <label class="grid-full" *ngIf="utilisateur.genre !== undefined">
+            <span>Genre</span>
+            <select [(ngModel)]="formEdit.genre">
+              <option value="HOMME">H</option>
+              <option value="FEMME">F</option>
+            </select>
+          </label>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" (click)="fermerEdition()">Annuler</button>
+        <button class="primary-btn" (click)="enregistrerModifications()">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
