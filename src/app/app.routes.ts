@@ -42,6 +42,8 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
+import { ProfilComponent } from './components/profil/profil.component';
+
 import { AttributionTacheComponent } from './components/attribution-tache/attribution-tache/attribution-tache.component';
 import { ListeTachesComponent } from './components/liste-taches/liste-taches/liste-taches.component';
 
@@ -60,6 +62,18 @@ export const routes: Routes = [
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
 
   //Les routes concernants l'inscription :
+  {
+    path: 'inscription',
+    component: InscriptionComponent,
+    children: [
+      { path: '', component: InscriptionIndexComponent },
+      { path: 'choix', component: InscriptionChoixComponent },
+      { path: 'contributeur', component: ContributeurComponent },
+      { path: 'gestionnaire', component: GestionnaireComponent },
+      { path: 'porteur_de_projet', component: PorteurProjetComponent },
+      { path: '**', redirectTo: '' },
+    ],
+  },
   {
     path: 'inscription',
     component: InscriptionComponent,
@@ -125,11 +139,16 @@ export const routes: Routes = [
   { path: 'popup', component: PopUpsComponent },
   { path: 'accueil', component: AccueilComponent },
 
+  { path: 'profil', component: ProfilComponent },
   { path: 'projet-details', component: ProjetgestionnairedetailComponent },
 
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
   { path: 'header-barre', component: RecherchebarreComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
+  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
+  { path: 'detailCommentaire', component: DetailCommentaireComponent },
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: 'detailCommentaire', component: DetailCommentaireComponent },

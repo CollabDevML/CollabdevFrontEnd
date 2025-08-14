@@ -6,12 +6,12 @@ export class ResponseGestionnaire {
   nom!: string;
   email!: string;
   genre!: Enumerations.Genre;
-  preferences: []=[];
+  preferences: [] = [];
   uriCV!: string;
   estValide!: boolean;
   idGestionnaire!: number;
   idUtilisateur!: number;
-  projets: projet[] = []
+  projets: projet[] = [];
   // constructor(
   //   prenom: string,
   //   nom: string,

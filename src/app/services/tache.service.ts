@@ -9,7 +9,6 @@ export interface RequestTache {
   pieceAGagner: number;
   dateDebut: string; // format ISO string
   dateFin: string;
-  estFini: boolean;
   niveau: string;
   idContributeur: number;
   idProjet: number;

@@ -1,21 +1,20 @@
 .header {
-    width: 100% ;
-    background-color: white;
-    border-top: 1px solid #e3f2fd;
-    border-bottom: solid #7F7F7F 1px;
-    position: sticky;
-    top: 0;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid #e3f2fd;
+  border-bottom: solid #7f7f7f 1px;
+  position: sticky;
+  top: 0;
 }
 
 .entete {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
 }
 
 .left-section {
@@ -26,8 +25,8 @@
 }
 
 .logo {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo-image {
@@ -109,7 +108,7 @@
 }
 
 /*.contact-link:hover {
-    color: #334DAA;
+  color: #334DAA;
 }*/
 
 /* Responsive design */
