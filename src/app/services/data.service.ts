@@ -12,20 +12,18 @@ export class DataService {
   //Pour la creation des headers :
   private headers = new HttpHeaders();
 
-  userData!:Users;
-  users:any;
-  user_email = localStorage.getItem("user_email") || "";
-  user_id = Number(localStorage.getItem("user_id")) || 0;
-  user_role = localStorage.getItem("user_role") || "";
+  userData!: Users;
+  users: any;
+  user_email = localStorage.getItem('user_email') || '';
+  user_id = Number(localStorage.getItem('user_id')) || 0;
+  user_role = localStorage.getItem('user_role') || '';
 
-  constructor(
-    private http:HttpClient
-  ) {
+  constructor(private http: HttpClient) {
     this.users = {};
 
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,PATCH ,OPTIONS',
@@ -36,16 +34,16 @@ export class DataService {
   }
 
   //Les deux methodes qui vont recuperer les données de utilisateurs en fonction de localstorage que ca soit a travers sont email ou son id:
-  getDataUserById():Observable<any>{
-    return this.getDataById(Env.INSCRIPTION_URL,this.user_id,this.user_role);
+  getDataUserById(): Observable<any> {
+    return this.getDataById(Env.INSCRIPTION_URL, this.user_id, this.user_role);
   }
 
-  getDataUserByEmail() :Users{
-    this.getDataByEmail(Env.INSCRIPTION_URL,this.user_email).subscribe(
-      (res)=>{
+  getDataUserByEmail(): Users {
+    this.getDataByEmail(Env.INSCRIPTION_URL, this.user_email).subscribe(
+      (res) => {
         this.userData = res;
       }
-    )
+    );
     return this.userData;
   }
 
@@ -75,13 +73,15 @@ export class DataService {
   }
 
   //Pour la recuperation d'une donnée par son ID
-  getDataById(url: string, id: number,role:string):Observable<any>{
-    return this.http.get<Users>(`${url}/${id}?role=${role}`,{headers: this.headers});
+  getDataById(url: string, id: number, role: string): Observable<any> {
+    return this.http.get<Users>(`${url}/${id}?role=${role}`, {
+      headers: this.headers,
+    });
   }
 
   //Pour la recuperation d'une donnée par son ID
-  getDataByEmail(url: string, email: string):Observable<Users> {
-    return this.http.get<Users>(`${url}/${email}`,{headers: this.headers});
+  getDataByEmail(url: string, email: string): Observable<Users> {
+    return this.http.get<Users>(`${url}/${email}`, { headers: this.headers });
   }
 
   //Pour l'insertion, la mise à jour et la suppression de données par ID
@@ -101,12 +101,15 @@ export class DataService {
 
   //Pour la mise à jour des données par ID
   patchDataById(url: string, id: number, value: boolean) {
-    return this.http.patch(`${url}/${id}/estAcceptee/${value}`, {}, { headers: this.headers });
+    return this.http.patch(
+      `${url}/${id}/estAcceptee/${value}`,
+      {},
+      { headers: this.headers }
+    );
   }
-  
-  
-  getById(url:string, id: number){
-    return this.http.get(`${url}/${id}`,{ headers: this.headers })
+
+  getById(url: string, id: number) {
+    return this.http.get(`${url}/${id}`, { headers: this.headers });
   }
 
   // Pour l'envoi de fichiers
