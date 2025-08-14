@@ -108,7 +108,7 @@ export class DataService {
     );
   }
 
-  getById(url: string, id: number) {
+  getById(url: string, id: number): Observable<any> {
     return this.http.get(`${url}/${id}`, { headers: this.headers });
   }
 

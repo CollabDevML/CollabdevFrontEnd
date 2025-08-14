@@ -17,16 +17,24 @@ export class Env {
   public static GETRECOMMANDATIONPROJET: string =
     Env._env.apiUrl + 'recommandations/projets';
 
+  public static PROJET: string = Env._env.apiUrl + 'gestionnaires/projets';
 
-  public static IDEEPROJETLISTE: string =
-    Env.INSCRIPTION_URL + '/idees-projet';
+  public static TACHE: string =
+    Env.INSCRIPTION_URL + '/gestionnaires/projets/taches';
+
+  public static PROJET_GESTIONNAIRE: string =
+    Env._env.apiUrl + 'gestionnaires/';
+
+  public static IDEEPROJETLISTE: string = Env.INSCRIPTION_URL + '/idees-projet';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 
   public static UPLOAD_URL: string = Env._env.apiUrl + 'upload';
 
   //urls pour recupérer les données d'un gestionnaire
-  public static GET_GESTIONNAIRE: string = Env._env.apiUrl + 'utilisateurs/gestionnaires'
+  public static GET_GESTIONNAIRE: string =
+    Env._env.apiUrl + 'utilisateurs/gestionnaires';
 
   //urls pour accepter/refuser une demande de contribution
-  public static MODIFIER_EST_ACCEPTEE: string = Env._env.apiUrl + 'gestionnaires/projets/demandes-contribution'
+  public static MODIFIER_EST_ACCEPTEE: string =
+    Env._env.apiUrl + 'gestionnaires/projets/demandes-contribution';
 }
