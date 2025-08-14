@@ -33,4 +33,8 @@ export class IdeesProjetService {
     return this.httpClient.post(`${this.baseUrl}/idees-projet/${ideaId}/nombre-soutien?idUtilisateur=${userId}`, {});
   }
 
+  isHelped(userId: number, ideaId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/${userId}/idees-projet/${ideaId}/est-soutenu`)
+  }
+
 }
