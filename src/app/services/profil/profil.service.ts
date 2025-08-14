@@ -97,23 +97,13 @@ export class UtilisateurService {
         if (!profilId) {
           return of([]);
         }
-        // On utilise le contrôleur des demandes de contribution
-        url = `${this.apiRoot}/gestionnaires/projets/demandes-contribution/contributeurs/${profilId}`;
+        url = `${this.apiRoot}/utilisateurs/contributeurs/projets/${profilId}`;
         break;
       case 'PORTEUR_PROJET':
       default:
         return of([]);
     }
-
-    return this.http.get<any[]>(url).pipe(
-      map(
-        (demandes) =>
-          demandes
-            .filter((d) => d.estAcceptee === true) // garde seulement les demandes acceptées
-            .map((d) => d.projet) // garde seulement l'objet projet
-      ),
-      catchError(() => of([]))
-    );
+    return this.http.get<Projet[]>(url).pipe(catchError(() => of([])));
   }
 
   // Mise à jour des infos utilisateur selon le rôle (sans changer le rôle)
