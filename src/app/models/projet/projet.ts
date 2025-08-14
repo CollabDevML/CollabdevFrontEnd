@@ -15,6 +15,7 @@ export class projet{
    porteur!: { prenom: string, nom: string };   
    taches!: any[];
    contributions!: any[];
+   mavaleur!:string
 
   
    nombreContributeurs!:number;

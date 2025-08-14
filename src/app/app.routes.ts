@@ -145,7 +145,6 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'detailCommentaire', component: DetailCommentaireComponent },
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: 'detailCommentaire', component: DetailCommentaireComponent },

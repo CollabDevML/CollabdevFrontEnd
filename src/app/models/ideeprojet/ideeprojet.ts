@@ -11,4 +11,5 @@ public commentaireIdeeProjets!:{contenu:string;
 dateCommentaire:Date;
  utilisateur:{prenom:string,nom:string,role:string}
 id:number}[];
+
 }

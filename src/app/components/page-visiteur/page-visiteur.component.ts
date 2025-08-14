@@ -69,15 +69,6 @@ export class PageVisiteurComponent {
     this.projetservice.recupererprojet().subscribe({
       next:(data)=>{
         this.listeprojet=data;
-       this.listeprojet.forEach(projet =>{
-        if(projet.estFini){
-          this.mavaleur='Fini'
-        }else{this.mavaleur='En cours'}
-       })
-        
-      
-
-        //methode de recherche
       
         console.log(this.listeprojetfilter)
         console.log(this.listeprojet)
@@ -89,7 +80,7 @@ export class PageVisiteurComponent {
       }
     })
 
-   //methode recherche
+  
 
   
     
@@ -129,5 +120,12 @@ voirplus(donnee:Ideeprojet){
   this.route.navigate(['/detailCommentaire'])
 }
 
-
+etat(valeur:boolean):string{
+        if(valeur){
+         return this.mavaleur='Fini'
+        }else{return this.mavaleur='En cours'}
+       }
 }
+
+
+

@@ -24,6 +24,7 @@ export class AppComponent {
   ispagevisiteur:boolean = false;
   isLoginPage: boolean = false;
   isSignInPages: boolean = false;
+  isPageDetailCommentaire: boolean = false;
   currentUserRole = localStorage.getItem('user_role');
   static router: Router;
   constructor(private router: Router) {
@@ -38,6 +39,9 @@ export class AppComponent {
        if (eve instanceof NavigationEnd) {
         const allLinks =  ['/inscription', '/inscription/choix', '/inscription/gestionnaire', '/inscription/contributeur', '/inscription/porteur-projet']
         this.isSignInPages = allLinks.includes(eve.urlAfterRedirects);
+      }
+      if (eve instanceof NavigationEnd) {
+        this.isPageDetailCommentaire = eve.urlAfterRedirects === '/detailCommentaire'
       }
     });
   }

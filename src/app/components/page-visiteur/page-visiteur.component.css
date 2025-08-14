@@ -305,6 +305,7 @@ input:focus{
    font-family:Arial, Helvetica, sans-serif;
    font-size: 16px;
    padding: 5px;
+   word-break: break-word;
 }
 .date{
    width: 285px;
@@ -416,6 +417,17 @@ input:focus{
    .descriptionprojet {
       width: 100%;
    }
+
+   .bouton1,
+.bouton2,
+.bouton3 {
+   width: 100%;
+   justify-content: center;
+}
+.conteneurideeprojet {
+   width: 100%;
+}
+
 }
 
 /* ------- Mobile (moins de 768px) ------- */
@@ -435,14 +447,14 @@ input:focus{
 
    .image {
       height: auto;
-      width: 100%;
-      margin-left: 0;
+        width: 95%;
+        margin-left: -3px;
    }
 
    .texte {
-      width: 100%;
-      font-size: 22px;
-      margin-left: 0;
+      width: 96%;
+        font-size: 22px;
+        margin-left: 0;
    }
 
    .recherche {
@@ -485,6 +497,30 @@ input:focus{
    .dernier {
       width: 100%;
    }
+
+   .image-conteneur {
+   height: auto;
+   width: 100%;
+}
+
+.bouton1,
+.bouton2,
+.bouton3 {
+   width: 100%;
+   justify-content: center;
+   padding: 7px 0;
+}
+.ideeprojet,
+.commentaireideeprojet {
+   margin-bottom: 15px;
+}
+.nbsoutien,
+.nbcontributeur {
+   margin-left: 0;
+   text-align: center;
+   margin-top: 5px;
+}
+
 }
 
 

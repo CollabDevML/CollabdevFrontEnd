@@ -240,8 +240,20 @@ display: flex
     font-size: 14px;
     text-decoration: none;
 }
-.contenu-commentaire .actions-commentaire {
+.contenu-commentaire .actions-commentaire1 {
   color: #F6C434;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.contenu-commentaire .actions-commentaire2 {
+  color: #334DAA;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.contenu-commentaire .actions-commentaire3 {
+  color: #23E311;
   font-size: 14px;
   text-decoration: none;
 }
