@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { projet } from '../../../models/projet/projet';
-import { DatePipe } from '@angular/common';
+import { DatePipe, SlicePipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ProjetServiceService } from '../../../services/projet/projet-service.service';
 
@@ -8,21 +8,23 @@ import { ProjetServiceService } from '../../../services/projet/projet-service.se
 @Component({
   selector: 'app-cardprojet',
   imports: [
-
-
   DatePipe,
+  SlicePipe
   ],
   templateUrl: './cardprojet.component.html',
   styleUrl: './cardprojet.component.css'
 })
 export class CardprojetComponent {
-  @Input() projet!: projet
+  date(dat: string) {
+    return new Date(dat);
+  }
+  @Input() projets!: projet
   projetService:ProjetServiceService= inject(ProjetServiceService)
   router : Router = inject(Router)
 
   voirdetail(projet:any)
   {
     this.projetService.setProjet(projet);
-    this.router.navigate(["details_projet"]);
+    this.router.navigate(["gestionnaire/details_projet"]);
   }
 }

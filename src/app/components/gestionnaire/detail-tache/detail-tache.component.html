@@ -1,0 +1,197 @@
+<!-- ===== PAGE TÂCHE + MODAL CONTRIBUTEURS (HTML SEUL) ===== -->
+
+<div class="page-container" >
+  <div class="header-placeholder"></div>
+
+  <div class="main-content">
+    <aside class="sidebar-placeholder"></aside>
+
+    <main class="container">
+
+      <!-- En-tête de page -->
+      <div class="page-header">
+        <button class="btn-icon" aria-label="Retour">
+          <i class="ri-arrow-left-s-line"></i>
+        </button>
+        <div class="title">Détail de la tâche</div>
+        <button class="btn-primary" (click)="voirPlus('dd')">Ajouter un contributeur</button>
+      </div>
+
+      <!-- Carte Tâche -->
+      <section class="task-card">
+        <div class="task-header">
+          <h2 class="task-title">Mise en place API Auth</h2>
+          <span class="badge status--en-cours">En cours</span>
+        </div>
+
+        <div class="task-meta">
+          <span class="meta-item"><i class="ri-stack-line"></i> Domaine : HEALTHTECH</span>
+          <span class="meta-item"><i class="ri-flag-2-line"></i> Priorité : Haute</span>
+          <span class="meta-item"><i class="ri-calendar-line"></i> Début : 12/08/2025</span>
+          <span class="meta-item"><i class="ri-time-line"></i> Échéance : 20/08/2025</span>
+        </div>
+
+        <p class="task-description">
+          Implémenter l’API d’authentification (login, refresh token, rôles) et sécuriser les routes.
+          Ajouter la documentation Swagger et des tests de base.
+        </p>
+
+        <div class="task-attachments">
+          <div class="attach-title"><i class="ri-attachment-2"></i> Pièces jointes</div>
+          <ul class="attach-list">
+            <li><i class="ri-file-text-line"></i> Spécifications v1.pdf</li>
+            <li><i class="ri-file-code-line"></i> Exemples endpoints.json</li>
+          </ul>
+        </div>
+
+        <div class="task-assignees">
+          <div class="assignees-title"><i class="ri-team-line"></i> Contributeurs assignés</div>
+          <div class="chips">
+            <span class="chip"><i class="ri-user-line"></i> A. Barry</span>
+            <span class="chip"><i class="ri-user-line"></i> M. Keita</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pied interne (optionnel) -->
+      <div class="inner-footer">
+        <button class="btn-secondary">Marquer comme terminé</button>
+        <button class="btn-outline" style="color: red;">Suspendre</button>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+@if (afficheVoirPlus) {
+<!-- ===== MODAL LISTE CONTRIBUTEURS ===== -->
+<div class="modal open">
+  <div class="contenu" role="dialog">
+    <div class="modal-header">
+      <h3 id="modalTitle">Ajouter un contributeur</h3>
+      <button class="btn-icon close"  (click)="verifier()">
+        <i class="ri-close-line" style="color: red;"></i>
+      </button>
+    </div>
+
+    <div class="modal-search">
+      <i class="ri-search-line"></i>
+      <input type="text" placeholder="Rechercher un contributeur..." />
+    </div>
+
+    <div class="contributors-list">
+
+      <!-- Carte contributeur -->
+      <div class="contributor">
+        <div class="avatar">AB</div>
+        <div class="info">
+          <div class="name">Alpha Barry</div>
+          <div class="meta">Développeur • Angular, NestJS</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">MK</div>
+        <div class="info">
+          <div class="name">Mariam Keita</div>
+          <div class="meta">Designer • UI/UX, Figma</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">TD</div>
+        <div class="info">
+          <div class="name">Tidiane Diallo</div>
+          <div class="meta">Backend • Spring Boot, PostgreSQL</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+      <!-- Carte contributeur -->
+      <div class="contributor">
+        <div class="avatar">AB</div>
+        <div class="info">
+          <div class="name">Alpha Barry</div>
+          <div class="meta">Développeur • Angular, NestJS</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">MK</div>
+        <div class="info">
+          <div class="name">Mariam Keita</div>
+          <div class="meta">Designer • UI/UX, Figma</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">TD</div>
+        <div class="info">
+          <div class="name">Tidiane Diallo</div>
+          <div class="meta">Backend • Spring Boot, PostgreSQL</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <!-- Carte contributeur -->
+      <div class="contributor">
+        <div class="avatar">AB</div>
+        <div class="info">
+          <div class="name">Alpha Barry</div>
+          <div class="meta">Développeur • Angular, NestJS</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">MK</div>
+        <div class="info">
+          <div class="name">Mariam Keita</div>
+          <div class="meta">Designer • UI/UX, Figma</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">TD</div>
+        <div class="info">
+          <div class="name">Tidiane Diallo</div>
+          <div class="meta">Backend • Spring Boot, PostgreSQL</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+}

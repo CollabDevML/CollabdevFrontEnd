@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IdeesProjetService } from '../../services/idees-projet.service';
 import { ResponseIdeeProjet2 } from '../../models/ideeprojet/response-idee-projet2';
 import { ElapsedTimePipe } from '../../pipes/elapsed-time.pipe';
 import { DomaineIdeeProjetService } from '../../services/domaine-idee-projet.service.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ListeIdeeProjetComponent } from '../porteurProjet/liste-idee-projet/liste-idee-projet.component';
+import { GestionnaireDataService } from '../../services/gestionnaire/gestionnaire-data.service';
 
 @Component({
   selector: 'app-idees-projet',
   imports: [
     RouterLink,
-    ElapsedTimePipe
+    ElapsedTimePipe,
+    ListeIdeeProjetComponent
   ],
   templateUrl: './idees-projet.component.html',
   styleUrl: './idees-projet.component.css'
@@ -18,14 +21,17 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class IdeesProjetComponent implements OnInit{
 
   userId: number = 0;
-
+  isGestionnaire:boolean = false;
   public ideesProjet: ResponseIdeeProjet2[] = []
   public ideesSoutenues: Map<number, boolean> = new Map();
 
-  public constructor(private ideesProjetService: IdeesProjetService, private domaineService: DomaineIdeeProjetService) {}
+  constructor(private ideesProjetService: IdeesProjetService, private domaineService: DomaineIdeeProjetService,private dataGest:GestionnaireDataService,private route:Router) {}
 
   ngOnInit(): void {
     this.userId = Number(localStorage.getItem('user_id'));
+    if (localStorage.getItem("user_role")==="GESTIONNAIRE") {
+      this.isGestionnaire = true;
+    }
     if(this.userId !== 0) {
       this.ideesProjetService.getUserIdeas(this.userId).subscribe(
         {
@@ -48,6 +54,11 @@ export class IdeesProjetComponent implements OnInit{
       this.ideesSoutenues.set(ideeProjet.id, isHelped);
     }
     console.log(this.ideesSoutenues)
+  }
+
+  creerProjet(idee:any){
+    this.dataGest.ideeData = idee;
+    this.route.navigate(['gestionnaire/nouveau_projet']);
   }
 
   isHelped(ideaId: number): boolean {
@@ -76,6 +87,14 @@ export class IdeesProjetComponent implements OnInit{
         console.log(error)
       }
     })
+  }
+
+  plus:boolean = false;
+  voirPlus(){
+    this.plus = true;
+  }
+  voirMoins(){
+    this.plus = false;
   }
 
 }

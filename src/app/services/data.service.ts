@@ -35,7 +35,9 @@ export class DataService {
 
   //Les deux methodes qui vont recuperer les données de utilisateurs en fonction de localstorage que ca soit a travers sont email ou son id:
   getDataUserById(): Observable<any> {
-    return this.getDataById(Env.INSCRIPTION_URL, this.user_id, this.user_role);
+    const user_id = Number(localStorage.getItem('user_id'));
+    const user_role = localStorage.getItem('user_role') || "" ;
+    return this.getDataById(Env.INSCRIPTION_URL, user_id, user_role);
   }
 
   getDataUserByEmail(): Users {
@@ -108,7 +110,7 @@ export class DataService {
     );
   }
 
-  getById(url: string, id: number) {
+  getById(url: string, id: number):Observable<any> {
     return this.http.get(`${url}/${id}`, { headers: this.headers });
   }
 
