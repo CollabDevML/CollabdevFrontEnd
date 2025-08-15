@@ -7,9 +7,6 @@ import { GestionnaireComponent } from './components/inscription/gestionnaire/ges
 import { PorteurProjetComponent } from './components/inscription/porteur-projet/porteur-projet.component';
 import { InscriptionIndexComponent } from './components/inscription/inscription-index/inscription-index.component';
 import { PageVisiteurComponent } from './components/page-visiteur/page-visiteur.component';
-import { HeaderComponent } from './components/UI/header/header.component';
-import { SideBarComponent } from './components/UI/side-bar/side-bar.component';
-import { FooterComponent } from './components/UI/footer/footer.component';
 import { DetailCommentaireComponent } from './components/detail-commentaire/detail-commentaire.component';
 import { IndexPorteurProjetComponent } from './components/proteurProjet/index-porteur-projet/index-porteur-projet.component';
 import { AccueilPorteurProjetComponent } from './components/proteurProjet/accueil-porteur-projet/accueil-porteur-projet.component';
@@ -31,7 +28,7 @@ import { RecherchebarreComponent } from './components/UI/recherchebarre/recherch
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ContributeurssComponent } from './components/contributeurss/contributeurss.component';
 import { Contributeurs1Component } from './components/contributeurs1/contributeurs1.component';
-import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
+
 
 import { ProjetgestionnairedetailComponent } from './components/projetgestionnairedetail/projetgestionnairedetail.component';
 import { ProjetSuiviComponent } from './components/porteurProjet/projet-suivi/projet-suivi.component';
@@ -41,6 +38,7 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 import { IdeesProjetComponent } from './components/idees-projet/idees-projet.component';
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { Contributeurs2Component } from './components/contributeurs2/contributeurs2.component';
 
 export const routes: Routes = [
   {
@@ -98,8 +96,9 @@ export const routes: Routes = [
 
   //Les routes pour le Contributeur 
   {path:"contributeur",component:IndexContributeurComponent,children:[
+
     {path:"",component:AccueilContributeurComponent},
-    {path:"projetscontri", component: Contributeurs2Component},
+    {path:'projetsctb', component: Contributeurs2Component},
     //Les autres ici ...........
 
     {path:"**",redirectTo:""}

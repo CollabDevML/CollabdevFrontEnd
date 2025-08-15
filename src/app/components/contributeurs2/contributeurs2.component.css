@@ -1,39 +1,135 @@
-/* Ajout des styles pour les messages de chargement et états */
+/* Animation apparition */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Bloc principal === */
+.bloc-projets {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* === Titres des sections === */
+.bloc-projets h3 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.6rem;
+  font-weight: bold;
+  border-left: 4px solid;
+  padding-left: 8px;
+}
+
+/* Couleurs spécifiques titres */
+.section-actifs h3 {
+  color: #1B5E20;
+  border-color: #1B5E20;
+}
+
+.section-archives h3 {
+  color: #555;
+  border-color: #888;
+}
+
+/* === Liste de cartes === */
+.liste-cartes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* === Carte projet === */
+.liste-cartes article {
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* Couleur selon type */
+.section-actifs .liste-cartes article {
+  background: #E8F5E9; /* vert clair */
+}
+
+.section-archives .liste-cartes article {
+  background: #F5F5F5; /* gris clair */
+}
+
+/* Décalage animation progressive */
+.liste-cartes article:nth-child(1) { animation-delay: 0.05s; }
+.liste-cartes article:nth-child(2) { animation-delay: 0.1s; }
+.liste-cartes article:nth-child(3) { animation-delay: 0.15s; }
+.liste-cartes article:nth-child(4) { animation-delay: 0.2s; }
+.liste-cartes article:nth-child(5) { animation-delay: 0.25s; }
+
+/* Effet hover */
+.liste-cartes article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* === Nom du projet === */
+.liste-cartes h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* === Infos du projet === */
+.liste-cartes p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.liste-cartes p strong {
+  color: #444;
+}
+
+/* === Bouton Quitter / Retirer === */
+button {
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.9rem;
+  background:#F6C434;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #d93636;
+}
+
+/* === Message chargement & vide === */
 .loading-message,
 .no-projects-message {
   text-align: center;
-  padding: 40px 20px;
-  color: #666;
-  font-size: 16px;
-}
-
-.loading-message {
-  color: #334daa;
-}
-
-.no-projects-message {
+  padding: 1rem;
   color: #888;
+  font-style: italic;
+  font-size: 0.95rem;
 }
 
-/* Style pour les boutons désactivés */
-.bouton-quitter:disabled {
-  background: #ccc;
-  color: #666;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.carte-inactive .bouton-quitter {
-  background: #e5e7eb;
-  color: #9ca3af;
-}
-
-/* Animation pour la suppression */
-.carte-projet {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.carte-projet.removing {
-  opacity: 0;
-  transform: translateX(-100%);
+/* === Responsive === */
+@media (max-width: 768px) {
+  .liste-cartes article {
+    padding: 0.7rem;
+  }
+  .bloc-projets h3 {
+    font-size: 1.05rem;
+  }
 }
