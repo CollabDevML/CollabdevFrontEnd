@@ -4,7 +4,7 @@
 
     <div class="logo-section">
       <div class="logo">
-        <img src="/image 40.png" alt="Collabdev Logo" class="logo-image">
+
       </div>
     </div>
 
@@ -12,10 +12,10 @@
       <div class="contenu-bloc">
         <div class="encapsuleur">
           <i class="ri-search-2-line" style="font-size: 25px;" ></i>
-          <input 
-            type="text" 
-            class="dans-recherche" 
-            placeholder="Rechercher par ici..." 
+          <input
+            type="text"
+            class="dans-recherche"
+            placeholder="Rechercher par ici..."
             [(ngModel)]="searchTerm"
             (keyup.enter)="onSearch()"
             (input)="onSearchInput()"
@@ -32,7 +32,7 @@
         </button>
           </div>
         </div>
-        
+
       </div>
     </div>
 
@@ -41,15 +41,10 @@
         <span class="notification-puce"></span>
     </div>
 
-    <div class="separator"></div>
-    
-      
-      
     <div class="section-droite">
-      <p class="copyright-text">© 2025 Collabdev</p>
-      <a href="#" class="contact-link" (click)="onContactClick()">Nous contacter</a>
     </div>
-  </div> 
+
+  </div>
 
 
   <!-- Suggestions de recherche -->
@@ -62,9 +57,9 @@
         </button>
       </div>
       <div class="suggestions-list">
-        <div 
-          class="suggestion-item" 
-          *ngFor="let suggestion of suggestions" 
+        <div
+          class="suggestion-item"
+          *ngFor="let suggestion of suggestions"
           (click)="onSuggestionClick(suggestion)"
         >
           <i class="fas fa-lightbulb suggestion-icon"></i>
@@ -84,9 +79,9 @@
         </button>
       </div>
       <div class="results-list">
-        <div 
-          class="result-item" 
-          *ngFor="let result of searchResultsList" 
+        <div
+          class="result-item"
+          *ngFor="let result of searchResultsList"
           (click)="onResultClick(result)"
         >
           <div class="result-icon">

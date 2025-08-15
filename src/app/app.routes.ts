@@ -43,8 +43,9 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
 import { ProfilComponent } from './components/profil/profil.component';
-import { SidebarMenuSuperAdministrateurComponent } from './components/tools/sidebar-menu-super-administrateur/sidebar-menu-super-administrateur.component';
-import { SidebarMenuAdministrateurComponent } from './components/tools/sidebar-menu-administrateur/sidebar-menu-administrateur.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { DetailTacheComponent } from './components/gestionnaire/detail-tache/detail-tache.component';
+import { DashboardComponent } from './components/admins/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -55,6 +56,8 @@ export const routes: Routes = [
   },
 
   { path: 'page-visiteur', component: PageVisiteurComponent },
+  { path: 'detailCommentaire', component: DetailCommentaireComponent},
+  { path: 'detailProjet', component: DetailleProjetComponent},
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
@@ -95,7 +98,7 @@ export const routes: Routes = [
       { path: 'accueil', component: AccueilComponent },
       { path: 'mes_projets', component: MesIdeeProjetComponent },
       { path: 'mes_favories', component: ProjetSuiviComponent },
-      { path: 'mes_idees', component: ListeIdeeProjetComponent },
+      { path: 'mes_idees', component: IdeesProjetComponent },
       { path: '**', redirectTo: '' },
     ],
   },
@@ -106,62 +109,32 @@ export const routes: Routes = [
     component: IndexContributeurComponent,
     children: [
       { path: '', component: AccueilComponent },
-      //Les autres ici ...........
+      { path: 'mes_contributions', component: Contributeurs2Component },
+      { path: 'mon_espace', component: AccueilContributeurComponent },
 
       { path: '**', redirectTo: '' },
     ],
   },
+
 
   //Les routes pour le Gestionnaire :
-  {
-    path: 'gestionnaire',
-    component: IndexGestionnaireComponent,
-    children: [
-      { path: '', component: AccueilComponent },
-      { path: 'accueil', component: AccueilComponent },
-      { path: 'mes_idees', component: MesIdeeProjetComponent },
-      { path: 'mon_espace', component: DashboardGestionnaireComponent },
-      { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
-      { path: 'nouveau_projet', component: FormulaireProjetComponent },
-      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
-      //Les autres routes ici ..............
+  {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
+    {path:"",component:AccueilComponent},
+    {path:"accueil",component:AccueilComponent},
+    {path:"mes_idees",component:IdeesProjetComponent},
+    {path:"mon_espace",component:DashboardGestionnaireComponent},
+    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
+    {path:"nouveau_projet",component:FormulaireProjetComponent},
+    {path:"details_projet",component:ProjetgestionnairedetailComponent},
+    {path:"nouvelle_tache",component:TaskFormComponent},
+    {path:"detail_tache",component:DetailTacheComponent},
+    //Les autres routes ici ..............
 
-      { path: '**', redirectTo: '' },
-    ],
-  },
+    {path:"**",redirectTo:""}
+  ]},
 
-  { path: 'dashboard', component: DashboardGestionnaireComponent },
-  { path: 'card-contribution', component: CardcontributionComponent },
-  { path: 'header-barre', component: RecherchebarreComponent },
-  { path: 'sidebargestionnaire', component: SidebargestionnaireComponent },
-  { path: 'cardprojet', component: CardprojetComponent },
-  { path: 'popup', component: PopUpsComponent },
-  { path: 'accueil', component: AccueilComponent },
+  // Les routes pour les administrateurs
+  { path: 'dashboard', component: DashboardComponent},
 
-  { path: 'profil', component: ProfilComponent },
-  { path: 'projet-details', component: ProjetgestionnairedetailComponent },
-
-  { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
-  { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
-  { path: 'header-barre', component: RecherchebarreComponent },
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'detailCommentaire', component: DetailCommentaireComponent },
-  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'detailCommentaire', component: DetailCommentaireComponent },
-
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
-  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
-  { path: 'detailProjet', component: DetailleProjetComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
-  { path: 'pop-options', component: PopupOptionsComponent },
-
-  { path: 'admin', component: SidebarMenuAdministrateurComponent},
-  { path: 'super-admin', component: SidebarMenuSuperAdministrateurComponent},
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
