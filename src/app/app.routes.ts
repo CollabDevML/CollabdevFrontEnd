@@ -57,6 +57,7 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
+   { path: 'details_projet', component: DetailleProjetComponent },
 
   //Les routes concernants l'inscription :
   {
@@ -121,7 +122,7 @@ export const routes: Routes = [
       { path: 'mon_espace', component: DashboardGestionnaireComponent },
       { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
       { path: 'nouveau_projet', component: FormulaireProjetComponent },
-      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
+     
       //Les autres routes ici ..............
 
       { path: '**', redirectTo: '' },
