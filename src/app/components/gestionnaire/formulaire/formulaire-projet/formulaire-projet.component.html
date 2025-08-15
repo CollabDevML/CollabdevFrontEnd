@@ -1,3 +1,11 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">CHARGEMENT...</p>
+</ngx-spinner>
 <div class="layout-container">
 
 
@@ -8,28 +16,32 @@
             <img src="logoP.png" alt="Logo" />
           </div>
           <div class="form-content">
-            <input type="text" placeholder="Titre" />
-            <textarea placeholder="Description"></textarea>
+            <input type="text" placeholder="Titre" [(ngModel)]="projetIdee.titre" />
+            <textarea placeholder="Description" [(ngModel)]="projetIdee.description"></textarea>
             <div class="form-row">
-              <select>
-                <option value="">Niveau d'accès</option>
+              <select [(ngModel)]="projetIdee.niveauDAcces">
+                <option value="" selected>Niveau d'accès</option>
+                <!-- @for (niveau of niveaux; track $index) { -->
+                <option value="DEBUTANT">DEBUTANT</option>
+                <option value="INTERMEDIAIRE">INTERMEDIAIRE</option>
+                <option value="DIFFICILE">DIFFICILE</option>
+                <option value="COMPLEXE">COMPLEXE</option>
+                <!-- } -->
               </select>
-              <select>
-                <option value="">Pièce d'accès</option>
-              </select>
+              <input type="number" [(ngModel)]="projetIdee.piecesDAcces">
             </div>
             <div class="form-row">
-              <input type="date" placeholder="Date début" />
-              <input type="date" placeholder="Date fin" />
+              <input type="date" placeholder="Date début"  [(ngModel)]="dateDebut" />
+              <input type="date" placeholder="Date fin"  [(ngModel)]="dateFin" />
             </div>
-            <button>Créer</button>
+            <button (click)="onSubmit()">Créer</button>
           </div>
         </div>
-        
+
         <div class="illustration-section">
           <div class="illustration-content">
             <h3>Transformez vos rêves en projets concrets</h3>
-          
+
             <img src="projet.png" alt="Illustration" class="illustration-image" />
             <p>Démarrez maintenant !</p>
           </div>
@@ -37,6 +49,3 @@
       </div>
     </div>
   </div>
-
-
-

@@ -15,6 +15,7 @@ export class SidebarMenuContributeurComponent {
     FOLLOWED_CONTENTS: 4,
     PROFILE: 5,
     LOGOUT: 6,
+    MONESPACE:7,
   } as const;
   currentMenu: any = 1;
 
@@ -35,7 +36,7 @@ export class SidebarMenuContributeurComponent {
         break;
       }
       case 3: {
-        // this.router.navigate([''])
+        this.router.navigate(['contributeur/mes_contributions'])
         break;
       }
       case 4: {
@@ -48,6 +49,10 @@ export class SidebarMenuContributeurComponent {
       }
       case 6: {
         // this.router.navigate(['gestionnaire/mes_proj'])
+        break;
+      }
+      case 7: {
+        this.router.navigate(['contributeur/mon_espace'])
         break;
       }
     }
