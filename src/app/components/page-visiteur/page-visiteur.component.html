@@ -40,7 +40,7 @@
           @for (commentaire of ideeprojet.commentaireIdeeProjets.slice(0, 2); track commentaire.id) {
             <div class="commentaire">
               <div class="acteur"><i class="ri-user-fill icon2"></i>
-                <div class="user">{{ commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}  </div>
+                <div class="user2">{{ commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }}  </div>
                <!--role-->
                 @if(commentaire.utilisateur.role  ==='CONTRIBUTEUR'){
                 <div class="rolec">C</div>
@@ -89,7 +89,7 @@
           }
         }
         <div class="dernier">
-       <button type="button" class="bouton3" >Voir plus <i class="ri-arrow-right-line like2" ></i></button>
+       <button type="button" class="bouton3" (click)="voirplus(ideeprojet)">Voir plus <i class="ri-arrow-right-line like2" ></i></button>
        <div class="nbsoutien">{{ideeprojet.nombreSoutien}}</div>
         <i class="ri-hand-heart-line bolo like" ></i>
        </div>

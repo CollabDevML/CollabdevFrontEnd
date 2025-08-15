@@ -1,0 +1,58 @@
+<div class="content">
+  <div class="main">
+    <h1 class="header">
+      <i class="ri-lightbulb-line"></i>
+      Donner vie à vos idées, Collaborez en toute Sécurité
+    </h1>
+
+    <div class="cards-grid">
+      <!-- Répète cette structure pour chaque card -->
+       @for (idee of mesIdeeProjet; track $index) {
+      <div class="card">
+        <div class="card-content">
+          <div class="title-section">
+            <h2>{{idee.titre}}</h2>
+            <div class="tag">{{idee.domaine[0]}}</div>
+          </div>
+          <p class="description">
+            {{idee.description}}
+          </p>
+          <div class="publie-voirplus">
+            <div class="publie">Publié : {{idee.datePublication}}</div>
+            <a  style="cursor:pointer"class="voirPlus"  (click)="voirPlus(idee)">Voir plus <i class="ri-arrow-right-line"></i></a>
+          </div>
+          <div class="card-footer">
+            <div class="user-info">
+              <img src="logoS.png" alt="User photo">
+              <span>{{idee.utilisateur.prenom}} {{idee.utilisateur.nom}}</span>
+            </div>
+            <div class="footer-icons">
+              <span><i class="ri-message-2-line"></i>8</span>
+              <span (click)="soutenir(idee.id)"><i class="ri-heart-3-fill"></i> {{idee.nombreSoutien}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" *ngIf="afficheVoirPlus" (click)="verifier()">
+  <div class="modal-contenu">
+    <h2>Details du projet</h2>
+    <div class="title-section">
+      <h2> {{contenus.titre}}</h2>
+      <div class="tag">{{contenus.domaine[0]}}</div>
+    </div>
+    <p class="description">
+       {{contenus.description}}
+    </p>
+
+    <div class="modal-actions">
+      <button (click)="fermerModal()">Fermer</button>
+    </div>
+  </div>
+</div>

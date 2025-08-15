@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+  background-color: #c2c2c2;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+.conteneur {
+max-width: 800px;
+    padding: 20px;
+    margin-left: 250px; 
+}
+
+.carte-profil {
+  background: #F5F5F5;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+  width: 749px;
+}
+
+.entete-profil {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.entete-profil i{
+    background-color: #000000;
+    
+}
+
+.avatar-profil {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info-profil h1 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #000000;
+}
+
+.sous-titre-profil {
+  color: #000000;
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+h2{
+  width: 300px !important;
+}
+.user{
+   width: 635px;
+    font-size: 31px;
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    padding-left: 12px;
+    flex-direction: column;
+}
+.localisation-profil {
+display: flex
+;
+    gap: 381px;
+    color: #000000;
+    font-size: 13px;
+    
+}
+   
+
+
+.description-profil {
+  display: flex;   
+  height: 150px;                
+  background-color: #FFFFFF;
+  color: #555;
+  width: 697px;
+  padding-left: 18px !important;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  height: 80px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.statistiques-profil {
+  display: flex;
+  align-items: center;
+  
+  margin-bottom: 16px;
+}
+
+.nombre-statistiques {
+ font-weight: bold;
+    color: #000000;
+    margin-left: 440px;
+    margin-top: 9px;
+}
+
+.icone-statistiques {
+  color: #000000;
+  font-size: 25px;
+  margin-top: 2px;
+}
+
+.lien-profil {
+  color: #334DAA;
+  font-size: 14px;
+  
+}
+.icon2{
+  background-color: #000000;
+    color: #FFFFFF;
+    font-size: 48px;
+    text-align: center;
+    padding-top: 2px;
+    width: 62px;
+    height: 64px;
+    border-radius: 50%;
+   
+
+}
+
+.lien-profil:hover {
+  text-decoration: underline;
+}
+
+.section-commentaires {
+  
+  border-radius: 8px;
+  
+}
+
+.titre-commentaires {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000000;
+  margin-left: 27px;
+  
+}
+
+.commentaire {
+  margin-left: 21px;
+    display: flex
+;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px;
+    background: white;
+    border-radius: 15px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    width: 721px;
+}
+
+.commentaire:last-child {
+  margin-bottom: 0;
+}
+
+.avatar-commentaire {
+  background-color: #000000;
+  color: #FFFFFF;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 2px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.contenu-commentaire .contenu-commentaire1{
+  flex: 1;
+}
+
+.entete-commentaire {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.auteur-commentaire {
+  font-weight: 600;
+    color: #1a1a1a;
+    font-size: 14px;
+    width: 540px;
+}
+
+.badge-commentaire {
+  color: white;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+.badge-porteur {
+  background: #10b981;
+}
+
+.badge-gestionnaire {
+  background: #3b82f6;
+}
+
+.date-commentaire {
+  color: black;
+  
+  text-align: right;
+  margin-top: 8px;
+   
+   
+   font-size: 12px;
+   font-family:Arial, Helvetica, sans-serif;
+   font-style: italic;
+   font-weight: bold;
+
+}
+.contenu-commentaire1 .actions-commentaire{
+    color: #23E311;
+    font-size: 14px;
+    text-decoration: none;
+}
+.contenu-commentaire .actions-commentaire {
+  color: #F6C434;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.actions-commentaire:hover {
+  text-decoration: underline;
+}
+.icon{font-size: 50px; 
+  color: white;
+width: 30px !important;
+}
+

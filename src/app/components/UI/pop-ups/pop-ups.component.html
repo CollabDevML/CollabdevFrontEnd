@@ -1,0 +1,15 @@
+<div class="popup-overlay" *ngIf="visible">
+  <div class="popup-box">
+    <h3>Confirmation</h3>
+    
+    <label class="checkbox-wrapper">
+      <input type="checkbox" [(ngModel)]="checked" />
+      <span>Je confirme avoir compris</span>
+    </label>
+
+    <div class="popup-actions">
+      <button [disabled]="!checked" (click)="confirmer()">Confirmer</button>
+      <button (click)="annuler()">Annuler</button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 export class projet{
     id!:number
-     titre!:string;
+   titre!:string;
    description!:string;
    estFini!:boolean;
    dateDebut!:Date;
@@ -9,11 +9,15 @@ export class projet{
    utilisateur!:{prenom:string,nom:string}
    etat!:boolean;
    idGestionnaire!:number;
+   demandeContributions!: any[];
    piecesDAcces!:number;
    gestionnaire!: { prenom: string, nom: string }; // ✅ objet
    porteur!: { prenom: string, nom: string };   
+   taches!: any[];
+   contributions!: any[];
+
   
-   nombreContributeurs!:number
+   nombreContributeurs!:number;
   commentaires!: 
             {
                 id:number,
@@ -24,6 +28,4 @@ export class projet{
                     nom:string
                 }
             }[]
-            
-
  }

@@ -55,10 +55,10 @@ export class InscriptionIndexComponent implements OnInit {
         const motDePasse = this.formContenu.value.motDePasse
         const genre = this.formContenu.value.genre
 
-        const user = new Users(prenom,nom,email,motDePasse,genre);
+        const user = new Users(prenom,nom,email,motDePasse,genre,[]);
         this.data.userData = user; // Enregistrer les données de l'utilisateur dans le service
         this.route.navigate(['inscription/choix']);
-        // console.log(`les données enregistrements : ${user}`,user.email)
+        console.log(`les données enregistrements : ${user.getEmail}`)
       } else {
         this.erreur = "Veuillez remplir tous les champs correctement.";
         setTimeout(() => {

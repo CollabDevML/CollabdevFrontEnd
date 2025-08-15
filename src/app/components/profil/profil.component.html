@@ -1,0 +1,181 @@
+<div class="main-layout">
+  <div class="layout-body">
+    <div class="profile-wrapper" *ngIf="utilisateur">
+      <!-- Bandeau supérieur -->
+      <div class="profile-banner">
+        <div class="profile-avatar">
+          <i class="fas fa-user-circle avatar-icon"></i>
+        </div>
+        <h2 class="profile-name">
+          {{ utilisateur.prenom }} {{ utilisateur.nom }}
+        </h2>
+        <button
+          class="edit-profile-btn"
+          (click)="ouvrirEdition()"
+          aria-label="Modifier le profil"
+        >
+          <i class="ri-edit-2-line"></i>
+          Modifier le profil
+        </button>
+      </div>
+
+      <!-- Grille des informations -->
+      <div class="profile-content">
+        <!-- Partie gauche : infos -->
+        <div class="profile-left">
+          <!-- À propos de vous dans un cadre -->
+          <div class="card">
+            <h3 class="section-title">À propos de vous</h3>
+            <div class="info-item">
+              <i class="ri-user-fill"></i>
+              <div class="info">
+                <span class="label">Prenom</span>
+                <span class="value">{{ utilisateur.prenom }} </span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="ri-building-fill"></i>
+              <div class="info">
+                <span class="label">Nom</span>
+                <span class="value">{{ utilisateur.nom }}</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="ri-calendar-schedule-fill"></i>
+              <div class="info">
+                <span class="label">Adresse email</span>
+                <span class="value">{{ utilisateur.email }}</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="ri-code-fill"></i>
+              <div class="info">
+                <span class="label">Genre</span>
+                <span class="value">{{ utilisateur.genre }}</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="ri-map-pin-fill"></i>
+              <div class="info">
+                <span class="label">Rôle</span>
+                <span class="value">{{ utilisateur.role }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact dans un autre cadre -->
+          <div class="card">
+            <h3 class="section-title">Contact</h3>
+            <div class="info-item">
+              <i class="ri-mail-fill"></i>
+              <div class="info">
+                <span class="label">Adresse E-mail</span>
+                <span class="value">{{ utilisateur.email }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partie droite -->
+        <div class="profile-right">
+          <div class="card">
+            <h3 class="section-title">
+              {{
+                role === "GESTIONNAIRE"
+                  ? "Projets auxquels vous êtes gestionnaire"
+                  : role === "CONTRIBUTEUR"
+                  ? "Projets auxquels vous contribuez"
+                  : role === "PORTEUR_PROJET"
+                  ? "Projets que vous avez proposés"
+                  : "Vos contributions"
+              }}
+            </h3>
+            <div
+              *ngIf="projets.length; else noContrib"
+              class="contribution-list"
+            >
+              <div class="contribution-item" *ngFor="let projet of projets">
+                <h4>{{ projet.titre || projet.titreProjet }}</h4>
+                <p>{{ projet.description || projet.Description }}</p>
+              </div>
+            </div>
+            <ng-template #noContrib>
+              <p>Aucun Projet pour le moment.</p>
+            </ng-template>
+          </div>
+
+          <!-- Carte des badges -->
+          <!-- Carte des badges -->
+          <div class="card" *ngIf="role === 'CONTRIBUTEUR'">
+            <h3 class="section-title">Vos badges</h3>
+            <div class="badges-container" *ngIf="badges.length; else noBadges">
+              <div *ngFor="let badge of badges" class="badge-item">
+                <img
+                  [src]="badge.imageUrl"
+                  [alt]="badge.nom"
+                  class="badge-image"
+                />
+                <p class="badge-name">{{ badge.nom }}</p>
+              </div>
+            </div>
+
+            <ng-template #noBadges>
+              <p>Aucun badge pour le moment.</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal d'édition inline -->
+    <div
+      class="modal-overlay"
+      *ngIf="isEditOpen"
+      (click)="fermerEdition()"
+    ></div>
+    <div
+      class="modal"
+      *ngIf="isEditOpen"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="editTitle"
+    >
+      <div class="modal-header">
+        <h3 id="editTitle">Modifier le profil</h3>
+        <button class="icon-btn" (click)="fermerEdition()" aria-label="Fermer">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 class="section-subtitle">Informations</h4>
+        <div class="form-grid">
+          <label>
+            <span>Prénom</span>
+            <input type="text" [(ngModel)]="formEdit.prenom" />
+          </label>
+          <label>
+            <span>Nom</span>
+            <input type="text" [(ngModel)]="formEdit.nom" />
+          </label>
+          <label class="grid-full">
+            <span>Email</span>
+            <input type="email" [(ngModel)]="formEdit.email" />
+          </label>
+          <label class="grid-full" *ngIf="utilisateur.genre !== undefined">
+            <span>Genre</span>
+            <select [(ngModel)]="formEdit.genre">
+              <option value="HOMME">H</option>
+              <option value="FEMME">F</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" (click)="fermerEdition()">Annuler</button>
+        <button class="primary-btn" (click)="enregistrerModifications()">
+          Enregistrer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
