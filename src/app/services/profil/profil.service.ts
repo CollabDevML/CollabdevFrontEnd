@@ -116,4 +116,10 @@ export class UtilisateurService {
     const url = `${this.apiRoot}/utilisateurs/porteurs-projet/${profilId}`;
     return this.http.put<any>(url, utilisateurPayload);
   }
+
+  //logique pour afficher les badges d'accomplissement:
+  getBadgesByContributeur(idContributeur: number): Observable<any[]> {
+    const url = `${this.apiRoot}/utilisateurs/contributeurs/${idContributeur}/obtentions-badge`;
+    return this.http.get<any[]>(url).pipe(catchError(() => of([])));
+  }
 }

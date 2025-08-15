@@ -17,6 +17,14 @@ export class ProfilComponent implements OnInit {
   utilisateur!: Utilisateur;
   idUtilisateur = 1; // valeur par défaut, sera remplacée par l'ID du localStorage
   // Préférences retirées du flux d'édition
+  badges: any[] = [];
+  badgeImages: { [key: string]: string } = {
+    NOOB: 'Badge 1.png',
+    'PETIT CONTRIBUTEUR': 'Badge 2.png',
+    CONTRIBUTEUR: 'Badge 3.png',
+    EXPERT: 'Badge 4.png',
+    MAÎTRE: 'Badge 5.png',
+  };
   projets: any[] = []; // <-- initialisation du tableau projets
   role: string | null = '';
   profilId?: number;
@@ -66,11 +74,28 @@ export class ProfilComponent implements OnInit {
                 next: (projets) => (this.projets = projets || []),
                 error: () => (this.projets = []),
               });
+            if (this.role === 'CONTRIBUTEUR' && this.profilId) {
+              this.utilisateurService
+                .getBadgesByContributeur(this.profilId)
+                .subscribe({
+                  next: (data) => {
+                    this.badges = data.map((b) => ({
+                      nom: b.titreBadge,
+                      imageUrl: this.badgeImages[b.titreBadge.trim()],
+                    }));
+                  },
+                  error: (err) => {
+                    console.error('Erreur chargement badges', err);
+                    this.badges = [];
+                  },
+                });
+            }
           }
         },
         error: (err) => console.error(err),
       });
   }
+
   modifierProfil(): void {}
   // Retrait de la mise à jour des préférences dans ce modal
 
@@ -169,4 +194,5 @@ export class ProfilComponent implements OnInit {
         return short || '';
     }
   }
+  // ✅ Ajout de la propriété badges
 }
