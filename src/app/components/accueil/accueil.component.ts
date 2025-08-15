@@ -29,7 +29,7 @@ export class AccueilComponent implements OnInit {
       .getRecommandationByProjet(this.users_id)
       .subscribe((data) => {
         this.projets = data;
-        throw new Error('Method not implemented.');
+         console.log('Projets reçus :', this.projets);
       });
   }
 
