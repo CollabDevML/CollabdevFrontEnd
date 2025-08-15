@@ -10,6 +10,12 @@
         @case ('PORTEUR_PROJET') {
             <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
         }
+        @case ('ADMIN') {
+            <app-sidebar-menu-administrateur></app-sidebar-menu-administrateur>
+        }
+        @case ('SUPER_ADMIN') {
+            <app-sidebar-menu-super-administrateur></app-sidebar-menu-super-administrateur>
+        }
         @default {
             <div style="display: none;"></div>
         }

@@ -6,6 +6,8 @@ import { HeaderComponent } from './components/UI/header/header.component';
 import { SidebarMenuContributeurComponent } from './components/tools/sidebar-menu-contributeur/sidebar-menu-contributeur.component';
 import { SidebarMenuGestionnaireComponent } from './components/tools/sidebar-menu-gestionnaire/sidebar-menu-gestionnaire.component';
 import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-porteur/sidebar-menu-porteur.component';
+import { SidebarMenuAdministrateurComponent } from "./components/tools/sidebar-menu-administrateur/sidebar-menu-administrateur.component";
+import { SidebarMenuSuperAdministrateurComponent } from "./components/tools/sidebar-menu-super-administrateur/sidebar-menu-super-administrateur.component";
 @Component({
   selector: 'app-root',
   imports: [
@@ -14,8 +16,10 @@ import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-por
     CommonModule,
     SidebarMenuContributeurComponent,
     SidebarMenuGestionnaireComponent,
-    SidebarMenuPorteurComponent ,
-  ],
+    SidebarMenuPorteurComponent,
+    SidebarMenuAdministrateurComponent,
+    SidebarMenuSuperAdministrateurComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

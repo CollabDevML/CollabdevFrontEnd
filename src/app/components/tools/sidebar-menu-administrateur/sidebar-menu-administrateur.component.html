@@ -1,0 +1,113 @@
+<aside class="container" [class.collapsed]="!getIsExpanded()">
+    <div class="top-container">
+        <div class="logo-container">
+            @if(getIsExpanded()) {
+                <img class="logo" src="logoP.png" alt="Logo de CollabDev">
+            } @else {
+                <img class="logo" src="logoS.png" alt="Logo de CollabDev" [class.collapsed]="!getIsExpanded()">
+            }
+        </div>
+        <div class="top-menus-container">
+            <div class="home-container menu-container" [class.collapsed]="!getIsExpanded()" (click)="goToMenu(1)">
+                @if(currentMenu == 1){
+                    <i class="ri-dashboard-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Dashboard</strong></p>
+                    }
+                } @else {
+                    <i class="ri-dashboard-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Dashboard</p>
+                    }
+                }
+            </div>
+            <div class="users-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(2)">
+                @if(currentMenu == 2){
+                    <i class="ri-group-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Utilisateurs</strong></p>
+                    }
+                } @else {
+                    <i class="ri-group-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Utilisateurs</p>
+                    }
+                }
+            </div>
+            <div class="projects-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(3)">
+                @if(currentMenu == 3){
+                    <i class="ri-folder-settings-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Projets</strong></p>
+                    }
+                } @else {
+                    <i class="ri-folder-settings-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Projets</p>
+                    }
+                }
+            </div>
+            <div class="ideas-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(4)">
+                @if(currentMenu == 4){
+                    <i class="ri-lightbulb-flash-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Idées de projet</strong></p>
+                    }
+                } @else {
+                    <i class="ri-lightbulb-flash-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Idées de projet</p>
+                    }
+                }
+            </div>
+            <div class="badges-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(5)">
+                @if(currentMenu == 5){
+                    <i class="ri-medal-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Badges</strong></p>
+                    }
+                } @else {
+                    <i class="ri-medal-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Badges</p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="center-container">
+        <div class="side-expander" (click)="collapseSideBar()">
+            @if (!getIsExpanded()) {
+                <i class="ri-arrow-right-s-line icons side-expander-ic"></i>
+            } @else {
+                <i class="ri-arrow-left-s-line icons side-expander-ic"></i>
+            }
+        </div>
+    </div>
+    <div class="bottom-container">
+        <div class="bottom-menus-container">
+            <div class="logout-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(6)">
+                @if(currentMenu == 6){
+                    <i class="ri-logout-box-fill icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text"><strong>Déconnexion</strong></p>
+                    }
+                } @else {
+                    <i class="ri-logout-box-line icons"></i>
+                    @if (getIsExpanded()) {
+                        <p class="menus-text">Déconnexion</p>
+                    }
+                }
+            </div>
+        </div>
+        <div class="side-footer-container" [class.collapsed]="!getIsExpanded()">
+            @if(getIsExpanded()) {
+                <p color>
+                    <span style="color: black;">&copy; 2025 CollabDev</span> &nbsp;&nbsp;
+                </p>
+            } @else {
+                <i class="ri-copyright-line icons question-mark-ic"></i>
+            }
+        </div>
+    </div>
+</aside>
