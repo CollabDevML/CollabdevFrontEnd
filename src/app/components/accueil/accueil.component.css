@@ -1,195 +1,475 @@
-.contener {
-  display: flex;
-  flex-direction: row;
-  /* position: fixed; */
-  width: 100%;
-  min-height: 100vh;
-  overflow-y: auto;
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    width: 100%;
 }
-.idee_projet {
-  margin: 3%;
-  display: flex;
-  flex-direction: column;
-  border: 0.3px solid rgba(0, 0, 0, 0.372);
-  border-radius: 20px;
-  width: 50%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.3);
-  height: 80vh;
-  overflow: auto;
+
+.search-input-container {
+    display: flex;
+    align-items: center;
+    width: 606px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 100px;
+    padding-left: 15px;
+    box-sizing: border-box;
 }
+
+.search-input-container input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex-grow: 1;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.search-icon {
+    font-size: 18px;
+    color: #000000;
+}
+
+.search-button {
+    height: 28px;
+    background: #334DAA;
+    border-radius: 100px;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0 20px ;
+    margin: 4px ;
+    
+}
+/* Fin des styles pour la barre de recherche */
+
+/* Début des styles adaptés pour l'en-tête et les filtres */
 .header {
-  display: flex;
-  flex-direction: row;
-  gap: 30%;
-  align-items: center;
-  justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
+
+.header-titre-filtre {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between; /* Aligne le titre et le filtre aux extrémités */
+}
+
+.header-titre {
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-separator {
+    flex-grow: 1; /* Permet à la ligne de s'étirer */
+    height: 1px;
+    background-color: #000000;
+    margin: 0 10px;
+}
+
+.header-filtre {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header-filtre label,
+.header-filtre select {
+    font-size: 12px;
+    color: #000000;
+    border: none;
+    background: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.header-filtre select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 24 24"><path fill="%23000" d="M12 15l-6-6h12z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 15px;
+    cursor: pointer;
+}
+/* Fin des styles adaptés */
+
+/* Styles généraux */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.recom {
+    font-size: 32px;
+    margin-left: 3%;
+    padding-top: 20px;
+    width: 280px;
+}
+
+.contener {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.idee_projet {
+    display: flex;
+    flex-direction: column;
+    border: 0.3px solid rgba(0, 0, 0, 0.372);
+    border-radius: 20px;
+    width: 45%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.3);
+    height: 80vh;
+    overflow-y: auto;
+    margin: 2%;
+}
+
 .body {
-  display: flex;
-  flex-direction: column;
-  gap: 1%;
-  overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
 }
+
 .card {
-  height: 170px;
-  margin: 3%;
-  border-radius: 20px;
-  border: 0.3px solid rgba(0, 0, 0, 0.372);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.3);
+    height: auto;
+    min-height: 170px;
+    padding: 15px;
+    border-radius: 20px;
+    border: 0.3px solid rgba(0, 0, 0, 0.372);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
-.head {
-  display: flex;
-  flex-direction: row;
-  gap: 10%;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 3%;
-  padding-right: 3%;
+
+.card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
 }
-.titre {
-  color: #334daa;
-  font-size: 16px;
+
+.card .titre {
+    color: #334daa;
+    font-size: 20px;
+    font-weight: bold;
 }
-.content {
-  display: flex;
-  flex-direction: column;
-  padding-top: 08px;
-  padding-left: 3%;
-  padding-right: 3%;
+
+.card .date {
+    font-size: 14px;
+    color: #888;
 }
-.foot {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 3%;
-  padding-right: 3%;
+
+.card .content {
+    padding-bottom: 10px;
 }
-.bolo {
-  font-size: 25px;
+
+.card .des {
+    font-size: 14px;
+    color: #555;
 }
+
+.card .cdc {
+    color: #334daa;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.card .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15%;
+}
+
+.card .porteur {
+    font-size: 12px;
+    color: #777;
+}
+
+.card .bolo {
+    font-size: 25px;
+    cursor: pointer;
+}
+
 .ri-hand-heart-fill {
-  color: #334daa;
+    color: #334daa;
 }
-.header.idee {
-  width: 35%;
-}
-.header.list {
-  width: 35%;
-}
-/* ::-webkit-scrollbar{
-  color: #334daa;
-  height: 10vh;
-} */
 
 .projet {
-  margin: 3%;
-  width: 100%;
-  height: 80vh;
-  overflow-y: auto;
-  border: 0.3px solid rgba(0, 0, 0, 0.372);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.3);
-  border-radius: 32px;
+    width: 50%;
+    height: 80vh;
+    overflow-y: auto;
+    border: 0.3px solid rgba(0, 0, 0, 0.372);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 32px;
+    margin: 2%;
 }
-.projetHead.titre {
-  font-size: 40px;
+
+.projet .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
-.entet {
-  width: 100%;
-}
+
 .corps {
-  margin-top: 3%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  margin-left: 3%;
-  margin-right: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
 }
+
+/* Le conteneur principal de la carte définit la largeur et l'ombre */
 .cardProjet {
-  height: 260px;
-  width: 40%;
-  margin: 3%;
-  border-radius: 32px;
-  /* border: 0.3px solid rgba(0, 0, 0, 0.5); */
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.5);
+    width: calc(50% - 20px);
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 32px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
 }
+
+/* La partie supérieure de la carte a les coins supérieurs arrondis */
 .headCard {
-  height: 170px;
-  width: 100%;
-  margin: 3%;
-  border-radius: 32px;
-  border: 0.3px solid #cd7f32;
-  box-shadow: 0px 0px 5px #cd7f32, 0px 0px 5px #cd7f32;
-  margin-left: 0;
-  margin-top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+    padding: 20px;
+    border-radius: 32px 32px 32px 32px;
+    box-sizing: border-box;
 }
-.cercle {
-  height: 15px;
-  width: 15px;
-  background-color: #334daa;
-  border-radius: 50%;
+
+/* Styles pour les bordures et ombres colorées de headCard */
+.cardProjet:first-of-type .headCard {
+    border: 1px solid #CD7F32;
+    box-shadow: 0px 0px 10px rgba(205, 127, 50, 0.25);
 }
+
+.cardProjet:nth-of-type(2) .headCard {
+    border: 1px solid #9960D9;
+    box-shadow: 0px 0px 10px rgba(153, 96, 217, 0.25);
+}
+
+.cardProjet:last-of-type .headCard {
+    border: 1px solid #11E361;
+    box-shadow: 0px 0px 10px rgba(17, 227, 97, 0.25);
+}
+
 .projetHead {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 3%;
-  padding-right: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.headCard .titre {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cercle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+/* Couleurs de cercle dynamiques */
+.cardProjet:first-of-type .cercle {
+    background-color: #334DAA;
+}
+.cardProjet:nth-of-type(2) .cercle {
+    background-color: #F6C434
+    ;
+}
+.cardProjet:last-of-type .cercle {
+    background-color: #11E361;
+}
+
 .headCard .body {
-  padding-left: 3%;
-  padding-right: 3%;
+    font-size: 14px;
+    color: #000000;
+    margin-top: 10px;
 }
+
 .headCard .footidee {
-  display: flex;
-  flex-direction: row;
-  gap: 20%;
-  padding-left: 3%;
-  padding-right: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
 }
-.train {
-  border: 0.4px solid rgba(0, 0, 0, 0.694);
-  margin-top: 6%;
-  margin-left: 3%;
-  margin-right: 3%;
+
+.headCard .porteur {
+    font-size: 12px;
+    color: #000000;
 }
-.icons {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 2%;
-  margin-left: 3%;
-  margin-right: 3%;
+
+.headCard .soutien {
+    font-size: 14px;
+    color: #334DAA;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
 }
+
+/* La partie inférieure de la carte a les coins inférieurs arrondis */
+.bodyCard {
+    padding: 20px;
+    border-radius: 0 0 32px 32px;
+    box-sizing: border-box;
+}
+
 .progress {
-  width: 90%;
-  margin-left: 3%;
-  margin-right: 3%;
+    width: 100%;
 }
+
 .barProgress1 {
-  width: 100%;
-  height: 15px;
-  background-color: #e9e0e0;
-  border-radius: 32px;
+    width: 100%;
+    height: 10px;
+    background-color: #E0E0E0;
+    border-radius: 32px;
 }
 
 .barProgress2 {
-  width: 30%;
-  height: 15px;
-  background-color: #334daa;
-  border-radius: 32px;
+    height: 100%;
+    border-radius: 32px;
 }
 
-.not {
-  align-items: center;
-  padding: 50px;
+/* Couleurs et longueurs de barre de progression dynamiques */
+.cardProjet:first-of-type .barProgress2 {
+    width: 70%;
+    background-color: #334DAA;
 }
-.recom {
-  font-size: 32px;
-  margin-left: 3%;
-  padding-top: 20px;
-  width: 280px;
+
+.cardProjet:nth-of-type(2) .barProgress2 {
+    width: 40%;
+    background-color: #FFD700;
+}
+
+.cardProjet:last-of-type .barProgress2 {
+    width: 90%;
+    background-color: #11E361;
+}
+
+.train {
+    border-bottom: 0.4px solid rgba(0, 0, 0, 0.694);
+    margin: 15px 0;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icons .suivre, .icons .comment {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #334DAA;
+    cursor: pointer;
+}
+/* ... (votre code CSS existant) ... */
+
+/* Styles pour les écrans plus petits (tablettes et mobiles) */
+@media (max-width: 1024px) {
+
+    /* Le conteneur principal */
+    .contener {
+        flex-direction: column; /* Les deux colonnes s'empilent */
+        padding: 10px;
+    }
+
+    /* Les sections "Idées de projets" et "Projets" */
+    .idee_projet,
+    .projet {
+        width: 100%; /* Occupe toute la largeur */
+        margin: 10px 0; /* Ajoute de l'espace entre les sections */
+        height: auto; /* La hauteur s'adapte au contenu */
+    }
+    
+    .recom {
+        font-size: 24px;
+        margin-left: 2%;
+    }
+    
+    /* Les cartes de projets dans la section "Projets" */
+    .corps {
+        gap: 15px;
+    }
+    
+    .cardProjet {
+        width: 100%; /* Chaque carte occupe toute la largeur disponible */
+    }
+    
+    .headCard, .bodyCard {
+        padding: 15px; /* Réduit le padding pour économiser de l'espace */
+    }
+
+    /* Ajustement des tailles de police et des marges */
+    .header-titre {
+        font-size: 20px;
+    }
+
+    .header-separator {
+        display: none; /* Cache le séparateur sur les petits écrans */
+    }
+
+    .card .titre,
+    .headCard .titre {
+        font-size: 18px;
+    }
+
+    .card .des,
+    .headCard .body {
+        font-size: 13px;
+    }
+
+    .card .porteur,
+    .headCard .porteur {
+        font-size: 11px;
+    }
+    
+    .icons .suivre, .icons .comment {
+        font-size: 10px;
+    }
+}
+
+/* Styles pour les très petits écrans (mobiles) */
+@media (max-width: 768px) {
+    .search-input-container {
+        flex-direction: column; /* Empile l'input et le bouton */
+        height: auto;
+    }
+
+    .search-input-container input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-button {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .header-titre {
+        font-size: 18px;
+    }
+
+    .header-filtre label, .header-filtre select {
+        font-size: 10px;
+    }
+    
+    .icons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }

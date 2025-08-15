@@ -1,9 +1,9 @@
 /* Réservation pour header (60px), sidebar (180px), footer (28px) */
 .contenu-accueil--reserve{
-  margin-top: 16px;
-  margin-left: 180px;
-  min-height: calc(100dvh - 60px - 28px);
-  width: calc(100% - 180px);     /* évite le scroll horizontal */
+  margin: 10px 10px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;   /* évite le scroll horizontal */
   overflow: auto;
 }
 
@@ -41,98 +41,98 @@
 
 /* Onglets style  */
 .barre-onglets{
-  display: flex; align-items: center; 
+  display: flex; align-items: center;
   gap: 40px;
   padding: 6px 2px 12px 2px;
   border-bottom: 1px solid #e6e8ee;
   margin: 0px 4px 8px 4px;
 }
 .ideeprojet, .projet, .gestionnaire{
-  display: inline-flex; 
-  align-items: center; 
-  gap: 06px; 
+  display: inline-flex;
+  align-items: center;
+  gap: 06px;
   cursor: pointer;
 }
 .ideeprojet span{
-  background:#e5e7f3; 
-  color:#111827; 
-  padding:4px 10px; 
-  font-weight:700; 
+  background:#e5e7f3;
+  color:#111827;
+  padding:4px 10px;
+  font-weight:700;
   font-size:12px;
 }
 .projet span, .gestionnaire span{
-  background:#e5e7f3; 
-  color:#111827; 
-  padding:4px 10px; 
-  font-weight:700; 
+  background:#e5e7f3;
+  color:#111827;
+  padding:4px 10px;
+  font-weight:700;
   font-size:12px;
 }
 .projet.actif span{ background: #334DAA; color:#fff; } /* onglet actif */
 
 /* Liste des cartes */
-.liste-cartes{ display: grid; 
-  gap: 10px; 
-  width: 100%; 
+.liste-cartes{ display: grid;
+  gap: 10px;
+  width: 100%;
 }
 
 /* Cartes */
 .carte-projet{
-  display: grid; 
-  grid-template-columns: 44px 1fr auto; 
-  align-items: center; 
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
   gap: 12px;
-  border: 1px solid #e6e6ea; 
-  background: #fff; 
-  padding: 12px; 
-  
+  border: 1px solid #e6e6ea;
+  background: #fff;
+  padding: 12px;
+
 }
 .carte-icône{
-  width: 44px; 
-  height: 44px; 
-  display: grid; 
+  width: 44px;
+  height: 44px;
+  display: grid;
   place-items: center;
-  background: #ffffff; 
-  color: #000000; 
-  font-size: 20px; 
+  background: #ffffff;
+  color: #000000;
+  font-size: 20px;
   border-radius: 50%;
 }
-.carte-titres{ 
-  display: flex; 
-  flex-wrap: wrap; 
-  align-items: baseline; 
-  gap: 12px; 
+.carte-titres{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
 }
-.carte-titre{ 
-  font-size: 15px; 
-  font-weight: 800; 
-  color: #000000; 
-  margin: 0; 
+.carte-titre{
+  font-size: 15px;
+  font-weight: 800;
+  color: #000000;
+  margin: 0;
 }
-.carte-gestionnaire{ 
-  color: #282f3b; 
-  font-size: 14px; 
+.carte-gestionnaire{
+  color: #282f3b;
+  font-size: 14px;
 }
-.carte-tache{ 
-  color: #282f3b; 
-  font-size: 13px; 
-  margin-top: 4px; 
+.carte-tache{
+  color: #282f3b;
+  font-size: 13px;
+  margin-top: 4px;
 }
-.etiquette{ 
-  color: #000000; 
-  margin-right: 4px; 
+.etiquette{
+  color: #000000;
+  margin-right: 4px;
 }
 .valeur{
-   color: #000000; 
+   color: #000000;
   }
 .carte-actions{
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 .bouton-quitter{
-  background: #F6C434; 
+  background: #F6C434;
   color: #ffffff;
-  padding: 8px 12px; 
-  font-weight: 700; 
+  padding: 8px 12px;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -145,20 +145,20 @@
   padding: 16px;
 }
 .slogan-titre{
-  font-size: 24px; 
-  line-height: 1.25; 
-  font-weight: 800; 
-  letter-spacing: -0.01em; 
-  color: #000; 
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #000;
   margin: 0;
   font-family: itim;
 }
 .slogan-point{ color: #000000; }
-.illustration-image{ 
-  display:block; 
-  width:90%; 
-  height:auto; 
-   
+.illustration-image{
+  display:block;
+  width:90%;
+  height:auto;
+
    }
 
 /* Avatars en  */
@@ -169,23 +169,23 @@
 }
 .avatar-élément{
   display: grid; grid-template-rows: 28px auto;
-  justify-items: center; 
-  align-items: center; 
+  justify-items: center;
+  align-items: center;
   gap: 6px;
-  border-radius: 8px; 
-  padding: 8px 6px; 
+  border-radius: 8px;
+  padding: 8px 6px;
   background: #fff;
 }
 .avatar-rond{
-  width: 24px; 
+  width: 24px;
   height: 24px; border-radius: 6px;
   display: grid; place-items: center;
-  background: #f7f7fb; 
-  color: #111827; 
-  font-weight: 700; 
+  background: #f7f7fb;
+  color: #111827;
+  font-weight: 700;
   font-size: 12px;
 }
-.avatar-nom{ font-size: 10px; 
+.avatar-nom{ font-size: 10px;
   color: #000; }
 
 /* Responsive */
@@ -197,3 +197,111 @@
   .contenu-accueil{ padding: 0 12px 28px 12px; }
   .bloc-avatars{ grid-template-columns: repeat(3, minmax(0,1fr)); }
 }
+/**
+**
+:root{
+  --brand:#334DAA;
+  --brand-2:#2a3f8c;
+  --bg:#FFFFFF;
+  --bg-soft:#F4F4F4;
+  --text:#111827;
+  --muted:#6B7280;
+  --shadow:0 0 10px 3px #a1a1a1;
+  --radius:10px;
+  --radius-sm:8px;
+}
+
+/* ===== Layout global =====
+.contenair{
+  display:flex; align-items:stretch; justify-content:center;
+  min-height:92vh; background:var(--bg);
+  padding:16px; box-sizing:border-box;
+}
+.grille{
+  width:100%; max-width:1200px;
+  display:grid; grid-template-columns: 2fr 1fr; gap:20px;
+}
+
+/* ===== Colonnes =====
+.col-gauche,.col-droite{ display:flex; flex-direction:column; gap:16px; }
+
+/* ===== Blocs génériques =====
+.bloc{
+  background:var(--bg); border-radius:var(--radius);
+  box-shadow: var(--shadow); padding:16px;
+}
+
+/* ===== Onglets =====
+.onglets{
+  display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;
+}
+.onglet{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--brand); color:var(--brand);
+  background:#fff; padding:8px 12px; border-radius:12px;
+  cursor:pointer; font-weight:600;
+}
+.onglet i{ font-size:20px; }
+.onglet.actif{ background:var(--brand); color:#fff; }
+
+/* ===== Cartes de projets =====
+.cartes-cadre{ background:var(--bg-soft); }
+.liste-cartes{
+  display:grid; grid-template-columns:1fr; gap:12px;
+  max-height:560px; overflow:auto; padding-right:8px;
+}
+.carte{
+  background:#fff; border-radius:var(--radius); padding:12px;
+  display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.carte--inactive{ opacity:.7; }
+.carte-icone{ font-size:22px; }
+.carte-corps{ display:flex; flex-direction:column; gap:4px; }
+.carte-entete{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.carte-titre{ margin:0; font-size:18px; font-weight:800; color:var(--brand); }
+.gestionnaire .etiquette, .carte-ligne .etiquette{ color:var(--muted); font-weight:600; margin-right:6px; }
+.gestionnaire .valeur, .carte-ligne .valeur{ color:var(--text); }
+.carte-actions{ display:flex; align-items:center; }
+.btn-danger{
+  background:#fee2e2; color:#991b1b; border:1px solid #fecaca;
+  padding:8px 12px; border-radius:12px; cursor:pointer; font-weight:700;
+}
+.btn-danger:disabled{ opacity:.6; cursor:not-allowed; }
+
+/* ===== Colonne droite =====
+.slogan{ text-align:left; }
+.slogan-titre{
+  font-size:28px; font-weight:800; color:var(--text); line-height:1.2; margin:0;
+}
+.slogan-titre .point{ color:var(--brand); }
+
+/* Illustration — on garde le lien tel quel
+.illustration{ display:flex; align-items:center; justify-content:center; padding:12px; }
+.illu-img{
+  width:100%; height:auto; max-height:280px; object-fit:contain; border-radius:var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Avatars
+.avatars{ display:flex; flex-wrap:wrap; gap:10px; }
+.avatar{ display:flex; align-items:center; gap:8px; }
+.rond{
+  width:38px; height:38px; border-radius:999px; display:grid; place-items:center;
+  background:var(--brand); color:#fff; font-weight:800;
+}
+.nom{ color:var(--text); font-weight:600; }
+
+/* ===== Responsive =====
+@media (max-width: 1024px){
+  .grille{ grid-template-columns:1fr; }
+  .illustration{ order:2; }
+  .avatars{ order:3; }
+}
+@media (max-width: 560px){
+  .carte{ grid-template-columns: auto 1fr; }
+  .carte-actions{ grid-column:1 / -1; justify-content:flex-end; }
+  .slogan-titre{ font-size:22px; }
+}
+
+*/
