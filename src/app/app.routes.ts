@@ -43,6 +43,7 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 export const routes: Routes = [
   {
@@ -110,23 +111,21 @@ export const routes: Routes = [
     ],
   },
 
-  //Les routes pour le Gestionnaire :
-  {
-    path: 'gestionnaire',
-    component: IndexGestionnaireComponent,
-    children: [
-      { path: '', component: AccueilComponent },
-      { path: 'accueil', component: AccueilComponent },
-      { path: 'mes_idees', component: MesIdeeProjetComponent },
-      { path: 'mon_espace', component: DashboardGestionnaireComponent },
-      { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
-      { path: 'nouveau_projet', component: FormulaireProjetComponent },
-      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
-      //Les autres routes ici ..............
 
-      { path: '**', redirectTo: '' },
-    ],
-  },
+  //Les routes pour le Gestionnaire :
+  {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
+    {path:"",component:AccueilComponent},
+    {path:"accueil",component:AccueilComponent},
+    {path:"mes_idees",component:MesIdeeProjetComponent},
+    {path:"mon_espace",component:DashboardGestionnaireComponent},
+    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
+    {path:"nouveau_projet",component:FormulaireProjetComponent},
+    {path:"details_projet",component:ProjetgestionnairedetailComponent},
+    {path:"nouvelle_tache",component:TaskFormComponent},
+    //Les autres routes ici ..............
+
+    {path:"**",redirectTo:""}
+  ]},
 
   { path: 'dashboard', component: DashboardGestionnaireComponent },
   { path: 'card-contribution', component: CardcontributionComponent },
