@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="head">
                         <div class="titre">{{ ideeprojet.titre }}</div>
-                        <div class="date">{{ ideeprojet.datePublication }}</div>
+                        <div class="date">{{ ideeprojet.datePublication | elapsedTime }}</div>
                     </div>
                     <div class="content">
                         <div class="des">{{ ideeprojet.description }}</div>

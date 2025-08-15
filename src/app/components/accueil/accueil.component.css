@@ -190,7 +190,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 15%;
 }
 
 .card .porteur {
@@ -316,6 +316,7 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+    
 }
 
 /* La partie inférieure de la carte a les coins inférieurs arrondis */
