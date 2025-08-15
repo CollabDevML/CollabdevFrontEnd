@@ -107,6 +107,17 @@ export class DashboardGestionnaireComponent implements OnInit {
       },
     });
 
+    this.dataG.demandeContributeurProjet().subscribe({
+        next:(res)=>{
+          this.contributionsList = res
+          console.log(res);
+        },
+        error:(err)=>{
+          console.log(err);
+
+        }
+      })
+
   }
 
   //get the gestionnaire

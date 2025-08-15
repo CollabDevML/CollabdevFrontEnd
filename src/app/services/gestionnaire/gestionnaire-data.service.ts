@@ -13,6 +13,7 @@ import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestion
 
 export class GestionnaireDataService {
   dataProjet!:projet;
+  tacheData: any;
   constructor(private http: HttpClient, private data: DataService) {}
   //Pour la creation d'un compte Gestionnaire:
   addGestionnaire(data:any):Observable<Gestionnaire>{
@@ -49,5 +50,11 @@ export class GestionnaireDataService {
   //Pour lister les contributeurs:
   listeContributeur(){
     return this.data.getData(Env.CREATE_CONTRIBUTEUR);
+  }
+
+  //La liste des contributeur a valider :
+  //Pour la demande de contribution :
+  demandeContributeurProjet(){
+    return this.data.getData(Env.PROJET+"/demandes-contribution");
   }
 }

@@ -82,8 +82,28 @@
                                 </div>
                         </div>
                     }
+                    @if(isGestionnaire){
+                      <div
+                          class="propose-button"
+                          [class.expanded]="isExpanded"
+                          (click)="creerProjet(ideeProjet)"
+                        >
+                          <p style="color: white; font-size: 14pt;text-align: center;">
+                            Créer un projet
+                          </p>
+                        </div>
+                    }
                 </div>
             }
+          <div
+              class="propose-button"
+              [class.expanded]="isExpanded"
+              (click)="voirPlus()"
+            >
+            <p style="color: white; font-size: 14pt;text-align: center;">
+              Voir D'autres
+            </p>
+          </div>
         </div>
     </div>
     <div class="right-container">
@@ -95,3 +115,6 @@
         </div>
     </div>
 </div>
+@if(plus){
+  <app-liste-idee-projet></app-liste-idee-projet>
+}

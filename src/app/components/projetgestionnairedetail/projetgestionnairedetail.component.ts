@@ -85,4 +85,10 @@ export class ProjetgestionnairedetailComponent {
   date(dat: string) {
     return new Date(dat);
   }
+
+
+  detailTache(tache: DisplayTask) {
+    this.data.tacheData = tache;
+    this.route.navigate(['gestionnaire/detail_tache']);
+  }
 }

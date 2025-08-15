@@ -71,7 +71,7 @@
       <!-- LIGNE -->
       @if (taches && taches.length > 0) {
         @for (tache of taches; track $index) {
-          <div class="table-row">
+          <div class="table-row" style="cursor: pointer;" (click)="detailTache(tache)">
             <span class="bold">{{tache.titre}}</span>
             <span>{{tache.description}}</span>
             <span>{{tache.dateDebut | date:"dd MMM yyyy"}}</span>
