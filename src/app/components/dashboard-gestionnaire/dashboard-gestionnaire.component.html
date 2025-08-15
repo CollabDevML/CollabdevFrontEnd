@@ -1,3 +1,11 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">CHARGEMENT...</p>
+</ngx-spinner>
 <div id="main">
   <div class="dashboard" [class.long-dashboard]="!sidebarOpen">
 
@@ -54,27 +62,30 @@
 
       <div id="projet-recents">
         <span class="titre">
+          @if (tout) {
+          <h4 class="sous-titre">Tous les Projets</h4>
+            <button class="tous-voir" (click)="voirMois()" style="cursor: pointer;">Voir Moins</button>
+          }@else{
           <h4 class="sous-titre">Projets récents</h4>
-          <button class="tous-voir" >Tous voir</button>
+            <button class="tous-voir" (click)="voirTous()" style="cursor: pointer;">Tous voir</button>
+          }
         </span>
         <div class="card-content">
-          @if(projetsRecents.length > 0){
-             @for (projet of projetsRecents; track $index) {
-            <app-cardprojet [projet]="projet"></app-cardprojet>
+          @if(tout){
+            @for (projet of toutProjet; track $index) {
+              <app-cardprojet [projets]="projet"></app-cardprojet>
+            }
+          }@else 
+          {
+            @for (projet of projetsRecents; track $index) {
+              <app-cardprojet [projets]="projet"></app-cardprojet>
+            }
           }
-          }@else {
-              0 projet recent
-          }
+          
          
         </div>
 
       </div>
-
-      @if (sidebarOpen === false) {
-      <div id="calendrier">
-        <full-calendar [options]="calendarOptions"></full-calendar>
-      </div>
-      }
     </div>
 
     <div id="demande-contribution">

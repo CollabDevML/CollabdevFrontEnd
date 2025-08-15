@@ -11,4 +11,7 @@ export class ResponseGestionnaire {
   estValide!: boolean;
   idGestionnaire!: number;
   idUtilisateur!: number;
+  projets: projet[] = []
+  utilisateur: any;
+  id: any;
 }

@@ -12,12 +12,26 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginService {
   static routes: Router;
+  isLoging: boolean = false;
 
   constructor(public route:Router,private dataG:DataService,private toastr:ToastrService){}
 
   login(data:Login){
+    this.isLoging = true;
     this.dataG.login(data).subscribe({
       next: (res:any) => {
+        this.isLoging = false;
+        if(res.message) {
+            this.toastr.error("Authentification échouée, veuillez réessayer","Satut d'authentification",{
+            timeOut: 3000,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            positionClass: 'toast-top-right'
+          });
+          this.route.navigateByUrl('/login')
+          return;
+        }
+        console.log(res)
         localStorage.setItem("user_role",res.role)
         localStorage.setItem("user_id",res.id)
         localStorage.setItem("isExpanded","1")
@@ -33,15 +47,16 @@ export class LoginService {
           chemin = "porteur_projet";
           localStorage.setItem("chemin",chemin)
         }
-        this.toastr.success("Authentification reussie avec succès","succès",{
-          timeOut: 1000,
+        this.toastr.success("Authentification reussie avec succès","Satut d'authentification",{
+          timeOut: 3000,
           progressBar: true,
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-        this.route.navigate([chemin]);
+        this.route.navigateByUrl('accueil');
       },
       error: (err:any) => {
+        this.isLoging = false;
         console.log(err.message)
         this.toastr.error(err.message,"erreur",{
           timeOut: 3000,
@@ -49,7 +64,6 @@ export class LoginService {
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-
         this.route.navigate(["login"]);
       }
     })

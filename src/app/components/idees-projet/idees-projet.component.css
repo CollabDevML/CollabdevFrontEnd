@@ -1,13 +1,14 @@
 .principal-container {
     width: 100%;
-    height: 590px;
+    height: 100vh;
     min-width: 700px;
     display: grid;
-    background-color: #f4f4f4;
+    background-color: #f1f1f1;
     grid-template-columns: 55% 45%;
     overflow: hidden;
     z-index: 5;
-    transition: grid-template-columns 0.4s ease-in-out;
+    align-items: center;
+    justify-content: center;
 }
 
 .principal-container.isExpanded {
@@ -16,7 +17,7 @@
 
 .left-container {
     width: 90%;
-    height: 90%;
+    height: fit-content;
     display: grid;  
     align-self: center;
     justify-self: end;
@@ -26,7 +27,7 @@
     background-color: white;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     border-radius: 32px;
-    gap: 40px;
+    gap: 20px;
     padding-top: 20px;
 }
 
@@ -79,11 +80,17 @@
 
 .ideas-container {
     width: 85%;
-    height: 90%;
+    height: 70vh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #334DAA transparent;
+    padding: 1%;
 }
+
 
 .right-container {
     width: 100%;
@@ -171,10 +178,11 @@ p {
     height: fit-content;
     background-color: white;
     display: grid;
-    grid-template-rows: auto auto auto auto;
-    gap: 10px;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 20px;
     padding: 5%;
-    align-self: center;
+    align-items: center;
+    align-content: center;
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.3);
     border-radius: 32px;
 }
@@ -219,10 +227,14 @@ h2 {
 
 .idea-date {
     justify-self: end;
+    font-size: 10pt;
+    font-weight: bold;
 }
 
 .idea-description-container {
-    width: 100%;
+    width: fit-content;
+    font-size: 10pt;
+    word-break: break-word;
 }
 
 .idea-cdc-container {
@@ -243,6 +255,7 @@ h2 {
     font-weight: bold;
     justify-self: start;
     margin-left: 5px;
+    font-size: 10pt;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -260,6 +273,10 @@ h2 {
     transition: transform 0.3s ease-in-out;
 }
 
+.idea-help {
+    color: #334DAA;
+}
+
 .idea-help:hover {
     cursor: pointer;
     transform: scale(1.1);
@@ -275,18 +292,21 @@ h2 {
 
 .idea-comments-container {
     width: 96%;
-    height: fit-content;
+    height: 96%;
     background-color: #f1f1f1;
     border-radius: 10px;
     padding: 2%;
     display: grid;
     grid-template-rows: 20% 80%;
+    align-items: center;
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 .idea-comments-header {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: fit-content;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
     display: grid;
     grid-template-columns: 5% 75% 20%;
     align-items: center;
@@ -295,6 +315,7 @@ h2 {
 
 .idea-comments-logo {
     font-size: 20px;
+    justify-self: start;
 }
 
 .idea-comments-text {
@@ -322,7 +343,7 @@ h2 {
 
 .idea-comments-body {
     width: 97.5%;
-    width: 97.5%;
+    height: 97.5%;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -363,26 +384,58 @@ h2 {
     font-size: 10pt;
     justify-self: end;
     margin-right: 5px;
+    font-weight: bold;
 }
 
 .comment-body {
-    width: 98%;
+    width: 100%;
     height: 98%;
-    padding: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 .comment-content {
     font-size: 10pt;
+    margin-left: 10%;
 }
 
-@media only screen and (max-width: 720px){
-    .principal-container {
-        grid-template-columns: none;
-        display: flex;
-        flex-direction: column;
-    }
+.idea-comments-no-comment {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    font-size: 10pt;
+}
 
-    .right-container {
-        display: none;
-    }
+.idea-domaines-container {
+    width: 98%;
+    height: 98%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1%;
+}
+
+.idea-domaine-container {
+    width: fit-content;
+    height: fit-content;
+    background-color: #334DAA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    box-shadow: 0px 0px 2.5px 0px rgba(0, 0, 0, 0.3);
 }

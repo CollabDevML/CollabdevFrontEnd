@@ -11,40 +11,99 @@
             </div>
         </div>
         <div class="ideas-container">
-            <div class="idea-container">
-                <div class="idea-title-container">
-                    <h2 class="idea-title">CollabDev</h2>
-                    <p class="idea-date">Il y'a <span style="font-weight: bold;">2 jours</span></p>
-                    <i class="ri-more-2-fill idea-option"></i>
-                </div>
-                <div class="idea-description-container">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum veritatis quas repellat hic consectetur neque eos in suscipit. Iure id aliquid soluta! Ad sapiente numquam repellat consequuntur repudiandae vel sint.
-                </div>
-                <div class="idea-cdc-container">
-                    <i class="ri-file-pdf-2-line idea-pdf-logo"></i>
-                    <p class="idea-pdf-text"><u>Voir le cahier des charges</u></p>
-                    <i class="ri-hand-heart-line idea-help"></i>
-                </div>
-                <div class="idea-comments-container">
-                    <div class="idea-comments-header">
-                        <i class="ri-question-answer-line idea-comments-logo"></i>
-                        <p class="idea-comments-text">Commentaires</p>
-                        <p class="idea-comments-see-more"><u>Voir plus</u></p>
+            @for (ideeProjet of ideesProjet; track ideeProjet.id) {
+                <div class="idea-container">
+                    <div class="idea-title-container">
+                        <h2 class="idea-title">{{ideeProjet.titre}}</h2>
+                        <p class="idea-date">{{ideeProjet.datePublication | elapsedTime}}</p>
+                        <i class="ri-more-2-fill idea-option"></i>
                     </div>
-                    <div class="idea-comments-body">
-                        <div class="comment">
-                            <div class="comment-header">
-                                <img src="ghost.jpg" alt="Photo de Ghost" class="comment-user-profile">
-                                <p class="comment-user-name">Par <strong>Djimé Dembélé</strong></p>
-                                <p class="comment-date">Il y'a <strong>2 heures</strong></p>
+                    <div class="idea-domaines-container">
+                        @for (domaine of ideeProjet.domaine; track $index) {
+                            <div class="idea-domaine-container">{{labelFromEnum(domaine.toString())}}</div>
+                        }
+                    </div>
+                    <div class="idea-description-container">
+                        {{ideeProjet.description}}
+                    </div>
+                    <div class="idea-cdc-container">
+                        <i class="ri-file-pdf-2-line idea-pdf-logo"></i>
+                        <p class="idea-pdf-text"><u>Voir le cahier des charges</u></p>
+                        @if (isHelped(ideeProjet.id)){
+                            <i class="ri-hand-heart-fill idea-help" (click)="helpIdea(ideeProjet.id)" [class.isHelped]="isHelped(ideeProjet.id)"></i>
+                        } @else {
+                            <i class="ri-hand-heart-line idea-help" (click)="helpIdea(ideeProjet.id)" [class.isHelped]="isHelped(ideeProjet.id)"></i>
+                        }
+                    </div>
+                    @if(ideeProjet.commentaireIdeeProjets.length !== 0) {
+                        <div class="idea-comments-container">
+                            <div class="idea-comments-header">
+                                <i class="ri-question-answer-line idea-comments-logo"></i>
+                                <p class="idea-comments-text">Commentaires</p>
+                                <p class="idea-comments-see-more"><u>Voir plus</u></p>
                             </div>
-                            <div class="comment-body">
-                                <p class="comment-content">Je pense que c'est un très bon projet</p>
-                            </div>
+                                <div class="idea-comments-body">
+                                    @if(ideeProjet.commentaireIdeeProjets[0]) {
+                                        <div class="comment">
+                                            <div class="comment-header">
+                                                <img src="ghost.jpg" alt="Photo de Ghost" class="comment-user-profile">
+                                                <p class="comment-user-name">Par <strong>{{ideeProjet.commentaireIdeeProjets[0].utilisateur.prenom}} {{ideeProjet.commentaireIdeeProjets[0].utilisateur.nom}}</strong></p>
+                                                <p class="comment-date">{{ideeProjet.commentaireIdeeProjets[0].dateCommentaire | elapsedTime}}</p>
+                                            </div>
+                                            <div class="comment-body">
+                                                <p class="comment-content">{{ideeProjet.commentaireIdeeProjets[0].contenu}}</p>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if(ideeProjet.commentaireIdeeProjets[1]) {
+                                        <div class="comment">
+                                            <div class="comment-header">
+                                                <img src="ghost.jpg" alt="Photo de Ghost" class="comment-user-profile">
+                                                <p class="comment-user-name">Par <strong>{{ideeProjet.commentaireIdeeProjets[1].utilisateur.prenom}} {{ideeProjet.commentaireIdeeProjets[1].utilisateur.nom}}</strong></p>
+                                                <p class="comment-date">{{ideeProjet.commentaireIdeeProjets[1].dateCommentaire | elapsedTime}}</p>
+                                            </div>
+                                            <div class="comment-body">
+                                                <p class="comment-content">{{ideeProjet.commentaireIdeeProjets[1].contenu}}</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
                         </div>
-                    </div>
+                    } @else {
+                        <div class="idea-comments-container">
+                            <div class="idea-comments-header">
+                                <i class="ri-question-answer-line idea-comments-logo"></i>
+                                <p class="idea-comments-text">Commentaires</p>
+                            </div>
+                                <div class="idea-comments-body">
+                                    <div class="idea-comments-no-comment">
+                                        Pas de commentaires!
+                                    </div>
+                                </div>
+                        </div>
+                    }
+                    @if(isGestionnaire){
+                      <div
+                          class="propose-button"
+                          [class.expanded]="isExpanded"
+                          (click)="creerProjet(ideeProjet)"
+                        >
+                          <p style="color: white; font-size: 14pt;text-align: center;">
+                            Créer un projet
+                          </p>
+                        </div>
+                    }
                 </div>
-            </div>
+            }
+          <div
+              class="propose-button"
+              [class.expanded]="isExpanded"
+              (click)="voirPlus()"
+            >
+            <p style="color: white; font-size: 14pt;text-align: center;">
+              Voir D'autres
+            </p>
+          </div>
         </div>
     </div>
     <div class="right-container">
@@ -56,3 +115,6 @@
         </div>
     </div>
 </div>
+@if(plus){
+  <app-liste-idee-projet></app-liste-idee-projet>
+}

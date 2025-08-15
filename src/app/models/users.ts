@@ -72,11 +72,11 @@ export class Users {
   }
 
   //Preferences :
-  get getPreferences():[]{
+  get getPreferences(): [] {
     return this.preferences;
   }
 
-  set setPreferences(preferences:[]){
+  set setPreferences(preferences: []) {
     this.preferences = preferences;
   }
 

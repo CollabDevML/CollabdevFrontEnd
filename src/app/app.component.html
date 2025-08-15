@@ -1,29 +1,24 @@
-@if(ispagevisiteur){
-    <app-header></app-header> 
-} @else {
-    @if (isLoginPage) {
-        <router-outlet></router-outlet>
-    } @else {
-        <div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.signin]="isSignInPages">
-            <div class="sidebar-container" [class.collapsed]="!getIsExpanded()">
-            @switch (currentUserRole) {
-                @case ('CONTRIBUTEUR') {
-                    <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>
-                }
-                @case ('GESTIONNAIRE') {
-                    <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire> 
-                }
-                @case ('PORTEUR_PROJET') {
-                    <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
-                }
-                @default {
-                    <div style="display: none;"></div>
-                }
-            }
-            </div>
-            <div class="pages-container" [class.collapsed]="!getIsExpanded()">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+<div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage">
+    <div class="sidebar-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage">
+    @switch (currentUserRole) {
+        @case ('CONTRIBUTEUR') {
+            <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>
+        }
+        @case ('GESTIONNAIRE') {
+            <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire> 
+        }
+        @case ('PORTEUR_PROJET') {
+            <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
+        }
+        @default {
+            <div style="display: none;"></div>
+        }
     }
-}
+    </div>
+    <div class="pages-container">
+        @if (ispagevisiteur) {
+            <app-header></app-header>
+        }
+        <router-outlet></router-outlet>
+    </div>
+</div>

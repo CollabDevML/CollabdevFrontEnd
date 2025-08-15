@@ -1,17 +1,33 @@
-import { Contribution } from "../contribution/contribution";
+export class projet{
+    id!:number
+   titre!:string;
+   description!:string;
+   estFini!:boolean;
+   dateDebut!:Date;
+   dateFin!:Date;
+   niveauDAcces!: string;
+   utilisateur!:{prenom:string,nom:string}
+   etat!:boolean;
+   idGestionnaire!:number;
+   demandeContributions!: any[];
+   piecesDAcces!:number;
+   gestionnaire!: { prenom: string, nom: string }; // ✅ objet
+   porteur!: { prenom: string, nom: string };
+   taches!: any[];
+   contributions!: any[];
 
-export class projet {
-  id!: number;
-    titre!: string;
-    Description!: string;
-    estFini!: boolean;
-    etat!: boolean;
-    dateDebut!: string;
-    dateFin!: string;
-    niveauDAcces!: string;
-    demandeContributions!: any[];
-    contributions!: any[];
-    taches!: any[];
-    piecesDAcces!:number;
-    idGestionnaire!:number;
-}
+
+   nombreContributeurs!:number;
+  commentaires!:
+            {
+                id:number,
+                contenu:string,
+                dateCommentaire: Date,
+                utilisateur: {
+                    prenom:string,
+                    nom:string
+                }
+            }[]
+dommaine: any;
+nombreSoutiens: any;
+ }

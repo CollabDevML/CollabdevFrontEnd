@@ -28,54 +28,48 @@ export interface Projet{
   providedIn: 'root',
 })
 export class DashboardgestionnaireServiceService {
+
   //injection de dépendances
-  private gestionnaireS = inject(GestionnaireDataService);
-  constructor(private http :HttpClient, private datas: GestionnaireDataService){}
-  data: any;
+  private gestionnaireS = inject(GestionnaireDataService)
+
+  //fetch the data
+  getGestionnaire(id:number):Observable<any>
+  {
+    this.gestionnaireS.getProjetGestionnaire(id).pipe(
+      map(data => (
+        {
+      prenom : data.utilisateur.prenom,
+      nom : data.utilisateur.nom,
+      email : data.utilisateur.email,
+      genre : data.utilisateur.genre,
+      preferences : data.utilisateur.preferences ?? [],
+      uriCV : data.uriCV,
+      estValide : data.estValide,
+      idGestionnaire : data.id,
+      idUtilisateur : data.utilisateur.id,
+      // si "projet" est présent dans la réponse
+      projets : (data.projets ?? []).map((projet: projet) => ({
+        id: projet.id,
+        titre: projet.titre,
+        description: projet.description,
+        estFini : projet.estFini,
+        etat: projet.etat,
+        dateDebut: projet.dateDebut,
+        dateFin: projet.dateFin,
+        niveauDAcces: projet.niveauDAcces,
+        demandeContributions: projet.demandeContributions,
+        contributions: projet.contributions,
+        taches: projet.taches,
+        piecesDAcces: projet.piecesDAcces,
+      })),
+    }
+    )))
+
+    return this.gestionnaireS.getProjetGestionnaire(id);
+  }
 
   //Calcul des stats
-  projets: Projet[] = [];
-  //fetch the data
-  getUtilisateurGestionnaire(id: number, role: string): Observable<any> {
-    this.data = this.gestionnaireS.getUtilisateurGestionnaire(id, role);
-    console.log(this.data)
-    return this.data;
-  }
-
-  getGestionnaire(id = this.data.idGestionnaire): Observable<any> {
-    return this.gestionnaireS.getGestionnaire(id).pipe(
-      map((res) => ({
-        prenom: res.utilisateur.prenom,
-        nom: res.uitlisateur.nom,
-        email: res.utilisateur.email,
-        genre: res.utilisateur.genre,
-        preferences: res.utilisateur.preferences ?? [],
-        uriCV: res.uriCV,
-        estValide: res.estValide,
-        projets: (res.projets ?? []).map((projet:any) => ({
-          id: projet.id,
-          titre: projet.titre,
-          description: projet.description,
-          estFini: projet.estFini,
-          etat: projet.etat,
-          dateDebut: projet.dateDebut,
-          dateFin: projet.dateFin,
-          niveauDAcces: projet.niveauDAcces,
-          demandeContributions: projet.demandeContributions,
-          contributions: projet.contributions,
-          taches: projet.taches,
-          piecesDAcces: projet.piecesDAcces,
-        })),
-      }))
-    );
-  }
-
-  getGestionnaireProjet(id: number): Observable<Projet[]>{
-    return this.http.get<Projet[]>(`http://localhost:8180/gestionnaires/${id}/projets`)
-  }
-
-  
-  
+  projets: projet[] = [];
 
   private nbTerminesSubject = new BehaviorSubject<number>(0);
   private nbEnCoursSubject = new BehaviorSubject<number>(0);

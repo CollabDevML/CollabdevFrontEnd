@@ -1,5 +1,5 @@
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, inject } from '@angular/core';
 import { SidebargestionnaireComponent } from '../UI/sidebargestionnaire/sidebargestionnaire.component';
 import { CardprojetComponent } from '../UI/cardprojet/cardprojet.component';
 import { CardcontributionComponent } from '../UI/cardcontribution/cardcontribution.component';
@@ -19,6 +19,7 @@ import { projet } from '../../models/projet/projet';
 import { Demandecontributions } from '../../models/demandecontributions/demandecontributions';
 import { Contribution } from '../../models/contribution/contribution';
 import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
+import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard-gestionnaire',
@@ -29,22 +30,25 @@ import { DemandescontributionsService } from '../../services/demandescontributio
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DashboardGestionnaireComponent implements OnInit {
+  //Les variables que j'ai creer :
   user!:ResponseGestionnaire;
+  tout:boolean=false;
+  userId = Number(localStorage.getItem("user_id"));
+  userRole = localStorage.getItem("user_role");
 
-  constructor(
-    private data:DataService,
-    private dataG:GestionnaireDataService,
-    private route:Router
-  ){
+  toutProjet!: projet[];
+  projetsRecents!: projet[];
 
-  }
+  //Fin de la creation de mes variables.
 
+<<<<<<< HEAD
   ngOnInit(){
     if (this.data.user_role == null || this.data.user_role == ""){
       this.route.navigate(["login"]);
@@ -70,6 +74,14 @@ export class DashboardGestionnaireComponent implements OnInit {
   userId!: number | null;
   userRole!: string | null;
   projetsRecents!: Projet[];
+=======
+  sidebarOpen: boolean = true;
+  ispopupVisible: boolean = false;
+  gestionnaire!: ResponseGestionnaire;
+
+
+
+>>>>>>> main-copie
   nbreProjetsTermine: number = 0;
   nbreProjetsEnCours: number = 0;
   demandeContributions: Demandecontributions[] = [];
@@ -81,26 +93,64 @@ export class DashboardGestionnaireComponent implements OnInit {
   selectedAction!: string;
   selectedDemande: any;
 
-   //get projets
-   getProject(id: number){
-      this.dashboardgestionnaireservices.getGestionnaireProjet(id).subscribe({
-        next:(res) =>{
-         this.projetsRecents = [...res]
-         .sort( (a, b) =>
-              new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime()
-          )
-          .slice(0, 5);
-          console.log(this.projetsRecents)
+  constructor(
+    private data:DataService,
+    private dataG:GestionnaireDataService,
+    private route:Router,
+    private spinner:NgxSpinnerService
+  ){
+
+  }
+
+  voirMois() {
+    this.tout = false;
+  }
+  voirTous() {
+    this.tout = true;
+  }
+
+  ngOnInit(){
+    this.spinner.show();
+    this.data.getDataUserById().subscribe({
+      next:(res)=> {
+        this.user = res;
+        this.spinner.hide(),
+        this.dataG.getProjetGestionnaire(res.idGestionnaire).subscribe({
+          next:(projets:any)=> {
+              console.log(projets)
+              this.toutProjet = projets;
+
+              this.projetsRecents = projets.slice(0, 3);
+              console.log(this.projetsRecents)
+          },
+          error:(err)=> {
+              console.log(err)
+          },
+        })
+        this.getGestionnaire
+        console.log(res);
+      },
+      error:(err)=> {
+          console.warn(err);
+      },
+    });
+
+    this.dataG.demandeContributeurProjet().subscribe({
+        next:(res)=>{
+          this.contributionsList = res.slice(0, 2);
+          console.log(res);
         },
-        error(err) {
-            console.warn(err)
-        },
-  })
-   }
-  /*
+        error:(err)=>{
+          console.log(err);
+
+        }
+      })
+
+  }
+
   //get the gestionnaire
-  getGestionnaire() {
-    this.dashboardgestionnaireservices.getGestionnaire(this.userId!).subscribe({
+  getGestionnaire(){
+    this.dashboardgestionnaireservices.getGestionnaire(this.userId).subscribe({
       next: (result: any) => {
         this.gestionnaire = result;
         console.log(result);
@@ -144,7 +194,6 @@ export class DashboardGestionnaireComponent implements OnInit {
           .sort((a, b) => b.id - a.id)
           .slice(0, 2);
       },
-
       error: (error) =>
         console.error('Erreur lors de la récupération du gestionnaire', error),
     });
@@ -154,7 +203,7 @@ export class DashboardGestionnaireComponent implements OnInit {
     this.dashboardgestionnaireservices.nbTermines$.subscribe(
       (nb) => (this.nbreProjetsTermine = nb)
     );
-  }*/
+  }
 
  
   calendarOptions: CalendarOptions = {
