@@ -5,11 +5,13 @@ import { FooterComponent } from "../UI/footer/footer.component";
 
 @Component({
   selector: 'app-contributeurs2',
-  imports: [RecherchebarreComponent, SideBarComponent, FooterComponent],
+  imports: [
+    RecherchebarreComponent
+  ],
   templateUrl: './contributeurs2.component.html',
   styleUrl: './contributeurs2.component.css'
 })
 export class Contributeurs2Component {
-  
+
 
 }

@@ -7,6 +7,8 @@ import { PorteurProjetDataService } from '../../../services/porteurProjet/porteu
 import { ResponseIdeeProjet2 } from '../../../models/ideeprojet/response-idee-projet2';
 import { IdeeprojetService } from '../../../services/ideeprojet/ideeprojet.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { GestionnaireDataService } from '../../../services/gestionnaire/gestionnaire-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste-idee-projet',
@@ -21,8 +23,8 @@ export class ListeIdeeProjetComponent implements OnInit{
   mesIdeeProjet:any;
   afficheVoirPlus : boolean = false;
   contenus: any;
-  constructor(private data: PorteurProjetDataService) {}
-
+  constructor(private data: PorteurProjetDataService,private dataGest:GestionnaireDataService,private route:Router) {}
+  gestionnaire:boolean=false;
   voirPlus(element: any) {
     this.afficheVoirPlus = true;
     this.contenus = element;
@@ -41,6 +43,10 @@ export class ListeIdeeProjetComponent implements OnInit{
         );
       },
     });
+
+    if (localStorage.getItem("user_role") === "GESTIONNAIRE") {
+      this.gestionnaire = true;
+    }
   }
 
   fermerModal() {
@@ -68,4 +74,10 @@ export class ListeIdeeProjetComponent implements OnInit{
     });
   }
 
+
+  cliqueMoi(idee:any){
+    console.log(idee);
+    this.dataGest.ideeData = idee;
+    this.route.navigate(["gestionnaire/nouveau_projet"]);
+  }
 }

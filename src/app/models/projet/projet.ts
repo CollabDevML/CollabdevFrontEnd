@@ -12,13 +12,14 @@ export class projet{
    demandeContributions!: any[];
    piecesDAcces!:number;
    gestionnaire!: { prenom: string, nom: string }; // ✅ objet
-   porteur!: { prenom: string, nom: string };   
+   porteur!: { prenom: string, nom: string };
    taches!: any[];
    contributions!: any[];
+   mavaleur!:string
 
-  
+
    nombreContributeurs!:number;
-  commentaires!: 
+  commentaires!:
             {
                 id:number,
                 contenu:string,
@@ -28,4 +29,6 @@ export class projet{
                     nom:string
                 }
             }[]
+dommaine: any;
+nombreSoutiens: any;
  }
