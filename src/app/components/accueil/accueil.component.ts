@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { AccueilService } from '../../services/accueil/accueil.service';
 import { Ideeprojet } from '../../models/ideeprojet/ideeprojet';
 import { projet } from '../../models/projet/projet';
+import { ElapsedTimePipe } from '../../pipes/elapsed-time.pipe';
 
 @Component({
   selector: 'app-accueil',
-  imports: [],
+  imports: [ElapsedTimePipe],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css',
 })
@@ -20,16 +21,20 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.accueilService
-      .getRecommandationByideeProjet(this.users_id)
-      .subscribe((data) => {
-        this.ideeProjets = data;
-      });
+    .getRecommandationByideeProjet(this.users_id)
+    .subscribe((data) => {
+      // Conversion Date -> string ISO
+      this.ideeProjets = data.map((idee: any) => ({
+        ...idee,
+        datePublication: new Date(idee.datePublication).toISOString()
+      }));
+    });
     console.log("Id de l'utilisateur : ", this.users_id);
     this.accueilService
       .getRecommandationByProjet(this.users_id)
       .subscribe((data) => {
         this.projets = data;
-        throw new Error('Method not implemented.');
+         console.log('Projets reçus :', this.projets);
       });
   }
 

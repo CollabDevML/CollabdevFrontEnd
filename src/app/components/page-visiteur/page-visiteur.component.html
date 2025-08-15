@@ -60,7 +60,7 @@
             @for (commentaire of ideeprojet.commentaireIdeeProjets; track commentaire.id) {
               <div class="commentaire">
         
-                <div class="acteur"> <i class="ri-user-fill icon2"></i> <div class="user"> {{  commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }} </div>
+                <div class="acteur"> <i class="ri-user-fill icon2"></i> <div class="user2"> {{  commentaire.utilisateur.nom+'   '+commentaire.utilisateur.prenom }} </div>
                 @if(commentaire.utilisateur.role  ==='CONTRIBUTEUR'){
                 <div class="rolec">C</div>
                 }@else if (commentaire.utilisateur.role==='GESTIONNAIRE') {
@@ -124,12 +124,12 @@
             </div>
           </div>
           <div class="status">
-            <input type="text" value={{projet.niveauDAcces}} readonly class="niveauaccess">    <input type="text" [(ngModel)]="mavaleur" readonly class="etats">
+            <input type="text" value={{projet.niveauDAcces}} readonly class="niveauaccess">    <input type="text" value={{etat(projet.estFini)}} readonly class="etats">
            
           </div>
            <div class="dernier">
        <button type="button" class="bouton3">Voir plus  <i class="ri-arrow-right-line like2" ></i></button>
-       <div class="nbcontributeur">200</div>
+       <div class="nbcontributeur">{{projet.nombreContributeurs}}</div>
         <i class="ri-group-line like1" ></i>
        </div>
         </div>
