@@ -48,40 +48,12 @@ export class DashboardGestionnaireComponent implements OnInit {
 
   //Fin de la creation de mes variables.
 
-<<<<<<< HEAD
-  ngOnInit(){
-    if (this.data.user_role == null || this.data.user_role == ""){
-      this.route.navigate(["login"]);
-    }
-    this.data.getDataUserById().subscribe({
-      next:(res)=> {
-        this.user = res;
-        console.log(res);
-         console.log("user existe")
-      this.getProject(this.user.idGestionnaire)
-      },
-      error:(err)=> {
-          console.warn(err);
-      },
-    });
-  
-     
-    
-  }
-  sidebarOpen: boolean = true;
-  ispopupVisible: boolean = false;
-  gestionnaire!: ResponseGestionnaire;
-  userId!: number | null;
-  userRole!: string | null;
-  projetsRecents!: Projet[];
-=======
   sidebarOpen: boolean = true;
   ispopupVisible: boolean = false;
   gestionnaire!: ResponseGestionnaire;
 
 
 
->>>>>>> main-copie
   nbreProjetsTermine: number = 0;
   nbreProjetsEnCours: number = 0;
   demandeContributions: Demandecontributions[] = [];
