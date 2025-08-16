@@ -31,4 +31,14 @@ export class ContributeurDataService {
     return this.contributeur;
   }
 
+  //Pour lister tout les projets :
+  listeProjet(){
+    return this.data.getData(Env.PROJET+"/v2");
+  }
+
+  //Pour la demande de contribution :
+  demandeContribution(demande:any){
+    return this.data.postData(Env.PROJET+"/demandes-contribution",demande);
+  }
+
 }

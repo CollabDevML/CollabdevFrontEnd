@@ -25,6 +25,9 @@ export class Env {
   public static PROJET_GESTIONNAIRE: string =
     Env._env.apiUrl + 'gestionnaires/';
 
+  public static PROJET_CONTRIBUTEUR: string =
+    Env._env.apiUrl + 'contributeurs/';
+
   public static IDEEPROJETLISTE: string = Env.INSCRIPTION_URL + '/idees-projet';
   public static LOGIN_URL: string = Env._env.authUrl + '/authentification';
 

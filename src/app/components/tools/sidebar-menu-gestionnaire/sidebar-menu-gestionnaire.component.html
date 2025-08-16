@@ -58,21 +58,6 @@
         <p class="menus-text">Mon espace</p>
         } }
       </div>
-      <div
-        class="contributions-container menu-container"
-        [class.collapsed]="!getIsExpanded()"
-        (click)="goToMenu(4)"
-      >
-        @if(currentMenu == 4){
-        <i class="ri-folder-add-fill icons"></i>
-        @if (getIsExpanded()) {
-        <p class="menus-text"><strong>Créer un Projet</strong></p>
-        } } @else {
-        <i class="ri-folder-add-line icons"></i>
-        @if (getIsExpanded()) {
-        <p class="menus-text">Créer un Projet</p>
-        } }
-      </div>
     </div>
   </div>
   <div class="center-container">
@@ -120,19 +105,21 @@
         <p class="menus-text">Profil</p>
         } }
       </div>
-      <!-- <div class="contributions-container menu-container"  [class.collapsed]="!getIsExpanded()" (click)="goToMenu(7)">
-                @if(currentMenu == 7){
-                    <i class="ri-folder-add-fill icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text"><strong>Créer Une Idée</strong></p>
-                    }
-                } @else {
-                    <i class="ri-folder-add-line icons"></i>
-                    @if (getIsExpanded()) {
-                        <p class="menus-text">Créer Une Idée</p>
-                    }
-                }
-            </div> -->
+      <div
+        class="contributions-container menu-container"
+        [class.collapsed]="!getIsExpanded()"
+        (click)="goToMenu(7)"
+      >
+        @if(currentMenu == 7){
+        <i class="ri-folder-add-fill icons"></i>
+        @if (getIsExpanded()) {
+        <p class="menus-text"><strong>Créer Une Idée</strong></p>
+        } } @else {
+        <i class="ri-folder-add-line icons"></i>
+        @if (getIsExpanded()) {
+        <p class="menus-text">Créer Une Idée</p>
+        } }
+      </div>
     </div>
     <div class="side-footer-container" [class.collapsed]="!getIsExpanded()">
       @if(getIsExpanded()) {

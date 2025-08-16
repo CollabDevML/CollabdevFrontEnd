@@ -44,10 +44,12 @@ import { PopupOptionsComponent } from './components/popup-options/popup-options.
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { DetailTacheComponent } from './components/gestionnaire/detail-tache/detail-tache.component';
 
 export const routes: Routes = [
   {
     path: '',
+    // redirectTo: 'accueil',
     redirectTo: 'page-visiteur',
     pathMatch: 'full',
   },
@@ -82,8 +84,7 @@ export const routes: Routes = [
       { path: 'accueil', component: AccueilComponent },
       { path: 'mes_projets', component: MesIdeeProjetComponent },
       { path: 'mes_favories', component: ProjetSuiviComponent },
-      { path: 'mes_idees', component: ListeIdeeProjetComponent },
-      { path: 'proposer', component: PropositionIdeeProjetComponent },
+      { path: 'mes_idees', component: IdeesProjetComponent },
       { path: '**', redirectTo: '' },
     ],
   },
@@ -94,7 +95,8 @@ export const routes: Routes = [
     component: IndexContributeurComponent,
     children: [
       { path: '', component: AccueilComponent },
-      //Les autres ici ...........
+      { path: 'mes_contributions', component: Contributeurs2Component },
+      { path: 'mon_espace', component: AccueilContributeurComponent },
 
       { path: '**', redirectTo: '' },
     ],
@@ -111,7 +113,9 @@ export const routes: Routes = [
       { path: 'mon_espace', component: DashboardGestionnaireComponent },
       { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
       { path: 'nouveau_projet', component: FormulaireProjetComponent },
-
+      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
+      { path: 'nouvelle_tache', component: TaskFormComponent },
+      { path: 'detail_tache', component: DetailTacheComponent },
       //Les autres routes ici ..............
 
       { path: '**', redirectTo: '' },
@@ -131,12 +135,14 @@ export const routes: Routes = [
 
   { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
   { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
-  { path: 'detailCommentaire', component: DetailCommentaireComponent },
-
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
+  { path: 'header-barre', component: RecherchebarreComponent },
+  { path: 'accueil', component: AccueilComponent },
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
+  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
+  { path: 'detailCommentaire', component: DetailCommentaireComponent },
+  { path: 'formulaireProjet', component: FormulaireProjetComponent },
   { path: 'detailProjet', component: DetailleProjetComponent },
+  { path: 'formulaireProjet', component: FormulaireProjetComponent },
   { path: 'pop-options', component: PopupOptionsComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
