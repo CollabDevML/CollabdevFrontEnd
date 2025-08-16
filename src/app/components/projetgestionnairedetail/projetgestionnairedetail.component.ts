@@ -6,38 +6,83 @@ import { projet } from '../../models/projet/projet';
 import { ContributeurDataService } from '../../services/contributeur/contributeur-data.service';
 import { PopupOptionsComponent } from '../popup-options/popup-options.component';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { GestionnaireDataService } from '../../services/gestionnaire/gestionnaire-data.service';
+import { Tache } from '../../models/tache/tache';
+import { TacheService } from '../../services/tache.service';
 
+interface DisplayTask extends Tache {
+  status: string;
+}
 @Component({
   selector: 'app-projetgestionnairedetail',
   imports: [
-    // SidebargestionnaireComponent,
     PopupOptionsComponent,
     CommonModule,
-  ],
+    RouterLink
+],
   templateUrl: './projetgestionnairedetail.component.html',
-  styleUrl: './projetgestionnairedetail.component.css',
+  styleUrl: './projetgestionnairedetail.component.css'
 })
 export class ProjetgestionnairedetailComponent {
   projet!: projet;
+  public taches: DisplayTask[] = [];
   //injection de dépendances
-  projetService: ProjetServiceService = inject(ProjetServiceService);
-  sidebarOpen: boolean = true;
+  projetService:ProjetServiceService = inject(ProjetServiceService)
+  sidebarOpen:boolean = true;
   showPopup = false;
-  contributeurService: ContributeurDataService = inject(
-    ContributeurDataService
-  );
-  changerEtatSidebar(value: boolean) {
-    this.sidebarOpen = value;
+  contributeurService: ContributeurDataService = inject(ContributeurDataService)
+
+  gestionnaireService: GestionnaireDataService = inject(GestionnaireDataService);
+
+  route: Router = inject(Router);
+
+
+
+  constructor(private tacheService: TacheService,private data:GestionnaireDataService) {}
+
+  changerEtatSidebar(value: boolean){
+    this.sidebarOpen = value
   }
 
   ngOnInit() {
     this.projet = this.projetService.getProjet();
+    if (this.projet == undefined || this.projet == null) {
+      this.route.navigate(["gestionnaire/mon_espace"])
+    }
+    this.gestionnaireService.dataProjet = this.projet;
+    this.loadTaches();
   }
-  toProfil(contributeur: any) {
-    this.contributeurService.setProjet(contributeur);
+
+
+  loadTaches(){
+    console.log(this.data.dataProjet.id)
+    this.data.listeTache(this.data.dataProjet.id).subscribe({
+      next: (taches) => {
+        console.log(taches)
+        this.taches = taches.map((task: { estFini: any; }) => ({
+          ...task,
+          status: task.estFini ? 'Terminée' : 'À faire',
+        }));
+        // this.filteredTasks = [...this.tasks];
+      },
+      error: (error) => {
+        console.log('Erreur lors du chargement : ' + error);
+      }
+    });
   }
+
+  toProfil(contributeur:any){
+    this.contributeurService.setProjet(contributeur)
+  }
+
 
   togglePopup() {
     this.showPopup = !this.showPopup;
+  }
+
+
+  date(dat: string) {
+    return new Date(dat);
   }
 }

@@ -214,8 +214,10 @@
 .card-content{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     height: auto;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
     align-items: center;
 }
 .tous-voir{

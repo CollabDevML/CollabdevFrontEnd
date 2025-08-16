@@ -43,6 +43,7 @@ import { FormulaireProjetComponent } from './components/gestionnaire/formulaire/
 import { PopupOptionsComponent } from './components/popup-options/popup-options.component';
 import { DetailleProjetComponent } from './components/contributeur/detaille/detaille-projet/detaille-projet.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 export const routes: Routes = [
   {
@@ -56,7 +57,7 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
-   { path: 'details_projet', component: DetailleProjetComponent },
+  { path: 'details_projet', component: DetailleProjetComponent },
 
   //Les routes concernants l'inscription :
   {
@@ -110,7 +111,7 @@ export const routes: Routes = [
       { path: 'mon_espace', component: DashboardGestionnaireComponent },
       { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
       { path: 'nouveau_projet', component: FormulaireProjetComponent },
-     
+
       //Les autres routes ici ..............
 
       { path: '**', redirectTo: '' },
