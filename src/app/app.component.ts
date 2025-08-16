@@ -14,31 +14,39 @@ import { SidebarMenuPorteurComponent } from './components/tools/sidebar-menu-por
     CommonModule,
     SidebarMenuContributeurComponent,
     SidebarMenuGestionnaireComponent,
-    SidebarMenuPorteurComponent ,
+    SidebarMenuPorteurComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'collabdev';
-  ispagevisiteur:boolean = false;
+  ispagevisiteur: boolean = false;
   isLoginPage: boolean = false;
   isSignInPages: boolean = false;
-  isDetailCommentairePage: boolean = false;
+  isPageDetailCommentaire: boolean = false;
   currentUserRole = localStorage.getItem('user_role');
   static router: Router;
   constructor(private router: Router) {
     localStorage.setItem('isExpanded', '0');
     this.router.events.subscribe((eve: Event) => {
-       if (eve instanceof NavigationEnd) {
+      if (eve instanceof NavigationEnd) {
         this.ispagevisiteur = eve.urlAfterRedirects === '/page-visiteur';
         this.isLoginPage = eve.urlAfterRedirects === '/login';
-        this.isDetailCommentairePage = eve.urlAfterRedirects === '/detailCommentaire'
-        const allLinks =  ['/inscription', '/inscription/choix', '/inscription/gestionnaire', '/inscription/contributeur', '/inscription/porteur-projet']
+        this.isDetailCommentairePage =
+          eve.urlAfterRedirects === '/detailCommentaire';
+        const allLinks = [
+          '/inscription',
+          '/inscription/choix',
+          '/inscription/gestionnaire',
+          '/inscription/contributeur',
+          '/inscription/porteur-projet',
+        ];
         this.isSignInPages = allLinks.includes(eve.urlAfterRedirects);
       }
-      if (eve instanceof NavigationStart) {
-        this.currentUserRole = localStorage.getItem('user_role');
+      if (eve instanceof NavigationEnd) {
+        this.isPageDetailCommentaire =
+          eve.urlAfterRedirects === '/detailCommentaire';
       }
     });
   }
@@ -50,5 +58,4 @@ export class AppComponent {
   redirectTo(link: string) {
     this.router.navigate([link]);
   }
-
 }

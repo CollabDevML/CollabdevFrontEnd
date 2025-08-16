@@ -1,24 +1,31 @@
-<div class="principal-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage">
-    <div class="sidebar-container" [class.collapsed]="!getIsExpanded()" [class.hide]="isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage">
-    @switch (currentUserRole) {
-        @case ('CONTRIBUTEUR') {
-            <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>
-        }
-        @case ('GESTIONNAIRE') {
-            <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire> 
-        }
-        @case ('PORTEUR_PROJET') {
-            <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
-        }
-        @default {
-            <div style="display: none;"></div>
-        }
+<div
+  class="principal-container"
+  [class.collapsed]="!getIsExpanded()"
+  [class.hide]="
+    isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage
+  "
+>
+  <div
+    class="sidebar-container"
+    [class.collapsed]="!getIsExpanded()"
+    [class.hide]="
+      isSignInPages || ispagevisiteur || isLoginPage || isDetailCommentairePage
+    "
+  >
+    @switch (currentUserRole) { @case ('CONTRIBUTEUR') {
+    <app-sidebar-menu-contributeur></app-sidebar-menu-contributeur>
+    } @case ('GESTIONNAIRE') {
+    <app-sidebar-menu-gestionnaire></app-sidebar-menu-gestionnaire>
+    } @case ('PORTEUR_PROJET') {
+    <app-sidebar-menu-porteur></app-sidebar-menu-porteur>
+    } @default {
+    <div style="display: none"></div>
+    } }
+  </div>
+  <div class="pages-container">
+    @if (ispagevisiteur) {
+    <app-header></app-header>
     }
-    </div>
-    <div class="pages-container">
-        @if (ispagevisiteur) {
-            <app-header></app-header>
-        }
-        <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
+  </div>
 </div>

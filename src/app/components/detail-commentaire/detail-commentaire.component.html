@@ -53,7 +53,7 @@
   <div class="section-commentaires">
     <h2 class="titre-commentaires">Commentaires</h2>
 
-    @if (listecommentaire!.commentaireIdeeProjets) { @for(commentaire of
+    @if (listecommentaire.commentaireIdeeProjets) { @for(commentaire of
     listecommentaire.commentaireIdeeProjets;track listecommentaire.id){
     <div class="commentaire">
       <i class="ri-user-fill avatar-commentaire"></i>
@@ -66,7 +66,13 @@
                 commentaire.utilisateur.nom
             }}
           </div>
-          <div class="actions-commentaire">Contributeurs</div>
+          @if(commentaire.utilisateur.role ==='CONTRIBUTEUR'){
+          <div class="actions-commentaire1">Contributeurs</div>
+          }@else if (commentaire.utilisateur.role==='GESTIONNAIRE') {
+          <div class="actions-commentaire2">Gestionnaire</div>
+          }@else if (commentaire.utilisateur.role==='PORTEUR_PROJET'){
+          <div class="actions-commentaire3">Porteur d'idee</div>
+          }
         </div>
         <div class="texte-commentaire">
           {{ commentaire.contenu }}
