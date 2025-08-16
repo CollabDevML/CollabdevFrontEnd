@@ -3,7 +3,7 @@
    grid-template-columns: 1fr 1fr ;
    height: 100%;
    width: 100%;
-   background-color: #e0dddd;
+   background-color: #F5F5F5;
    position: fixed;
 }
 .colonneGauche{
@@ -105,8 +105,8 @@ input:focus{
 .bouton1{
     width: 124px;
    height: 30px;
-   background-color: #aeb0b4;
-   color: white;
+   background-color: #E4E4E4;
+   color: black;
    border: none;
    border-radius: 10px;  
    font-family:'Inter',sans-serif;
@@ -117,8 +117,8 @@ input:focus{
 .bouton2{
     width: 100px;
    height: 30px;
-   background-color: #aeb0b4;
-   color: white;
+   background-color: #E4E4E4;
+   color: black;
    border: none;
    border-radius: 10px;  
    font-family:'Inter',sans-serif;
@@ -319,6 +319,7 @@ input:focus{
 .changecouleur{
  
    background-color: #334DAA;
+   color: white;
   
 }
 .descriptionprojet{
