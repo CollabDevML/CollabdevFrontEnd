@@ -18,7 +18,7 @@ export class DetailCommentaireComponent implements OnInit{
 
        this.ideeprojetservice.donneeIdeeProjet$.subscribe(data => {
       if (data) {this.listecommentaire=data
-        console.log("me voici" ,this.listecommentaire)
+       
       
   }})}
   

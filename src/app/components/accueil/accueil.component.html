@@ -1,25 +1,35 @@
+<div class="search-bar-container">
+  <div class="search-input-container">
+    <i class="ri-search-line search-icon"></i>
+    <input type="text" placeholder="Rechercher par ici ..." />
+    <button class="search-button">Rechercher</button>
+  </div>
+</div>
+
 <div class="recom">Recommandations</div>
 <div class="contener">
   <div class="idee_projet">
     <div class="header">
-      <div class="idee">
-        <p style="font-size: 30px">Idées de projets</p>
-      </div>
-      <div class="list">
-        <!-- filtre d'affichage -->
-        <label for="list">Tire</label>
-        <select name="list" id="list">
-          <option value=""></option>
-        </select>
+      <div class="header-titre-filtre">
+        <h1 class="header-titre">Idées de projets</h1>
+        <div class="header-separator"></div>
+        <div class="header-filtre">
+          <!-- <label for="idees-list">Récents</label> -->
+          <select name="idees-list" id="idees-list">
+            <option value="">Récentes</option>
+            <option value="">Anciennes</option>
+          </select>
+        </div>
       </div>
     </div>
-    <!-- card -->
     <div class="body">
       @for (ideeprojet of ideeProjets; track ideeprojet.id) {
       <div class="card">
         <div class="head">
           <div class="titre">{{ ideeprojet.titre }}</div>
-          <div class="date">{{ ideeprojet.datePublication }}</div>
+          <div class="date">
+            {{ ideeprojet.datePublication.toString() | elapsedTime }}
+          </div>
         </div>
         <div class="content">
           <div class="des">{{ ideeprojet.description }}</div>
@@ -46,15 +56,16 @@
   <div class="projet">
     <div class="entet">
       <div class="header">
-        <div class="idee">
-          <p style="font-size: 30px">Projets</p>
-        </div>
-        <div class="list">
-          <!-- filtre d'affichage -->
-          <label for="list">Tire</label>
-          <select name="list" id="list">
-            <option value=""></option>
-          </select>
+        <div class="header-titre-filtre">
+          <h1 class="header-titre">Projets</h1>
+          <div class="header-separator"></div>
+          <div class="header-filtre">
+            <!-- <label for="projets-list">Récents</label> -->
+            <select name="projets-list" id="projets-list">
+              <option value="">Récentes</option>
+              <option value="">Anciennes</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
@@ -69,7 +80,7 @@
           <div class="body">{{ projet.description }}</div>
           <div class="footidee">
             <div class="porteur">
-              {{ projet.idGestionnaire }} Gere ce proojet
+              {{ projet.idGestionnaire }} Gère ce projet
             </div>
             <div class="soutien">
               {{ projet.piecesDAcces }} <i class="ri-group-fill"></i>
@@ -86,11 +97,11 @@
           <div class="icons">
             <div class="suivre">
               <i class="ri-copper-coin-line"></i>
-              suivre ce projet
+              Suivre ce projet
             </div>
             <div class="comment">
               <i class="ri-question-answer-line"></i>
-              commentaires
+              Commentaires
             </div>
           </div>
         </div>
