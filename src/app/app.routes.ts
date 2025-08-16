@@ -113,9 +113,7 @@ export const routes: Routes = [
       { path: 'mon_espace', component: DashboardGestionnaireComponent },
       { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
       { path: 'nouveau_projet', component: FormulaireProjetComponent },
-      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
-      { path: 'nouvelle_tache', component: TaskFormComponent },
-      { path: 'detail_tache', component: DetailTacheComponent },
+
       //Les autres routes ici ..............
 
       { path: '**', redirectTo: '' },
