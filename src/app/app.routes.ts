@@ -62,7 +62,8 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
-   { path: 'details_projet', component: DetailleProjetComponent },
+  { path: 'details_projet', component: DetailleProjetComponent },
+  { path: 'profil', component: ProfilComponent},
 
   //Les routes concernants l'inscription :
   {
@@ -127,7 +128,7 @@ export const routes: Routes = [
   ]},
 
   // Les routes pour les administrateurs
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'admin/dashboard', component: DashboardComponent},
 
   { path: '**', component: PageNotFoundComponent }
 ];

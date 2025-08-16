@@ -53,7 +53,11 @@ export class LoginService {
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-        this.route.navigateByUrl('accueil');
+        if(['CONTRIBUTEUR', 'GESTIONNAIRE', 'PORTEUR_PROJET'].includes(res.role)) {
+          this.route.navigateByUrl('/accueil');
+        } else {
+          this.route.navigateByUrl('/admin/dashboard')
+        }
       },
       error: (err:any) => {
         this.isLoging = false;

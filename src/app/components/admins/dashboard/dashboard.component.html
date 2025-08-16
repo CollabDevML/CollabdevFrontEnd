@@ -1,1 +1,186 @@
-<p>dashboard works!</p>
+<div class="principal-container">
+    <div class="admin-profile-container">
+        <div class="greet-container">
+            <div class="greet-profile-picture-container" [class.expanded]="getIsExpanded()">
+                <i class="greet-profile-picture ri-user-2-fill" [class.expanded]="getIsExpanded()"></i>
+            </div>
+            <div class="greet-text-container">
+                Bonjour, <strong>{{ currentUserInfo.nom }}</strong>
+            </div>
+        </div>
+        <div></div>
+        <div class="infos-container">
+            <div class="infos-text-container">
+                À propos de vous
+            </div>
+            <div class="infos-body-container">
+                <div class="infos-body-names-container">
+                    <div class="infos-body-firstname-container">
+                        <div class="infos-body-logo-container">
+                            <i class="ri-user-4-fill infos-icons"></i>
+                        </div>
+                        <div class="infos-body-content-container">
+                            <div class="infos-body-hint">
+                                Prénom
+                            </div>
+                            <div class="infos-body-content" [class.expanded]="getIsExpanded()">
+                                {{ currentUserInfo.prenom }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infos-body-lastname-container">
+                        <div class="infos-body-content-container">
+                            <div class="infos-body-hint">
+                                Nom
+                            </div>
+                            <div class="infos-body-content" [class.expanded]="getIsExpanded()">
+                                {{ currentUserInfo.nom }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="infos-body-email-container">
+                    <div class="infos-body-logo-container">
+                        <i class="ri-mail-fill infos-icons"></i>
+                    </div>
+                    <div class="infos-body-content-container">
+                        <div class="infos-body-hint">
+                            Email
+                        </div>
+                        <div class="infos-body-content" [class.expanded]="getIsExpanded()">
+                            {{ currentUserInfo.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="infos-body-role-container">
+                    <div class="infos-body-logo-container">
+                        <i class="ri-shield-user-fill infos-icons"></i>
+                    </div>
+                    <div class="infos-body-content-container">
+                        <div class="infos-body-hint">
+                            Rôle
+                        </div>
+                        <div class="infos-body-content" [class.expanded]="getIsExpanded()">
+                            {{ currentUserInfo.role.toString() | role }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-container">
+        <div class="dashboard-text-container">
+            Dashboard
+        </div>
+        <div class="dashboard-body-container">
+            <div class="dashboard-body-left-container">
+                <div class="dashboard-body-admins-container primary-color-slidein-top" (click)="goToMenu(1)" [class.hide]="currentUserInfo.role.toString() === 'ADMIN'">
+                    <div class="dashboard-body-admins-text">
+                        Administrateurs
+                    </div>
+                    <div class="dashboard-body-admins-count">
+                        {{ stats.adminsCount-1 }}
+                    </div>
+                </div>
+                <div class="dashboard-body-ideas-container secondary-color-slidein-top" (click)="goToMenu(2)">
+                    <div class="dashboard-body-admins-text">
+                        Idées de projet
+                    </div>
+                    <div class="dashboard-body-admins-count">
+                        {{ stats.ideasCount }}
+                    </div>
+                </div>
+                <div class="dashboard-body-badges-container purple-color-slidein-top" (click)="goToMenu(3)">
+                    <div class="dashboard-body-admins-text">
+                        Badges
+                    </div>
+                    <div class="dashboard-body-admins-count">
+                        {{ stats.badgesCount }}
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <div class="dashboard-body-right-container">
+                <div class="dashboard-body-users-container primary-color-slidein-top" (click)="goToMenu(4)">
+                    <div class="dashboard-body-users-text">
+                        Utilisateurs
+                    </div>
+                    <div class="dashboard-body-users-by-role-container">
+                        <div class="dashboard-body-users-total-container">
+                            <div class="dashboard-body-users-total-text">
+                                Total
+                            </div>
+                            <div class="dashboard-body-users-total-count">
+                                {{ stats.usersCount.porteursProjet + stats.usersCount.contributeurs + stats.usersCount.gestionnaires }}
+                            </div>
+                        </div>
+                        <div class="dashboard-body-users-porteurs-container">
+                            <div class="dashboard-body-users-porteurs-text">
+                                Porteurs de projet
+                            </div>
+                            <div class="dashboard-body-users-porteurs-count">
+                                {{ stats.usersCount.porteursProjet }}
+                            </div>
+                        </div>
+                        <div class="dashboard-body-users-contributeurs-container">
+                            <div class="dashboard-body-users-contributeurs-text">
+                                Contributeurs
+                            </div>
+                            <div class="dashboard-body-users-contributeurs-count">
+                                {{ stats.usersCount.contributeurs}}
+                            </div>
+                        </div>
+                        <div class="dashboard-body-users-gestionnaires-container">
+                            <div class="dashboard-body-users-gestionnaires-text">
+                                Gestionnaires
+                            </div>
+                            <div class="dashboard-body-users-gestionnaires-count">
+                                {{ stats.usersCount.gestionnaires }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-body-projects-container secondary-color-slidein-top" (click)="goToMenu(5)">
+                    <div class="dashboard-body-projects-text">
+                        Projets
+                    </div>
+                    <div class="dashboard-body-projects-by-state-container">
+                        <div class="dashboard-body-projects-total-container">
+                            <div class="dashboard-body-projects-total-text">
+                                Total
+                            </div>
+                            <div class="dashboard-body-projects-total-count">
+                                {{ stats.projectsCount.finished + stats.projectsCount.inProgress + stats.projectsCount.stoped }}
+                            </div>
+                        </div>
+                        <div class="dashboard-body-projects-finished-container">
+                            <div class="dashboard-body-projects-finished-text">
+                                Finis
+                            </div>
+                            <div class="dashboard-body-projects-finished-count">
+                                {{ stats.projectsCount.finished }}
+                            </div>
+                        </div>
+                        <div class="dashboard-body-projects-inprogress-container">
+                            <div class="dashboard-body-projects-inprogress-text">
+                                En cours
+                            </div>
+                            <div class="dashboard-body-projects-inprogress-count">
+                                {{ stats.projectsCount.inProgress }}
+                            </div>
+                        </div>
+                        <div class="dashboard-body-projects-stoped-container">
+                            <div class="dashboard-body-projects-stoped-text">
+                                Arrêtés
+                            </div>
+                            <div class="dashboard-body-projects-stoped-count">
+                                {{ stats.projectsCount.stoped }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>

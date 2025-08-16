@@ -28,7 +28,7 @@ export class SidebarMenuAdministrateurComponent {
     this.currentMenu = menu;
     switch (menu) {
       case 1: {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/admin/dashboard']);
         break;
       }
       case 2: {
@@ -48,7 +48,7 @@ export class SidebarMenuAdministrateurComponent {
         break;
       }
       case 6: {
-        // this.router.navigate(['']);
+        this.logout()
         break;
       }
     }

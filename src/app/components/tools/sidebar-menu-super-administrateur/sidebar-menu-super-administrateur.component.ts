@@ -29,7 +29,7 @@ export class SidebarMenuSuperAdministrateurComponent {
     this.currentMenu = menu;
     switch (menu) {
       case 1: {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/admin/dashboard']);
         break;
       }
       case 2: {
@@ -53,7 +53,7 @@ export class SidebarMenuSuperAdministrateurComponent {
         break;
       }
       case 7: {
-        // this.logout()
+        this.logout()
         break;
       }
     }

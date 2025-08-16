@@ -45,10 +45,14 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
 
   ngOnInit() {
-    const user_email = localStorage.getItem('user_role');
+    const user_role = localStorage.getItem('user_role');
     const chemin = localStorage.getItem('chemin');
-    if (user_email != null) {
-      this.route.navigate(['accueil']);
+    if (user_role != null) {
+      if(['CONTRIBUTEUR', 'GESTIONNAIRE', 'PORTEUR_PROJET'].includes(user_role)){
+        this.route.navigateByUrl('/accueil')
+      } else {
+        this.route.navigateByUrl('/admin/dashboard')
+      }
     }
     this.spinner.show();
     setTimeout(() => {
