@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResponseAdmins } from '../../../models/admins/response-admins';
 import { AdminsService } from '../../../services/admins/admins.service';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { ResponseStats } from '../../../models/admins/response-stats';
 import { RolePipe } from '../../../pipes/role.pipe';
+import { SidebarMenuAdministrateurComponent } from '../../tools/sidebar-menu-administrateur/sidebar-menu-administrateur.component';
+import { SidebarMenuSuperAdministrateurComponent } from '../../tools/sidebar-menu-super-administrateur/sidebar-menu-super-administrateur.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,6 +41,20 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       }
     })
+
+    this.router.events.subscribe(
+      event => {
+        if(event instanceof NavigationStart && event.url === '/admin/dashboard') {
+          if(this.currentUserInfo.role.toString() === 'ADMIN') {
+            SidebarMenuAdministrateurComponent.currentMenu = 1
+            localStorage.setItem('currentMenu', String(1));
+          } else {
+            SidebarMenuSuperAdministrateurComponent.currentMenu = 1
+            localStorage.setItem('currentMenu', String(1));
+          }
+        }
+      }
+    )
   }
 
   getIsExpanded(): boolean {
@@ -45,12 +62,17 @@ export class DashboardComponent implements OnInit {
   }
 
   goToMenu(menu: number) {
+    if(this.currentUserInfo.role.toString() === 'ADMIN') {
+      SidebarMenuAdministrateurComponent.currentMenu = menu;
+    } else {
+      SidebarMenuSuperAdministrateurComponent.currentMenu = menu;
+    }
     switch(menu) {
-      case 1: {this.router.navigateByUrl('/admin/dashboard'); break;}
-      case 2: {this.router.navigateByUrl('/admin/dashboard'); break;}
-      case 3: {this.router.navigateByUrl('/admin/dashboard'); break;}
-      case 4: {this.router.navigateByUrl('/admin/dashboard'); break;}
-      case 5: {this.router.navigateByUrl('/admin/dashboard'); break;}
+      case 1: {this.router.navigateByUrl('/admin/administrateurs'); break;}
+      case 2: {this.router.navigateByUrl('/admin/idees-projet'); break;}
+      case 3: {this.router.navigateByUrl('/admin/badges'); break;}
+      case 4: {this.router.navigateByUrl('/admin/utilisateurs'); break;}
+      case 5: {this.router.navigateByUrl('/admin/projets'); break;}
       default: {this.router.navigateByUrl('/admin/dashboard'); break;}
     }
   }

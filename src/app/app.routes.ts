@@ -46,6 +46,11 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { DetailTacheComponent } from './components/gestionnaire/detail-tache/detail-tache.component';
 import { DashboardComponent } from './components/admins/dashboard/dashboard.component';
+import { AdministrateursComponent } from './components/admins/administrateurs/administrateurs.component';
+import { UtilisateursComponent } from './components/admins/utilisateurs/utilisateurs.component';
+import { ProjetsComponent } from './components/admins/projets/projets.component';
+import { BadgesComponent } from './components/admins/badges/badges.component';
+import { IdeesProjetAdminComponent } from './components/admins/idees-projet/idees-projet.component';
 
 export const routes: Routes = [
   {
@@ -128,7 +133,12 @@ export const routes: Routes = [
   ]},
 
   // Les routes pour les administrateurs
-  { path: 'admin/dashboard', component: DashboardComponent},
+  { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/administrateurs', component: AdministrateursComponent },
+  { path: 'admin/utilisateurs', component: UtilisateursComponent },
+  { path: 'admin/idees-projet', component: IdeesProjetAdminComponent },
+  { path: 'admin/projets', component: ProjetsComponent },
+  { path: 'admin/badges', component: BadgesComponent },
 
   { path: '**', component: PageNotFoundComponent }
 ];

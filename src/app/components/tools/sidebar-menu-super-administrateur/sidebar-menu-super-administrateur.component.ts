@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './sidebar-menu-super-administrateur.component.html',
   styleUrl: './sidebar-menu-super-administrateur.component.css'
 })
-export class SidebarMenuSuperAdministrateurComponent {
+export class SidebarMenuSuperAdministrateurComponent implements OnInit {
 
   public static Menu = {
     HOME: 1,
@@ -18,38 +18,52 @@ export class SidebarMenuSuperAdministrateurComponent {
     BADGES: 6,
     LOGOUT: 7
   } as const;
-  currentMenu: any = 1;
+  public static currentMenu: any = 1;
 
   public constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem('currentMenu') === undefined) {
+      localStorage.setItem('currentMenu', String(1));
+    }
+    SidebarMenuSuperAdministrateurComponent.currentMenu = Number(localStorage.getItem('currentMenu'))
+  }
 
   collapseSideBar(): void {
     localStorage.setItem('isExpanded', String(Number(!this.getIsExpanded())));
   }
+  
   goToMenu(menu: any): void {
-    this.currentMenu = menu;
+    SidebarMenuSuperAdministrateurComponent.currentMenu = menu;
     switch (menu) {
       case 1: {
-        this.router.navigate(['/admin/dashboard']);
+        localStorage.setItem('currentMenu', String(1));
+        this.router.navigateByUrl('/admin/dashboard');
         break;
       }
       case 2: {
-        // this.router.navigate(['']);
+        localStorage.setItem('currentMenu', String(2));
+        this.router.navigateByUrl('/admin/administrateurs');
         break;
       }
       case 3: {
-        // this.router.navigate(['']);
+        localStorage.setItem('currentMenu', String(3));
+        this.router.navigateByUrl('/admin/utilisateurs');
         break;
       }
       case 4: {
-        // this.router.navigate(['']);
+        localStorage.setItem('currentMenu', String(4));
+        this.router.navigateByUrl('/admin/projets');
         break;
       }
       case 5: {
-        // this.router.navigate(['']);
+        localStorage.setItem('currentMenu', String(5));
+        this.router.navigateByUrl('/admin/idees-projet');
         break;
       }
       case 6: {
-        // this.router.navigate(['']);
+        localStorage.setItem('currentMenu', String(6));
+        this.router.navigateByUrl('/admin/badges');
         break;
       }
       case 7: {
@@ -65,6 +79,10 @@ export class SidebarMenuSuperAdministrateurComponent {
     localStorage.removeItem('user_id');
     localStorage.removeItem('chemin');
     this.router.navigate(['login']);
+  }
+
+  get currentMenu(): any {
+    return SidebarMenuSuperAdministrateurComponent.currentMenu;
   }
 
   getIsExpanded(): boolean {
