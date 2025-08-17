@@ -161,5 +161,10 @@ export const routes: Routes = [
   { path: 'detailProjet', component: DetailleProjetComponent },
   { path: 'formulaireProjet', component: FormulaireProjetComponent },
   { path: 'pop-options', component: PopupOptionsComponent },
+  // Routes pour la navigation de la barre de recherche
+{ path: 'projets/:id', component: ProjetgestionnairedetailComponent },
+{ path: 'idees/:id', component:  IdeesProjetComponent },
+{ path: 'utilisateurs/:id', component: ProfilComponent },
+
   { path: '**', component: PageNotFoundComponent },
 ];

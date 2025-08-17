@@ -1,9 +1,26 @@
 <div class="search-bar-container">
     <div class="search-input-container">
         <i class="ri-search-line search-icon"></i>
-        <input type="text" placeholder="Rechercher par ici ...">
-        <button class="search-button">Rechercher</button>
+        <input type="text" placeholder="Rechercher par ici ..."
+               [(ngModel)]="searchTerm"
+               (keyup.enter)="search()">
+        <button class="search-button" (click)="search()">Rechercher</button>
     </div>
+</div>
+<!--  Bloc résultats de recherche -->
+<div *ngIf="searchResults.length > 0" class="search-results">
+    <h2>Résultats de recherche</h2>
+    <div class="results-container">
+        <div *ngFor="let result of searchResults" class="result-card" (click)="goToResult(result)">
+            <h3>{{ result.title }}</h3>
+            <p>{{ result.description }}</p>
+            <span class="type">{{ result.type }}</span>
+        </div>
+    </div>
+</div>
+<!--  Message si rien trouvé -->
+<div *ngIf="searchResults.length === 0 && searchExecuted">
+    <p class="not">Aucun résultat trouvé pour "{{ searchTerm }}"</p>
 </div>
 
 <div class="recom">Recommandations</div>
@@ -27,7 +44,7 @@
                 <div class="card">
                     <div class="head">
                         <div class="titre">{{ ideeprojet.titre }}</div>
-                        <div class="date">{{ ideeprojet.datePublication | elapsedTime }}</div>
+                        <div class="date">{{ ideeprojet.datePublication.toISOString() | elapsedTime }}</div>
                     </div>
                     <div class="content">
                         <div class="des">{{ ideeprojet.description }}</div>

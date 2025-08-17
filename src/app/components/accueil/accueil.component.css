@@ -44,6 +44,32 @@
     margin: 4px ;
     
 }
+.search-results {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.result-card {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+   cursor: pointer;
+  transition:  0.2s;
+}
+.result-card:hover {
+  background: #f0f0f0;
+}
+
+.result-card:last-child {
+  border-bottom: none;
+}
+
+.type {
+  font-size: 12px;
+  color: #888;
+}
+
 /* Fin des styles pour la barre de recherche */
 
 /* Début des styles adaptés pour l'en-tête et les filtres */
