@@ -47,17 +47,28 @@ export class ProjetgestionnairedetailComponent {
 
   ngOnInit() {
     this.projet = this.projetService.getProjet();
-    if (this.projet == undefined || this.projet == null) {
+    const idProjet= Number(localStorage.getItem("id_projet"));
+    if (idProjet == undefined || idProjet == null) {
       this.route.navigate(["gestionnaire/mon_espace"])
     }
+
     this.gestionnaireService.dataProjet = this.projet;
+    this.gestionnaireService.listerProjet().subscribe({
+      next:(res)=>{
+        this.projet = res;
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
     this.loadTaches();
   }
 
 
   loadTaches(){
-    console.log(this.data.dataProjet.id)
-    this.data.listeTache(this.data.dataProjet.id).subscribe({
+    // this.data.verifierIdProjet();
+    const idProjet= Number(localStorage.getItem("id_projet"));
+    this.data.listeTache(idProjet).subscribe({
       next: (taches) => {
         console.log(taches)
         this.taches = taches.map((task: { estFini: any; }) => ({
@@ -89,6 +100,7 @@ export class ProjetgestionnairedetailComponent {
 
   detailTache(tache: DisplayTask) {
     this.data.tacheData = tache;
+    localStorage.setItem("id_tache",String(tache.id));
     this.route.navigate(['gestionnaire/detail_tache']);
   }
 }

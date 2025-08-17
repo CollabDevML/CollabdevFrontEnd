@@ -13,8 +13,13 @@ import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestion
 
 export class GestionnaireDataService {
   dataProjet!:projet;
+
   tacheData: any;
-  constructor(private http: HttpClient, private data: DataService) {}
+  constructor(private http: HttpClient, private data: DataService) {
+  }
+  verifierIdProjet(){
+    localStorage.setItem("id_projet", String(this.dataProjet.id))
+  }
   //Pour la creation d'un compte Gestionnaire:
   addGestionnaire(data:any):Observable<Gestionnaire>{
     return this.data.postData(Env.CREATE_GESTIONNAIRE,data);
@@ -32,6 +37,10 @@ export class GestionnaireDataService {
     return this.data.getData(Env.PROJET_GESTIONNAIRE+id+"/"+"projets")
   }
 
+  listerProjet(){
+    const idProjet = Number(localStorage.getItem("id_projet"));
+    return this.data.getData(Env.PROJET+"/v2/"+idProjet);
+  }
 
   //Pour l'ajout des projets dans la base de donnee :
   addProjet(projet:any){
@@ -45,6 +54,12 @@ export class GestionnaireDataService {
 
   listeTache(id:number){
     return this.data.getData(Env.TACHE+"?projetId="+id);
+  }
+
+  //Pour lister les tacher par id:
+  tacheById(id:number){
+    const idProjet = Number(localStorage.getItem("id_projet"));
+    return this.data.getData(Env.TACHE+"/"+id+"?projetId="+idProjet);
   }
 
   //Pour lister les contributeurs:
