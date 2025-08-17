@@ -74,14 +74,16 @@
         </div>
         <div class="dashboard-body-container">
             <div class="dashboard-body-left-container">
-                <div class="dashboard-body-admins-container primary-color-slidein-top" (click)="goToMenu(1)" [class.hide]="currentUserInfo.role.toString() === 'ADMIN'">
-                    <div class="dashboard-body-admins-text">
-                        Administrateurs
+                @if(currentUserInfo.role.toString() === 'SUPER_ADMIN') {
+                    <div class="dashboard-body-admins-container primary-color-slidein-top" (click)="goToMenu(1)" [class.hide]="currentUserInfo.role.toString() === 'ADMIN'">
+                        <div class="dashboard-body-admins-text">
+                            Administrateurs
+                        </div>
+                        <div class="dashboard-body-admins-count">
+                            {{ stats.adminsCount-1 }}
+                        </div>
                     </div>
-                    <div class="dashboard-body-admins-count">
-                        {{ stats.adminsCount-1 }}
-                    </div>
-                </div>
+                }
                 <div class="dashboard-body-ideas-container secondary-color-slidein-top" (click)="goToMenu(2)">
                     <div class="dashboard-body-admins-text">
                         Idées de projet
