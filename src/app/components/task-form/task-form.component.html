@@ -1,60 +1,141 @@
-<div class="main-content">
-  <div class="team-header">
-    <div class="team-header__text">
-      <h2>Gérez vos tâches en <span class="blue">équipe</span></h2>
-      <p>Attribuez des tâches, suivez les progrès et récompensez les efforts avec notre système de pièces.</p>
-      <div class="team-header__links">
-        <a href="#"><span class="icon">☆</span> Système de récompenses</a>
-        <span class="separator">~</span>
-        <a href="#">Suivi en temps réel</a>
+<section class="page-tache">
+  <div class="grille">
+    <!-- ===== COLONNE GAUCHE : FORMULAIRE ===== -->
+    <div class="col-form">
+      <div class="form-card">
+        <header class="form-head">
+          <div class="head-icon">
+            <i class="ri-task-line"></i>
+          </div>
+          <div class="head-text">
+            <h2>Créer une nouvelle tâche</h2>
+            <p class="muted">
+              Définissez les objectifs, assignez un membre et planifiez l’échéance. Les pièces récompensent l’effort.
+            </p>
+          </div>
+        </header>
+
+        <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="form">
+          <!-- Titre -->
+          <label for="title">Titre de la tâche</label>
+          <input id="title" class="input" formControlName="title" placeholder="Ex : Développement du module d'authentification" />
+
+          <!-- Description -->
+          <label for="description">Description</label>
+          <textarea id="description" rows="5" formControlName="description"
+            placeholder="Décrivez précisément les objectifs, le contexte et les livrables attendus…"></textarea>
+
+          <!-- Niveau de tâche -->
+          <label for="level">Niveau de tâche</label>
+          <select id="level" formControlName="niveau">
+            <option value="">-- Sélectionner --</option>
+            <option value="SIMPLE">SIMPLE</option>
+            <option value="NOVICE">NOVICE</option>
+            <option value="INTERMEDIAIRE">INTERMEDIAIRE</option>
+            <option value="DIFFICILE">DIFFICILE</option>
+            <option value="COMPLEXE">COMPLEXE</option>
+          </select>
+
+          <!-- Assigner -->
+          <label for="assignee">Assigner à</label>
+          <select id="assignee" formControlName="assignee">
+            <option value="">-- Sélectionner --</option>
+            @for (contributeur of contributeurs; track $index) {
+              <option [value]="contributeur.id">
+                {{contributeur.prenom}} {{contributeur.nom}} — {{contributeur.type}} {{contributeur.niveau}}
+              </option>
+            }
+          </select>
+
+          <!-- Dates -->
+          <div class="row-2">
+            <div>
+              <label for="startDate">Date début</label>
+              <input id="startDate" type="date" formControlName="startDate" />
+            </div>
+            <div>
+              <label for="endDate">Date fin</label>
+              <input id="endDate" type="date" formControlName="endDate" />
+            </div>
+          </div>
+
+          <!-- Récompense -->
+          @if (selectedNiveau) {
+            <p class="hint">
+              Intervalle attendu : {{selectedNiveau.min}} à {{selectedNiveau.max}} pièces
+            </p>
+          }
+          <label for="reward">Pièces à gagner</label>
+          <input
+            id="reward"
+            type="number"
+            formControlName="pieces"
+            [attr.min]="selectedNiveau?.min || 1"
+            [attr.max]="selectedNiveau?.max || 50"
+            placeholder="ex : 20"
+          />
+          @if (piecesErrorMsg) {
+            <p class="error">{{ piecesErrorMsg }}</p>
+          }
+
+          <!-- Actions -->
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" [disabled]="!taskForm.valid">
+              <i class="ri-send-plane-line"></i> Attribuer la tâche
+            </button>
+            <button type="button" class="btn-ghost" (click)="voirToutesTaches()">
+              <i class="ri-folder-2-line"></i> Voir toutes mes tâches
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="team-header__image">
-      <img src="imgLog1.png" alt="Illustration équipe">
-    </div>
-  </div>
-  <div class="task-form-container">
-    <h2>➕ Ajouter une nouvelle Tache</h2>
 
-    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-      <label for="title">Titre de la tâche</label>
-      <input id="title" formControlName="title" placeholder="Ex: Développement du module d'authentification" />
+    <!-- ===== COLONNE DROITE : HERO (TEXTE + IMAGE + STATS) ===== -->
+    <aside class="col-hero">
+      <div class="hero-card">
+        <div class="hero-text">
+          <h3>Gérez vos tâches en <span class="blue">équipe</span></h3>
+          <p>
+            Assignez, suivez, récompensez. Donnez de la visibilité et stimulez l’engagement grâce à un cadre clair
+            et des objectifs mesurables.
+          </p>
 
-      <label for="description">Description</label>
-      <textarea id="description" formControlName="description" placeholder="Décrivez les détails de la tâche..."></textarea>
+          <ul class="bullets">
+            <li><i class="ri-time-line"></i> Suivi en temps réel</li>
+            <li><i class="ri-star-smile-line"></i> Système de récompenses</li>
+            <li><i class="ri-bar-chart-2-line"></i> Priorisation par niveau</li>
+          </ul>
 
-      <label for="assignee">Assigner à</label>
-      <select id="assignee" formControlName="assignee">
-        <option value="">-- Sélectionner --</option>
-        @for (contributeur of contributeurs; track $index) {
-        <option value="abdoul">
-          <sup>{{contributeur.genre}}</sup>
-          {{contributeur.prenom}} {{contributeur.nom}}(
-          <sub>{{contributeur.type}} {{contributeur.niveau}}</sub> )
-        </option>
-        }
-      </select>
-
-      <div class="dates">
-        <div>
-          <label for="startDate">Date début</label>
-          <input id="startDate" type="date" formControlName="startDate" />
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="icon bg-blue"><i class="ri-briefcase-3-line"></i></div>
+              <div class="txt">
+                <div class="val">...</div>
+                <div class="lab">Tâches actives</div>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="icon bg-green"><i class="ri-shield-check-line"></i></div>
+              <div class="txt">
+                <div class="val">...</div>
+                <div class="lab">Terminées</div>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="icon bg-amber"><i class="ri-timer-flash-line"></i></div>
+              <div class="txt">
+                <div class="val">...</div>
+                <div class="lab">En retard</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <label for="endDate">Date fin</label>
-          <input id="endDate" type="date" formControlName="endDate" />
+        <div class="hero-image">
+          <img src="imgLog1.png" alt="Illustration équipe">
         </div>
       </div>
-
-      <label for="reward">Pièce à gagner</label>
-      <input id="reward" type="number" formControlName="reward" />
-
-      <button type="submit">Attribuer la tâche</button>
-      <button type="button" class="btn-taches" (click)="voirToutesTaches()">
-        <img src="icone-de-dossier-symbole-png-bleu.png" alt="Liste" style="height: 1.2rem; margin-right: 0.5rem;" />
-        Voir toutes mes tâches
-      </button>
-    </form>
+    </aside>
   </div>
-</div>
+</section>
