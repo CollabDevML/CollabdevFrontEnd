@@ -1,5 +1,6 @@
+
 <div class="search-bar-container">
-  <div class="search-input-container">
+<div class="search-input-container">
     <i class="ri-search-line search-icon"></i>
     <input type="text" placeholder="Rechercher par ici ..."
            [(ngModel)]="searchTerm"
@@ -8,7 +9,7 @@
   </div>
 </div>
 
-<!-- Résultats de recherche -->
+
 <div *ngIf="searchResults.length > 0" class="search-results">
   <h2>Résultats de recherche</h2>
   <div class="results-container">
@@ -22,7 +23,7 @@
   </div>
 </div>
 
-<!-- Message si rien trouvé -->
+
 <div *ngIf="searchResults.length === 0 && searchExecuted">
   <p class="not">Aucun résultat trouvé pour "{{ searchTerm }}"</p>
 </div>
@@ -59,7 +60,7 @@
           </div>
           <div class="foot">
             <div class="porteur">
-              {{ ideeprojet.utilisateur }} a proposé cette idée
+              {{ ideeprojet.utilisateur.prenom+' '+ideeprojet.utilisateur.nom }} a proposé cette idée
             </div>
             <div class="soutien" (click)="handelClick(ideeprojet.id)">
               @if (isSoutienState(ideeprojet.id)) {
@@ -104,7 +105,7 @@
             <div class="body">{{ projet.description }}</div>
             <div class="footidee">
               <div class="porteur">
-                {{ projet.idGestionnaire }} Gère ce projet
+                {{ projet.gestionnaire.prenom+' '+projet.gestionnaire.nom }} Gère ce projet
               </div>
               <div class="soutien">
                 {{ projet.piecesDAcces }} <i class="ri-group-fill"></i>

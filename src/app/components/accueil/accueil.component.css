@@ -183,17 +183,18 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
+  margin-top: 10px;
 }
 
 .card .titre {
   color: #334daa;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .card .date {
   font-size: 14px;
-  color: #888;
+  color: #000000;
 }
 
 .card .content {
@@ -202,7 +203,15 @@ body {
 
 .card .des {
   font-size: 14px;
-  color: #555;
+  color: #000000;
+  word-wrap: break-word; /* Coupe les mots trop longs pour éviter le débordement */
+    overflow-wrap: break-word; /* Alternative moderne à word-wrap */
+    display: -webkit-box; /* Permet de limiter le texte à un nombre de lignes précis */
+    -webkit-line-clamp: 4; /* Limite le texte à 3 lignes */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Masque le texte qui dépasse les 3 lignes */
+    text-overflow: ellipsis; /* Affiche des points de suspension (...) */
+    margin-top: 20px;
 }
 
 .card .cdc {
@@ -210,18 +219,20 @@ body {
   font-weight: bold;
   text-decoration: underline;
   margin-top: 5px;
+  font-size: 12px;
+   margin-top: 20px;
 }
 
 .card .foot {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 15%;
+  padding-top: 5%;
 }
 
 .card .porteur {
   font-size: 12px;
-  color: #777;
+  color: #000000;
 }
 
 .card .bolo {
@@ -322,6 +333,12 @@ body {
   font-size: 14px;
   color: #000000;
   margin-top: 10px;
+  word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .headCard .footidee {
