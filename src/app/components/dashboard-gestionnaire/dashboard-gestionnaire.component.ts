@@ -19,7 +19,7 @@ import { projet } from '../../models/projet/projet';
 import { Demandecontributions } from '../../models/demandecontributions/demandecontributions';
 import { Contribution } from '../../models/contribution/contribution';
 import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
-import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerComponent, NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard-gestionnaire',
@@ -30,7 +30,8 @@ import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
-    CommonModule
+    CommonModule,
+    NgxSpinnerModule
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',

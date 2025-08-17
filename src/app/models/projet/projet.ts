@@ -30,4 +30,5 @@ export class projet{
             }[]
 dommaine: any;
 nombreSoutiens: any;
+  actif: unknown;
  }
