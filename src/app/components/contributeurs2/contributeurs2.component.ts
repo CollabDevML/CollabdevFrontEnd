@@ -3,12 +3,13 @@ import { ProjetService } from "../../services/projet.service";
 import { projet } from "../../models/projet/projet";
 import { RecherchebarreComponent } from "../UI/recherchebarre/recherchebarre.component";
 import { CommonModule } from "@angular/common";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-contb-2',
   standalone: true,
-  imports: [ CommonModule,
-    RecherchebarreComponent],
+  imports: [CommonModule,
+    RecherchebarreComponent, RouterOutlet,RouterLink,RouterLinkActive],
   providers: [ProjetService],
   templateUrl: './contributeurs2.component.html',
   styleUrls: ['./contributeurs2.component.css']

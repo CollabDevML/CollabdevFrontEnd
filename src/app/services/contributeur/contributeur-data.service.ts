@@ -41,4 +41,9 @@ export class ContributeurDataService {
     return this.data.postData(Env.PROJET+"/demandes-contribution",demande);
   }
 
+  //Lister les projets d'un contributeur:
+  listProjetContributeur(id:number){
+    return this.data.getData(Env.CONTRIBUTEUR+"projets/"+id);
+  }
+
 }

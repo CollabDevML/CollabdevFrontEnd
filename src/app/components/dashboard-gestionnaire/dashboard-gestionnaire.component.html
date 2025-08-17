@@ -6,113 +6,166 @@
 >
   <p style="font-size: 20px; color: white">CHARGEMENT...</p>
 </ngx-spinner>
+
 <div id="main">
-  <div class="dashboard" [class.long-dashboard]="!sidebarOpen">
+  <section class="dash" [class.dash--wide]="!sidebarOpen">
 
-    <div id="en-tete">
-      <h3>
-        Heureux de vous revoir
-        <span [ngStyle]="{ color: '#F6C434' }"
-          >{{ user.prenom }} {{ user.nom }}</span
-        ><br />
-        Gerer vos projets en toute simplicité
-      </h3>
-      <img src="/gestionnnairedashboard.png" alt="image" />
-    </div>
+    <!-- ENTÊTE / HERO -->
+    <header class="hero">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          Heureux de vous revoir,
+          <span class="hero__accent">{{ user.prenom }} {{ user.nom }}</span>
+        </h1>
+        <p class="hero__subtitle">Gérez vos projets en toute simplicité.</p>
 
-    <div class="side-bar-open" [class.side-bar-close]="!sidebarOpen">
-      <div id="contributions">
-        <div class="contribution-card">
-          <span class="titre">
-            <h4 class="sous-titre">Contributions à valider</h4>
-            <button class="tous-voir">Tous voir</button>
-          </span>
-
-          <div class="contribution-list">
-            @for (contributions of contributionsList; track $index) {
-              <app-cardcontribution [contribution]="contributions"/>
-            }
-
-          </div>
+        <div class="hero__cta">
+          <button class="btn btn--primary" (click)="voirTous()">
+            <i class="ri-layout-grid-line"></i> Tous les projets
+          </button>
+          <button class="btn btn--ghost" (click)="voirMois()">
+            <i class="ri-eye-off-line"></i> Voir moins
+          </button>
         </div>
-        <div class="statistiques" [class.decale]="!sidebarOpen">
-          <div class="icon-wrapper">
-            <i class="ri-archive-stack-line"></i>
-          </div>
-
-          <h5>Projets</h5>
-
-  <div class="en-cours">
-    <span id="en-cours">{{nbreProjetsEnCours}}</span>
-    <p>En cours</p>
-  </div>
-
-  <div class="realises">
-    <hr id="realise" />
-    <p>{{nbreProjetsTermine}} Réalisés</p>
-  </div>
-</div>
-
       </div>
 
-      <div id="projet-recents">
-        <span class="titre">
-          @if (tout) {
-          <h4 class="sous-titre">Tous les Projets</h4>
-            <button class="tous-voir" (click)="voirMois()" style="cursor: pointer;">Voir Moins</button>
-          }@else{
-          <h4 class="sous-titre">Projets récents</h4>
-            <button class="tous-voir" (click)="voirTous()" style="cursor: pointer;">Tous voir</button>
+      <div class="hero__image">
+        <!-- on garde ton chemin -->
+        <img src="/gestionnnairedashboard.png" alt="Illustration dashboard"/>
+      </div>
+    </header>
+
+    <!-- STATS EN TUILES -->
+    <section class="stats" [class.stats--compact]="!sidebarOpen">
+      <article class="stat">
+        <div class="stat__icon bg--blue"><i class="ri-archive-stack-line"></i></div>
+        <div class="stat__content">
+          <h4 class="stat__label">Projets en cours</h4>
+          <div class="stat__value">{{ nbreProjetsEnCours }}</div>
+        </div>
+      </article>
+
+      <article class="stat">
+        <div class="stat__icon bg--green"><i class="ri-check-double-line"></i></div>
+        <div class="stat__content">
+          <h4 class="stat__label">Projets réalisés</h4>
+          <div class="stat__value">{{ nbreProjetsTermine }}</div>
+        </div>
+      </article>
+
+      <article class="stat">
+        <div class="stat__icon bg--amber"><i class="ri-team-line"></i></div>
+        <div class="stat__content">
+          <h4 class="stat__label">Contributions à valider</h4>
+          <div class="stat__value">{{ contributionsList.length || 0 }}</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- DEUX COLONNES : CONTRIBUTIONS + PROJETS -->
+    <section class="grid-2">
+      <!-- CONTRIBUTIONS À VALIDER -->
+      <aside class="panel panel--list">
+        <div class="panel__head">
+          <h3 class="panel__title">Contributions à valider</h3>
+          <button class="btn btn--link">Tous voir</button>
+        </div>
+
+        <div class="panel__body panel__body--scroll">
+          @for (contributions of contributionsList; track $index) {
+            <app-cardcontribution [contribution]="contributions"></app-cardcontribution>
           }
-        </span>
-        <div class="card-content">
-          @if(tout){
+          @if (!contributionsList || contributionsList.length === 0) {
+            <div class="panel__empty">
+              <i class="ri-inbox-line"></i>
+              <p>Aucune contribution en attente</p>
+            </div>
+          }
+        </div>
+      </aside>
+
+      <!-- PROJETS (récents / tous) -->
+      <section class="panel panel--cards">
+        <div class="panel__head">
+          @if (tout) {
+            <h3 class="panel__title">Tous les projets</h3>
+            <button class="btn btn--link" (click)="voirMois()">Voir moins</button>
+          } @else {
+            <h3 class="panel__title">Projets récents</h3>
+            <button class="btn btn--link" (click)="voirTous()">Tous voir</button>
+          }
+        </div>
+
+        <div class="cards">
+          @if (tout) {
             @for (projet of toutProjet; track $index) {
               <app-cardprojet [projets]="projet"></app-cardprojet>
             }
-          }@else {
+          } @else {
             @for (projet of projetsRecents; track $index) {
               <app-cardprojet [projets]="projet"></app-cardprojet>
             }
           }
+          @if ((!tout && (!projetsRecents || projetsRecents.length === 0)) ||
+               (tout && (!toutProjet || toutProjet.length === 0))) {
+            <div class="panel__empty">
+              <i class="ri-folder-info-line"></i>
+              <p>Aucun projet à afficher</p>
+            </div>
+          }
         </div>
+      </section>
+    </section>
 
+    <!-- DEMANDES DE CONTRIBUTION -->
+    <section class="panel panel--table">
+      <div class="panel__head">
+        <h3 class="panel__title">Demandes de contribution</h3>
       </div>
-    </div>
 
-    <div id="demande-contribution">
-      <h4 class="sous-titre">Démandes de contribution</h4>
-      <table>
-        <thead class="table-header">
-          <tr>
-            <th id="devant">Projet</th>
-            <th>Contributeur</th>
-            <th>Date d'envoie</th>
-            <th>Profil contributeur</th>
-            <th id="derriere">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            @if(demandeContributions.length > 0)
-            {
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Projet</th>
+              <th>Contributeur</th>
+              <th>Date d'envoi</th>
+              <th>Profil contributeur</th>
+              <th class="th-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (demandeContributions.length > 0) {
               @for (demande of demandeContributions; track $index) {
-                <td>{{demande.projetNom}}</td>
-                <td>{{demande.contributeurNom}}</td>
-                <td>{{demande.dateEnvoi}}</td>
-                <td>{{demande.profileContributeur}}</td>
-                <td class="actions">
-                  <button id="accepte" (click)="openPopups('accept',demande)">Accepté</button>
-                  <button id="refuse" (click)="openPopups('decline',demande)">Refusé</button>
-                </td>
+                <tr>
+                  <td data-label="Projet">{{ demande.projetTitre }}</td>
+                  <td data-label="Contributeur">{{ demande.contributeurNom }}</td>
+                  <td data-label="Date d'envoi">{{ demande.dateEnvoi | date:'dd/MM/yyyy à hh:mm'}}</td>
+                  <td data-label="Profil">{{ demande.profileContributeur }}</td>
+                  <td class="actions" data-label="Actions">
+                    <button class="btn btn--success" (click)="openPopups('accept', demande)">Accepter</button>
+                    <button class="btn btn--danger" (click)="openPopups('decline', demande)">Refuser</button>
+                  </td>
+                </tr>
               }
+            } @else {
+              <tr class="tr-empty">
+                <td colspan="5">
+                  <div class="panel__empty">
+                    <i class="ri-mail-forbid-line"></i>
+                    <p>Aucune demande en attente</p>
+                  </div>
+                </td>
+              </tr>
             }
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  @if(ispopupVisible === true){
-    <app-pop-ups (close)="closePopups($event)"></app-pop-ups>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </section>
+
+  @if (ispopupVisible === true) {
+    <app-pop-ups [idDemandeContribution]="idDCV" (close)="closePopups($event)"></app-pop-ups>
   }
 </div>

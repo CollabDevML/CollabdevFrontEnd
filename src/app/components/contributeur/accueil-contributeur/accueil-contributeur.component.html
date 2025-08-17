@@ -1,6 +1,3 @@
-<!-- ===== PAGE CONTRIBUTEUR - LISTE & DEMANDE DE CONTRIBUTION ===== -->
-<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
-
 <section class="contenair">
   <div class="grille">
 
@@ -45,8 +42,7 @@
       <!-- Liste de cartes projets -->
       <div class="bloc cartes">
         <div class="liste-cartes" role="list">
-          <!-- Carte projet 1 -->
-        @for (proj of projets; track $index) {
+          @for (proj of projets; track $index) {
           <article class="carte" role="listitem">
             <div class="carte-head">
               <h3 class="titre">{{proj?.titre}}</h3>
@@ -57,26 +53,33 @@
             </div>
 
             <p class="desc">
-              {{proj.description | slice:0.100}}{{ proj.description.length > 100 ? '...' : '' }}
+              {{proj.description | slice:0:140}}{{ proj.description.length > 140 ? '...' : '' }}
             </p>
 
             <div class="meta">
-              <span><i class="ri-user-3-line"></i> Gestionnaire : <b>{{proj.gestionnaire.prenom| slice:0.1}}{{ proj.description.length > 1 ? '.' : '' }} {{proj.gestionnaire.nom}}</b></span>
+              <span><i class="ri-user-3-line"></i> Gestionnaire :
+                <b>{{proj.gestionnaire.prenom | slice:0:1}}{{ proj.gestionnaire.prenom.length > 1 ? '.' : '' }}
+                {{proj.gestionnaire.nom}}</b>
+              </span>
               <span><i class="ri-calendar-line"></i> Début : {{proj.dateDebut | date:'dd/MM/yyyy'}}</span>
-              <span><i class="ri-heart-2-line"></i> Soutiens : {{proj.nombreSoutiens ||0}}</span>
+              <span><i class="ri-heart-2-line"></i> Soutiens : {{proj.nombreSoutiens || 0}}</span>
             </div>
 
-            <div class="actions" (click)="ouvert(proj)">
-              <button class="btn-outline sm"><i class="ri-eye-line"></i> Détails</button>
-              <button class="btn-primary sm" data-open="#modalDemande"><i class="ri-send-plane-line"></i> Demander à contribuer</button>
+            <div class="actions">
+              <button class="btn-outline sm" (click)="openDetail(proj)">
+                <i class="ri-eye-line"></i> Détails
+              </button>
+              <button class="btn-primary sm" (click)="ouvert(proj)">
+                <i class="ri-send-plane-line"></i> Demander à contribuer
+              </button>
             </div>
           </article>
-        }
+          }
         </div>
       </div>
     </div>
 
-
+    <!-- ===== COLONNE DROITE : Slogan / Illustration / Tips ===== -->
     <div class="col-droite">
       <div class="bloc slogan">
         <h2 class="slogan-titre">
@@ -84,24 +87,26 @@
         </h2>
       </div>
 
-
       <div class="bloc illustration">
         <img class="illu-img" src="contributeur.png" alt="Illustration contributeur">
       </div>
 
       <div class="bloc tips">
         <h4><i class="ri-lightbulb-line"></i> Astuce</h4>
-        <p>Trie par <b>“Les plus récents”</b> pour repérer les nouvelles opportunités, ou filtre par <b>domaine</b> pour viser tes forces.</p>
+        <p>Trie par “Les plus récents” pour repérer les nouvelles opportunités, ou filtre par domaine pour viser tes forces.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="modal" [ngClass]="{'open': show}" id="modalDemande" >
+<!-- ===== MODAL 1 : DEMANDE DE CONTRIBUTION ===== -->
+<div class="modal" [ngClass]="{'open': show}" id="modalDemande">
   <div class="contenu" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-header">
       <h3 id="modalTitle">Demande de contribution</h3>
-      <button class="btn-icon close" data-close aria-label="Fermer" (click)="fermer()"><i class="ri-close-line"></i></button>
+      <button class="btn-icon close" aria-label="Fermer" (click)="fermer()">
+        <i class="ri-close-line"></i>
+      </button>
     </div>
 
     <div class="modal-body">
@@ -113,24 +118,124 @@
         <label>Message au gestionnaire</label>
         <textarea rows="4" [(ngModel)]="message" placeholder="Présente ton profil, dispo, et ce que tu veux apporter…"></textarea>
       </div>
-      <div class="ligne duo">
-        <div>
-          <label>Profil souhaité</label>
-          <select [(ngModel)]="profileContributeur">
-            <option value="DEV_FULLSTACK">Développeur FULLSTACK</option>
-            <option value="DEV_MOBILE">Développeur Mobile</option>
-            <option value="DEV_FRONT_END">Développeur Frontend</option>
-            <option value="DESIGNER">Designer UI/UX</option>
-            <option value="TESTER">QA / Test</option>
-            <option value="DEV_OPS">DevOps</option>
-          </select>
+      <div class="ligne">
+        <label>Profil souhaité</label>
+        <select [(ngModel)]="profileContributeur">
+          <option value="DEV_FULLSTACK">Développeur FULLSTACK</option>
+          <option value="DEV_MOBILE">Développeur Mobile</option>
+          <option value="DEV_FRONT_END">Développeur Frontend</option>
+          <option value="DESIGNER">Designer UI/UX</option>
+          <option value="TESTER">QA / Test</option>
+          <option value="DEV_OPS">DevOps</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" (click)="fermer()">Annuler</button>
+      <button class="btn-primary" (click)="valider(projet.id)">Envoyer la demande</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL 2 : DÉTAILS PROJET ===== -->
+<div class="modal" id="modalDetail" [ngClass]="{ 'open': showDetail }">
+  <div class="contenu contenu--detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal-header">
+      <h3 id="detailTitle">{{ projet?.titre || 'Détails du projet' }}</h3>
+      <button class="btn-icon close" aria-label="Fermer" (click)="fermerDetail()">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <div class="modal-body detail-grid">
+      <div class="detail-col">
+        <div class="chips">
+          <span class="chip">
+            <i class="ri-folder-2-line"></i>
+            {{ projet?.dommaine || 'Domaine' }}
+          </span>
+          <span class="chip soft">
+            <i class="ri-shield-keyhole-line"></i>
+            {{ projet?.niveauDAcces || 'Accès' }}
+          </span>
+          <span class="chip neutral" *ngIf="projet?.nombreSoutiens !== undefined">
+            <i class="ri-heart-2-line"></i>
+            {{ projet?.nombreSoutiens }} soutiens
+          </span>
+        </div>
+
+        <div class="detail-block">
+          <h4>Résumé</h4>
+          <p class="detail-text">
+            {{ projet?.description || 'Aucune description fournie.' }}
+          </p>
+        </div>
+
+        <div class="detail-rows">
+          <div class="row">
+            <span class="label"><i class="ri-calendar-line"></i> Début</span>
+            <span class="value">{{ projet?.dateDebut | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="row">
+            <span class="label"><i class="ri-time-line"></i> Dernière maj</span>
+            <span class="value">{{ projet?.dateUpdate || '-' }}</span>
+          </div>
+          <div class="row">
+            <span class="label"><i class="ri-user-3-line"></i> Gestionnaire</span>
+            <span class="value">
+              {{ projet?.gestionnaire?.prenom || '' }} {{ projet?.gestionnaire?.nom || '' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="detail-block link">
+          <h4>Cahier des charges</h4>
+          <a class="cdc-link" [href]="projet?.uriCDC" target="_blank" rel="noopener">
+            <i class="ri-file-text-line"></i> Ouvrir le CDC
+          </a>
+        </div>
+      </div>
+
+      <div class="detail-col right">
+        <div class="thumb">
+          <img [src]="projet?.imageUrl || 'contributeur.png'" alt="Illustration du projet">
+        </div>
+
+        <div class="mini-stats">
+          <div class="mini-card">
+            <i class="ri-team-line"></i>
+            <div>
+              <span class="kpi">{{ projet?.contributors || 0 }}</span>
+              <small>Contributeurs</small>
+            </div>
+          </div>
+          <div class="mini-card">
+            <i class="ri-timer-flash-line"></i>
+            <div>
+              <span class="kpi">{{ projet?.progress || 0 }}%</span>
+              <small>Avancement</small>
+            </div>
+          </div>
+          <div class="mini-card">
+            <i class="ri-task-line"></i>
+            <div>
+              <span class="kpi">{{ projet?.taches || 0 }}</span>
+              <small>Tâches</small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="modal-actions">
-      <button class="btn-secondary" data-close  (click)="fermer()">Annuler</button>
-      <button class="btn-primary" style="background-color: #334DAA;color: #FFF;" (click)="valider(projet.id)">Envoyer la demande</button>
+      <button class="btn-secondary" (click)="fermerDetail()">Fermer</button>
+      <button class="btn-outline" (click)="fermerOuvert(projet)">
+        <i class="ri-send-plane-line"></i> Demander à contribuer
+      </button>
+      <!-- <button class="btn-primary" (click)="voirPlus(projet)">
+        <i class="ri-eye-line"></i> Voir la page projet
+      </button> -->
     </div>
   </div>
 </div>
