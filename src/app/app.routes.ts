@@ -74,18 +74,7 @@ export const routes: Routes = [
       { path: '**', redirectTo: '' },
     ],
   },
-  {
-    path: 'inscription',
-    component: InscriptionComponent,
-    children: [
-      { path: '', component: InscriptionIndexComponent },
-      { path: 'choix', component: InscriptionChoixComponent },
-      { path: 'contributeur', component: ContributeurComponent },
-      { path: 'gestionnaire', component: GestionnaireComponent },
-      { path: 'porteur-projet', component: PorteurProjetComponent },
-      { path: '**', redirectTo: '' },
-    ],
-  },
+  
 
   //Les routes pour le Porteur de projet
   {
@@ -116,14 +105,17 @@ export const routes: Routes = [
 
 
   //Les routes pour le Gestionnaire :
-  {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
-    {path:"",component:AccueilComponent},
-    {path:"accueil",component:AccueilComponent},
-    {path:"mes_idees",component:IdeesProjetComponent},
-    {path:"mon_espace",component:DashboardGestionnaireComponent},
-    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
-    {path:"nouveau_projet",component:FormulaireProjetComponent},
-    {path:"details_projet",component:ProjetgestionnairedetailComponent},
+  {
+    path: 'gestionnaire',
+    component: IndexGestionnaireComponent,
+    children: [
+      { path: '', component: AccueilComponent },
+      { path: 'accueil', component: AccueilComponent },
+      { path: 'mes_idees', component: MesIdeeProjetComponent },
+      { path: 'mon_espace', component: DashboardGestionnaireComponent },
+      { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
+      { path: 'nouveau_projet', component: FormulaireProjetComponent },
+      {path:"details_projet",component:ProjetgestionnairedetailComponent},
     {path:"nouvelle_tache",component:TaskFormComponent},
     {path:"detail_tache",component:DetailTacheComponent},
     //Les autres routes ici ..............
@@ -149,14 +141,6 @@ export const routes: Routes = [
   { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
   { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: 'detailCommentaire', component: DetailCommentaireComponent },
-  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'detailCommentaire', component: DetailCommentaireComponent },
-
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
-  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
   { path: 'formulaireProjet', component: FormulaireProjetComponent },
   { path: 'detailProjet', component: DetailleProjetComponent },
   { path: 'formulaireProjet', component: FormulaireProjetComponent },
@@ -167,4 +151,5 @@ export const routes: Routes = [
 { path: 'utilisateurs/:id', component: ProfilComponent },
 
   { path: '**', component: PageNotFoundComponent },
+ 
 ];

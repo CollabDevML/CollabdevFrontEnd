@@ -6,6 +6,7 @@
                (keyup.enter)="search()">
         <button class="search-button" (click)="search()">Rechercher</button>
     </div>
+
 </div>
 <!--  Bloc résultats de recherche -->
 <div *ngIf="searchResults.length > 0" class="search-results">
@@ -25,6 +26,7 @@
 
 <div class="recom">Recommandations</div>
 <div class="contener">
+
     <div class="idee_projet">
         <div class="header">
             <div class="header-titre-filtre">
@@ -66,64 +68,97 @@
             }@empty {
                 <p class="not">Aucune idée de projet trouvé</p>
             }
+
         </div>
+      </div>
     </div>
-    <div class="projet">
-        <div class="entet">
-            <div class="header">
-                <div class="header-titre-filtre">
-                    <h1 class="header-titre">Projets</h1>
-                    <div class="header-separator"></div>
-                    <div class="header-filtre">
-                        <!-- <label for="projets-list">Récents</label> -->
-                        <select name="projets-list" id="projets-list">
-                            <option value="">Récentes</option>
-                            <option value="">Anciennes</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <div class="body">
+      @for (ideeprojet of ideeProjets; track ideeprojet.id) {
+      <div class="card">
+        <div class="head">
+          <div class="titre">{{ ideeprojet.titre }}</div>
+          <div class="date">
+            {{ ideeprojet.datePublication.toString() | elapsedTime }}
+          </div>
         </div>
-        <div class="corps">
-            @for (projet of projets; track projet.id) {
-                <div class="cardProjet">
-                    <div class="headCard">
-                        <div class="projetHead">
-                            <div class="titre">{{ projet.titre }}</div>
-                            <div class="cercle"></div>
-                        </div>
-                        <div class="body">{{ projet.description }}</div>
-                        <div class="footidee">
-                            <div class="porteur">
-                                {{ projet.idGestionnaire }} Gère ce projet
-                            </div>
-                            <div class="soutien">
-                                {{ projet.piecesDAcces }} <i class="ri-group-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bodyCard">
-                        <div class="progress">
-                            <div class="barProgress1">
-                                <div class="barProgress2"></div>
-                            </div>
-                        </div>
-                        <div class="train"></div>
-                        <div class="icons">
-                            <div class="suivre">
-                                <i class="ri-copper-coin-line"></i>
-                                Suivre ce projet
-                            </div>
-                            <div class="comment">
-                                <i class="ri-question-answer-line"></i>
-                                Commentaires
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }@empty {
-                <p class="not">Aucun projet trouvé</p>
+        <div class="content">
+          <div class="des">{{ ideeprojet.description }}</div>
+          <div class="cdc">{{ ideeprojet.uriCDC }}</div>
+        </div>
+        <div class="foot">
+          <div class="porteur">
+            {{ ideeprojet.utilisateur }} a proposé cette idée
+          </div>
+          <div class="soutien" (click)="handelClick(ideeprojet.id)">
+            @if (isSoutienState(ideeprojet.id)) {
+            <i class="ri-hand-heart-fill bolo"></i>
+            }@else {
+            <i class="ri-hand-heart-line bolo"></i>
             }
+          </div>
         </div>
+      </div>
+      }@empty {
+      <p class="not">Aucune idée de projet trouvé</p>
+      }
     </div>
+  </div>
+  <div class="projet">
+    <div class="entet">
+      <div class="header">
+        <div class="header-titre-filtre">
+          <h1 class="header-titre">Projets</h1>
+          <div class="header-separator"></div>
+          <div class="header-filtre">
+            <!-- <label for="projets-list">Récents</label> -->
+            <select name="projets-list" id="projets-list">
+              <option value="">Récentes</option>
+              <option value="">Anciennes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="corps">
+      @for (projet of projets; track projet.id) {
+      <div class="cardProjet">
+        <div class="headCard">
+          <div class="projetHead">
+            <div class="titre">{{ projet.titre }}</div>
+            <div class="cercle"></div>
+          </div>
+          <div class="body">{{ projet.description }}</div>
+          <div class="footidee">
+            <div class="porteur">
+              {{ projet.idGestionnaire }} Gère ce projet
+            </div>
+            <div class="soutien">
+              {{ projet.piecesDAcces }} <i class="ri-group-fill"></i>
+            </div>
+          </div>
+        </div>
+        <div class="bodyCard">
+          <div class="progress">
+            <div class="barProgress1">
+              <div class="barProgress2"></div>
+            </div>
+          </div>
+          <div class="train"></div>
+          <div class="icons">
+            <div class="suivre">
+              <i class="ri-copper-coin-line"></i>
+              Suivre ce projet
+            </div>
+            <div class="comment">
+              <i class="ri-question-answer-line"></i>
+              Commentaires
+            </div>
+          </div>
+        </div>
+      </div>
+      }@empty {
+      <p class="not">Aucun projet trouvé</p>
+      }
+    </div>
+  </div>
 </div>
