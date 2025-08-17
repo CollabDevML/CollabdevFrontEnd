@@ -61,4 +61,21 @@ export class AccueilContributeurComponent implements OnInit {
       })
     this.fermer();
   }
+
+  showDetail = false;
+
+openDetail(p:any){
+  this.showDetail = true;
+  this.projet = p;
+}
+fermerDetail(){
+  this.showDetail = false;
+}
+
+fermerOuvert(p:any){
+  this.showDetail = false;
+  this.ouvert(p);
+}
+
+
 }

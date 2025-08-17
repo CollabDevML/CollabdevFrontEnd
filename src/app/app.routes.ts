@@ -51,6 +51,9 @@ import { UtilisateursComponent } from './components/admins/utilisateurs/utilisat
 import { ProjetsComponent } from './components/admins/projets/projets.component';
 import { BadgesComponent } from './components/admins/badges/badges.component';
 import { IdeesProjetAdminComponent } from './components/admins/idees-projet/idees-projet.component';
+import { MesTachesComponent } from './components/contributeur/mes-taches/mes-taches.component';
+import { MesProjetComponent } from './components/contributeur/mes-projet/mes-projet.component';
+import { MesContributionsComponent } from './components/contributeur/mes-contributions/mes-contributions.component';
 
 export const routes: Routes = [
   {
@@ -105,7 +108,12 @@ export const routes: Routes = [
     component: IndexContributeurComponent,
     children: [
       { path: '', component: AccueilComponent },
-      { path: 'mes_contributions', component: Contributeurs2Component },
+      { path: 'mes_contributions', component: Contributeurs2Component,children:[
+        {path:'',component:MesProjetComponent},
+        {path:'projets',component:MesProjetComponent},
+        {path:'taches',component:MesTachesComponent},
+        {path:'newContribution',component:MesContributionsComponent}
+      ] },
       { path: 'mon_espace', component: AccueilContributeurComponent },
 
       { path: '**', redirectTo: '' },
