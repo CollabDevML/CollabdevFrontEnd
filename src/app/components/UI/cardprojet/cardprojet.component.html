@@ -1,23 +1,21 @@
-<div class="card" (click)="voirdetail(projets)" style="cursor:pointer;">
+<div class="card" (click)="voirdetail(projets)">
   <div class="card-header">
     <div class="en-tete">
       <span class="date">{{ projets.dateDebut | date:'dd/MMM/yyyy' }}</span>
-      <i class="ri-bookmark-line" style="color: white; font-size: 25px"></i>
+      <i class="ri-bookmark-line"></i>
     </div>
     <div class="milieu">
       <p class="title">
-        {{ projets.titre | slice:0:10 }}{{ projets.titre.length > 10 ? '…' : '' }}
+        {{ projets.titre | slice:0:20 }}{{ projets.titre.length > 20 ? '…' : '' }}
       </p>
-      <span>
-        {{ projets.description | slice:0:20 }}{{ projets.description.length > 20 ? '…' : '' }}
+      <span class="desc">
+        {{ projets.description | slice:0:50 }}{{ projets.description.length > 50 ? '…' : '' }}
       </span>
     </div>
   </div>
   <div class="level">{{ projets.niveauDAcces }}</div>
   <div class="bas">
-    <i class="ri-account-circle-line" style="color: #334DAA; font-size: 25px;"></i>
-    <button class="visualiser-btn" (click)="voirdetail(projets)" style="cursor:pointer;">
-      Visualiser
-    </button>
+    <i class="ri-account-circle-line"></i>
+    <button class="visualiser-btn" (click)="voirdetail(projets)">Visualiser</button>
   </div>
 </div>

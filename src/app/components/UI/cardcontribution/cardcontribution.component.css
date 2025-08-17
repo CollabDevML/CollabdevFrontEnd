@@ -1,31 +1,51 @@
-.card{
-    color: white;
-    background-color: rgba(51, 77, 170, 0.72);
-    display: flex;
-    font-size: 0.7em;
-    border-radius: 9px;
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    /* width: 100%; */
-    max-width: 25vw;
-    min-width: 22vw;
+/* ====== CARD CONTRIBUTIONS ====== */
+.card-contribution {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  transition: transform .15s ease, box-shadow .2s ease;
 }
-#left{
-    width: 45%;
+
+.card-contribution:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .12);
 }
-#right{
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+.card-left p {
+  margin: 6px 0;
+  font-size: .95rem;
+  color: #374151;
+  font-weight: 500;
 }
-#right button{
-    width: 100%;
-    color: black;
-    background-color: white;
-    border-radius: 5px;
-    border: none;
+
+.card-left span {
+  font-weight: 700;
+  color: #1e40af; /* bleu foncé */
+}
+
+.card-right {
+  display: flex;
+  align-items: center;
+}
+
+.details-btn {
+  background: #f59e0b; /* orange doré */
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, .25);
+}
+
+.details-btn:hover {
+  background: #d97706;
+  box-shadow: 0 6px 14px rgba(245, 158, 11, .35);
 }

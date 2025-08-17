@@ -19,18 +19,18 @@ import { projet } from '../../models/projet/projet';
 import { Demandecontributions } from '../../models/demandecontributions/demandecontributions';
 import { Contribution } from '../../models/contribution/contribution';
 import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
-import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerComponent, NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { finalize, forkJoin, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-gestionnaire',
   imports: [
-    NgStyle,
-    NgStyle,
     CardprojetComponent,
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
-    CommonModule
+    CommonModule,
+    NgxSpinnerModule
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',
@@ -81,44 +81,45 @@ export class DashboardGestionnaireComponent implements OnInit {
     this.tout = true;
   }
 
-  ngOnInit(){
-    this.spinner.show();
-    this.data.getDataUserById().subscribe({
-      next:(res)=> {
-        this.user = res;
-        this.spinner.hide(),
-        this.dataG.getProjetGestionnaire(res.idGestionnaire).subscribe({
-          next:(projets:any)=> {
-              console.log(projets)
-              this.toutProjet = projets;
+ngOnInit() {
+  this.spinner.show();
 
-              this.projetsRecents = projets.slice(0, 3);
-              console.log(this.projetsRecents)
-          },
-          error:(err)=> {
-              console.log(err)
-          },
-        })
-        this.getGestionnaire
-        console.log(res);
-      },
-      error:(err)=> {
-          console.warn(err);
-      },
-    });
+  this.data.getDataUserById().pipe(
+    switchMap((user: any) => {
+      this.user = user;
+      // Lancer en parallèle les 2 appels qui dépendent de l'user:
+      return forkJoin({
+        projets: this.dataG.getProjetGestionnaire(user.idGestionnaire),
+        demandes: this.dataG.demandeContributeurProjet()
+      });
+    }),
+    finalize(() => this.spinner.hide())
+  ).subscribe({
+    next: ({ projets, demandes }) => {
+      // Sécuriser les valeurs
+      this.toutProjet = Array.isArray(projets) ? projets : [];
+      // 5 projets récents max
+      this.projetsRecents = [...this.toutProjet].reverse().slice(0, 5);
 
-    this.dataG.demandeContributeurProjet().subscribe({
-        next:(res)=>{
-          this.contributionsList = res.slice(0, 2);
-          console.log(res);
-        },
-        error:(err)=>{
-          console.log(err);
+      // Liste brute des demandes
+      this.contributionsList = Array.isArray(demandes) ? [...demandes].reverse() : [];
 
+      // Construire la vue "demandes non acceptées" à partir des projets récents
+      this.contributionsList.forEach((value:any) => {
+        // console.log(value);
+        if (!value.estAccepte) {
+          this.demandeContributions.push(value);
         }
-      })
+      });
 
-  }
+      // Debug
+      // console.log({ toutProjet: this.toutProjet, projetsRecents: this.projetsRecents, contributionsList: this.contributionsList, demandeContributions: this.demandeContributions });
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
 
   //get the gestionnaire
   getGestionnaire(){
@@ -199,9 +200,11 @@ export class DashboardGestionnaireComponent implements OnInit {
       }
     }
   }
+  idDCV:number = 0;
   openPopups(action: 'accept' | 'decline', demande: any) {
     this.selectedAction = action;
     this.selectedDemande = demande;
+    this.idDCV = demande.id;
     this.ispopupVisible = true;
     console.log('je click');
   }

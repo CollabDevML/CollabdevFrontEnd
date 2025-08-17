@@ -57,4 +57,15 @@ export class GestionnaireDataService {
   demandeContributeurProjet(){
     return this.data.getData(Env.PROJET+"/demandes-contribution");
   }
+  //La liste des contributeur a valider :
+  //Pour la demande de contribution :
+  demandeContributeurParProjet(id:number){
+    return this.data.getData(Env.PROJET+"/"+id+"/demandes-contribution/v2");
+  }
+
+  //Accepter une demande de contribution :
+  demandeAccepter(id:number,est:boolean){
+    return this.data.patchData(Env.PROJET+"/demandes-contribution/"+id+"/estAcceptee/"+est,null);
+  }
+
 }
