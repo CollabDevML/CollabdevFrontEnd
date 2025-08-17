@@ -31,6 +31,7 @@ export class ProjetgestionnairedetailComponent {
   projetService:ProjetServiceService = inject(ProjetServiceService)
   sidebarOpen:boolean = true;
   showPopup = false;
+  nbreContributeur = 0;
   contributeurService: ContributeurDataService = inject(ContributeurDataService)
 
   gestionnaireService: GestionnaireDataService = inject(GestionnaireDataService);
@@ -52,6 +53,10 @@ export class ProjetgestionnairedetailComponent {
     }
     this.gestionnaireService.dataProjet = this.projet;
     this.loadTaches();
+    this.nbreContributeur = new Set(this.projet.demandeContributions
+      .filter(demandes => demandes.estAccepte)
+      .map(demandes => demandes.contributeur_id)
+      ).size
   }
 
 

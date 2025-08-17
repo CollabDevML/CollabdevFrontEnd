@@ -27,7 +27,8 @@
     padding: 5px;
     margin-top: 6px;
     transition: margin-left 0.3s ease;
-    background: #D9D9D9;
+    background: rgba(51, 77, 170, 0.3);
+
     border-radius: 8px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.60);
     min-height: 97vh; /* hauteur du viewport */
@@ -49,9 +50,75 @@
     height: 10px;
     background-color: #f4c542;
     border-radius: 50%;
+     
+  box-shadow: 0 0 5px #f4c542, 0 0 10px #f4c542, 0 0 15px #f4c542;
+
+  
+  animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 5px #f4c542, 0 0 10px #f4c542, 0 0 15px #f4c542;
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 10px #f4c542, 0 0 20px #f4c542, 0 0 30px #f4c542;
+      transform: scale(1.2); 
+    }
+    100% {
+      box-shadow: 0 0 5px #f4c542, 0 0 10px #f4c542, 0 0 15px #f4c542;
+      transform: scale(1);
+    }
   }
 
   /* Section État */
+  /* Animation de fade + slide */
+@keyframes fadeSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Application aux sous-éléments */
+.etat .gauche {
+  animation: fadeSlideInLeft 0.8s ease forwards;
+}
+
+.etat .milieur {
+  animation: fadeSlideInUp 0.8s ease 0.2s forwards; /* léger délai */
+}
+
+.etat .droite {
+  animation: fadeSlideInRight 0.8s ease 0.4s forwards; /* délai plus long */
+}
+
   .etat {
     display: flex;
     justify-content: space-between;
@@ -94,6 +161,13 @@
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
     max-width: 400px;
+  
+    /* ajout pour limiter la taille */
+    max-height: 120px;       /* limite la hauteur */
+    overflow-y: auto;        /* scroll vertical si trop long */
+    word-wrap: break-word;   /* casse les mots trop longs */
+    white-space: normal;     /* texte revient à la ligne */
+    line-height: 1.4;        /* meilleure lisibilité */
   }
 
   /* Section contributeurs + bouton */
@@ -109,7 +183,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 10em;
+    width: 12em;
     padding: 5px;
     border-radius: 5px;
     font-weight: bold;
@@ -138,6 +212,32 @@
     font-size: 0.9rem;
     margin-top: 0.2rem;
   }
+  /* Animation slide-up + fade-in */
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Application aux éléments du bottom-header */
+.bottom-header .niveau {
+  animation: slideUpFadeIn 0.8s ease forwards;
+}
+
+.bottom-header .contributors {
+  animation: slideUpFadeIn 0.8s ease 0.2s forwards; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+.bottom-header .contributors:hover {
+  transform: scale(1.03); /* léger zoom */
+  color: white;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1); /* ombre très discrète */
+}
 
   /* Bouton */
   .button{
@@ -159,14 +259,32 @@
     align-items: center;
     justify-content: space-around;
     cursor: pointer;
+    animation: fadeScaleIn 0.8s ease forwards;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-new-task i {
+    color: #334DAA; 
+    transition: color 0.2s ease;
+  }
+  .btn-new-task:hover {
+    transform: scale(1); 
+    box-shadow: 0 4px 12px rgba(51, 77, 170, 0.3);
+    color: white;
+    background-color: #334DAA;
+  }
+  .btn-new-task:hover i {
+    color: white; 
   }
 
   /* Tableau */
   .table-container {
     width: 100%;
     max-width: 100%;
-    overflow-x: auto; /* pour scroll horizontal si écran trop petit */
+    overflow-x: auto;   /* scroll horizontal si écran trop petit */
+    overflow-y: auto;   /* scroll vertical si trop de lignes */
+    max-height: 400px;  /* fixe la hauteur max du tableau */
     font-family: Arial, sans-serif;
+    border: 1px solid #ddd; /* optionnel, pour mieux délimiter */
   }
 
   /* Header */
@@ -196,12 +314,12 @@
     word-break: break-word; /* pour casser les longs mots */
   }
 
-  /* Supprimer l'espace et arrondi sur la dernière ligne */
+  
   .table-row:last-child {
     margin-bottom: 0;
   }
 
-  /* Pour limiter la hauteur et éviter que la ligne soit trop grande */
+  
   .table-row span {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -220,7 +338,17 @@
     max-height: 3em; /* limite à environ 2 lignes */
     overflow: hidden;
   }
-
+  .table-container .table-row {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    cursor: default; /* pas cliquable si tu veux rester visuel seulement */
+  }
+  
+  .table-container .table-row:hover {
+    background-color: rgba(51, 77, 170, 0.05); /* léger surlignage bleu */
+    transform: translateY(-2px); 
+    color: white;
+  }
+  
   /* Exemple pour badge d'état avec arrondi */
   .etat-badge {
     padding: 0.2em 0.5em;

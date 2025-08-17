@@ -1,6 +1,6 @@
 .card {
     background-color: white;
-    width: 80%;
+    
     height: 95%;
     border: 0.5px solid #E9E0E0;
     padding-left: 0.3%;
@@ -8,6 +8,8 @@
     border-radius: 10px;
     /* margin-left: 30%; */
     margin: 3px 10px;
+    
+
     box-shadow:  5px 5px 12px rgba(0,0,0,0.2);
 }
 .card-header{

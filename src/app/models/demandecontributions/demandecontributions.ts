@@ -1,9 +1,10 @@
 export class Demandecontributions {
-    id!:number;
-    estAcceptee!: boolean;
-    dateEnvoi !: string;
-    profileContributeur !: string;
-    projetNom!: string;
-  contributeurNom!: string;
-  
+  id!:number;
+  estAccepte!:boolean;
+  dateEnvoi!:boolean;
+  profileContributeur !:string;
+  nom_projet !:string;
+  prenom_contributeur!:string;
+  nom_contributeur !:string;
+  contributeur_id!:number;
 }

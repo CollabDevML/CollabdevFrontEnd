@@ -4,10 +4,7 @@ import { DataService } from '../data.service';
 import { Gestionnaire } from '../../models/gestionnaire/gestionnaire';
 import { Env } from '../../env';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
-=======
 import { projet } from '../../models/projet/projet';
->>>>>>> main-copie
 import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestionnaire';
 
 @Injectable({
@@ -37,7 +34,7 @@ export class GestionnaireDataService {
   }
 
   //Pour recupérer un gestionnaire
-  getProjetGestionnaire(id: number): Observable<ResponseGestionnaire>{
+  getProjetGestionnaire(id: number): Observable<any>{
     return this.data.getData(Env.PROJET_GESTIONNAIRE+id+"/"+"projets")
   }
 

@@ -79,6 +79,22 @@
     box-shadow: 0px 0px 59px 49px rgba(255, 255, 255, 0.15);
 }
 
+/* Animation fade + slide depuis la gauche */
+@keyframes fadeSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Application au sidebar */
+.side-bar-open {
+  animation: fadeSlideLeft 0.8s ease forwards;
+}
 
 #contributions{
     display: flex;
@@ -87,6 +103,23 @@
     padding-top: 2%;
     width: 100%;
 }
+/* Carte contributions */
+.contribution-card {
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+
+/* Animation des cartes internes (staggered) */
+.contribution-list app-cardcontribution {
+  animation: fadeSlideUp 0.6s ease forwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contribution-list app-cardcontribution:hover {
+  transform: translateY(-4px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); 
+}
+
+
+
 .statistiques {
     position: relative;
     width: 260px;
@@ -130,7 +163,7 @@
     padding-right: 1rem;
   }
 
-  /* On centre verticalement ce bloc via flex dans le parent */
+  
   .statistiques p[ngStyle] {
     display: flex;
     flex-direction: column;
@@ -174,6 +207,29 @@
     box-shadow: -5px 5px 10px 0 rgba(0, 0, 0, 0.2);
 
 }
+@keyframes fadeSlideUpModern {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Application aux cartes projets */
+.card-content app-cardprojet {
+  
+  animation: fadeSlideUpModern 0.6s ease forwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-content app-cardprojet:hover {
+  transform: translateX(-4px) ; /* léger soulèvement + zoom subtil */
+  box-shadow: 0 4px 5px rgba(53, 35, 190, 0.12);
+  
+}
+
 .statistiques h5{
     text-align: right;
 }
@@ -210,15 +266,18 @@
   box-shadow:  0 5px 10px rgba(0,0,0,0.2),
               0 -5px 10px rgba(0,0,0,0.2);
 }
-
 .card-content{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     height: auto;
     justify-content: center;
-    gap: 10px;
+    gap: 2px;
     align-items: center;
+    
+}
+.card-content app-cardprojet{
+  flex: 0 0 20%;
 }
 .tous-voir{
     width: 9em;
@@ -227,6 +286,13 @@
     border-radius: 2em;
     background-color: rgba(51, 77, 170, 0.72);
     border: 1px solid rgb(49, 47, 47);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tous-voir:hover {
+  background-color: #334DAA;
+  transform: translateY(-1px); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* ombre discrète */
 }
 .side-bar-open{
     display: flex;
@@ -332,6 +398,8 @@ thead tr {
 .actions button{
     width: 7vw;
     border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 #accepte{
     color: #34F651;
@@ -342,4 +410,16 @@ thead tr {
     color:#E61316;
     background-color: rgba(251, 201, 201, 0.13);
     border: none;
+}
+#refuse:hover{
+  background-color: #E61316;
+  color: white;
+}
+#accepte:hover{
+  background-color: #34F651;
+  color: white;
+}
+#demande-contribution .actions button:hover {
+  transform: translateY(-2px); /* léger soulèvement */
+  box-shadow: 0 1px 5px rgba(0,0,0,0.15); 
 }

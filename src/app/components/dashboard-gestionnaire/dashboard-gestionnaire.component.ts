@@ -21,6 +21,21 @@ import { Contribution } from '../../models/contribution/contribution';
 import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 
+export interface Projets {
+  id:number;
+    titre: string;
+    description: string;
+    estFini:boolean;
+    dateDebut:string;
+    dateFin:string;
+    niveauDAcces:string;
+    etat:boolean;
+    idGestionnaire:string;
+    piecesDAcces:number;
+    idIdeeProjet:number;
+    demandeContributions: Demandecontributions[];
+    listContributions: Contribution[];
+}
 @Component({
   selector: 'app-dashboard-gestionnaire',
   imports: [
@@ -43,8 +58,8 @@ export class DashboardGestionnaireComponent implements OnInit {
   userId = Number(localStorage.getItem("user_id"));
   userRole = localStorage.getItem("user_role");
 
-  toutProjet!: projet[];
-  projetsRecents!: projet[];
+  toutProjet!: Projets[];
+  projetsRecents!: Projets[];
 
   //Fin de la creation de mes variables.
 
@@ -89,93 +104,49 @@ export class DashboardGestionnaireComponent implements OnInit {
         this.spinner.hide(),
         this.dataG.getProjetGestionnaire(res.idGestionnaire).subscribe({
           next:(projets:any)=> {
-              console.log(projets)
-              this.toutProjet = projets;
+             
+              this.toutProjet = [...projets];
 
-              this.projetsRecents = projets.slice(0, 3);
-              console.log(this.projetsRecents)
+              this.projetsRecents = this.toutProjet
+              .sort(
+                (a, b) =>
+                  new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime()
+              )
+              .slice(0, 4);
+
+              this.demandeContributions = this.toutProjet
+              .reduce((acc, projet)=>acc.concat(projet.demandeContributions),[] as
+              Demandecontributions[]).filter(demande=>!demande.estAccepte)
+
+              this.contributionsList = this.toutProjet
+              .reduce((acc, projet)=>acc.concat(projet.listContributions),[] as
+              Contribution[]).filter(contribution=>contribution.estValide)
+              .slice(0,2);
+
+              this.nbreProjetsTermine = this.toutProjet
+              .filter(projet=>projet.estFini).length
+
+              this.nbreProjetsEnCours = this.toutProjet
+              .filter(projet=>!projet.estFini).length
+
+              
           },
           error:(err)=> {
               console.log(err)
           },
         })
-        this.getGestionnaire
-        console.log(res);
+        
       },
       error:(err)=> {
           console.warn(err);
       },
     });
 
-    this.dataG.demandeContributeurProjet().subscribe({
-        next:(res)=>{
-          this.contributionsList = res.slice(0, 2);
-          console.log(res);
-        },
-        error:(err)=>{
-          console.log(err);
-
-        }
-      })
-
+    
   }
+ 
 
-  //get the gestionnaire
-  getGestionnaire(){
-    this.dashboardgestionnaireservices.getGestionnaire(this.userId).subscribe({
-      next: (result: any) => {
-        this.gestionnaire = result;
-        console.log(result);
-        //get the recents projets sort by date
-        this.projetsRecents = [...this.gestionnaire.projets]
-          .sort(
-            (a, b) =>
-              new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime()
-          )
-          .slice(0, 4);
-
-        // Récupérer toutes les demandes de contributions NON validées de tous ces projets
-        this.demandeContributions = this.projetsRecents
-          .flatMap((projet) =>
-            (projet.demandeContributions ?? [])
-              .filter((demande) => !demande.estValide)
-              .map((demande) => ({
-                id: demande.id,
-                projetNom: projet.titre,
-                contributeurNom: demande.contributeur.nom,
-                dateEnvoi: demande.dateEnvoi,
-                ...demande,
-              }))
-          )
-          .sort((a, b) => b.id - a.id);
-
-        //recupérer les contributions non validés
-        this.contributionsList = this.projetsRecents
-          .flatMap((projet) =>
-            (projet.contributions ?? [])
-              .filter((contributions) => !contributions.estValide)
-              .map((contributions) => ({
-                id: contributions.id,
-                nomProjet: contributions.projet.titre,
-                nomContributeur: contributions.contributeur.nom,
-                prenomContributeur: contributions.contributeur.prenom,
-                nomTache: contributions.tache.nom,
-                estValide: contributions.estValide, // on garde le reste des infos
-              }))
-          )
-          .sort((a, b) => b.id - a.id)
-          .slice(0, 2);
-      },
-      error: (error) =>
-        console.error('Erreur lors de la récupération du gestionnaire', error),
-    });
-    this.dashboardgestionnaireservices.nbEnCours$.subscribe(
-      (nb) => (this.nbreProjetsEnCours = nb)
-    );
-    this.dashboardgestionnaireservices.nbTermines$.subscribe(
-      (nb) => (this.nbreProjetsTermine = nb)
-    );
-  }
+  
 
  
   calendarOptions: CalendarOptions = {

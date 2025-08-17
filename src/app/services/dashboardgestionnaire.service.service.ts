@@ -69,7 +69,7 @@ export class DashboardgestionnaireServiceService {
   }
 
   //Calcul des stats
-  projets: projet[] = [];
+  projets: Projet[] = [];
 
   private nbTerminesSubject = new BehaviorSubject<number>(0);
   private nbEnCoursSubject = new BehaviorSubject<number>(0);

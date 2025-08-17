@@ -8,5 +8,5 @@ import { Contribution } from '../../../models/contribution/contribution';
   styleUrl: './cardcontribution.component.css'
 })
 export class CardcontributionComponent {
-  @Input() contribution!: any
+  @Input() contribution!: Contribution
 }
