@@ -54,6 +54,9 @@ import { IdeesProjetAdminComponent } from './components/admins/idees-projet/idee
 import { MesTachesComponent } from './components/contributeur/mes-taches/mes-taches.component';
 import { MesProjetComponent } from './components/contributeur/mes-projet/mes-projet.component';
 import { MesContributionsComponent } from './components/contributeur/mes-contributions/mes-contributions.component';
+import { porteurProjetGuardGuard } from './guards/porteur-projet-guard.guard';
+import { gestionnaireGuardGuard } from './guards/gestionnaire-guard.guard';
+import { contributeurGuardGuard } from './guards/contributeur-guard.guard';
 
 export const routes: Routes = [
   {
@@ -99,7 +102,7 @@ export const routes: Routes = [
       { path: 'mes_favories', component: ProjetSuiviComponent },
       { path: 'mes_idees', component: IdeesProjetComponent },
       { path: '**', redirectTo: '' },
-    ],
+    ],canActivate:[porteurProjetGuardGuard]
   },
 
   //Les routes pour le Contributeur :
@@ -117,7 +120,7 @@ export const routes: Routes = [
       { path: 'mon_espace', component: AccueilContributeurComponent },
 
       { path: '**', redirectTo: '' },
-    ],
+    ],canActivate:[contributeurGuardGuard]
   },
 
 
@@ -135,10 +138,7 @@ export const routes: Routes = [
       {path:"details_projet",component:ProjetgestionnairedetailComponent},
     {path:"nouvelle_tache",component:TaskFormComponent},
     {path:"detail_tache",component:DetailTacheComponent},
-    //Les autres routes ici ..............
-
-    {path:"**",redirectTo:""}
-  ]},
+  ],canActivate:[gestionnaireGuardGuard]},
 
   // Les routes pour les administrateurs
   { path: 'admin/dashboard', component: DashboardComponent },
@@ -148,5 +148,5 @@ export const routes: Routes = [
   { path: 'admin/projets', component: ProjetsComponent },
   { path: 'admin/badges', component: BadgesComponent },
 
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];

@@ -99,6 +99,7 @@ ngOnInit() {
       // Sécuriser les valeurs
       this.toutProjet = Array.isArray(projets) ? projets : [];
       // 5 projets récents max
+      this.nbreProjetsEnCours = this.toutProjet.length;
       this.projetsRecents = [...this.toutProjet].reverse().slice(0, 5);
 
       // Liste brute des demandes

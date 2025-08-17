@@ -57,7 +57,7 @@
         <div class="stat__icon bg--amber"><i class="ri-team-line"></i></div>
         <div class="stat__content">
           <h4 class="stat__label">Contributions à valider</h4>
-          <div class="stat__value">{{ contributionsList.length || 0 }}</div>
+          <div class="stat__value">{{ demandeContributions.length || 0 }}</div>
         </div>
       </article>
     </section>
@@ -72,10 +72,10 @@
         </div>
 
         <div class="panel__body panel__body--scroll">
-          @for (contributions of contributionsList; track $index) {
+          @for (contributions of demandeContributions; track $index) {
             <app-cardcontribution [contribution]="contributions"></app-cardcontribution>
           }
-          @if (!contributionsList || contributionsList.length === 0) {
+          @if (!demandeContributions || demandeContributions.length === 0) {
             <div class="panel__empty">
               <i class="ri-inbox-line"></i>
               <p>Aucune contribution en attente</p>
