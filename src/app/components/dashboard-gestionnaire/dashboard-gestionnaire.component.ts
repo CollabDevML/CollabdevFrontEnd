@@ -110,7 +110,7 @@ export class DashboardGestionnaireComponent implements OnInit {
 
     this.dataG.demandeContributeurProjet().subscribe({
         next:(res)=>{
-          this.contributionsList = res
+          this.contributionsList = res.slice(0, 2);
           console.log(res);
         },
         error:(err)=>{
