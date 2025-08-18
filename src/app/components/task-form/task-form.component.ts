@@ -101,6 +101,7 @@ export class TaskFormComponent implements OnInit {
   ngOnInit(): void {
     this.idUtilisateur = Number(localStorage.getItem('user_id'));
     this.projet = this.data.dataProjet;
+
     if (this.projet == undefined || this.projet == null) {
       this.route.navigate(['gestionnaire/mon_espace']);
     }
@@ -115,14 +116,18 @@ export class TaskFormComponent implements OnInit {
     });
     this.data
       .trouverUnGestionnaireParsonidutilisateur(this.idUtilisateur)
-      .subscribe((data) => {
-        this.gestionnaire = data;
+      .subscribe({
+        next:(data) => {
+          this.gestionnaire = data;
+          console.log(this.gestionnaire);
+        }
       });
   }
   onSubmit() {
     if (this.taskForm.valid) {
+      const idProjet = Number(localStorage.getItem("id_projet"));
       const tache = {
-        idProjet: Number(this.projet.id),
+        idProjet: idProjet,
         idGestionnaire: this.gestionnaire.id,
         titre: this.taskForm.value.title,
         description: this.taskForm.value.description,
@@ -132,6 +137,7 @@ export class TaskFormComponent implements OnInit {
         idContributeur: 0,
         niveau: this.taskForm.value.niveau,
       };
+      // console.log()
       console.log(tache);
       this.data.addTache(tache).subscribe({
         next: (value) => {
