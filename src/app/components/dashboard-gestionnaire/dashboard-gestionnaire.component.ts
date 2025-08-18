@@ -19,7 +19,8 @@ import { projet } from '../../models/projet/projet';
 import { Demandecontributions } from '../../models/demandecontributions/demandecontributions';
 import { Contribution } from '../../models/contribution/contribution';
 import { DemandescontributionsService } from '../../services/demandescontributions/demandescontributions.service';
-import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerComponent, NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { finalize, forkJoin, switchMap } from 'rxjs';
 
 export interface Projets {
   id:number;
@@ -39,13 +40,12 @@ export interface Projets {
 @Component({
   selector: 'app-dashboard-gestionnaire',
   imports: [
-    NgStyle,
-    NgStyle,
     CardprojetComponent,
     CardcontributionComponent,
     FullCalendarModule,
     PopUpsComponent,
-    CommonModule
+    CommonModule,
+    NgxSpinnerModule
   ],
   templateUrl: './dashboard-gestionnaire.component.html',
   styleUrl: './dashboard-gestionnaire.component.css',
@@ -96,55 +96,46 @@ export class DashboardGestionnaireComponent implements OnInit {
     this.tout = true;
   }
 
-  ngOnInit(){
-    this.spinner.show();
-    this.data.getDataUserById().subscribe({
-      next:(res)=> {
-        this.user = res;
-        this.spinner.hide(),
-        this.dataG.getProjetGestionnaire(res.idGestionnaire).subscribe({
-          next:(projets:any)=> {
-             
-              this.toutProjet = [...projets];
+ngOnInit() {
+  this.spinner.show();
 
-              this.projetsRecents = this.toutProjet
-              .sort(
-                (a, b) =>
-                  new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime()
-              )
-              .slice(0, 4);
+  this.data.getDataUserById().pipe(
+    switchMap((user: any) => {
+      this.user = user;
+      // Lancer en parallèle les 2 appels qui dépendent de l'user:
+      return forkJoin({
+        projets: this.dataG.getProjetGestionnaire(user.idGestionnaire),
+        demandes: this.dataG.demandeContributeurProjet()
+      });
+    }),
+    finalize(() => this.spinner.hide())
+  ).subscribe({
+    next: ({ projets, demandes }) => {
+      // Sécuriser les valeurs
+      this.toutProjet = Array.isArray(projets) ? projets : [];
+      // 5 projets récents max
+      this.nbreProjetsEnCours = this.toutProjet.length;
+      this.projetsRecents = [...this.toutProjet].reverse().slice(0, 5);
 
-              this.demandeContributions = this.toutProjet
-              .reduce((acc, projet)=>acc.concat(projet.demandeContributions),[] as
-              Demandecontributions[]).filter(demande=>!demande.estAccepte)
+      // Liste brute des demandes
+      this.contributionsList = Array.isArray(demandes) ? [...demandes].reverse() : [];
 
-              this.contributionsList = this.toutProjet
-              .reduce((acc, projet)=>acc.concat(projet.listContributions),[] as
-              Contribution[]).filter(contribution=>contribution.estValide)
-              .slice(0,2);
+      // Construire la vue "demandes non acceptées" à partir des projets récents
+      this.contributionsList.forEach((value:any) => {
+        // console.log(value);
+        if (!value.estAccepte) {
+          this.demandeContributions.push(value);
+        }
+      });
 
-              this.nbreProjetsTermine = this.toutProjet
-              .filter(projet=>projet.estFini).length
-
-              this.nbreProjetsEnCours = this.toutProjet
-              .filter(projet=>!projet.estFini).length
-
-              
-          },
-          error:(err)=> {
-              console.log(err)
-          },
-        })
-        
-      },
-      error:(err)=> {
-          console.warn(err);
-      },
-    });
-
-    
-  }
- 
+      // Debug
+      // console.log({ toutProjet: this.toutProjet, projetsRecents: this.projetsRecents, contributionsList: this.contributionsList, demandeContributions: this.demandeContributions });
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
 
   
 
@@ -171,9 +162,11 @@ export class DashboardGestionnaireComponent implements OnInit {
       }
     }
   }
+  idDCV:number = 0;
   openPopups(action: 'accept' | 'decline', demande: any) {
     this.selectedAction = action;
     this.selectedDemande = demande;
+    this.idDCV = demande.id;
     this.ispopupVisible = true;
     console.log('je click');
   }

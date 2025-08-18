@@ -10,30 +10,29 @@
 
       <!-- En-tête de page -->
       <div class="page-header">
-        <button class="btn-icon" aria-label="Retour">
+        <button class="btn-icon" aria-label="Retour" routerLink="../details_projet">
           <i class="ri-arrow-left-s-line"></i>
         </button>
         <div class="title">Détail de la tâche</div>
-        <button class="btn-primary" (click)="voirPlus('dd')">Ajouter un contributeur</button>
+        <button class="btn-primary" (click)="voirPlus(taches.id)">Ajouter un contributeur</button>
       </div>
 
       <!-- Carte Tâche -->
       <section class="task-card">
         <div class="task-header">
-          <h2 class="task-title">Mise en place API Auth</h2>
-          <span class="badge status--en-cours">En cours</span>
+          <h2 class="task-title">{{taches.titre}}</h2>
+          <span class="badge status--en-cours">{{taches.status}}</span>
         </div>
 
         <div class="task-meta">
           <span class="meta-item"><i class="ri-stack-line"></i> Domaine : HEALTHTECH</span>
           <span class="meta-item"><i class="ri-flag-2-line"></i> Priorité : Haute</span>
-          <span class="meta-item"><i class="ri-calendar-line"></i> Début : 12/08/2025</span>
-          <span class="meta-item"><i class="ri-time-line"></i> Échéance : 20/08/2025</span>
+          <span class="meta-item"><i class="ri-calendar-line"></i> Début : {{taches.dateDebut | date:'dd/MM/yyyy'}}</span>
+          <span class="meta-item"><i class="ri-time-line"></i> Échéance : {{taches.dateFin | date:'dd/MM/yyyy'}}</span>
         </div>
 
         <p class="task-description">
-          Implémenter l’API d’authentification (login, refresh token, rôles) et sécuriser les routes.
-          Ajouter la documentation Swagger et des tests de base.
+          {{taches.description}}
         </p>
 
         <div class="task-attachments">
@@ -82,6 +81,50 @@
     <div class="contributors-list">
 
       <!-- Carte contributeur -->
+        @if (ensembleContributeur != undefined) {
+          @for (contrib of ensembleContributeur; track $index) {
+              <div class="contributor">
+                <div class="avatar">{{contrib.contributeur.nom | slice:0.1}}.{{contrib.contributeur.nom | slice:0.1}}</div>
+                <div class="info">
+                  <div class="name">{{contrib.contributeur.nom}}  {{contrib.contributeur.prenom}}</div>
+                  <div class="meta">{{contrib.contributeur.typeProfile}}</div>
+                </div>
+                <div class="actions">
+                  @if (!contrib.estAcceptee) {
+                    <button class="btn-secondary sm"><i class="ri-close-line" (click)="rejeter(contrib.contributeur.id)"></i> Rejeter</button>
+                  }
+                  <button class="btn-primary sm" (click)="assigner(contrib.contributeur.id)"><i class="ri-check-line"></i> Assignez-lui</button>
+                </div>
+              </div>
+          }
+        }
+        @else {
+          <p>Aucun Contributeur Pour ce projet a l'instant !!!</p>
+        }
+      <!--
+      <div class="contributor">
+        <div class="avatar">MK</div>
+        <div class="info">
+          <div class="name">Mariam Keita</div>
+          <div class="meta">Designer • UI/UX, Figma</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
+
+      <div class="contributor">
+        <div class="avatar">TD</div>
+        <div class="info">
+          <div class="name">Tidiane Diallo</div>
+          <div class="meta">Backend • Spring Boot, PostgreSQL</div>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
+          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
+        </div>
+      </div>
       <div class="contributor">
         <div class="avatar">AB</div>
         <div class="info">
@@ -117,7 +160,7 @@
           <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
         </div>
       </div>
-      <!-- Carte contributeur -->
+
       <div class="contributor">
         <div class="avatar">AB</div>
         <div class="info">
@@ -152,44 +195,7 @@
           <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
           <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
         </div>
-      </div>
-
-      <!-- Carte contributeur -->
-      <div class="contributor">
-        <div class="avatar">AB</div>
-        <div class="info">
-          <div class="name">Alpha Barry</div>
-          <div class="meta">Développeur • Angular, NestJS</div>
-        </div>
-        <div class="actions">
-          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
-          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
-        </div>
-      </div>
-
-      <div class="contributor">
-        <div class="avatar">MK</div>
-        <div class="info">
-          <div class="name">Mariam Keita</div>
-          <div class="meta">Designer • UI/UX, Figma</div>
-        </div>
-        <div class="actions">
-          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
-          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
-        </div>
-      </div>
-
-      <div class="contributor">
-        <div class="avatar">TD</div>
-        <div class="info">
-          <div class="name">Tidiane Diallo</div>
-          <div class="meta">Backend • Spring Boot, PostgreSQL</div>
-        </div>
-        <div class="actions">
-          <button class="btn-secondary sm"><i class="ri-close-line"></i> Rejeter</button>
-          <button class="btn-primary sm"><i class="ri-check-line"></i> Accepter</button>
-        </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

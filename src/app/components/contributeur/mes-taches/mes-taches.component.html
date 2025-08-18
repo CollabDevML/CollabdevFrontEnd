@@ -1,0 +1,80 @@
+<!-- mes-taches.component.html -->
+<div class="taches-list">
+  @for (t of taches; track $index) {
+  <div class="tache-item">
+    <div class="tache-head">
+      <h4 class="tache-title">{{ t.titre }}</h4>
+      <span class="badge"
+            [ngClass]="{
+              'success': t.statut === 'TERMINEE',
+              'warn': t.statut === 'EN_RETARD',
+              'info': t.statut === 'EN_COURS'
+            }">
+        {{ t.statut || 'EN_COURS' }}
+      </span>
+    </div>
+
+    <p class="desc">
+      {{ t.description | slice:0:160 }}{{ t.description?.length > 160 ? '…' : '' }}
+    </p>
+
+    <div class="tache-meta">
+      <span><i class="ri-calendar-line"></i> Début : {{ t.dateDebut | date:'dd/MM/yyyy' }}</span>
+      <span><i class="ri-time-line"></i> Fin : {{ t.dateFin | date:'dd/MM/yyyy' }}</span>
+      <span><i class="ri-timer-flash-line"></i> Pièces : {{ t.recompense || 0 }}</span>
+    </div>
+
+    <div class="actions">
+      <button class="btn-outline" (click)="voirDetailTache(t)">
+        <i class="ri-eye-line"></i> Détails
+      </button>
+      <button class="btn-primary" (click)="marquerTerminee(t)">
+        <i class="ri-check-line"></i> Marquer terminée
+      </button>
+    </div>
+  </div>
+  }
+</div>
+<!-- (Optionnel) MODAL DÉTAIL TÂCHE — à réutiliser côté “Mes tâches” -->
+<div class="modal" [class.open]="showTacheDetail">
+  <div class="contenu" role="dialog" aria-modal="true" aria-labelledby="modalTacheTitle">
+    <div class="modal-header">
+      <h3 id="modalTacheTitle">Détail de la tâche</h3>
+      <button class="btn-icon close" aria-label="Fermer" (click)="closeTacheDetail()">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <div class="modal-body grid-two">
+      <div class="bloc">
+        <div class="kv"><span class="k">Titre</span><span class="v">{{ tacheSel?.titre }}</span></div>
+        <div class="kv"><span class="k">Statut</span>
+          <span class="v badge"
+                [ngClass]="{
+                  'success': tacheSel?.statut === 'TERMINEE',
+                  'warn': tacheSel?.statut === 'EN_RETARD',
+                  'info': tacheSel?.statut === 'EN_COURS'
+                }">{{ tacheSel?.statut }}</span>
+        </div>
+        <div class="kv"><span class="k">Pièces</span><span class="v">{{ tacheSel?.recompense || 0 }}</span></div>
+      </div>
+
+      <div class="bloc">
+        <div class="kv"><span class="k">Début</span><span class="v">{{ tacheSel?.dateDebut | date:'dd/MM/yyyy' }}</span></div>
+        <div class="kv"><span class="k">Fin</span><span class="v">{{ tacheSel?.dateFin | date:'dd/MM/yyyy' }}</span></div>
+      </div>
+
+      <div class="bloc span-2">
+        <h4 class="sub">Description</h4>
+        <p class="desc-long">{{ tacheSel?.description }}</p>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" (click)="closeTacheDetail()">Fermer</button>
+      <button class="btn-primary" (click)="marquerTerminee(tacheSel)">
+        <i class="ri-check-line"></i> Marquer terminée
+      </button>
+    </div>
+  </div>
+</div>

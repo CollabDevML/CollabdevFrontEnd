@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="card">
     <div id="left">
         <p>
@@ -15,4 +16,16 @@
             Détails
         </button>
     </div>
+=======
+<div class="card-contribution">
+  <div class="card-left">
+    <p class="projet">Projet : <span>{{ contribution.projetTitre }}</span></p>
+    <p class="contributeur">Contributeur :
+      <span>{{ contribution.contributeurPrenom }} {{ contribution.contributeurNom }}</span>
+    </p>
+  </div>
+  <div class="card-right">
+    <button class="details-btn" (click)="voirDetails(contribution)">Détails</button>
+  </div>
+>>>>>>> main
 </div>

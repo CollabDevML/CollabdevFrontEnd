@@ -9,17 +9,20 @@
       <div class="gauche">
         <div class="date-badge">
           <span class="icon">
-            <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
+            <i
+              class="ri-calendar-2-line"
+              style="color: #334daa; font-size: 20px"
+            ></i>
           </span>
-          {{projet.dateDebut | date:"dd MMM yyyy"}}
+          {{ projet.dateDebut | date : "dd MMM yyyy" }}
         </div>
       </div>
 
       <div class="milieur">
-        <h2 class="titre-page">{{projet.titre}}</h2>
+        <h2 class="titre-page">{{ projet.titre }}</h2>
         <div class="description-card">
           <p>
-            {{projet.description}}
+            {{ projet.description }}
           </p>
         </div>
       </div>
@@ -27,30 +30,41 @@
       <div class="droite">
         <div class="date-badge">
           <span class="icon">
-            <i class="ri-calendar-2-line" style="color:#334DAA; font-size: 20px"></i>
+            <i
+              class="ri-calendar-2-line"
+              style="color: #334daa; font-size: 20px"
+            ></i>
           </span>
-          {{projet.dateFin | date:"dd MMM yyyy"}}
+          {{ projet.dateFin | date : "dd MMM yyyy" }}
         </div>
       </div>
     </div>
 
-
     <div class="bottom-header">
       <div class="niveau">
-        Niveau <span style="color: black;">{{projet.niveauDAcces}}</span>
+        Niveau <span style="color: black">{{ projet.niveauDAcces }}</span>
       </div>
       <div class="contributors">
         <div class="top-line">
-          <i class="ri-group-line" style="font-size: 25px;"></i>
-          <span class="count">{{nbreContributeur}}</span>
+          <i class="ri-group-line" style="font-size: 25px"></i>
+          <span class="count">12</span>
         </div>
         <div class="label">Contributeurs</div>
       </div>
     </div>
 
-    <div class="button">
+    <!-- <div class="button">
       <button class="btn-new-task" routerLink="../nouvelle_tache">
         <i class="ri-add-circle-fill" style="font-size: 20px"></i>
+        <span>Nouvelle tache</span>
+      </button>
+    </div> -->
+    <div class="button">
+      <button class="btn-new-task" (click)="goToTasks(projet.id)">
+        <i
+          class="ri-add-circle-fill"
+          style="color: #334daa; font-size: 20px"
+        ></i>
         <span>Nouvelle tache</span>
       </button>
     </div>
@@ -63,42 +77,45 @@
         <span>Date debut</span>
         <span>Date fin</span>
         <span>Pièces</span>
-        <span style="text-align: center;">État</span>
-        <span >Contributeur</span>
-        <span style="text-align: center;">Action</span>
+        <span style="text-align: center">État</span>
+        <span>Contributeur</span>
+        <span style="text-align: center">Action</span>
       </div>
 
       <!-- LIGNE -->
-      @if (taches && taches.length > 0) {
-        @for (tache of taches; track $index) {
-          <div class="table-row" style="cursor: pointer;" (click)="detailTache(tache)">
-            <span class="bold">{{tache.titre}}</span>
-            <span>{{tache.description}}</span>
-            <span>{{tache.dateDebut | date:"dd MMM yyyy"}}</span>
-            <span>{{tache.dateFin | date:"dd MMM yyyy"}}</span>
-            <span>{{tache.piecesAGagner}}</span>
-            <span style="border-radius: 12px;">
-              <ng-container *ngIf="tache.contributeur; else pasDeContrib">
-                <span *ngIf="!tache.estFini" class="etat-badge en-cours">En cours</span>
-                <span *ngIf="tache.estFini" class="etat-badge terminé">Terminé</span>
-              </ng-container>
-              <ng-template #pasDeContrib>
-                <span class="etat-badge a-faire">A faire</span>
-              </ng-template>
-            </span>
+      @if (taches && taches.length > 0) { @for (tache of taches; track $index) {
+      <div
+        class="table-row"
+        style="cursor: pointer"
+        (click)="detailTache(tache)"
+      >
+        <span class="bold">{{ tache.titre }}</span>
+        <span>{{ tache.description }}</span>
+        <span>{{ tache.dateDebut | date : "dd MMM yyyy" }}</span>
+        <span>{{ tache.dateFin | date : "dd MMM yyyy" }}</span>
+        <span>{{ tache.piecesAGagner }}</span>
+        <span style="border-radius: 12px">
+          <ng-container *ngIf="tache.contributeur; else pasDeContrib">
+            <span *ngIf="!tache.estFini" class="etat-badge en-cours"
+              >En cours</span
+            >
+            <span *ngIf="tache.estFini" class="etat-badge terminé"
+              >Terminé</span
+            >
+          </ng-container>
+          <ng-template #pasDeContrib>
+            <span class="etat-badge a-faire">A faire</span>
+          </ng-template>
+        </span>
 
-            <span class="span-center" (click)="toProfil(tache.status)">
-              👤
-            </span>
-            <span class="span-center" (click)="togglePopup()">
-              <i class="ri-more-fill"></i>
-            </span>
-          </div>
-        }
-      }
+        <span class="span-center" (click)="toProfil(tache.status)"> 👤 </span>
+        <span class="span-center" (click)="togglePopup()">
+          <i class="ri-more-fill"></i>
+        </span>
+      </div>
+      } }
     </div>
-    <app-popup-options
-    *ngIf="showPopup"
-    (close)="showPopup = false">
-  </app-popup-options>
+    <app-popup-options *ngIf="showPopup" (close)="showPopup = false">
+    </app-popup-options>
+  </div>
 </div>
