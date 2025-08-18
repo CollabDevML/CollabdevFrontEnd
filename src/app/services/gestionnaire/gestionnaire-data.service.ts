@@ -13,6 +13,7 @@ import { GestionnaireDto } from '../../models/gestionnaire/gestionnaireDTo';
 })
 export class GestionnaireDataService {
   dataProjet!: projet;
+
   tacheData: any;
   constructor(private http: HttpClient, private data: DataService) {}
   verifierIdProjet() {
@@ -35,6 +36,11 @@ export class GestionnaireDataService {
     return this.data.getData(Env.PROJET_GESTIONNAIRE + id + '/' + 'projets');
   }
 
+  listerProjet() {
+    const idProjet = Number(localStorage.getItem('id_projet'));
+    return this.data.getData(Env.PROJET + '/v2/' + idProjet);
+  }
+
   //Pour l'ajout des projets dans la base de donnee :
   addProjet(projet: any) {
     return this.data.postData(Env.PROJET, projet);
@@ -47,6 +53,12 @@ export class GestionnaireDataService {
 
   listeTache(id: number) {
     return this.data.getData(Env.TACHE + '?projetId=' + id);
+  }
+
+  //Pour lister les tacher par id:
+  tacheById(id: number) {
+    const idProjet = Number(localStorage.getItem('id_projet'));
+    return this.data.getData(Env.TACHE + '/' + id + '?projetId=' + idProjet);
   }
 
   //Pour lister les contributeurs:

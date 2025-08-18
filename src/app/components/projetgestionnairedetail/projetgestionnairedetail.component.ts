@@ -16,62 +16,62 @@ interface DisplayTask extends Tache {
 }
 @Component({
   selector: 'app-projetgestionnairedetail',
-  imports: [
-    PopupOptionsComponent,
-    CommonModule,
-    RouterLink
-],
+  imports: [PopupOptionsComponent, CommonModule, RouterLink],
   templateUrl: './projetgestionnairedetail.component.html',
-  styleUrl: './projetgestionnairedetail.component.css'
+  styleUrl: './projetgestionnairedetail.component.css',
 })
 export class ProjetgestionnairedetailComponent {
   projet!: projet;
   public taches: DisplayTask[] = [];
   //injection de dépendances
-  projetService:ProjetServiceService = inject(ProjetServiceService)
-  sidebarOpen:boolean = true;
+  projetService: ProjetServiceService = inject(ProjetServiceService);
+  sidebarOpen: boolean = true;
   showPopup = false;
-  contributeurService: ContributeurDataService = inject(ContributeurDataService)
+  contributeurService: ContributeurDataService = inject(
+    ContributeurDataService
+  );
 
-  gestionnaireService: GestionnaireDataService = inject(GestionnaireDataService);
+  gestionnaireService: GestionnaireDataService = inject(
+    GestionnaireDataService
+  );
 
   route: Router = inject(Router);
 
+  constructor(
+    private tacheService: TacheService,
+    private data: GestionnaireDataService
+  ) {}
 
-
-  constructor(private tacheService: TacheService,private data:GestionnaireDataService) {}
-
-  changerEtatSidebar(value: boolean){
-    this.sidebarOpen = value
+  changerEtatSidebar(value: boolean) {
+    this.sidebarOpen = value;
   }
 
   ngOnInit() {
     this.projet = this.projetService.getProjet();
-    const idProjet= Number(localStorage.getItem("id_projet"));
+    const idProjet = Number(localStorage.getItem('id_projet'));
     if (idProjet == undefined || idProjet == null) {
-      this.route.navigate(["gestionnaire/mon_espace"])
+      this.route.navigate(['gestionnaire/mon_espace']);
     }
 
     this.gestionnaireService.dataProjet = this.projet;
     this.gestionnaireService.listerProjet().subscribe({
-      next:(res)=>{
+      next: (res) => {
         this.projet = res;
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
     this.loadTaches();
   }
 
-
-  loadTaches(){
+  loadTaches() {
     // this.data.verifierIdProjet();
-    const idProjet= Number(localStorage.getItem("id_projet"));
+    const idProjet = Number(localStorage.getItem('id_projet'));
     this.data.listeTache(idProjet).subscribe({
       next: (taches) => {
-        console.log(taches)
-        this.taches = taches.map((task: { estFini: any; }) => ({
+        console.log(taches);
+        this.taches = taches.map((task: { estFini: any }) => ({
           ...task,
           status: task.estFini ? 'Terminée' : 'À faire',
         }));
@@ -79,28 +79,25 @@ export class ProjetgestionnairedetailComponent {
       },
       error: (error) => {
         console.log('Erreur lors du chargement : ' + error);
-      }
+      },
     });
   }
 
-  toProfil(contributeur:any){
-    this.contributeurService.setProjet(contributeur)
+  toProfil(contributeur: any) {
+    this.contributeurService.setProjet(contributeur);
   }
-
 
   togglePopup() {
     this.showPopup = !this.showPopup;
   }
 
-
   date(dat: string) {
     return new Date(dat);
   }
 
-
   detailTache(tache: DisplayTask) {
     this.data.tacheData = tache;
-    localStorage.setItem("id_tache",String(tache.id));
+    localStorage.setItem('id_tache', String(tache.id));
     this.route.navigate(['gestionnaire/detail_tache']);
   }
 }
