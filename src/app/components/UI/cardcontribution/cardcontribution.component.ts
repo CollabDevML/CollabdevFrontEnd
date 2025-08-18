@@ -8,5 +8,8 @@ import { Contribution } from '../../../models/contribution/contribution';
   styleUrl: './cardcontribution.component.css'
 })
 export class CardcontributionComponent {
+voirDetails(arg0: any) {
+throw new Error('Method not implemented.');
+}
   @Input() contribution!: any
 }

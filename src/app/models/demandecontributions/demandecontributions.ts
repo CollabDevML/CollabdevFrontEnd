@@ -3,7 +3,7 @@ export class Demandecontributions {
     estAcceptee!: boolean;
     dateEnvoi !: string;
     profileContributeur !: string;
-    projetNom!: string;
+    projetTitre!: string;
   contributeurNom!: string;
-  
+
 }

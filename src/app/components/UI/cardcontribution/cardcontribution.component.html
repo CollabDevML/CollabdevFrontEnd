@@ -1,18 +1,11 @@
-<div class="card">
-    <div id="left">
-        <p>
-            Projet: {{contribution.projetTitre}}
-        </p>
-        <p>
-            Contributeur: {{contribution.contributeurPrenom}} {{contribution.contributeurNom}}
-        </p>
-        <p>
-            <!-- Tache: {{contribution.nomTache}} -->
-        </p>
-    </div>
-    <div id="right">
-        <button>
-            Détails
-        </button>
-    </div>
+<div class="card-contribution">
+  <div class="card-left">
+    <p class="projet">Projet : <span>{{ contribution.projetTitre }}</span></p>
+    <p class="contributeur">Contributeur :
+      <span>{{ contribution.contributeurPrenom }} {{ contribution.contributeurNom }}</span>
+    </p>
+  </div>
+  <div class="card-right">
+    <button class="details-btn" (click)="voirDetails(contribution)">Détails</button>
+  </div>
 </div>

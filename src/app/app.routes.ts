@@ -45,6 +45,12 @@ import { DetailleProjetComponent } from './components/contributeur/detaille/deta
 import { ProfilComponent } from './components/profil/profil.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { DetailTacheComponent } from './components/gestionnaire/detail-tache/detail-tache.component';
+import { MesTachesComponent } from './components/contributeur/mes-taches/mes-taches.component';
+import { MesProjetComponent } from './components/contributeur/mes-projet/mes-projet.component';
+import { MesContributionsComponent } from './components/contributeur/mes-contributions/mes-contributions.component';
+import { porteurProjetGuardGuard } from './guards/porteur-projet-guard.guard';
+import { gestionnaireGuardGuard } from './guards/gestionnaire-guard.guard';
+import { contributeurGuardGuard } from './guards/contributeur-guard.guard';
 
 export const routes: Routes = [
   {
@@ -74,7 +80,6 @@ export const routes: Routes = [
       { path: '**', redirectTo: '' },
     ],
   },
-  
 
   //Les routes pour le Porteur de projet
   {
@@ -86,8 +91,10 @@ export const routes: Routes = [
       { path: 'mes_projets', component: MesIdeeProjetComponent },
       { path: 'mes_favories', component: ProjetSuiviComponent },
       { path: 'mes_idees', component: IdeesProjetComponent },
+      { path: 'profil', component: ProfilComponent },
       { path: '**', redirectTo: '' },
     ],
+    canActivate: [porteurProjetGuardGuard],
   },
 
   //Les routes pour le Contributeur :
@@ -96,13 +103,22 @@ export const routes: Routes = [
     component: IndexContributeurComponent,
     children: [
       { path: '', component: AccueilComponent },
-      { path: 'mes_contributions', component: Contributeurs2Component },
+      {
+        path: 'mes_contributions',
+        component: Contributeurs2Component,
+        children: [
+          { path: '', component: MesProjetComponent },
+          { path: 'projets', component: MesProjetComponent },
+          { path: 'taches', component: MesTachesComponent },
+          { path: 'newContribution', component: MesContributionsComponent },
+        ],
+      },
       { path: 'mon_espace', component: AccueilContributeurComponent },
-
+      { path: 'profil', component: ProfilComponent },
       { path: '**', redirectTo: '' },
     ],
+    canActivate: [contributeurGuardGuard],
   },
-
 
   //Les routes pour le Gestionnaire :
   {
@@ -111,40 +127,21 @@ export const routes: Routes = [
     children: [
       { path: '', component: AccueilComponent },
       { path: 'accueil', component: AccueilComponent },
-      { path: 'mes_idees', component: MesIdeeProjetComponent },
+      { path: 'mes_idees', component: IdeesProjetComponent },
       { path: 'mon_espace', component: DashboardGestionnaireComponent },
       { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
       { path: 'nouveau_projet', component: FormulaireProjetComponent },
-      {path:"details_projet",component:ProjetgestionnairedetailComponent},
-    {path:"nouvelle_tache",component:TaskFormComponent},
-    {path:"detail_tache",component:DetailTacheComponent},
-    //Les autres routes ici ..............
+      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
+      { path: 'nouvelle_tache/:idProjet/tasks', component: TaskFormComponent },
+      { path: 'detail_tache', component: DetailTacheComponent },
+      { path: 'profil', component: ProfilComponent },
+      //Les autres routes ici ..............
 
-    {path:"**",redirectTo:""}
-  ]},
+      { path: '**', redirectTo: '' },
+    ],
+    canActivate: [gestionnaireGuardGuard],
+  },
 
-  { path: 'dashboard', component: DashboardGestionnaireComponent },
-  { path: 'card-contribution', component: CardcontributionComponent },
-  { path: 'header-barre', component: RecherchebarreComponent },
-  { path: 'sidebargestionnaire', component: SidebargestionnaireComponent },
-  { path: 'cardprojet', component: CardprojetComponent },
-  { path: 'popup', component: PopUpsComponent },
-  { path: 'accueil', component: AccueilComponent },
-
-  { path: 'profil', component: ProfilComponent },
-  { path: 'projet-details', component: ProjetgestionnairedetailComponent },
-
-  { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
-  { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
-  { path: 'header-barre', component: RecherchebarreComponent },
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
-  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
-  { path: 'detailCommentaire', component: DetailCommentaireComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
-  { path: 'detailProjet', component: DetailleProjetComponent },
-  { path: 'formulaireProjet', component: FormulaireProjetComponent },
-  { path: 'pop-options', component: PopupOptionsComponent },
   { path: '**', component: PageNotFoundComponent },
  
 ];
