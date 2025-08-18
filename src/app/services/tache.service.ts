@@ -29,16 +29,16 @@ export interface ResponseTache {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TacheService {
-
-  constructor(private data:DataService) { }
-  listeTache() {
-    return this.data.getData(Env.TACHE);
+  constructor(private data: DataService, private http: HttpClient) {}
+  listeTache(projetId: number): Observable<Tache[]> {
+    const params = new HttpParams().set('projetId', projetId.toString());
+    return this.http.get<Tache[]>(Env.TACHE, { params });
   }
 
-  getTasksById(tacheId:any): Observable<Tache> {
+  getTasksById(tacheId: any): Observable<Tache> {
     return this.data.getById(Env.TACHE, tacheId);
   }
 }

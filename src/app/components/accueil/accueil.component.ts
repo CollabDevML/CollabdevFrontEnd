@@ -8,11 +8,11 @@ import { RechercheService, ResultatRecherche } from '../../services/recherche.se
 import { Route, Router } from '@angular/router';
 import { RecherchebarreService } from '../../services/recherchebarre.service';
 import { RecherchebarreComponent } from '../UI/recherchebarre/recherchebarre.component';
-import { forkJoin, of } from 'rxjs'; // Ajout de forkJoin et of pour la recherche
-
+import { forkJoin, of } from 'rxjs';
+import { CommonModule } from '@angular/common'; // 
 @Component({
   selector: 'app-accueil',
-  imports: [ElapsedTimePipe, FormsModule, RecherchebarreComponent],
+  imports: [ElapsedTimePipe, FormsModule, RecherchebarreComponent, CommonModule], //
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css',
 })
@@ -53,6 +53,7 @@ export class AccueilComponent implements OnInit {
     this.accueilService
       .getRecommandationByideeProjet(this.users_id)
       .subscribe((data) => {
+        console.log("Données reçues pour les idées de projets:", data); // Ajout pour le débogage
         this.originalIdeeProjets = data.map((idee: any) => ({
           ...idee,
           datePublication: new Date(idee.datePublication)
@@ -65,6 +66,7 @@ export class AccueilComponent implements OnInit {
     this.accueilService
       .getRecommandationByProjet(this.users_id)
       .subscribe((data) => {
+        console.log("Données reçues pour les projets:", data); // Ajout pour le débogage
         this.originalProjets = data;
         // Initialisation de la liste affichée
         this.projets = this.originalProjets;

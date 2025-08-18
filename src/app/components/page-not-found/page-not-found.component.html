@@ -1,4 +1,4 @@
-<div class="not-found">
+<!-- <div class="not-found">
   <div class="not-found__content">
     <h1>404</h1>
     <h2>Oups, page introuvable</h2>
@@ -10,6 +10,64 @@
   </div>
 
   <div class="not-found__image">
-    <img src="assets/img/404-illustration.png" alt="Page non trouvée" />
+    <img src="pageNotFound.png" alt="Page non trouvée" />
   </div>
-</div>
+</div> -->
+
+<section class="notfound">
+  <!-- Colonne gauche : texte + actions -->
+  <div class="nf-left">
+    <div class="nf-badge">Erreur <span>404</span></div>
+
+    <h1 class="nf-title">
+      Oups… page introuvable
+    </h1>
+
+    <p class="nf-text">
+      La ressource que vous cherchez n’existe pas ou a été déplacée.
+      Vérifiez l’URL ou revenez vers l’accueil pour continuer votre navigation.
+    </p>
+
+    <div class="nf-actions">
+      <a class="btn-primary" routerLink="/">⟵ Retour à l’accueil</a>
+      <a class="btn-ghost" routerLink="/page-visiteur">Explorer les projets</a>
+    </div>
+
+    <!-- mini stats décoratives -->
+    <div class="nf-stats">
+      <div class="stat">
+        <div class="icon bg-blue"><i class="ri-folder-2-line"></i></div>
+        <div>
+          <p class="label">Projets actifs</p>
+          <p class="val">120+</p>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="icon bg-amber"><i class="ri-team-line"></i></div>
+        <div>
+          <p class="label">Contributeurs</p>
+          <p class="val">800+</p>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="icon bg-green"><i class="ri-thumb-up-line"></i></div>
+        <div>
+          <p class="label">Contributions</p>
+          <p class="val">3k+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nf-right">
+    <div class="artboard">
+      <img src="pageNotFound.png" alt="Équipe qui collabore">
+      <div class="float-404">
+        <span>404</span>
+      </div>
+      <div class="chip code">&lt;/&gt;</div>
+      <div class="chip gear"><i class="ri-settings-3-line"></i></div>
+      <div class="chip note"><i class="ri-sticky-note-line"></i></div>
+    </div>
+  </div>
+</section>
