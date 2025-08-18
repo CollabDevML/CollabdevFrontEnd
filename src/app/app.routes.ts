@@ -133,6 +133,34 @@ export const routes: Routes = [
 
     {path:"**",redirectTo:""}
   ],canActivate:[gestionnaireGuardGuard]},
-  { path: '**', component: PageNotFoundComponent },
- 
-];
+
+
+  { path: 'dashboard', component: DashboardGestionnaireComponent },
+  { path: 'card-contribution', component: CardcontributionComponent },
+  { path: 'header-barre', component: RecherchebarreComponent },
+  { path: 'sidebargestionnaire', component: SidebargestionnaireComponent },
+  { path: 'cardprojet', component: CardprojetComponent },
+  { path: 'popup', component: PopUpsComponent },
+  { path: 'accueil', component: AccueilComponent },
+
+  { path: 'profil', component: ProfilComponent },
+  { path: 'projet-details', component: ProjetgestionnairedetailComponent },
+
+  { path: 'porteurProjet', component: PropositionIdeeProjetComponent },
+  { path: 'porteurProjetListe', component: ListeIdeeProjetComponent },
+  { path: 'header-barre', component: RecherchebarreComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'porteurProjetSuivi', component: ProjetSuiviComponent },
+  { path: 'porteurProjetMesIdee', component: MesIdeeProjetComponent },
+  { path: 'detailCommentaire', component: DetailCommentaireComponent },
+  { path: 'formulaireProjet', component: FormulaireProjetComponent },
+  { path: 'detailProjet', component: DetailleProjetComponent },
+  { path: 'formulaireProjet', component: FormulaireProjetComponent },
+  { path: 'pop-options', component: PopupOptionsComponent },
+  // Routes pour la navigation de la barre de recherche
+{ path: 'projets/:id', component: ProjetgestionnairedetailComponent },
+{ path: 'idees/:id', component:  IdeesProjetComponent },
+{ path: 'utilisateurs/:id', component: ProfilComponent },
+
+]
+
