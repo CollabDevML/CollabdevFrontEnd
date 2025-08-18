@@ -103,7 +103,8 @@ export const routes: Routes = [
       { path: 'mes_favories', component: ProjetSuiviComponent },
       { path: 'mes_idees', component: IdeesProjetComponent },
       { path: '**', redirectTo: '' },
-    ],canActivate:[porteurProjetGuardGuard]
+    ],
+    canActivate: [porteurProjetGuardGuard],
   },
 
   //Les routes pour le Contributeur :
@@ -112,33 +113,42 @@ export const routes: Routes = [
     component: IndexContributeurComponent,
     children: [
       { path: '', component: AccueilComponent },
-      { path: 'mes_contributions', component: Contributeurs2Component,children:[
-        {path:'',component:MesProjetComponent},
-        {path:'projets',component:MesProjetComponent},
-        {path:'taches',component:MesTachesComponent},
-        {path:'newContribution',component:MesContributionsComponent}
-      ] },
+      {
+        path: 'mes_contributions',
+        component: Contributeurs2Component,
+        children: [
+          { path: '', component: MesProjetComponent },
+          { path: 'projets', component: MesProjetComponent },
+          { path: 'taches', component: MesTachesComponent },
+          { path: 'newContribution', component: MesContributionsComponent },
+        ],
+      },
       { path: 'mon_espace', component: AccueilContributeurComponent },
 
       { path: '**', redirectTo: '' },
-    ],canActivate:[contributeurGuardGuard]
+    ],
+    canActivate: [contributeurGuardGuard],
   },
 
-
   //Les routes pour le Gestionnaire :
-  {path:"gestionnaire",component:IndexGestionnaireComponent,children:[
-    {path:"",component:AccueilComponent},
-    {path:"accueil",component:AccueilComponent},
-    {path:"mes_idees",component:IdeesProjetComponent},
-    {path:"mon_espace",component:DashboardGestionnaireComponent},
-    {path:"nouvelle_idee",component:PropositionIdeeProjetComponent},
-    {path:"nouveau_projet",component:FormulaireProjetComponent},
-    {path:"details_projet",component:ProjetgestionnairedetailComponent},
-    {path:"nouvelle_tache",component:TaskFormComponent},
-    {path:"detail_tache",component:DetailTacheComponent},
-    //Les autres routes ici ..............
+  {
+    path: 'gestionnaire',
+    component: IndexGestionnaireComponent,
+    children: [
+      { path: '', component: AccueilComponent },
+      { path: 'accueil', component: AccueilComponent },
+      { path: 'mes_idees', component: IdeesProjetComponent },
+      { path: 'mon_espace', component: DashboardGestionnaireComponent },
+      { path: 'nouvelle_idee', component: PropositionIdeeProjetComponent },
+      { path: 'nouveau_projet', component: FormulaireProjetComponent },
+      { path: 'details_projet', component: ProjetgestionnairedetailComponent },
+      { path: 'nouvelle_tache/:idProjet/tasks', component: TaskFormComponent },
+      { path: 'detail_tache', component: DetailTacheComponent },
+      //Les autres routes ici ..............
 
-    {path:"**",redirectTo:""}
-  ],canActivate:[gestionnaireGuardGuard]},
+      { path: '**', redirectTo: '' },
+    ],
+    canActivate: [gestionnaireGuardGuard],
+  },
   { path: '**', component: PageNotFoundComponent },
 ];

@@ -6,7 +6,7 @@ import { projet } from '../../models/projet/projet';
 import { ContributeurDataService } from '../../services/contributeur/contributeur-data.service';
 import { PopupOptionsComponent } from '../popup-options/popup-options.component';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { GestionnaireDataService } from '../../services/gestionnaire/gestionnaire-data.service';
 import { Tache } from '../../models/tache/tache';
 import { TacheService } from '../../services/tache.service';
@@ -16,7 +16,7 @@ interface DisplayTask extends Tache {
 }
 @Component({
   selector: 'app-projetgestionnairedetail',
-  imports: [PopupOptionsComponent, CommonModule, RouterLink],
+  imports: [PopupOptionsComponent, CommonModule],
   templateUrl: './projetgestionnairedetail.component.html',
   styleUrl: './projetgestionnairedetail.component.css',
 })
@@ -66,9 +66,9 @@ export class ProjetgestionnairedetailComponent {
   }
 
   loadTaches() {
-    // this.data.verifierIdProjet();
-    const idProjet = Number(localStorage.getItem('id_projet'));
-    this.data.listeTache(idProjet).subscribe({
+    this.data.verifierIdProjet();
+    // const idProjet = Number(localStorage.getItem('id_projet'));
+    this.data.listeTache(this.data.dataProjet.id).subscribe({
       next: (taches) => {
         console.log(taches);
         this.taches = taches.map((task: { estFini: any }) => ({
@@ -99,5 +99,9 @@ export class ProjetgestionnairedetailComponent {
     this.data.tacheData = tache;
     localStorage.setItem('id_tache', String(tache.id));
     this.route.navigate(['gestionnaire/detail_tache']);
+  }
+
+  goToTasks(projetId: number) {
+    this.route.navigate(['gestionnaire/nouvelle_tache', projetId, 'tasks']);
   }
 }

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { GestionnaireDataService } from '../../services/gestionnaire/gestionnaire-data.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { projet } from '../../models/projet/projet';
 import { routes } from '../../app.routes';
 import { ToastrService } from 'ngx-toastr';
@@ -61,11 +61,14 @@ export class TaskFormComponent implements OnInit {
   idGestionnaire!: number;
   idUtilisateur!: number;
   contributeurs!: Contributeur[];
+
+  projetId!: number;
   constructor(
     private fb: FormBuilder,
     private data: GestionnaireDataService,
     private route: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: ActivatedRoute
   ) {
     this.taskForm = this.fb.group(
       {
@@ -99,6 +102,9 @@ export class TaskFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.projetId = Number(this.router.snapshot.paramMap.get('idProjet'));
+    console.log('ID projet reçu :', this.projetId);
+
     this.idUtilisateur = Number(localStorage.getItem('user_id'));
     this.projet = this.data.dataProjet;
 
@@ -117,17 +123,17 @@ export class TaskFormComponent implements OnInit {
     this.data
       .trouverUnGestionnaireParsonidutilisateur(this.idUtilisateur)
       .subscribe({
-        next:(data) => {
+        next: (data) => {
           this.gestionnaire = data;
           console.log(this.gestionnaire);
-        }
+        },
       });
   }
   onSubmit() {
     if (this.taskForm.valid) {
-      const idProjet = Number(localStorage.getItem("id_projet"));
+      // const idProjet = Number(localStorage.getItem("id_projet"));
       const tache = {
-        idProjet: idProjet,
+        idProjet: this.projetId,
         idGestionnaire: this.gestionnaire.id,
         titre: this.taskForm.value.title,
         description: this.taskForm.value.description,
@@ -143,7 +149,7 @@ export class TaskFormComponent implements OnInit {
         next: (value) => {
           console.log(value);
           this.toastr.success('Tache ajouter avec succès !!!!', 'create');
-          this.route.navigate(['gestionnaire/mon_espace']);
+          this.route.navigate(['gestionnaire/details_projet']);
         },
         error: (err) => {
           this.toastr.error("Erreur lors de l'enregistrement !!!", 'erreur');
