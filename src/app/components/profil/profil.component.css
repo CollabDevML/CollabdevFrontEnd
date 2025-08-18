@@ -125,7 +125,9 @@ app-side-bar {
   font-weight: 600;
   color: #222;
 }
-
+.section-title {
+  font-size: 1.6rem;
+}
 /* Contributions */
 .contribution-item {
   display: flex;
@@ -145,41 +147,37 @@ app-side-bar {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
 }
-
-/* Badges */
-.badge-container {
+.badges-container {
   display: flex;
-  gap: 20px;
-  margin: 20px 0;
+  gap: 50px; /* espace entre les badges */
+  flex-wrap: wrap; /* passe à la ligne si trop de badges */
+  justify-content: flex-start; /* alignement horizontal */
+  padding-top: 8px;
 }
 
-.badge {
+.badge-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* image au-dessus, nom en dessous */
   align-items: center;
-  gap: 5px;
+  text-align: center;
+  width: 100px; /* taille fixe pour chaque badge */
 }
 
-.badge-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #ccc;
-  opacity: 0.3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 18px;
+.badge-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* conserve proportions */
+  margin-bottom: 8px;
 }
 
-.badge.achieved .badge-icon {
-  opacity: 1;
+.badge-name {
+  font-size: 0.9rem;
+  font-weight: bold;
 }
-
-.badge-label {
-  font-size: 12px;
-  color: #444;
+.idea-icon {
+  color: gold; /* jaune */
+  margin-right: 8px; /* espace entre l’icône et le texte */
+  font-size: 25px;
 }
 
 /* Avis */

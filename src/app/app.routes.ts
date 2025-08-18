@@ -65,6 +65,7 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'idees-projet', component: IdeesProjetComponent },
   { path: 'idees-projet/proposer', component: PropositionIdeeProjetComponent },
+   { path: 'details_projet', component: DetailleProjetComponent },
 
   //Les routes concernants l'inscription :
   {
@@ -140,5 +141,7 @@ export const routes: Routes = [
     ],
     canActivate: [gestionnaireGuardGuard],
   },
+
   { path: '**', component: PageNotFoundComponent },
+ 
 ];

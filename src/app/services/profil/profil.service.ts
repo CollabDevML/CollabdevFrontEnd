@@ -91,7 +91,7 @@ export class UtilisateurService {
     let url = '';
     switch (role) {
       case 'GESTIONNAIRE':
-        url = `${this.apiRoot}/gestionnaires/${id}/projets`;
+        url = `${this.apiRoot}/gestionnaires/${profilId}/projets`;
         break;
       case 'CONTRIBUTEUR':
         if (!profilId) {
@@ -99,7 +99,12 @@ export class UtilisateurService {
         }
         url = `${this.apiRoot}/utilisateurs/contributeurs/projets/${profilId}`;
         break;
+
       case 'PORTEUR_PROJET':
+        //  On va chercher ses idées de projets proposées
+        url = `${this.apiRoot}/utilisateurs/${id}/idees-projet`;
+        break;
+
       default:
         return of([]);
     }
@@ -115,5 +120,11 @@ export class UtilisateurService {
   updatePorteurProjet(profilId: number, utilisateurPayload: any) {
     const url = `${this.apiRoot}/utilisateurs/porteurs-projet/${profilId}`;
     return this.http.put<any>(url, utilisateurPayload);
+  }
+
+  //logique pour afficher les badges d'accomplissement:
+  getBadgesByContributeur(idContributeur: number): Observable<any[]> {
+    const url = `${this.apiRoot}/utilisateurs/contributeurs/${idContributeur}/obtentions-badge`;
+    return this.http.get<any[]>(url).pipe(catchError(() => of([])));
   }
 }

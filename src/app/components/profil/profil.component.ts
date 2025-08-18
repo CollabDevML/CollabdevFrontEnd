@@ -17,15 +17,23 @@ export class ProfilComponent implements OnInit {
   utilisateur!: Utilisateur;
   idUtilisateur = 1; // valeur par défaut, sera remplacée par l'ID du localStorage
   // Préférences retirées du flux d'édition
+  badges: any[] = [];
+  badgeImages: { [key: string]: string } = {
+    NOOB: 'Badge 1.png',
+    'PETIT CONTRIBUTEUR': 'Badge 2.png',
+    CONTRIBUTEUR: 'Badge 3.png',
+    EXPERT: 'Badge 4.png',
+    MAÎTRE: 'Badge 5.png',
+  };
   projets: any[] = []; // <-- initialisation du tableau projets
   role: string | null = '';
   profilId?: number;
   isEditOpen = false;
   // Champs de saisie pour l'édition
-  formEdit: { prenom: string; nom: string; email: string; genre?: string } = {
+  formEdit: { prenom: string; nom: string; genre?: string } = {
     prenom: '',
     nom: '',
-    email: '',
+    // email: '',
     genre: undefined,
   };
 
@@ -49,7 +57,7 @@ export class ProfilComponent implements OnInit {
           this.formEdit = {
             prenom: this.utilisateur.prenom,
             nom: this.utilisateur.nom,
-            email: this.utilisateur.email,
+            //email: this.utilisateur.email,
             genre: this.toShortGenre(this.utilisateur.genre),
           };
           // Préférences non éditées ici
@@ -66,11 +74,28 @@ export class ProfilComponent implements OnInit {
                 next: (projets) => (this.projets = projets || []),
                 error: () => (this.projets = []),
               });
+            if (this.role === 'CONTRIBUTEUR' && this.profilId) {
+              this.utilisateurService
+                .getBadgesByContributeur(this.profilId)
+                .subscribe({
+                  next: (data) => {
+                    this.badges = data.map((b) => ({
+                      nom: b.titreBadge,
+                      imageUrl: this.badgeImages[b.titreBadge.trim()],
+                    }));
+                  },
+                  error: (err) => {
+                    console.error('Erreur chargement badges', err);
+                    this.badges = [];
+                  },
+                });
+            }
           }
         },
         error: (err) => console.error(err),
       });
   }
+
   modifierProfil(): void {}
   // Retrait de la mise à jour des préférences dans ce modal
 
@@ -90,7 +115,7 @@ export class ProfilComponent implements OnInit {
       id: this.utilisateur.id,
       prenom: this.formEdit.prenom,
       nom: this.formEdit.nom,
-      email: this.formEdit.email,
+      //email: this.formEdit.email,
       genre: this.toLongGenre(this.formEdit.genre || ''),
     } as any;
 
@@ -169,4 +194,5 @@ export class ProfilComponent implements OnInit {
         return short || '';
     }
   }
+  // ✅ Ajout de la propriété badges
 }
