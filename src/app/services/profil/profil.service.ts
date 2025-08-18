@@ -91,7 +91,7 @@ export class UtilisateurService {
     let url = '';
     switch (role) {
       case 'GESTIONNAIRE':
-        url = `${this.apiRoot}/gestionnaires/${id}/projets`;
+        url = `${this.apiRoot}/gestionnaires/${profilId}/projets`;
         break;
       case 'CONTRIBUTEUR':
         if (!profilId) {
