@@ -1,1 +1,65 @@
-<p>utilisateurs works!</p>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Chargement... </p></ngx-spinner>
+
+<div class="principal-container">
+    <div class="top-container">
+        <div class="menu-title-container">
+            Utilisateurs
+        </div>
+        <div></div>
+        <div class="users-stats-container">
+            <div class="total-container">
+                <div class="total-text">
+                    Total
+                </div>
+                <div class="total-count">
+                    {{ stats.usersCount.contributeurs + stats.usersCount.porteursProjet + stats.usersCount.gestionnaires }}
+                </div>
+            </div>
+            <div class="porteurs-container">
+                <div class="porteurs-text">
+                    Porteurs de projet
+                </div>
+                <div class="porteurs-count">
+                    {{ stats.usersCount.porteursProjet }}
+                </div>
+            </div>
+            <div class="contributeurs-container">
+                 <div class="contributeurs-text">
+                    Contributeurs
+                </div>
+                <div class="porteurs-count">
+                    {{ stats.usersCount.contributeurs }}
+                </div>
+            </div>
+            <div class="gestionnaires-container">
+                 <div class="gestionnaires-text">
+                    Gestionnaires
+                </div>
+                <div class="gestionnaires-count">
+                    {{ stats.usersCount.gestionnaires }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="center-container">
+        <div class="history-container">
+            <div class="history-header">
+                <div class="history-text">Historique</div>
+                <div class="history-separator"></div>
+                <div class="history-sortby-container">
+                    <select name="sortby" id="sortby" class="sortby">
+                        <option value="recent">Récentes</option>
+                        <option value="old">Anciennes</option>
+                        <option value="blocked">Bloqués</option>
+                        <option value="deblocked">Débloqués</option>
+                        <option value="deleted">Supprimés</option>
+                    </select>
+                </div>
+            </div>
+            <div class="history-contents"></div>
+        </div>
+        <div></div>
+        <div class="signin-request-container"></div>
+    </div>
+    <div class="bottom-container"></div>
+</div>

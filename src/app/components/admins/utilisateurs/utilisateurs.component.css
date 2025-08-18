@@ -1,0 +1,192 @@
+.principal-container {
+    width: 96%;
+    height: 150dvh;
+    display: grid;
+    grid-template-rows: 15% 42.5% 42.5%;
+    padding-top: 3dvh;
+    padding-bottom: 3dvh;
+    padding-left: 2%;
+    padding-right: 2%;
+    gap: 20px;
+    justify-self: center;
+    align-self: center;
+}
+
+.top-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 2% 73%;
+}
+
+.menu-title-container {
+    width: 100%;
+    height: 100%;
+    background-color: #334DAA;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 2px solid #F6C434;
+    font-size: xx-large;
+    align-content: center;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.users-stats-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 0px 10px 10px 0px;
+    border-left: 2px solid #334DAA;
+    padding: 3%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 23% 23.75% 23.75% 23.75%;
+    gap: 15px;
+}
+
+.total-container,
+.porteurs-container,
+.contributeurs-container,
+.gestionnaires-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.total-container:hover > *,
+.porteurs-container:hover > *,
+.contributeurs-container:hover > *,
+.gestionnaires-container:hover > * {
+    color: white;
+}
+
+.total-container {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.porteurs-container {
+    box-shadow: 0px 0px 5px 0px #23E311;
+}
+
+.contributeurs-container {
+    box-shadow: 0px 0px 5px 0px #F6C434;
+}
+
+.gestionnaires-container {
+    box-shadow: 0px 0px 5px 0px #334DAA;
+}
+
+.total-container:hover,
+.porteurs-container:hover,
+.contributeurs-container:hover,
+.gestionnaires-container:hover {
+    cursor: default;
+}
+
+.total-container:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.porteurs-container:hover {
+    background-color: #23E311;
+}
+
+.contributeurs-container:hover {
+    background-color: #F6C434;
+}
+
+.gestionnaires-container:hover {
+    background-color: #334DAA;
+}
+
+.total-text,
+.porteurs-text,
+.contributeurs-text,
+.gestionnaires-text {
+    font-size: large;
+    font-weight: bold;
+}
+
+.total-count,
+.porteurs-count,
+.contributeurs-count,
+.gestionnaires-count {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.center-container {
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 40% 2% 58%;
+}
+
+.history-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding: 3%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+
+.history-header {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% 46% 20%;
+    align-items: end;
+    gap: 2%;
+    justify-content: center;
+}
+
+.history-text {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.history-separator {
+    width: 90%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 2%;
+}
+
+.sortby {
+    border: none;
+    transition: transform 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+.sortby:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.signin-request-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.bottom-container {
+    width: 100%;
+    height: 100%;
+    background-color: brown;
+}
