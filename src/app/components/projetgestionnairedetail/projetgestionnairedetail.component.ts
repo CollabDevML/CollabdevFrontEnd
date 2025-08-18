@@ -36,6 +36,7 @@ export class ProjetgestionnairedetailComponent {
   );
 
   route: Router = inject(Router);
+  nbreContributeur: number=0;
 
   constructor(
     private tacheService: TacheService,
