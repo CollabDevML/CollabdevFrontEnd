@@ -79,18 +79,6 @@ export const routes: Routes = [
       { path: '**', redirectTo: '' },
     ],
   },
-  {
-    path: 'inscription',
-    component: InscriptionComponent,
-    children: [
-      { path: '', component: InscriptionIndexComponent },
-      { path: 'choix', component: InscriptionChoixComponent },
-      { path: 'contributeur', component: ContributeurComponent },
-      { path: 'gestionnaire', component: GestionnaireComponent },
-      { path: 'porteur-projet', component: PorteurProjetComponent },
-      { path: '**', redirectTo: '' },
-    ],
-  },
 
   //Les routes pour le Porteur de projet
   {
@@ -102,6 +90,7 @@ export const routes: Routes = [
       { path: 'mes_projets', component: MesIdeeProjetComponent },
       { path: 'mes_favories', component: ProjetSuiviComponent },
       { path: 'mes_idees', component: IdeesProjetComponent },
+      { path: 'profil', component: ProfilComponent },
       { path: '**', redirectTo: '' },
     ],
     canActivate: [porteurProjetGuardGuard],
@@ -124,7 +113,7 @@ export const routes: Routes = [
         ],
       },
       { path: 'mon_espace', component: AccueilContributeurComponent },
-
+      { path: 'profil', component: ProfilComponent },
       { path: '**', redirectTo: '' },
     ],
     canActivate: [contributeurGuardGuard],
@@ -144,6 +133,7 @@ export const routes: Routes = [
       { path: 'details_projet', component: ProjetgestionnairedetailComponent },
       { path: 'nouvelle_tache/:idProjet/tasks', component: TaskFormComponent },
       { path: 'detail_tache', component: DetailTacheComponent },
+      { path: 'profil', component: ProfilComponent },
       //Les autres routes ici ..............
 
       { path: '**', redirectTo: '' },
