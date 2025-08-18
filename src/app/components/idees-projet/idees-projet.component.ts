@@ -25,7 +25,13 @@ export class IdeesProjetComponent implements OnInit{
   public ideesProjet: ResponseIdeeProjet2[] = []
   public ideesSoutenues: Map<number, boolean> = new Map();
 
-  constructor(private ideesProjetService: IdeesProjetService, private domaineService: DomaineIdeeProjetService,private dataGest:GestionnaireDataService,private route:Router) {}
+  constructor(
+    private ideesProjetService: IdeesProjetService,
+     private domaineService: DomaineIdeeProjetService,
+     private dataGest:GestionnaireDataService,
+     private route:Router,
+     public sanitizer: DomSanitizer
+    ) {}
 
   ngOnInit(): void {
     this.userId = Number(localStorage.getItem('user_id'));
@@ -95,6 +101,14 @@ export class IdeesProjetComponent implements OnInit{
   }
   voirMoins(){
     this.plus = false;
+  }
+
+  download(fileName: string) {
+    window.location.href = `localhost:8180/download/CDC/${fileName}`
+  }
+
+  getEncodedURI(uri: string) {
+    return encodeURI(uri);
   }
 
 }

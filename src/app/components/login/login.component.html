@@ -1,11 +1,9 @@
-
-
-<div class="main">
+  <div class="main">
   <div class="login-container">
 
     <div class="title">
       <img src="logoP.png" alt=""><br>
-      <a routerLink="/">visiter le site <i class="ri-arrow-right-fill"></i></a>
+      <a routerLink="/">Visiter le site <i class="ri-arrow-right-fill"></i></a>
     </div>
 
     <div class="contenuLog">
@@ -20,14 +18,14 @@
             <input formControlName="email" type="email" required placeholder="Email" />
           </div>
           <div appearance="fill">
-            <input formControlName="password" type="password" required placeholder="Mote de passe" /><br>
+            <input formControlName="password" type="password" required placeholder="Mot de passe" /><br>
             <a class="aGauche" routerLink="/" style="float: right;margin-top:10px ;">Mot de passe Oublié ?</a>
           </div>
 
           <div class="btn-container"></div>
 
           <div appearance="fill">
-            <input type="submit" class="btn" value="se connecter" [disabled]="!loginData.valid" />
+            <input type="submit" class="btn" value="Se connecter" [disabled]="!loginData.valid" />
           </div>
 
         </form>
@@ -62,10 +60,7 @@
     </div>
   </div>
 </div>
-
-<div class="footer">
-  <p>&copy; 2025 CollabDev. <span> nous contacter</span></p>
-</div>
+<app-footer></app-footer>
 
 
 <!-- ===== MODAL DE SÉLECTION DE RÔLE ===== -->

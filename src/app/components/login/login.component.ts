@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LoginService } from '../../services/login.service';
 import { routes } from '../../app.routes';
+import { FooterComponent } from "../UI/footer/footer.component";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ import { routes } from '../../app.routes';
     RouterModule,
     RouterLink,
     CommonModule,
-  ],
+    FooterComponent
+],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

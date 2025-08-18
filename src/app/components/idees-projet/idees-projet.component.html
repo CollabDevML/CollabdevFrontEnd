@@ -26,7 +26,7 @@
                     <div class="idea-description-container">
                         {{ideeProjet.description}}
                     </div>
-                    <div class="idea-cdc-container">
+                    <a class="idea-cdc-container" [href]="sanitizer.bypassSecurityTrustUrl(getEncodedURI(ideeProjet.uriCDC))" target="_blank" download="{{ideeProjet.uriCDC}}">
                         <i class="ri-file-pdf-2-line idea-pdf-logo"></i>
                         <p class="idea-pdf-text"><u>Voir le cahier des charges</u></p>
                         @if (isHelped(ideeProjet.id)){
@@ -34,7 +34,7 @@
                         } @else {
                             <i class="ri-hand-heart-line idea-help" (click)="helpIdea(ideeProjet.id)" [class.isHelped]="isHelped(ideeProjet.id)"></i>
                         }
-                    </div>
+                    </a>
                     @if(ideeProjet.commentaireIdeeProjets.length !== 0) {
                         <div class="idea-comments-container">
                             <div class="idea-comments-header">

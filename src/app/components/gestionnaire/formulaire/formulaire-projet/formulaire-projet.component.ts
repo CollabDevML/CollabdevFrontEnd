@@ -7,6 +7,7 @@ import { projet } from '../../../../models/projet/projet';
 import { Enumerations } from '../../../../models/enums/enums';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService, NgxSpinnerComponent, NgxSpinnerModule } from 'ngx-spinner';
+import { TacheService } from '../../../../services/tache.service';
 
 @Component({
   selector: 'app-formulaire-projet',
@@ -25,7 +26,7 @@ export class FormulaireProjetComponent implements OnInit {
 dateDebut: any;
 dateFin: any;
   idIdeeProjet: any;
-  constructor(private route:Router,private data:GestionnaireDataService,private toast:ToastrService,private spinner:NgxSpinnerService){}
+  constructor(private route:Router,private data:GestionnaireDataService,private toast:ToastrService,private spinner:NgxSpinnerService, private gestionnaireService: GestionnaireDataService){}
   ngOnInit(): void {
     if (this.data.ideeData == null || this.data.ideeData == "" || this.data.ideeData == undefined) {
       this.route.navigate(["gestionnaire/mes_idees"]);
@@ -35,6 +36,12 @@ dateFin: any;
     console.log(this.niveaux)
   }
   onSubmit(){
+    var idGestionnaire: number = 0
+   this.gestionnaireService.trouverUnGestionnaireParsonidutilisateur(Number(localStorage.getItem("user_id"))).subscribe( {
+    next: (data) => {
+      idGestionnaire = data.id;
+    }
+   }  )
     const projet = {
       titre:this.projetIdee.titre,
       description: this.projetIdee.description,
@@ -44,14 +51,13 @@ dateFin: any;
       dateFin:new Date(this.dateFin).toISOString(),
       niveauDAcces: this.projetIdee.niveauDAcces,
       piecesDAcces: this.projetIdee.piecesDAcces,
-      idGestionnaire: Number(localStorage.getItem("user_id")),
+      idGestionnaire: idGestionnaire,
       idIdeeProjet:this.idIdeeProjet,
     };
 
     console.log(projet)
     this.spinner.show();
     this.data.addProjet(projet).subscribe({
-
       next:(res)=>{
         this.spinner.hide();
         this.toast.success("Projet Crée avec succès !!!","Succès")

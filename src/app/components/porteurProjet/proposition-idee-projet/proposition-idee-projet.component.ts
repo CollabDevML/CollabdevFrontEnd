@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -8,12 +8,14 @@ import { DataService } from '../../../services/data.service';
 import { PorteurProjetDataService } from '../../../services/porteurProjet/porteur-projet-data.service';
 import { RequestIdeeProjet } from '../../../models/ideeprojet/request-idee-projet';
 import { Router } from '@angular/router';
+import { NgxSpinner, NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-proposition-idee-projet',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NgxSpinnerModule],
   templateUrl: './proposition-idee-projet.component.html',
   styleUrls: ['./proposition-idee-projet.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PropositionIdeeProjetComponent implements OnInit {
   titre: string = '';
@@ -31,7 +33,8 @@ export class PropositionIdeeProjetComponent implements OnInit {
     private domaineService: DomaineIdeeProjetService,
     private data: DataService,
     private dataPorteur: PorteurProjetDataService,
-    private route: Router
+    private route: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +55,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.spinner.show()
     this.erreurs = [];
 
     // Validation sans le fichier obligatoire
@@ -71,11 +75,12 @@ export class PropositionIdeeProjetComponent implements OnInit {
         console.log(ideeProjet);
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
-            alert('Idée de projet envoyée avec succès !');
+            this.spinner.hide()
             this.route.navigateByUrl("/idees-projet")
             this.resetForm();
           },
           error: (err) => {
+            this.spinner.hide()
             this.erreurs.push(
               "Erreur lors de l'envoi du projet : " +
                 (err.error?.message || err.message)
@@ -102,9 +107,8 @@ export class PropositionIdeeProjetComponent implements OnInit {
         console.log(ideeProjet);
         this.dataPorteur.newIdee(ideeProjet).subscribe({
           next: () => {
-            alert('Idée de projet envoyée avec succès !');
-            this.route.navigateByUrl('/idees-projet');
             this.resetForm();
+            this.route.navigateByUrl('/idees-projet');
           },
           error: (err) => {
             this.erreurs.push(
@@ -115,7 +119,7 @@ export class PropositionIdeeProjetComponent implements OnInit {
         });
       },
       error: (err) => {
-        alert("Erreur mlors de l'Upload de fichier !!!");
+        alert("Erreur lors de l'upload de fichier!");
         console.log(err);
       },
     });
