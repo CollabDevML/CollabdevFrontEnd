@@ -9,7 +9,7 @@ body, html {
 
 .layout-container {
   display: flex;
-  height: 580px; /* J'ai réduit la hauteur du conteneur */
+  height: 580px; 
 }
 
 /* Sidebar */
@@ -102,7 +102,6 @@ select {
   box-shadow: none;
 }
 
-/* Les styles pour les placeholders sur les champs date ne sont plus nécessaires */
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   opacity: 0.5;
