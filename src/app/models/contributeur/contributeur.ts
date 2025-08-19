@@ -11,4 +11,5 @@ export class Contributeur {
   type!: string;
   pieces!: number;
   uriCv!: string;
+  idContributeur: any;
 }

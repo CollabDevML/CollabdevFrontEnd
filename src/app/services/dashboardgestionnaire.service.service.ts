@@ -18,7 +18,7 @@ export class DashboardgestionnaireServiceService {
   //fetch the data
   getGestionnaire(id:number):Observable<any>
   {
-    this.gestionnaireS.getProjetGestionnaire(id).pipe(
+    this.gestionnaireS.getProjetGestionnaire().pipe(
       map(data => (
         {
       prenom : data.utilisateur.prenom,
@@ -48,7 +48,7 @@ export class DashboardgestionnaireServiceService {
     }
     )))
 
-    return this.gestionnaireS.getProjetGestionnaire(id);
+    return this.gestionnaireS.getProjetGestionnaire();
   }
 
   //Calcul des stats

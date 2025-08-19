@@ -89,7 +89,7 @@ ngOnInit() {
       this.user = user;
       // Lancer en parallèle les 2 appels qui dépendent de l'user:
       return forkJoin({
-        projets: this.dataG.getProjetGestionnaire(user.idGestionnaire),
+        projets: this.dataG.getProjetGestionnaire(),
         demandes: this.dataG.demandeContributeurProjet()
       });
     }),

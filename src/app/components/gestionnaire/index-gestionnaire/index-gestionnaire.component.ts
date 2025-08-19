@@ -37,13 +37,10 @@ export class IndexGestionnaireComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // if (this.data.user_role == null || this.data.user_role == ""){
-    //   this.route.navigate(["login"]);
-    // }
     this.data.getDataUserById().subscribe({
       next: (res) => {
         this.user = res;
-        console.log(res);
+        localStorage.setItem("idGestionnaire",res.idGestionnaire);
       },
       error: (err) => {
         console.warn(err);

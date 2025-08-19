@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { projet } from '../../models/projet/projet';
 import { ResponseGestionnaire } from '../../models/gestionnaire/response-gestionnaire';
 import { GestionnaireDto } from '../../models/gestionnaire/gestionnaireDTo';
+import { Projet } from '../profil/profil.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,8 @@ export class GestionnaireDataService {
   }
 
   //Pour recupérer un gestionnaire
-  getProjetGestionnaire(id: number): Observable<ResponseGestionnaire> {
+  getProjetGestionnaire(): Observable<any> {
+    const id = localStorage.getItem("idGestionnaire");
     return this.data.getData(Env.PROJET_GESTIONNAIRE + id + '/' + 'projets');
   }
 

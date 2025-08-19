@@ -15,15 +15,19 @@ export class DataService {
   userData!: Users;
   users: any;
   user_email = localStorage.getItem('user_email') || '';
-  user_id = Number(localStorage.getItem('user_id')) || 0;
-  user_role = localStorage.getItem('user_role') || '';
+  user_id!:number;
+  user_role!:string;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http:HttpClient
+  ) {
+    this.user_id = Number(localStorage.getItem("user_id")) ;
+    this.user_role = localStorage.getItem("user_role") || "";
     this.users = {};
 
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,PATCH ,OPTIONS',
@@ -34,12 +38,9 @@ export class DataService {
   }
 
   //Les deux methodes qui vont recuperer les données de utilisateurs en fonction de localstorage que ca soit a travers sont email ou son id:
-  getDataUserById(): Observable<any> {
-    const user_id = Number(localStorage.getItem('user_id'));
-    const user_role = localStorage.getItem('user_role') || "" ;
-    return this.getDataById(Env.INSCRIPTION_URL, user_id, user_role);
+  getDataUserById():Observable<any>{
+    return this.getDataById(Env.INSCRIPTION_URL,this.user_id,this.user_role);
   }
-
   getDataUserByEmail(): Users {
     this.getDataByEmail(Env.INSCRIPTION_URL, this.user_email).subscribe(
       (res) => {
