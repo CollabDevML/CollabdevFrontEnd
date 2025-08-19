@@ -9,7 +9,7 @@ body, html {
 
 .layout-container {
   display: flex;
-  height: 100vh;
+  height: 580px; 
 }
 
 /* Sidebar */
@@ -49,6 +49,7 @@ app-recherchebarre {
   display: flex;
   max-width: 900px;
   width: 100%;
+  height: 520px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -72,7 +73,20 @@ app-recherchebarre {
 .form-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px; /* Réduction de l'écart entre les éléments */
+}
+
+/* Styles pour les groupes de formulaire (label + input) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Réduction de l'écart entre le label et le champ */
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #555;
 }
 
 input,
@@ -92,23 +106,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   opacity: 0.5;
 }
-input[type="date"] {
-  position: relative;
-}
-input[type="date"]::before {
-  content: attr(placeholder);
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  color: #999;
-  pointer-events: none;
-  display: block;
-}
-input[type="date"]:valid::before {
-  display: none;
-}
-/* fin des styles spécifiques */
 
 textarea {
   resize: none;
@@ -120,9 +117,8 @@ textarea {
   gap: 20px;
 }
 
-.form-row input,
-.form-row select {
-  width: 50%;
+.form-row .form-group {
+  flex: 1;
 }
 
 button {
@@ -195,6 +191,7 @@ button:hover {
 @media (max-width: 768px) {
   .layout-container {
     flex-direction: column;
+    height: auto; /* J'ai ajouté une hauteur automatique pour la réactivité */
   }
   
   app-side-bar {
@@ -234,8 +231,7 @@ button:hover {
     flex-direction: column;
   }
   
-  .form-row input,
-  .form-row select {
+  .form-row .form-group {
     width: 100%;
   }
 }
